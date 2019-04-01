@@ -1,0 +1,116 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+.snip1548 {
+  font-family: 'Raleway', sans-serif;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin: 10px 8px;
+  min-width: 230px;
+  max-width: 315px;
+  width: 100%;
+  color: #00aff1;
+  font-size: 16px;
+  text-align: left;
+  margin-left:18%;
+  margin-top:50px;
+}
+#00{
+	margin-left:10%;
+}
+.snip1548 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  
+}
+.snip1548:before {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 100%;
+  content: '';
+  background-color: rgba(51, 51, 51, 0.9);
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  -webkit-transition-delay: 0.25s;
+  transition-delay: 0.25s;
+}
+.snip1548 img {
+  vertical-align: top;
+  max-width: 100%;
+  backface-visibility: hidden;
+}
+.snip1548 figcaption {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.snip1548 h3,
+.snip1548 h5 {
+  margin: 0;
+  opacity: 0;
+  letter-spacing: 1px;
+}
+.snip1548 h3 {
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+  text-transform: uppercase;
+  font-weight: 400;
+  -webkit-transition-delay: 0.05s;
+  transition-delay: 0.05s;
+  margin-bottom: 20px;
+}
+.snip1548 h5 {
+  font-weight: normal;
+  background-color: #fff;
+  padding: 3px 10px;
+  border-radius:3px;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+}
+.snip1548 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.snip1548:hover:before,
+.snip1548.hover:before {
+  bottom: 10px;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+}
+.snip1548:hover h3,
+.snip1548.hover h3,
+.snip1548:hover h5,
+.snip1548.hover h5 {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  opacity: 1;
+}
+.snip1548:hover h3,
+.snip1548.hover h3 {
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+}
+.snip1548:hover h5,
+.snip1548.hover h5 {
+  -webkit-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+/* Demo purposes only */
+
