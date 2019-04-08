@@ -1,12 +1,9 @@
-CREATE TABLE tbCliente(
-idCliente int primary key identity(1,1),
-nomeCliente varchar(60) not null,
-emailCliente varchar(60) not null,
-generoCliente varchar(30) not null,
-dataNascCliente date not null,
-cpfCliente varchar(14),
+CREATE TABLE tbEmpresa(
+idEmpresa int primary key identity(1,1),
+nomeEmpresa varchar(60) not null,
+nomeRepresentante varchar(60) not null,
+emailRepresentante varchar(60) not null,
 cnpjCliente varchar(16),
-rgCliente varchar(12),
 );
 
 CREATE TABLE tbFuncionario(
@@ -21,7 +18,7 @@ CREATE TABLE tbLogin(
 idLogin int primary key identity(1,1),
 login varchar(60),
 senha varchar(30),
-fkCliente int foreign key references tbCliente(idCliente),
+fkEmpresa int foreign key references tbEmpresa(idEmpresa),
 fkFuncionario int foreign key references tbFuncionario(idFuncionario)
 );
 
@@ -45,13 +42,13 @@ referencia varchar(50),
 complemento varchar(8),
 numero varchar(10),
 logradouro varchar(50),
-fkCliente int foreign key references tbCliente(idCliente),
+fkEmpresa int foreign key references tbEmpresa(idEmpresa),
 fkFuncionario int foreign key references tbFuncionario(idFuncionario)
 );
 
 CREATE TABLE tbTelefone(
 idTelefone int primary key identity(1,1),
 numTelefone varchar(20),
-fkCliente int foreign key references tbCliente(idCliente),
+fkEmpresa int foreign key references tbEmpresa(idEmpresa),
 fkFuncionario int foreign key references tbFuncionario(idFuncionario)
 );
