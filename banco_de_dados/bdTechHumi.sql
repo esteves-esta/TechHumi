@@ -3,7 +3,7 @@ idEmpresa int primary key identity(1,1),
 nomeEmpresa varchar(60) not null,
 nomeRepresentante varchar(60) not null,
 emailRepresentante varchar(60) not null,
-cnpjCliente varchar(16),
+cnpjCliente varchar(16)
 );
 
 CREATE TABLE tbFuncionario(
@@ -23,7 +23,7 @@ fkFuncionario int foreign key references tbFuncionario(idFuncionario)
 );
 
 CREATE TABLE tbDados(
-idDado primary key identity(1,1),
+idDado int primary key identity(1,1),
 temperatura decimal(4,2) not null,
 umidade int not null,
 dataehora smalldatetime not null,
