@@ -2,46 +2,34 @@
 <html>
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<link rel="shotcut icon" href="img/favicon.png"> <!-- LOGO QUE APARECE NA BARRA DO NAVEGADOR -->
-
+    <link rel="shotcut icon" href="img/favicon.png"> <!-- LOGO QUE APARECE NA BARRA DO NAVEGADOR -->
     <title>TechHumi</title>
-
     <!--  ICONES USADOS NO SITE -->
     <link href="recursos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
     <!--  FONTES UTILIZADAS NO SITE VINDA DO GOOGLE FONTS -->
     <link href='https://fonts.googleapis.com/
     css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-
     <!-- SCRIPT PARA FAZER O ALERTA NA PARTE DO SIMULADOR FINANCEIRO -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
     <!-- CSS DO SITE -->
     <link href="recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet"> <!-- CSS DO FRAMEWORK BOOTSTRAP -->
     <link href="css/creative.css" rel="stylesheet"> <!-- CSS DO TEMA CREATIVE -->
-
-	<link rel="stylesheet" href="css/estilo.css">  <!-- CSS MANUAL -->
-    
+    <link rel="stylesheet" href="css/estilo.css"> <!-- CSS MANUAL -->
 </head>
 
 <body id="page-top">
-
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
-            
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top"> <img class="ap" src="img/logo-fundo-transparente.png" height="25"></a>
             </div>
-
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -66,30 +54,31 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <img class="logomain" src="img/logo-fundo-transparente.png"  width="400" >
+                <img class="logomain" src="img/logo-fundo-transparente.png" width="400">
                 <hr>
                 <h2>frase de impacto.</h2>
             </div>
         </div>
     </header>
+
     <section class="bg-primary" id="about">
-        <div class="container" style="margin-left: 22%">
-          <div class="row">
-            <div class="col-lg-8 mx-auto text-center">
-              <h2 class="section-heading text-white">Sobre Nós</h2>
-              <hr class="light">
-              <p class="text-faded">A empresa TechHumi é um projeto criado visando melhorar a qualidade de ambiente de trabalho de todos os nossos clientes. 
-                  Assim, aumentando a produtividade das empresas e os relacionamentos interpessoais.
-  </p>
-              <a class="btn btn-default btn-xl js-scroll-trigger" href="#services">Conheça mais!</a>
+        <div class="container" style="width: 50%">
+            <div class="row justify-content-lg-center">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-white">Sobre Nós</h2>
+                    <hr class="light">
+                    <p class="text-faded">A empresa TechHumi é um projeto criado visando melhorar a qualidade de ambiente de trabalho de todos os nossos clientes.
+                        Assim, aumentando a produtividade das empresas e os relacionamentos interpessoais.
+                    </p>
+                    <a class="btn btn-default btn-xl js-scroll-trigger" href="#services">Conheça mais!</a>
+                </div>
             </div>
-          </div>
         </div>
-      </section>
+    </section>
     <section id="services">
         <div class="container">
             <div class="row">
-                <h1 id="titulo1">Um pouco mais</h1>
+                <h1  class="text-center ">Um pouco mais</h1>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
@@ -119,112 +108,175 @@
                             Valorização e respeito às pessoas</p>
                     </div>
                 </div>
-            </div> 
-    </section>
-    <section id="simulador">
-        
-        <h1 id="titulo1">Simulador Financeiro</h1>
-        <form id="formulario">
-            <div class="form-group">
-                <label for="Quantidade de pessoas">Quantas pessoas moram em sua casa?</label>
-                <select class="form-control" id="qtdPessoas" style="width: 300px">
-                    <option value="0">Selecione...</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7 ou mais</option>
-                </select>
             </div>
-            <div class="form-group">
+    </section>
 
-                <label for="Quantidade de pessoas doentes">Quantas delas tem problemas respiratório?</label>
-                <select class="form-control" id="qtdPessoas2" style="width: 300px">
-                        <option value="0">Selecione...</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7 ou mais</option>
+
+    <section id="simulador" class="container-fluid">
+        <div class="container" id="formulario"> 
+            <h1 id="titulo1">Simulador Financeiro</h1>
+            <form>
+                <div class="form-group">
+                    <label>Quantos escritórios sua empresa possui?</label>
+                    <input type="num" id="escritorio" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Qual o tamanho médio de escritórios?</label>
+                    <input type="num" id="tamanho_metros" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Sua empresa possui ar-condicionado?</label>
+                    <select class="form-control" id="ar" class="form-control">
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Sua empresa possui umidificador?</label>
+                    <select class="form-control" id="umid" class="form-control">
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
                     </select>
                 </div>
                 <div class="form-group" id="botao">
-                    <button type="button" onclick="calcular()" class="btn btn-outline-dark">Calcular</button>
+                    <button type="button" onclick="calcular()" class="btn btn-light">Calcular</button>
                 </div>
-        </form>
+            </form>
+        </div>
     </section>
+
+
     <section id="contact">
         <div class="container">
             <div class="column">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2 class="section-heading">Pré-Cadastro</h2>
                     <hr class="primary">
-                    <p>Tem interesse em nosso produto? Preencha o formulário abaixo!</p>
+                    <p>
+                    Tem interesse em nosso produto? Preencha o formulário abaixo!</p>
                 </div>
                 <div class="col-lg-4 col-lg-offset-2 ">
-                   <form>
+                    <form>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Nome do Representante</label>
-                            <input type="email" class="form-control" id="email" placeholder="Insira seu email">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="email" placeholder="Insira seu email">
+                            <label>Nome do Representante</label>
+                            <input type="text" class="form-control" id="representante" >
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="email" placeholder="Insira seu email">
+                            <label>Nome da Empresa</label>
+                            <input type="text" class="form-control" id="empresa" >
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="email" placeholder="Insira seu email">
+                            <label>Email</label>
+                            <input type="email" class="form-control" id="email" >
                         </div>
-                   </form>
-                </div>
-                <div class="col-lg-4">
-                        <i class="fa fa-phone fa-3x sr-contact"></i>
-                        <p>+55(11)0000-0000</p>
+
+                        <label>Telefone</label>
+                        <div class="row ">
+                            <div class="form-group col-lg-6" >
+                             <select id="ddd" class="form-control">
+                               <option selected>DDD</option>
+                               <option>11</option>
+                               <option>12</option>
+                               <option>13</option>
+                               <option>14</option>
+                               <option>15</option>
+                               <option>16</option>
+                               <option>17</option>
+                               <option>18</option>
+                               <option>19</option>
+                               <option>20</option>
+                               <option>21</option>
+                               <option>22</option>
+                               <option>23</option>
+                               <option>24</option>
+                             </select>
+                           </div>
+
+                            <div class="form-group col-lg-6">
+                                <input type="text" class="form-control" id="telefone">
+                            </div>    
+                        </div>
+
+                        <div class="form-group">
+                            <label>Escreva sua mensagem</label>
+                            <textarea class="form-control" id="mensagem" rows="3"></textarea>
+                          </div>
+                        
+                       <button type="submit" class="btn btn-primary">Enviar</button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- RODAPÉ DO SITE -->
+    <footer class=" footer-basic-centered">
+        <div class="row ">
 
-	<footer class="footer-basic-centered">
+            <div class="col-lg-5" >
+                <img src="img/logo-fundo-transparente.png" height="50">
 
-			<img src="img/logo-fundo-transparente.png" height="50"> 
+                <p class="footer-company-name">TechHumi &copy; 2019</p>
+            </div>
+            <div class="col-lg-5 ">
+                <ul class="list-group">
+                    <li >+55(11)0000-0000</li>
+                    <li>contato@techhumi.com.br</li>
+                    <li><a href="http://api.whatsapp.com/send?1=pt_BR&phone=5511000000000." target="blank"><img src="img/whats.png"></a></li>
+                </ul>
 
-			<p class="footer-company-name">TechHumi &copy; 2019</p>
+            </div>
+        </div>
+    </footer>
 
-	</footer>
- 
+
+
     <!-- SCRIPT USADOS NO SITE -->
-
     <script src="recursos/jquery/jquery.min.js"></script>
-
     <script src="recursos/bootstrap/js/bootstrap.min.js"></script>
-
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-	<script src="js/creative.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/creative.min.js"></script>
 </body>
 
 </html>
-
 <script>
-  function calcular(){
-      resultado = (((qtdPessoas.value*120)*3)+((qtdPessoas2.value*150)*6))-300;
-    swal({
-        title: "Você irá economizar:",
-        text: "R$ "+resultado.toFixed(2)+" por ano ao instalar um de nossos produtos!",
-    });
+function calcular() {
+
+    var media_metro = Number(escritorio.value) / Number(tamanho_metros.value);
+    var num_arcondicionado;
+    var calculo_valor;
+
+    // pegamos o valor da media do tamanho da salas e verificamos que se a sala for maior que 50 metros
+    // a sala precisará de pelo menos dois arcondicionados e umidificadores e assim por diante
+    if (media_metro >= 50) {
+        num_arcondicionado = 2;
+    } else if (media_metro >= 80) {
+        num_arcondicionado = 3;
+    } else {
+        num_arcondicionado = 1;
     }
+
+
+    // OS VALORES NA VARIAVEL Calculo_valor SE REFEREM AO PREÇO DAS SEGUINTES COISAS 
+    // arcondicionado = 100, umidificaor = 70, preco da instalacao = 100, 
+    // preco do nosso produto = 300, preco da instalacao do nosso produto = 100
+    // somar todos os valores e multiplica o num de aparelhos necesarios
+
+    if (ar.value == 'nao' && umid.value == 'nao') { // nao tem nenhum aparelho
+        calculo_valor = (100 * num_arcondicionado) + (70 * num_arcondicionado) + 100 + 300 + 100;
+    } else if (ar.value == 'sim' && umid.value == 'nao') { // tem arcondicionado
+        calculo_valor = 100 + (70 * num_arcondicionado) + 100 + 300 + 100;
+    } else if (ar.value == 'nao' && umid.value == 'sim') { // tem umidificor
+        calculo_valor = (100 * num_arcondicionado) + 70 + 100 + 300 + 100;
+    } else { // tem os dois aparelhos
+        calculo_valor = 100 + 70 + 100 + 300 + 100;
+    }
+
+    // FUNÇAO DO BOOTSTRAP PARA MOSTRAR A MENSAGEM
+    swal({
+        title: `Você gastará com a instalação de nosso produto R$${calculo_valor.toFixed(2)} por ano`,
+    });
+}
 </script>
