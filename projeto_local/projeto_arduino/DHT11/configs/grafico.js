@@ -8,8 +8,8 @@ var t1 = new Chart(temper, {
         labels: [],
         datasets: [{
             data: [],
-            backgroundColor: "#af2828",
-            borderColor: "#af2828",
+            backgroundColor: "#fcfc3a",
+            borderColor: "#fcfc3a",
             borderWidth: 3,
             pointStyle: 'circle',
             pointRadius: 5,
@@ -27,7 +27,7 @@ var t1 = new Chart(temper, {
             display: true,
             text: 'Gráfico de Temperatura',
             fontSize: 30,
-            fontColor: "#af2828",
+            fontColor: "#fcfc3a",
             fontStyle: "normal"
         },
         scales: {
@@ -49,8 +49,8 @@ var t2 = new Chart(umidade, {
         labels: [],
         datasets: [{
             data: [],
-            backgroundColor: "#000",
-            borderColor: "#000",
+            backgroundColor: "#34A1C4",
+            borderColor: "#34A1C4",
             borderWidth: 3,
             pointStyle: 'circle',
             pointRadius: 5,
