@@ -12,11 +12,11 @@ void setup() {
 }
 void loop() {
  DHT.read11(dht_pin); // dando o comando para o objeto usar o metodo de leitura do DHT11 que esta no dth_pin ou seja, porta 5 Digital
- temp = DHT.humidity;
- umi = DHT.temperature;
-    Serial.print(umi);//pedindo a umidade que foi recolhida a cima
-    Serial.print(" \t");//tabulando
-    Serial.println(temp);//pedindo a temperatura
+ umi = DHT.humidity;
+ temp = DHT.temperature;
+    Serial.print(temp);//pedindo a umidade que foi recolhida a cima
+    Serial.print(",");//tabulando
+    Serial.println(umi);//pedindo a temperatura
 
     delay(1500); // deplay de 1seg e meio
 }

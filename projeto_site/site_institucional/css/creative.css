@@ -130,8 +130,8 @@ aside {
     color: #000;
   }
   .navbar-default.affix {
-    background-color: #202020;
-    border-color: rgba(34, 34, 34, 0.05);
+    background-color: #C7E1F0;
+    border-color: #fff;
   }
   .navbar-default.affix .navbar-header .navbar-brand {
     color: #00aff1;
