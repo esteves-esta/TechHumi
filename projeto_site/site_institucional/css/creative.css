@@ -123,14 +123,14 @@ aside {
   }
   .navbar-default .nav > li > a,
   .navbar-default .nav > li > a:focus {
-    color:#000;
+    color:#006095 ;
   }
   .navbar-default .nav > li > a:hover,
   .navbar-default .nav > li > a:focus:hover {
-    color: #000;
+    color: #006095;
   }
   .navbar-default.affix {
-    background-color: #C7E1F0;
+    background-color: #a8d3ec;
     border-color: #fff;
   }
   .navbar-default.affix .navbar-header .navbar-brand {

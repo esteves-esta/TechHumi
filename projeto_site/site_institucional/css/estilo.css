@@ -1,5 +1,5 @@
 #formulario{
-    width: 400px;
+    margin-left: 20%;
 }
 
 #titulo1{
@@ -51,4 +51,13 @@
 	.footer-basic-centered .footer-company-name{
 		font-size: 12px;
 	}
+}
+
+a.fixed{
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 300px;
+	margin-right: -6%;
+
 }

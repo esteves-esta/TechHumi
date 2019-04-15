@@ -15,11 +15,17 @@
     css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet'
         type='text/css'>
     <link
+    
         href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
         rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" href="css/estilo.css"> <!-- CSS MANUAL -->
-</head>
+         <!-- SCRIPT PARA FAZER O ALERTA NA PARTE DO SIMULADOR FINANCEIRO -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <link href="recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet"> <!-- CSS DO FRAMEWORK BOOTSTRAP -->
+        <link href="css/creative.css" rel="stylesheet"> <!-- CSS DO TEMA CREATIVE -->
+        <link rel="stylesheet" href="css/estilo.css">
+ </head>
 
 <body id="page-top">
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
@@ -38,7 +44,7 @@
                         <a class="page-scroll" href="#about">Sobre</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">Serviços</a>
+                        <a class="page-scroll" href="#services">A Empresa</a>
                     </li>
                     <li>
                         <a href="#simulador" class="page-scroll">Simulador</a>
@@ -58,7 +64,7 @@
             <div class="header-content-inner">
                 <img class="logomain" src="img/logo-fundo-transparente.png" width="400">
                 <hr>
-                <h2>frase de impacto.</h2>
+                <h2>Produtividade é nossa cara</h2>
             </div>
         </div>
     </header>
@@ -115,13 +121,14 @@
                 </div>
             </div>
     </section>
-    <section id="simulador">
-
+    
+        <section id="simulador" class="container-fluid">
+        <div class="container" id="formulario"> 
         <h1 id="titulo1">Simulador Financeiro</h1>
-        <form id="formulario">
+        <form>
             <div class="form-group">
                 <label>Quantos escritórios sua empresa possui?</label>
-                <input type="number" id="escritorio">
+                <input type="number" id="escritorio" class="form-control w-2" style="width:10%">
             </div>
             <div class="form-group">
 
@@ -244,9 +251,8 @@
                 <ul class="list-group">
                     <li >+55(11)0000-0000</li>
                     <li>contato@techhumi.com.br</li>
-                    <li><a href="http://api.whatsapp.com/send?1=pt_BR&phone=5511000000000." target="blank"><img src="img/whats.png"></a></li>
                 </ul>
-
+                <a href="http://api.whatsapp.com/send?1=pt_BR&phone=5511000000000." target="blank" class="fixed"><img src="img/whatsapp.png"></a>
             </div>
         </div>
     </footer>
