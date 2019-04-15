@@ -1,0 +1,179 @@
+body{
+    padding: 10px;
+    margin-bottom: 20px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px
+}
+.container{
+    background-color: aqua;
+    margin-top: 5%;
+    width: 100%;
+}
+/*Menu fixo*/
+header{
+    background-color: #E0FFFF	;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 9px 0;
+    height: 08%;
+    
+}
+header li{
+    display: inline-block;
+    padding: 0 1px;
+    margin-bottom: 8%;
+    height: 50%;    
+}
+header a{
+    text-decoration: none;
+}
+.center{
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 2%;
+}
+nav{
+    display: flex;
+}
+.logo{
+    width: 160px;
+    margin-top: 9px;
+    float: left;   
+}
+/*BUSCA*/
+.busca{
+    display: flex;
+    width: 40%;
+    height: 40px;
+    margin: 0%;
+    margin-left: 1%;
+    border-radius: 5px;
+    border: 1px solid#DDD;
+    background-color: rgb(255, 255, 255);
+}
+.pesquisa{
+    width: 92%;
+    height: 40px;
+    margin: 0%;
+    border: transparent;
+}
+#texto{
+    padding: 10px;
+    margin-bottom: 20px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px
+}
+.btnLupa{
+    margin-top: 12%;
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+}
+/*Perfil*/
+.Perfil{
+    background-color: red;
+    position: relative;
+    width: 18%;
+    height: 50%;
+border: 1px solidrgb(153, 11, 11);
+border-radius: 5px;
+border: 1px solid#DDD;
+background-color: white;
+}
+#divTitulo{
+    display: flex;
+}
+/*.pesquisa{
+    border-color: #227ABA;
+    
+    width: 65%;;
+    height: 40px;
+    margin: 10px;
+    float: left;
+}
+.botoes{
+    float:right;
+    display:flex;
+    margin-right:11%; 
+
+}
+.topo{
+    width: 100%;
+}
+#texto{
+    width: 100%;
+    height: 40;
+    float: left;
+    font-family: "arial";
+    font-size: 20px
+
+}
+
+.config{
+    width: 23px;
+    height: 23px;
+    
+    margin-top: 10px;
+    padding: 5px 10px;
+    
+}
+.suporte{
+    width: 23px;
+    height: 23px;
+   
+    margin-top: 10px;
+    margin-left: 5mm;
+    padding: 10px 10px;
+    
+}
+#texto:focus{
+    border: solid 2px black;
+}*/
+
+/*Menu de botoes*/
+.btnMenu{
+    background-color: transparent;
+    position: fixed;
+    top: 13%;
+    left: 20%;
+    width: 78%;
+    height: 10%;
+    display: flex;
+}
+.btnMenu1{
+background-color: transparent;
+width: 50%;
+border: 1px solidrgb(153, 11, 11);
+border-radius: 5px;
+border: 1px solid#DDD;
+background-color: white;
+}
+
+/*Pagina configurações*/
+#conf{
+    margin-left: 160px;
+}
+#conteiner{
+    background-color: red;
+    margin-left: 100px;
+    margin-right: 100px;
+    display: flex;
+    border: 2px solid black;
+}
+.botoes{
+    background-color: blue;
+}
+.botao{
+    background-color: transparent;
+    border: 1px solid black;
+    padding: 10px;
+    width: 155px;
+}
+.perfil_config{
+    background-color: aqua;
+    margin-bottom: 100px;
+    width: 100%;
+}
