@@ -1,0 +1,63 @@
+#formulario{
+    margin-left: 20%;
+}
+
+#titulo1{
+    margin-bottom: 40px;
+}
+
+#simulador{
+    background-color: #C7E1F0;
+}
+
+#botao{
+    /*margin-left: 50%;*/
+}
+
+.list-group li{
+	list-style: none;
+}
+
+
+/* ---------------------
+	CSS DO FOOTER 
+*/
+
+.footer-basic-centered{
+	background-color: #C7E1F0;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+	width: 100%;
+	text-align: center;
+	font: normal 18px sans-serif;
+	padding: 45px;
+	margin-top: 80px;
+}
+
+.footer-company-name{
+	color:  #227ABA;
+	font-size: 14px;
+	margin: 0;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 600px) {
+
+	.footer-basic-centered{
+		padding: 35px;
+	}
+
+	.footer-basic-centered .footer-company-name{
+		font-size: 12px;
+	}
+}
+
+a.fixed{
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 300px;
+	margin-right: -6%;
+
+}

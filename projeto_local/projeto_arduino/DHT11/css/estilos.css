@@ -1,0 +1,7 @@
+div[id="divtemp"],
+div[id="divumi"]{
+    width: 650px;
+}
+div[id="tudo"]{
+    display: flex;
+}
