@@ -183,14 +183,20 @@
 
         <!-- Area Chart Example-->
         <div class="card mb-3">
+          <div id="tudo">
           <div class="card-header">
             <i class="fas fa-chart-area">Temperatura</i>
             </div>
-          <div class="card-body col-lg-5">
-            <canvas id="grafico_temp" width="100%" height="30"></canvas>
+          <div class="card-body" style="margin:0">
+            <canvas id="temp" width="50%" height="30">
+
+            </canvas>
           </div>
           <div class="card-body col-lg-5">
-            <canvas id="grafico_umidade" width="100%" height="30"></canvas>
+            <canvas id="umid" width="50%" height="30">
+
+            </canvas>
+          </div>
           </div>
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
@@ -268,6 +274,11 @@
   <script src="js/demo/datatables-demo.js"></script>
   <script src="js/demo/chart-area-demo.js"></script>
 
+  <!-- Graficos do Node  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  <script src="configs/grafico.js"></script>
+  <script src="configs/socket.js"></script>
 </body>
 
 </html>
