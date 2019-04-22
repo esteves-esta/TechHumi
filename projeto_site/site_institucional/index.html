@@ -52,6 +52,9 @@
                     <li>
                         <a class="page-scroll" href="#contact">Pré - Cadastro</a>
                     </li>
+                    <li>
+                        <a href="../Login/login.html">Login</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -195,7 +198,7 @@
 
                             <div class="form-row">
                                 <div class="col-lg-4">
-                                    <select class="form-control form-control-sm">
+                                    <select class="form-control form-control-sm" id="ddd">
                                         <option>DDD</option>
                                         <option value="11">11</option>
                                         <option value="12">12</option>
@@ -228,7 +231,7 @@
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
 
-                        <button type="button" class="btn btn-info">Enviar</button>
+                        <button type="button" class="btn btn-info" onclick="preCadastrar()">Enviar</button>
                     </form>
                 </div>
                 <!-- <div class="col-lg-4">
@@ -268,6 +271,20 @@
 
 </html>
 <script>
+    function preCadastrar(){
+        if (empresa.value == '' && representante.value == '' && cnpj.value == '' && ddd.value == 'DDD' && telefone.value == ''){
+            swal({
+                title: `Por Favor, Preencha Todos os Campos Corretamente!`
+            }); 
+        }
+
+        else{
+            swal({
+                title: `Obrigado pelo Interrese, Aguarde Nosso Retorno!`
+            });
+        }
+       
+    }
 function calcular() {
         var media_metro = (Number(media.value) / Number(escritorio.value));
         var ar_condicionado;
