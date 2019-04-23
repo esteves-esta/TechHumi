@@ -22,10 +22,11 @@
                 <input type="password" id="senha" placeholder="Senha" required>
 
                 <a href="redefinir.html">Esqueceu sua senha?</a>
+                <br>
             </form>
-            <button type="button" class="botao" onclick="valida(login.value,senha.value)"> Login</button>
-            
+            <button type="submit" class="botao" onclick="valida(login.value,senha.value)"> Login</button>
             <a class="botao" href="../site_institucional/index.html">Sair</a>
+            
         </div>
     </div>
 </body>
@@ -38,7 +39,9 @@
             window.location.href ='../Site_usuario/index.html';
         }else{
             swal({
-                title:`Login e/ou senha inválidos`
+                title: "Login e/ou senha inválidos",
+                text: "Por favor tente novamente!",
+                icon: "error"
             });
         }
     }
