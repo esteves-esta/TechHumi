@@ -1,4 +1,4 @@
-#include <dht.h>//bibloteca usada do DHT11
+#include <dht.h>
 
 #define dht_pin 5 // define pino de sinal como 5 da Digital
 
