@@ -180,12 +180,12 @@
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nome da Empresa</label>
-                            <input type="text" class="form-control" id="empresa" placeholder="Empresa">
+                            <input type="text" class="form-control" id="empresa" placeholder="Insira o nome da Empresa">
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nome do Representante</label>
-                            <input type="text" class="form-control" id="representante" placeholder="Representante">
+                            <input type="text" class="form-control" id="representante" placeholder="Insira o nome do Representante">
                         </div>
 
                         <div class="form-group">
@@ -272,15 +272,14 @@
 </html>
 <script>
     function preCadastrar(){
-        if (empresa.value == '' && representante.value == '' && cnpj.value == '' && ddd.value == 'DDD' && telefone.value == ''){
-            swal({
-                title: `Por Favor, Preencha Todos os Campos Corretamente!`
-            }); 
-        }
-
-        else{
+        if (empresa.value != '' && representante.value != '' && cnpj.value != '' && ddd.value != 'DDD' && telefone.value != ''){
             swal({
                 title: `Obrigado pelo Interrese, Aguarde Nosso Retorno!`
+            }); 
+        }
+        else{
+            swal({
+                title: `Por Favor, Preencha Todos os Campos Corretamente!`
             });
         }
        
@@ -290,6 +289,7 @@ function calcular() {
         var ar_condicionado;
         var sem;
         var com;
+        var total;
 
         if (media_metro >= 50) {
             ar_condicionado = 2;
@@ -300,46 +300,28 @@ function calcular() {
             ar_condicionado = 1;
         }
 
-
-
         if (ar.value == 'nao' && umid.value == 'nao') {
             //TUDO EM REAL - vALORES DE CADA ITEM 100= ar condicionado; 70= umidificador; mao de obra do ar = 100
             // mao de obra do sistema = 300 ; sistema = 100;
             sem = ((100 * ar_condicionado) + (70 * ar_condicionado) + 100 + 400) * Number(escritorio.value);
-
-            swal({
-                title: `Com o nosso sistema instalado, você gastará apenas R$${sem} por ano.`
-            });
+            total = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(sem);
         }
         else if (ar.value == 'sim' && umid.value == 'nao') {
-            //TUDO EM REAL - vALORES DE CADA ITEM 100= ar condicionado; 70= umidificador; mao de obra do ar = 100
-            // mao de obra do sistema = 300 ; sistema = 100;
             sem = ((100) + (70 * ar_condicionado) + 100 + 400) * Number(escritorio.value);
-
-            swal({
-                title: `Com o nosso sistema instalado, você gastará apenas R$${sem.toFixed(2)} por ano.`
-            });
+            total = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(sem);
         }
-        if (ar.value == 'nao' && umid.value == 'sim') {
-            //TUDO EM REAL - vALORES DE CADA ITEM 100= ar condicionado; 70= umidificador; mao de obra do ar = 100
-            // mao de obra do sistema = 300 ; sistema = 100;
+        else if (ar.value == 'nao' && umid.value == 'sim') {
             sem = ((100 * ar_condicionado) + (70) + 100 + 400) * Number(escritorio.value);
-
-            swal({
-                title: `Com o nosso sistema instalado, você gastará apenas R$${sem.toFixed(2)} por ano.`
-            });
+            total = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(sem);
         }
         else {
-            //TUDO EM REAL - vALORES DE CADA ITEM 100= ar condicionado; 70= umidificador; mao de obra do ar = 100
-            // mao de obra do sistema = 300 ; sistema = 100;
             com = (300 + 100) * Number(escritorio.value);
-
-            swal({
-                title: `Com o nosso sistema instalado, você gastará apenas R$${com.toFixed(2)} por ano.`
-            });
+            total = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(com);
         }
 
-
+        swal({
+                title: `Com o nosso sistema instalado, você gastará apenas ${total} por ano.`
+            });
 
 
     }
