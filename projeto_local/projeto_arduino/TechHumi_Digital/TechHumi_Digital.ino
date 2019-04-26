@@ -11,7 +11,7 @@ void setup() {
   Serial.begin(9600); // serial em baund rates
 }
 void loop() {
- DHT.read11(dht_pin); // dando o comando para o objeto usar o metodo de leitura do DHT11 que esta no dth_pin ou seja, porta 5 Digital
+ DHT.read11(dht_pin); // função dando o comando para o objeto usar o metodo de leitura do DHT11 que esta no dth_pin ou seja, porta 5 Digital
  umi = DHT.humidity;
  temp = DHT.temperature;
     Serial.print(temp);//pedindo a umidade que foi recolhida a cima

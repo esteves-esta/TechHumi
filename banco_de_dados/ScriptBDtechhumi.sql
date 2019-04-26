@@ -47,8 +47,8 @@ fkFuncionario int, foreign key (fkFuncionario) references Funcionario(idFunciona
 
 create table Ambiente(
 idAmbiente int primary key,
-localAmbiente varchar(40),
-andar int,
+descricaoAmbiente varchar(40),
+localizacaoAmbiente varchar(20),
 fkEmpresa int, foreign key (fkEmpresa) references Empresa(idEmpresa)
 );
 
@@ -57,7 +57,7 @@ create table Sensor(
 idSensor int primary key,
 umidade int,
 data_hora datetime,
-temperatura int,
+temperatura float,
 fkAmbiente int, foreign key (fkAmbiente) references Ambiente(idAmbiente)
 );
 
