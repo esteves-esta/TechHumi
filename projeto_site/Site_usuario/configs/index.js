@@ -10,9 +10,7 @@ var server = app.listen(4000, () => { //Inicia o servidor na porta 4000
 
 var io = require('socket.io')(server); //Recupera o modulo so socket.io e atrela o socket.io ao nosso servidor express.
 
-
 app.use(express.static('public')); //Send index.html page on GET /
-
 
 
 app.get('/', (req, res) => { //Simplesmente devolve a index.html quando for digitado no navegador localhost:4000
@@ -24,7 +22,7 @@ app.get('/', (req, res) => { //Simplesmente devolve a index.html quando for digi
 const SerialPort = require('serialport'); //Recupera o modulo Serial Port
 
 const Readline = SerialPort.parsers.Readline; // Atribui o metodo readline do serial port a variável ReadLine
-const port = new SerialPort('COM5'); //Conecta a porta serial COM5. Veja a sua na IDE do Arduino -> Tools -> Port
+const port = new SerialPort('COM6'); //Conecta a porta serial COM5. Veja a sua na IDE do Arduino -> Tools -> Port
 
 const parser = port.pipe(new Readline({delimiter: '\n'})); //Lê a linha apenas se uma nova linhas for inserida
 
