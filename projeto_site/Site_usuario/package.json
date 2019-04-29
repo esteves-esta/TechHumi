@@ -33,9 +33,10 @@
         "bootstrap": "4.2.1",
         "chart.js": "2.7.3",
         "datatables.net-bs4": "1.10.19",
+        "express": "^4.16.4",
         "jquery": "3.3.1",
         "jquery.easing": "^1.4.1",
-        "express": "^4.16.4",
+        "npm": "^6.9.0",
         "serialport": "^7.1.4",
         "socket.io": "^2.2.0"
     },

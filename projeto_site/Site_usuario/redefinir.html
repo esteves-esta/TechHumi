@@ -131,10 +131,20 @@
         <p>This is a great starting point for new custom pages.</p>-->
 
         <form>
-          <input type="password" placeholder="Digite seu CNPJ"> <br><br>
-          <input type="password" placeholder="Nova Senha"> <br><br>
-          <input type="password" placeholder="Repita Senha"> <br><br>
-          <button type="button" class="page-link">Salvar</button>
+          <!-- <input type="password" placeholder="Digite seu CNPJ"> <br><br> -->
+          <div class="form-group row">
+            <div class="col-sm-3 my-1">
+              <label for="colFromLabel">Nova senha:</label>
+              <input type="password" class="form-control" placeholder="Nova Senha">
+            </div>
+            <div class="col-sm-3 my-1">
+            <label for="colFormLabel">Repita a senha:</label>
+            <input type="password" class="form-control" placeholder="Repita Senha">
+            </div>
+          </div>
+          <div class="form-gorup row"></div>
+          <button type="submit" class="btn btn-outline-primary">Salvar</button>
+          <button type="#" class="btn btn-outline-danger">Cancelar</button>
         </form>
 
       </div>
