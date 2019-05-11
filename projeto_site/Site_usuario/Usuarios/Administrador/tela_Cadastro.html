@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shotcut icon" href="img/favicon.png"> <!-- LOGO QUE APARECE NA BARRA DO NAVEGADOR -->
+
+    <title>TechHumi</title>
+    <!--  ICONES USADOS NO SITE -->
+    <link href="recursos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!--  FONTES UTILIZADAS NO SITE VINDA DO GOOGLE FONTS -->
+    <link href='https://fonts.googleapis.com/
+    css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet'
+        type='text/css'>
+    <link
+    
+        href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+        rel='stylesheet' type='text/css'>
+
+         <!-- SCRIPT PARA FAZER O ALERTA NA PARTE DO SIMULADOR FINANCEIRO -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <link href="recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet"> <!-- CSS DO FRAMEWORK BOOTSTRAP -->
+        <link href="css/creative.css" rel="stylesheet"> <!-- CSS DO TEMA CREATIVE -->
+        <link rel="stylesheet" href="css/estilo.css">
+ </head>
+
+<body id="page-top">
+   
+
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <img class="logomain" src="img/logo-fundo-transparente.png" height="25">
+                <hr>
+                <h1>Cadastro</h1>
+            </div>
+        </div>
+    </header>
+
+         
+
+
+
+    <section id="contact">
+        <div class="container">
+            <div class="column">
+                
+                    <div class="col-lg-8 col-lg-offset-2 ">
+                    <form>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="inputEmail4">Nome da Empresa</label>
+                            <input type="text" class="form-control" id="inputempresa" placeholder="Empresa">
+                          </div>
+                          <div class="form-group col-md-6" >
+                            <label for="inputPassword4">Nome do Representante</label>
+                            <input type="text" class="form-control" id="inputrepresentante" placeholder="Representante" >
+                          </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="inputAddress">Email</label>
+                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="inputState">DDD</label>
+                            <select id="inputState" class="form-control">
+                              <option selected>---</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                              <option value="13">13</option>
+                              <option value="14">14</option>
+                              <option value="15">15</option>
+                              <option value="16">16</option>
+                              <option value="17">17</option>
+                              <option value="18">18</option>
+                              <option value="19">19</option>
+                              <option value="21">21</option>
+                              <option value="22">22</option>
+                              <option value="24">24</option>
+                            </select>        
+                          </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="inputAddress">Telefone</label>
+                            <input type="number" class="form-control" id="inputTelefone" placeholder="Telefone">
+                          </div>
+
+                        <div class="form-group col-md-3">
+                          <label for="inputAddress2">CNPJ</label>
+                          <input type="text" class="form-control" id="inputcnpj" placeholder="CNPJ">
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-3">
+                            <label for="inputCity">Cidade</label>
+                            <input type="text" class="form-control" id="inputCidade" placeholder="Ex: São Paulo">
+                          </div>
+
+                          <div class="form-group col-md-2">
+                            <label for="inputState">UF</label>
+                            <select id="inputState" class="form-control">
+                              <option selected>---</option>
+                              <option value="ac">AC</option>
+                              <option value="al">AL</option>
+                              <option value="ap">AP</option>
+                              <option value="am">AM</option>
+                              <option value="ba">BA</option>
+                              <option value="ce">CE</option>
+                              <option value="df">DF</option>
+                              <option value="es">ES</option>
+                              <option value="go">GO</option>
+                              <option value="ma">MA</option>
+                              <option value="mt">MT</option>
+                              <option value="ms">MS</option>
+                              <option value="mg">MG</option>
+                              <option value="pa">PA</option>
+                              <option value="pb">PB</option>
+                              <option value="pr">PR</option>
+                              <option value="pe">PE</option>
+                              <option value="pi">PI</option>
+                              <option value="rj">RJ</option>
+                              <option value="rn">RN</option>
+                              <option value="rs">RS</option>
+                              <option value="ro">RO</option>
+                              <option value="rr">RR</option>
+                              <option value="sc">SC</option>
+                              <option value="sp">SP</option>
+                              <option value="se">SE</option>
+                              <option value="to">TO</option>
+                             
+                            </select>
+                          </div>
+                          <div class="form-group col-md-3">
+                            <label for="inputZip">CEP</label>
+                            <input type="text" class="form-control" id="inputCep" placeholder="Ex: 00000-000">
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="inputCity">Logradouro</label>
+                              <input type="text" class="form-control" id="inputLogradouro" placeholder="Ex: Rua do Ar">
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label for="inputCity">Número</label>
+                                <input type="number" class="form-control" id="inputNumero" placeholder="Ex: 200">
+                              </div>
+
+                              <div class="form-group col-md-2">
+                                <label for="inputCity">Complemento</label>
+                                <input type="text" class="form-control" id="inputcomplemento" placeholder="Ex: 12A">
+                              </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                              <label for="inputCity">Bairro</label>
+                              <input type="text" class="form-control" id="inputBairro" placeholder="Ex: Bom Retiro">
+                            </div>
+
+                            <div class="form-group col-md-5">
+                                <label for="inputCity">Referência</label>
+                                <input type="text" class="form-control" id="inputReferencia" placeholder="Ex: Bombeiros">
+                              </div>
+
+                        </div>
+
+                          <button type="submit" class="btn btn-primary">Cadastrar</button>
+                          <a href="../../Login/login.html" class="btn btn-primary">Sair</a>
+                      </form>
+                    
+                </div>   
+                    
+    </section>
+
+    <!-- RODAPÉ DO SITE -->
+    <footer class=" footer-basic-centered">
+        <div class="row ">
+            <div class="col-lg-5" >
+                <img src="img/logo-fundo-transparente.png" height="50">
+
+                <p class="footer-company-name">TechHumi &copy; 2019</p>
+            </div>
+            <div class="col-lg-5 ">
+                <ul class="list-group">
+                    <li >+55(11)0000-0000</li>
+                    <li>contato@techhumi.com.br</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- SCRIPT USADOS NO SITE -->
+    <script src="recursos/jquery/jquery.min.js"></script>
+    <script src="recursos/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/creative.min.js"></script>
+</body>
+
+</html>
+
+
+ 

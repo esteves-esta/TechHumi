@@ -1,0 +1,4 @@
+azul claro - #C7E1F0
+azul médio - #34A1C4
+azul escuro - #227ABA
+azul bem escuro - #006095
