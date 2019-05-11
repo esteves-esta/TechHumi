@@ -16,11 +16,12 @@ telefoneEmpresa2 varchar(20)
 
 create table Endereco(
 idEndereco int primary key,
+logradouro varchar(40),
+numero varchar(15),
+complemento varchar(60),
+bairro varchar(50),
 cidade varchar(40),
 uf varchar(2),
-complemento varchar(60),
-logradouro varchar(40),
-bairro varchar(50),
 cep varchar(12),
 referencia varchar(35)
 );
@@ -70,3 +71,8 @@ fkSensor int, foreign key (fkSensor) references Sensor(idSensor)
 );
 
 
+insert into Endereco(logradouro,numero,bairro,complemento,cidade,uf,cep,referencia) values
+('R. Edmundo Orioli','225','Cidade Tiradentes','44A','São Paulo','SP','08470-600','Escola Camilo'),
+('R. Serra de Botucatu','2095','Vila Carrão','','São Paulo','SP','03317-001','');
+
+select * from Endereco;
