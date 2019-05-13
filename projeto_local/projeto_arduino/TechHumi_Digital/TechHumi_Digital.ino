@@ -18,5 +18,5 @@ void loop() {
     Serial.print(",");//tabulando
     Serial.println(umi);//pedindo a temperatura
 
-    delay(1500); // deplay de 1seg e meio
+    delay(6000); // deplay de 1seg e meio
 }

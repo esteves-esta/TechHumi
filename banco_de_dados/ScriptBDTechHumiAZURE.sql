@@ -1,9 +1,9 @@
 create table Empresa(
 idEmpresa int primary key identity(1,1),
-emailRrepresentante varchar(80),
-nomeRepresentante varchar (60),
 nomeEmpresa varchar(60),
 cnpjEmpresa varchar(30),
+nomeRepresentante varchar (60),
+emailRrepresentante varchar(80),
 telefoneEmpresa1 varchar(20),
 telefoneEmpresa2 varchar(20)
 );
@@ -13,30 +13,31 @@ create table Endereco(
 idEndereco int primary key identity(1,1),
 logradouro varchar(40),
 numero varchar(15),
-complemento varchar(60),
+complemento varchar(7),
 bairro varchar(50),
 cidade varchar(40),
-uf varchar(2),
+uf char(2),
 cep varchar(12),
-referencia varchar(35)
+referencia varchar(35),
+fkEmpresa int foreign key references Empresa(idEmpresa)
 );
 
 
 create table Funcionario(
 idFuncionario int primary key identity(1,1),
 nomeFuncionario varchar(55),
+rgFuncionario varchar(25),
 cpfFuncionario varchar(25),
 cargoFuncionario varchar(40),
-rgFuncionario varchar(25),
 fkEmpresa int foreign key references Empresa(idEmpresa)
 );
 
 
 create table Login(
 idLogin int primary key identity(1,1),
-nivelAcesso varchar(40),
-senhaUsuario varchar (10),
 loginUsuario varchar(40),
+senhaUsuario varchar (50),
+nivelAcesso int not null,
 fkFuncionario int foreign key references Funcionario(idFuncionario)
 );
 
@@ -51,17 +52,17 @@ fkEmpresa int foreign key references Empresa(idEmpresa)
 
 create table Sensor(
 idSensor int primary key identity(1,1),
-umidade int,
-data_hora datetime,
-temperatura float,
+temperatura float not null,
+umidade int not null,
+data_hora datetime not null,
 fkAmbiente int foreign key references Ambiente(idAmbiente)
 );
 
 
 create table Funcionamento(
-idFuncionamento int primary key identity(1,1),
-horaInicio time,
-horaFim time,
+idFuncionamento int,
+horaInicio time not null,
+horaFim time not null,
 fkSensor int foreign key references Sensor(idSensor) 
 );
 
@@ -70,3 +71,5 @@ insert into Endereco(logradouro,numero,bairro,complemento,cidade,uf,cep,referenc
 ('R. Serra de Botucatu','2095','Vila Carrão','','São Paulo','SP','03317-001','');
 
 select * from Endereco;
+
+select * from Sensor order by idSensor desc;
