@@ -10,7 +10,7 @@
   <meta name="author" content="">
   <link rel="shotcut icon" href="img/favicon.png">
 
-  <title>Consulta</title>
+  <title>Ambientes</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -38,7 +38,8 @@
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Procurar por..." aria-label="Search" aria-describedby="basic-addon2">
+        <input type="text" class="form-control" placeholder="Procurar por..." aria-label="Search"
+          aria-describedby="basic-addon2">
         <div class="input-group-append">
           <button class="btn btn-primary" type="button">
             <i class="fas fa-search"></i>
@@ -106,7 +107,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
-          <span>Consulta</span></a>
+          <span>Ambientes</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="adm.html">
@@ -119,7 +120,8 @@
           <i class="fas fa-fw fa-folder"></i>
           <span>Configuraçoes</span>
         </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
+          style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
           <a class="dropdown-item" href="perfil.html">Perfil</a>
           <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
           <a class="dropdown-item" href="rotina.html">Rotina</a>
@@ -133,62 +135,103 @@
 
     <div id="content-wrapper">
 
-      <div class="container-fluid">
+      <div id="main" class="container-fluid">
+        <div id="top" class="row">
+          <div class="col-md-3">
+            <h4>Ambientes Cadastrados</h4>
+          </div>
 
-        <!-- DataTables Example -->
-        <div class="card mb-3">
-          <div class="card-header">
-            <i class="fas fa-table"></i>
-            Consulta de Ambientes</div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                  <th scope="col">Numero</th>
-                  <th scope="col">Temperatura</th>
-                  <th scope="col">Umidade</th>
-                  <th scope="col">Ambiente</th>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>23ºC</td>
-                    <td>50%</td>
-                    <td>Sala de Reunião</td>
-
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>21ºC</td>
-                    <td>55%</td>
-                    <td>Recepção</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>22ºC</td>
-                    <td>53%</td>
-                    <td>Sala dos Devs</td>
-                  </tr>
-                </tbody>
-              </table>
+          <div class="col-md-6">
+            <div class="input-group mb-3">
+              <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Ambientes">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                  <span class="fas fa-search"></span>
+                </button>
+              </div>
             </div>
           </div>
-          <div class="card-footer small text-muted">Atualizado ontem às 23h59</div>
+
+          <div class="col-md-3">
+            <a href="cadAmbiente.html" class="btn btn-primary pull-right h2">Novo Ambiente</a>
+          </div>
+        </div> <!-- /#top -->
+
+        <div id="list" class="row">
+          <div class="table-responsive col-md-12">
+            <table class="table table-striped" cellspacing="0" cellpadding="0">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Temperatura</th>
+                  <th scope="col">Umidade</th>
+                  <th scope="col">Descrição</th>
+                  <th scope="col">Localização</th>
+                  <th class="actions">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>1</td>
+                  <td>23ºC</td>
+                  <td>57%</td>
+                  <td>Sala de Reunião</td>
+                  <td>3º Andar</td>
+                  <td class="actions">
+                    <a class="btn btn-warning btn-xs" href="edit.html">Editar</a>
+                    <a class="btn btn-danger btn-xs" href="#" data-toggle="modal"
+                      data-target="#delete-modal">Excluir</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>21ºC</td>
+                  <td>50%</td>
+                  <td>Recepção</td>
+                  <td>1º Andar</td>
+                  <td class="actions">
+                    <a class="btn btn-warning btn-xs" href="edit.html">Editar</a>
+                    <a class="btn btn-danger btn-xs" href="#" data-toggle="modal"
+                      data-target="#delete-modal">Excluir</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>22ºC</td>
+                  <td>53%</td>
+                  <td>Sala dos Devs</td>
+                  <td>2º Andar</td>
+                  <td class="actions">
+                    <a class="btn btn-warning btn-xs" href="edit.html">Editar</a>
+                    <a class="btn btn-danger btn-xs" href="#" data-toggle="modal"
+                      data-target="#delete-modal">Excluir</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div> <!-- /#list -->
+
+        <div id="bottom" class="row">
+
+        </div> <!-- /#bottom -->
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+
+    <!-- Sticky Footer -->
+    <footer class="sticky-footer">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>TechHumi © 2019</span>
         </div>
       </div>
-      <!-- /.container-fluid -->
+    </footer>
 
-      <!-- Sticky Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>TechHumi © 2019</span>
-          </div>
-        </div>
-      </footer>
-
-    </div>
-    <!-- /.content-wrapper -->
+  </div>
+  <!-- /.content-wrapper -->
 
   </div>
   <!-- /#wrapper -->
@@ -199,7 +242,8 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
