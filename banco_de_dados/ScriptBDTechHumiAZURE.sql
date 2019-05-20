@@ -3,7 +3,7 @@ idEmpresa int primary key identity(1,1),
 nomeEmpresa varchar(60),
 cnpjEmpresa varchar(30),
 nomeRepresentante varchar (60),
-emailRrepresentante varchar(80),
+emailRepresentante varchar(80),
 telefoneEmpresa1 varchar(20),
 telefoneEmpresa2 varchar(20)
 );
