@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="WB Datadict">
+    <meta name="description" content="mydb Data Dictionary.">
+    <title>Dicionário de dados</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        // Highlight table corresponding to the current fragment in the URL.
+        $(document).ready(function () {
+            $("a").click(function () {
+                var elem = $(this);
+                // Remove all classes from tables.
+                $("table").removeClass("focused")
+                // Get a.href value and extract its fragment id.
+                var id = elem.attr("href");
+                // Highlight table using fragment id.
+                $(id).addClass("focused");
+            });
+        });
+    </script>
+    <style type="text/css">
+        a {
+            text-decoration: none;
+        }
+
+        abbr {
+            cursor: help;
+        }
+
+        header {
+            color: black;
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        table caption {
+            font-size: 120%;
+            font-weight: bold;
+        }
+
+        table,
+        td,
+        th {
+            border-color: silver;
+            border-style: solid;
+            border-width: 1px;
+        }
+
+        caption {
+            color: black;
+        }
+
+        td,
+        th {
+            padding: 1em;
+        }
+
+        tr:hover {
+            color: blackx;
+            background-color: whitesmoke;
+        }
+            COR DE FUNDO DOS TÍTULOS
+         th {
+            background-color: "" ; 
+        }
+
+        td {
+            color: black;
+        }
+
+        ul {
+            font-style: italic;
+        }
+
+        .centered {
+            text-align: center;
+        }
+            COR DOS SUB-TÍTULOS ATRIBUTO
+        .field {
+            color: #4C4C4C;
+            font-weight: bold;
+        }
+
+        .focused {
+            outline-color:black;
+            outline-style: solid;
+            outline-width: thin;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <center>
+            <h1> <b>Dicionário de dados </b> </h1>
+        </center>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href='#Ambiente'>Ambiente</a></li>
+            <li><a href='#Empresa'>Empresa</a></li>
+            <li><a href='#Endereco'>Endereco</a></li>
+            <li><a href='#Funcionamento'>Funcionamento</a></li>
+            <li><a href='#Funcionario'>Funcionario</a></li>
+            <li><a href='#Login'>Login</a></li>
+            <li><a href='#Sensor'>Sensor</a></li>
+        </ul>
+    </nav>
+
+
+    <div>
+        <table id='Ambiente'>
+            <caption>Ambiente</caption>
+            <tr>
+                <td colspan='12' ></td>
+            </tr>
+            <tr>
+                <th>Atributo</th>
+                <th>Nome do campo</th>
+                <th>Tipo de dado</th>
+                <th>Tamanho</th>
+                <th>Restrição</th>
+                <th>Descrição</th>
+            </tr>
+            <tr>
+                <td class='field'>Identificador do ambiente</td>
+                <td>idAmbiente</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>2</td>
+                <td class='centered'>Chave primária</td>
+                <td class='centered'>O número de identificação única do ambiente deve armazenar seu registro de acordo com a ordem de cadastro - Número atribuído após cadastro da empresa e utilizado para identiicação.</td>
+            </tr>
+            <tr>
+                <td class='field'>Descrição do Ambiente</td>
+                <td>descricaoAmbiente</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>40</td>
+                <td class='centered'>Preenchimento obrigatório</td>
+                <td class='centered'>Total de informações possíveis do ambiente.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Localizacao do ambiente</td>
+                <td>localizacaoAmbiente</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>20</td>
+                <td class='centered'>Preenchimento obrigatório</td>
+                <td class='centered'>Informações que levarão ao encontro do ambiente.</td>
+            </tr>
+            <tr>
+                <td class='field'>Relacionamento de tabelas distintas</td>
+                <td>fkEmpresa</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>2</td>
+                <td class='centered'>Chave estrangeira</td>
+                <td class='centered'>&nbsp;</td>
+            </tr>
+        </table>
+        <table id='Empresa'>
+            <caption>Empresa</caption>
+            <tr>
+                <td colspan='12'></td>
+            </tr>
+            <tr>
+                <th>Atributo</th>
+                <th>Nome do campo</th>
+                <th>Tipo de dado</th>
+                <th>Tamanho</th>
+                <th>Restrição</th>
+                <th>Descrição</th>
+            </tr>
+            <tr>
+                <td class='field'>Empresa </td>
+                <td>idEmpresa</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>2</td>
+                <td class='centered'>Chave primária</td>
+                <td class='centered'>O número de identificação única da empresa deve armazenar seu registro de acordo com a ordem de cadastro - Número atribuído após cadastro da empresa e utilizado para identiicação.</td>
+            </tr>
+            <tr>
+                <td class='field'>Nome da empresa</td>
+                <td>nomeEmpresa</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>60</td>
+                <td class='centered'>Preenchimento obrigatório</td>
+                <td class='centered'>Nome completo da empresa, sem abreviação.</td>
+            </tr>
+            <tr>
+                <td class='field'>CNPJ da empresa</td>
+                <td>cnpjEmpresa</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>30</td>
+                <td class='centered'>Chave única;</td>
+                <td class='centered'>Registro de CNPJ completo da empresa.  Item deve ser único para cada ocorrência.</td>
+            </tr>
+            <tr>
+                <td class='field'>Nome do representante</td>
+                <td>nomeRepresentante</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>60</td>
+                <td class='centered'>Preenchimento obrigatório</td>
+                <td class='centered'>Nome completo do representante da empresa, sem abreviação.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>E-mail do representante</td>
+                <td>emailRepresentante</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>80</td>
+                <td class='centered'>Chave única</td>
+                <td class='centered'>E-mail para contato com o representante.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Telefone da empresa1</td>
+                <td>telefoneEmpresa1</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>20</td>
+                <td class='centered'>Chave única</td>
+                <td class='centered'>Telefone principal para contato com a empresa.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Telefone da empresa2</td>
+                <td>telefoneEmpresa2</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>20</td>
+                <td class='centered'>Chave única</td>
+                <td class='centered'>Telefone secundário para contato com a empresa.</td>
+
+            </tr>
+        </table>
+        <table id='Endereco'>
+            <caption>Endereco</caption>
+            <tr>
+                <td colspan='12'></td>
+            </tr>
+            <tr>
+                <th>Atributo</th>
+                <th>Nome do campo</th>
+                <th>Tipo de dado</th>
+                <th>Tamanho</th>
+                <th>Restrição</th>
+                <th>Descrição</th>
+            </tr>
+            <tr>
+                <td class='field'>Endereco</td>
+                <td>idEndereco</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>2</td>
+                <td class='centered'>Chave primária</td>
+                <td class='centered'>O número de identificação do endereço deve armazenar seu registro de acordo com a ordem de cadastro - Número atribuído após cadastro da empresa e utilizado para identiicação.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Logradouro</td>
+                <td>logradouro</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>40</td>
+                <td class='centered'>Preenchimento obrigatório</td>
+                <td class='centered'> Espaço para referir a uma rua, endereço ou um espaço público que compõe uma cidade.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Numero</td>
+                <td>numero</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>15</td>
+                <td class='centered'>Preenchimento obrigatório</td>
+                <td class='centered'>Número de localização atribuído de acordo com o endereço.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Complemento</td>
+                <td>complemento</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>30</td>
+                <td class='centered'>Preenchimento obrigatório</td>
+                <td class='centered'>Remete ao acabamento do endereço.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Bairro</td>
+                <td>bairro</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>50</td>
+                <td class='centered'>Preenchimento obrigatório</td>
+                <td class='centered'>Nome completo do bairro, sem abreviação.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Cidade</td>
+                <td>cidade</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>40</td>
+                <td class='centered'>Preencimento obrigatório</td>
+                <td class='centered'>Nome completo da cidade, sem abreviação. </td>
+
+            </tr>
+            <tr>
+                <td class='field'>Estado</td>
+                <td>uf</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>2</td>
+                <td class='centered'>Preenchimento obrigatório</td>
+                <td class='centered'>UF do estado de localização.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Cep</td>
+                <td>cep</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>12</td>
+                <td class='centered'>Preenchimento obrigatório</td>
+                <td class='centered'>CEP completo da localização da empresa.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Referencia</td>
+                <td>referencia</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>35</td>
+                <td class='centered'>Preenchimento obrigatório</td>
+                <td class='centered'>Referência para localização da empresa.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Relacionamento de tabelas distintas</td>
+                <td>fkEmpresa</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>2</td>
+                <td class='centered'>Chave estrangeira</td>
+                <td class='centered'>&nbsp;</td>
+
+            </tr>
+        </table>
+        <table id='Funcionamento'>
+            <caption>Funcionamento</caption>
+            <tr>
+                <td colspan='12'></td>
+            </tr>
+            <tr>
+                <th>Atributo</th>
+                <th>Nome do campo</th>
+                <th>Tipo de dado</th>
+                <th>Tamanho</th>
+                <th>Restrição</th>
+                <th>Descrição</th>
+            </tr>
+            <tr>
+                <td class='field'>Funcionamento</td>
+                <td>idFuncionamento</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>2</td>
+                <td class='centered'>Chave primária</td>
+                <td class='centered'>O número de identificação do funcionamento deve armazenar seu registro de acordo com a ordem de cadastro - Número atribuído após cadastro da empresa e utilizado para identiicação.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Horario</td>
+                <td>horaInicio</td>
+                <td class='centered'>Time</td>
+                <td class='centered'>6</td>
+                <td class='centered'>Time consistente</td>
+                <td class='centered'>Horário de início do funcionamento do sistema.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Horario</td>
+                <td>horaFim</td>
+                <td class='centered'>Time</td>
+                <td class='centered'>6</td>
+                <td class='centered'>Time consistente</td>
+                <td class='centered'>Horário de encerramento do funcionamento do sistema.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Relacionamento de tabelas distintas</td>
+                <td>fkSensor</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>2</td>
+                <td class='centered'>Chave estrangeira</td>
+                <td class='centered'>&nbsp;</td>
+
+            </tr>
+        </table>
+        <table id='Funcionario'>
+            <caption>Funcionario</caption>
+            <tr>
+                <td colspan='12'></td>
+            </tr>
+            <tr>
+                <th>Atributo</th>
+                <th>Nome do campo</th>
+                <th>Tipo de dado</th>
+                <th>Tamanho</th>
+                <th>Restrição</th>
+                <th>Descrição</th>
+            </tr>
+            <tr>
+                <td class='field'>Funcionario</td>
+                <td>idFuncionario</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>2</td>
+                <td class='centered'>Chave primária</td>
+                <td class='centered'>O número de identificação do funcionário deve armazenar seu registro de acordo com a ordem de cadastro - Número atribuído após cadastro da empresa e utilizado para identiicação.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Nome do funcionario</td>
+                <td>nomeFuncionario</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>55</td>
+                <td class='centered'>Chave única</td>
+                <td class='centered'>Nome completo do funcionário, sem abreviação.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Rg do funcionario</td>
+                <td>rgFuncionario</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>25</td>
+                <td class='centered'>Preenchimento obrigatório</td>
+                <td class='centered'>Número completo do Registro Geral do funcionário. </td>
+
+            </tr>
+            <tr>
+                <td class='field'>CPF do funcionario</td>
+                <td>cpfFuncionario</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>25</td>
+                <td class='centered'>Chave única</td>
+                <td class='centered'>Número completo do registro CPF do funcionário.  Item deve ser único para cada ocorrência.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Cargo do funcionario</td>
+                <td>cargoFuncionario</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>40</td>
+                <td class='centered'>Preenchimento obrigatório</td>
+                <td class='centered'>Cargo do funcionário.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Relacionamento de tabelas distintas</td>
+                <td>fkEmpresa</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>2</td>
+                <td class='centered'>Chave estrangeira</td>
+                <td class='centered'>&nbsp;</td>
+
+            </tr>
+        </table>
+        <table id='Login'>
+            <caption>Login</caption>
+            <tr>
+                <td colspan='12'></td>
+            </tr>
+            <tr>
+                <th>Atributo</th>
+                <th>Nome do campo</th>
+                <th>Tipo de dado</th>
+                <th>Tamanho</th>
+                <th>Restrição</th>
+                <th>Descrição</th>
+            <tr>
+                <td class='field'>Login</td>
+                <td>idLogin</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>2</td>
+                <td class='centered'>Chave primária</td>
+                <td class='centered'>O número de identificação do login deve armazenar seu registro de acordo com a ordem de cadastro - Número atribuído após cadastro da empresa e utilizado para identiicação.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>login do Usuario</td>
+                <td>loginUsuario</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>40</td>
+                <td class='centered'>Chave única</td>
+                <td class='centered'>E-mail de acesso do cliente. Item deve ser único para cada ocorrência.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Senha do usuario</td>
+                <td>senhaUsuario</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>50</td>
+                <td class='centered'>Preenchimento obrigatório</td>
+                <td class='centered'>Senha de acesso do cliente</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Nivel de acesso</td>
+                <td>nivelAcesso</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>1</td>
+                <td class='centered'>Preenchimento obrigatório</td>
+                <td class='centered'>Nível de acesso para o cliente. Categorizado de aordo com os cargos.</td>
+
+            </tr>
+            <tr>
+                    <td class='field'>Relacionamento de tabelas distintas</td>
+                    <td>fkFuncionario</td>
+                    <td class='centered'>Numérico inteiro</td>
+                    <td class='centered'>2</td>
+                    <td class='centered'>Chave estrangeira</td>
+                    <td class='centered'>&nbsp;</td>
+            </tr>
+        </table>
+        <table id='Sensor'>
+            <caption>Sensor</caption>
+            <tr>
+                <td colspan='12'></td>
+            </tr>
+            <tr>
+                <th>Atributo</th>
+                <th>Nome do campo</th>
+                <th>Tipo de dado</th>
+                <th>Tamanho</th>
+                <th>Restrição</th>
+                <th>Descrição</th>
+            </tr>
+            <tr>
+                <td class='field'>Sensor</td>
+                <td>idSensor</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>2</td>
+                <td class='centered'>Chave primária</td>
+                <td class='centered'>O número de identificação do sensor deve armazenar seu registro de acordo com a ordem de cadastro - Número atribuído após cadastro da empresa e utilizado para identiicação.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Temperatura</td>
+                <td>temperatura</td>
+                <td class='centered'>Decimal</td>
+                <td class='centered'>5</td>
+                <td class='centered'>""</td>
+                <td class='centered'>Temperatura obtida pelos sensores.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Umidade</td>
+                <td>umidade</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>2</td>
+                <td class='centered'>""</td>
+                <td class='centered'>Umidade obtida pelos sensores.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Horario</td>
+                <td>dataHora</td>
+                <td class='centered'>Tme</td>
+                <td class='centered'>5</td>
+                <td class='centered'>Time consistente</td>
+                <td class='centered'>Data e horário do funcionamento do sistema.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Relacionamento de tabelas distintas</td>
+                <td>fkAmbiente</td>
+                <td class='centered'>Numérico inteiro</td>
+                <td class='centered'>2</td>
+                <td class='centered'>Chave estrangeira</td>
+                <td class='centered'>&nbsp;</td>
+
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
