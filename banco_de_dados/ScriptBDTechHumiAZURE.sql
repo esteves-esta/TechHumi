@@ -70,6 +70,13 @@ insert into Endereco(logradouro,numero,bairro,complemento,cidade,uf,cep,referenc
 ('R. Edmundo Orioli','225','Cidade Tiradentes','44A','São Paulo','SP','08470-600','Escola Camilo'),
 ('R. Serra de Botucatu','2095','Vila Carrão','','São Paulo','SP','03317-001','');
 
+
 select * from Endereco;
+
+insert into Login (loginUsuario,senhaUsuario,nivelAcesso) values
+('admin','admin',1),
+('usuario','usuario',2);
+
+select * from Login;
 
 select * from Sensor order by idSensor desc;
