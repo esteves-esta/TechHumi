@@ -1,24 +1,24 @@
-create table Empresa(
+﻿create table Empresa(
 idEmpresa int primary key identity(1,1),
-nomeEmpresa varchar(60),
-cnpjEmpresa varchar(30),
-nomeRepresentante varchar (60),
-emailRepresentante varchar(80),
-telefoneEmpresa1 varchar(20),
-telefoneEmpresa2 varchar(20)
+nomeEmpresa varchar(60) not null,
+cnpjEmpresa varchar(30) unique,
+nomeRepresentante varchar (60) not null,
+emailRepresentante varchar(80) unique,
+telefoneEmpresa1 varchar(20) unique,
+telefoneEmpresa2 varchar(20) unique
 );
 
 
 create table Endereco(
 idEndereco int primary key identity(1,1),
-logradouro varchar(40),
-numero varchar(15),
-complemento varchar(7),
-bairro varchar(50),
-cidade varchar(40),
-uf char(2),
-cep varchar(12),
-referencia varchar(35),
+logradouro varchar(40) not null,
+numero varchar(15) not null,
+complemento varchar(30) not null,
+bairro varchar(50) not null,
+cidade varchar(40) not null,
+uf char(2) not null,
+cep varchar(12) not null,
+referencia varchar(35) not null,
 fkEmpresa int foreign key references Empresa(idEmpresa)
 );
 
@@ -35,8 +35,8 @@ fkEmpresa int foreign key references Empresa(idEmpresa)
 
 create table Login(
 idLogin int primary key identity(1,1),
-loginUsuario varchar(40),
-senhaUsuario varchar (50),
+loginUsuario varchar(40) unique,
+senhaUsuario varchar (50) not null,
 nivelAcesso int not null,
 fkFuncionario int foreign key references Funcionario(idFuncionario)
 );
