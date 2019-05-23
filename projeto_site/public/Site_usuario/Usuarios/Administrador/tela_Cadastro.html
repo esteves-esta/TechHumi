@@ -1,209 +1,226 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shotcut icon" href="img/favicon.png"> <!-- LOGO QUE APARECE NA BARRA DO NAVEGADOR -->
 
-    <title>TechHumi</title>
-    <!--  ICONES USADOS NO SITE -->
-    <link href="recursos/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!--  FONTES UTILIZADAS NO SITE VINDA DO GOOGLE FONTS -->
-    <link href='https://fonts.googleapis.com/
-    css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet'
-        type='text/css'>
-    <link
-    
-        href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
-        rel='stylesheet' type='text/css'>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shotcut icon" href="img/favicon.png">
 
-         <!-- SCRIPT PARA FAZER O ALERTA NA PARTE DO SIMULADOR FINANCEIRO -->
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <title>Perfil</title>
 
-        <link href="recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet"> <!-- CSS DO FRAMEWORK BOOTSTRAP -->
-        <link href="css/creative.css" rel="stylesheet"> <!-- CSS DO TEMA CREATIVE -->
-        <link rel="stylesheet" href="css/estilo.css">
- </head>
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Page level plugin CSS-->
+  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilo.css">
+
+</head>
 
 <body id="page-top">
-   
 
-    <header>
-        <div class="header-content">
-            <div class="header-content-inner">
-                <img class="logomain" src="img/logo-fundo-transparente.png" height="25">
-                <hr>
-                <h1>Cadastro</h1>
-            </div>
+  <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+    <a class="navbar-brand mr-1" href="index.html"><img src="img/logo.png" alt="" class="logo"></a>
+
+    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Navbar Search -->
+    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+      <!-- <div class="input-group">
+        <input type="text" class="form-control" placeholder="Procurar por..." aria-label="Search"
+          aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button">
+            <i class="fas fa-search"></i>
+          </button>
         </div>
-    </header>
+      </div> -->
+    </form>
 
-         
+    <!-- Navbar -->
+    <ul class="navbar-nav ml-auto ml-md-0">
+      <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user-circle fa-fw"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+          <!-- <a class="dropdown-item" href="#">Settings</a>
+          <a class="dropdown-item" href="#">Activity Log</a>
+          <div class="dropdown-divider"></div>     </div>  -->
+          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
 
+      </li>
+    </ul>
 
+  </nav>
 
-    <section id="contact">
-        <div class="container">
-            <div class="column">
-                
-                    <div class="col-lg-8 col-lg-offset-2 ">
-                    <form>
-                        <div class="form-row">
-                          <div class="form-group col-md-6">
-                            <label for="inputEmail4">Nome da Empresa</label>
-                            <input type="text" class="form-control" id="inputempresa" placeholder="Empresa">
-                          </div>
-                          <div class="form-group col-md-6" >
-                            <label for="inputPassword4">Nome do Representante</label>
-                            <input type="text" class="form-control" id="inputrepresentante" placeholder="Representante" >
-                          </div>
-                        </div>
-                        <div class="form-group col-md-4">
-                          <label for="inputAddress">Email</label>
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                        </div>
+  <div id="wrapper">
 
-                        <div class="form-group col-md-2">
-                            <label for="inputState">DDD</label>
-                            <select id="inputState" class="form-control">
-                              <option selected>---</option>
-                              <option value="11">11</option>
-                              <option value="12">12</option>
-                              <option value="13">13</option>
-                              <option value="14">14</option>
-                              <option value="15">15</option>
-                              <option value="16">16</option>
-                              <option value="17">17</option>
-                              <option value="18">18</option>
-                              <option value="19">19</option>
-                              <option value="21">21</option>
-                              <option value="22">22</option>
-                              <option value="24">24</option>
-                            </select>        
-                          </div>
+    <!-- Sidebar -->
+    <ul class="sidebar navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="tela_Cadastro.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Cadastro</span></a>
+      </li>
+      </li>
+    </ul>
 
-                        <div class="form-group col-md-3">
-                            <label for="inputAddress">Telefone</label>
-                            <input type="number" class="form-control" id="inputTelefone" placeholder="Telefone">
-                          </div>
+    <div id="content-wrapper">
 
-                        <div class="form-group col-md-3">
-                          <label for="inputAddress2">CNPJ</label>
-                          <input type="text" class="form-control" id="inputcnpj" placeholder="CNPJ">
-                        </div>
-                        <div class="form-row">
-                          <div class="form-group col-md-3">
-                            <label for="inputCity">Cidade</label>
-                            <input type="text" class="form-control" id="inputCidade" placeholder="Ex: São Paulo">
-                          </div>
+      <div class="container-fluid">
 
-                          <div class="form-group col-md-2">
-                            <label for="inputState">UF</label>
-                            <select id="inputState" class="form-control">
-                              <option selected>---</option>
-                              <option value="ac">AC</option>
-                              <option value="al">AL</option>
-                              <option value="ap">AP</option>
-                              <option value="am">AM</option>
-                              <option value="ba">BA</option>
-                              <option value="ce">CE</option>
-                              <option value="df">DF</option>
-                              <option value="es">ES</option>
-                              <option value="go">GO</option>
-                              <option value="ma">MA</option>
-                              <option value="mt">MT</option>
-                              <option value="ms">MS</option>
-                              <option value="mg">MG</option>
-                              <option value="pa">PA</option>
-                              <option value="pb">PB</option>
-                              <option value="pr">PR</option>
-                              <option value="pe">PE</option>
-                              <option value="pi">PI</option>
-                              <option value="rj">RJ</option>
-                              <option value="rn">RN</option>
-                              <option value="rs">RS</option>
-                              <option value="ro">RO</option>
-                              <option value="rr">RR</option>
-                              <option value="sc">SC</option>
-                              <option value="sp">SP</option>
-                              <option value="se">SE</option>
-                              <option value="to">TO</option>
-                             
-                            </select>
-                          </div>
-                          <div class="form-group col-md-3">
-                            <label for="inputZip">CEP</label>
-                            <input type="text" class="form-control" id="inputCep" placeholder="Ex: 00000-000">
-                          </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                              <label for="inputCity">Logradouro</label>
-                              <input type="text" class="form-control" id="inputLogradouro" placeholder="Ex: Rua do Ar">
-                            </div>
-
-                            <div class="form-group col-md-2">
-                                <label for="inputCity">Número</label>
-                                <input type="number" class="form-control" id="inputNumero" placeholder="Ex: 200">
-                              </div>
-
-                              <div class="form-group col-md-2">
-                                <label for="inputCity">Complemento</label>
-                                <input type="text" class="form-control" id="inputcomplemento" placeholder="Ex: 12A">
-                              </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-3">
-                              <label for="inputCity">Bairro</label>
-                              <input type="text" class="form-control" id="inputBairro" placeholder="Ex: Bom Retiro">
-                            </div>
-
-                            <div class="form-group col-md-5">
-                                <label for="inputCity">Referência</label>
-                                <input type="text" class="form-control" id="inputReferencia" placeholder="Ex: Bombeiros">
-                              </div>
-
-                        </div>
-
-                          <button type="submit" class="btn btn-primary">Cadastrar</button>
-                          <a href="../../Login/login.html" class="btn btn-primary">Sair</a>
-                      </form>
-                    
-                </div>   
-                    
-    </section>
-
-    <!-- RODAPÉ DO SITE -->
-    <footer class=" footer-basic-centered">
-        <div class="row ">
-            <div class="col-lg-5" >
-                <img src="img/logo-fundo-transparente.png" height="50">
-
-                <p class="footer-company-name">TechHumi &copy; 2019</p>
-            </div>
-            <div class="col-lg-5 ">
-                <ul class="list-group">
-                    <li >+55(11)0000-0000</li>
-                    <li>contato@techhumi.com.br</li>
-                </ul>
-            </div>
+        <!-- Breadcrumbs-->
+        <div class="col-md-4">
+          <h4>Cadastro</h4>
         </div>
+
+        <!-- Page Content 
+        <p class="lead">Page not found. You can
+          <a href="javascript:history.back()">go back</a>
+          to the previous page, or
+          <a href="index.html">return home</a>.</p>-->
+
+        <form class="">
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label for="colFormLabel" class="">Nome:</label>
+              <input type="text" class="form-control" placeholder="Nome da Empresa" required>
+            </div>
+            <div class="col-sm-4">
+              <label for="colFormLabel" class=""> Representante:</label>
+              <input type="text" class="form-control" placeholder="Nome do Repesentante" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label for="colFormLabel">CNPJ:</label>
+              <input type="text" class="form-control" placeholder="CNPJ da Empresa" required maxlength="19">
+            </div>
+            <div class="col-sm-4">
+              <label for="colFormLabel">E-mail:</label>
+              <input type="email" class="form-control" placeholder="E-Mail do Representante" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label for="colFormLabel">Telefone:</label>
+              <input type="text" class="form-control" placeholder="Telefone - 1" required>
+            </div>
+            <div class="col-sm-4">
+              <label for="colFormLabel">Telefone:</label>
+              <input type="text" class="form-control" placeholder="Telefone - 2">
+            </div>
+          </div>
+
+          <div class="form-group row">
+              <div class="col-sm-4">
+                  <label for="colFormLabel">CEP:</label>
+                  <input type="text" class="form-control" placeholder="CEP" required maxlength="9">
+                </div>
+
+            <div class="col-sm-4">
+              <label for="colFormLabel">Logradouro:</label>
+              <input type="text" class="form-control" placeholder="Logradouro da Empresa" required>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label for="colFormLabel">Bairro:</label>
+              <input type="text" class="form-control" placeholder="Bairro" required>
+            </div>
+
+            <div class="col-sm-4">
+                <label for="colFormLabel">Complemento:</label>
+                <input type="text" class="form-control" placeholder="Complemento">
+              </div>
+          </div>
+
+      <div class="form-group row">
+            <div class="col-sm-4">
+              <label for="colFormLabel">Referencia:</label>
+              <input type="text" class="form-control" placeholder="Ponto de Referencia">
+            </div>
+
+            <div class="col-sm-3">
+              <label for="colFormLabel">Cidade:</label>
+              <input type="text" class="form-control" placeholder="Cidade" required>
+            </div>
+            <div class="col-sm-1">
+              <label for="colFormLabel">UF:</label>
+              <input type="text" class="form-control" placeholder="UF" required maxlength="2">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-outline-primary">Cadastrar</button>
+            <button type="reset" class="btn btn-outline-danger">Cancelar</button>
+          </div>
+      </div>
+      </form>
+
+    </div>
+
+    <!-- Sticky Footer -->
+    <footer class="sticky-footer">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>TechHumi © 2019</span>
+        </div>
+      </div>
     </footer>
 
+  </div>
 
+  </div>
 
-    <!-- SCRIPT USADOS NO SITE -->
-    <script src="recursos/jquery/jquery.min.js"></script>
-    <script src="recursos/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="js/creative.min.js"></script>
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Pronto para partir?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Selecione "Logout" abaixo se você estiver pronto para terminar sua sessão atual.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="../../Login/login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin.min.js"></script>
+
 </body>
 
 </html>
-
-
- 
