@@ -1,4 +1,4 @@
-html{
+body{
     background: url('../imgs/imagem-fundo.jpg') no-repeat center center fixed;
     background-size: cover;
     margin: 0px;
@@ -6,18 +6,33 @@ html{
     overflow-x: hidden;
     overflow-y: hidden;
     -webkit-background-size:cover;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    font-family:'Segoe UI', Tahoma, sans-serif; 
 }
+
 .tudo{
-    margin-top: 3%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   flex-wrap: nowrap;
+   width: 100vw;
+   height: 100vh;
 }
+
 img{
     display: block;
-    margin: auto;
-    max-width: 25%;
+    width: 25%;
+    margin-bottom: 35px;
     position: relative;
-
 }
+
+@media (max-width: 600px) {
+	img{
+		width: 60%;
+	}
+}
+
+
 
 form {
     margin-bottom: 25px;
@@ -25,9 +40,6 @@ form {
 
 .formLogin{
     position: static;
-    margin-left: 50%;
-    margin-top:15%;
-    transform: translate(-50%, -50%);
     width: 400px;
     height: 400px;
     box-sizing: border-box;
@@ -35,16 +47,19 @@ form {
     padding: 40px;
     text-align: center;
 }
+
 .formLogin p{
-margin-top: 0px;
-padding: 0px;
-font-weight: bold;
-color: #ffffff;
+    margin-top: 0px;
+    padding: 0px;
+    font-weight: bold;
+    color: #ffffff;
 }
+
 .formLogin input{
     margin-bottom: 7px;
     width: 80%;
 }
+
 .formLogin input
 {
     border-radius: 23px;

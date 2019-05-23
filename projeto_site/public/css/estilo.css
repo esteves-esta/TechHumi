@@ -18,7 +18,15 @@
 	list-style: none;
 }
 
+.responsivo-tech{
+	width: 20%
+}
 
+@media (max-width: 600px) {
+	.responsivo-tech{
+		width: 50%;
+	}
+}
 /* ---------------------
 	CSS DO FOOTER 
 */
