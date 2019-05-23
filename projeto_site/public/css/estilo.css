@@ -10,8 +10,8 @@
     background-color: #C7E1F0;
 }
 
-#botao{
-    /*margin-left: 50%;*/
+.logomain{
+    width: 400px;
 }
 
 .list-group li{
@@ -25,6 +25,10 @@
 @media (max-width: 600px) {
 	.responsivo-tech{
 		width: 50%;
+	}
+
+	.logomain{
+		width: 55%
 	}
 }
 /* ---------------------

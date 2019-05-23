@@ -66,7 +66,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-envelope fa-fw"></i>
-          <span class="badge badge-danger">7</span>
+          <!-- <span class="badge badge-danger">7</span> -->
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
           <a class="dropdown-item" href="#">Action</a>
@@ -177,36 +177,45 @@
               <input type="text" class="form-control" placeholder="Telefone - 2">
             </div>
           </div>
+
           <div class="form-group row">
-            <div class="col-4">
+              <div class="col-2">
+                  <label for="colFormLabel">CEP:</label>
+                  <input type="text" class="form-control" placeholder="CEP" required>
+                </div>
+
+            <div class="col">
               <label for="colFormLabel">Logradouro:</label>
               <input type="text" class="form-control" placeholder="Logradouro da Empresa" required>
             </div>
-            <div class="col-3">
+
+            <div class="col">
               <label for="colFormLabel">Bairro:</label>
               <input type="text" class="form-control" placeholder="Bairro" required>
             </div>
-            <div class="col-2">
-              <label for="colFormLabel">Complemento:</label>
-              <input type="text" class="form-control" placeholder="Complemento">
-            </div>
-            <div class="col-3">
+
+            <div class="col">
+                <label for="colFormLabel">Complemento:</label>
+                <input type="text" class="form-control" placeholder="Complemento">
+              </div>
+          </div>
+
+      <div class="form-group row">
+            <div class="col">
               <label for="colFormLabel">Referencia:</label>
               <input type="text" class="form-control" placeholder="Ponto de Referencia">
             </div>
-            <div class="col-2">
-              <label for="colFormLabel">CEP:</label>
-              <input type="text" class="form-control" placeholder="CEP" required>
-            </div>
-            <div class="col-3">
+
+            <div class="col-4">
               <label for="colFormLabel">Cidade:</label>
               <input type="text" class="form-control" placeholder="Cidade" required>
             </div>
-            <div class="col-1">
+            <div class="col-3">
               <label for="colFormLabel">UF:</label>
               <input type="text" class="form-control" placeholder="UF" required>
             </div>
           </div>
+
           <div class="form-group">
             <button type="submit" class="btn btn-outline-primary">Salvar</button>
             <button type="reset" class="btn btn-outline-danger">Cancelar</button>
