@@ -16,34 +16,75 @@
         <img src="imgs/logo.png">
         <div class="formLogin">
             <h2>Tela de Login</h2>
-            <form action="">
+            <form id="form_login" method="post" onsubmit="return entrar()">
                 <p>Login</p>
-                <input type="text" id="login" placeholder="Login" required>
+                <input type="text" name="login" placeholder="Login" required>
                 <p>Senha</p>
-                <input type="password" id="senha" placeholder="Senha" required>
+                <input type="password" name="senha" placeholder="Senha" required>
 
                 <a href="redefinir.html">Esqueceu sua senha?</a>
                 <br>
+                <button class="botao" id="btn_entrar">Login</button>
+                <a class="botao" href="../../index.html">Sair</a>
             </form>
-            <button type="submit" class="botao" onclick="valida(login.value,senha.value)"> Login</button>
-            <a class="botao" href="../../index.html">Sair</a>
             
         </div>
     </div>
 </body>
 </html>
+
 <script>
-    function valida(u,s) {
-        if (u=="admin" && s=="admin") {
-            window.location.href ='../Usuarios/Administrador/tela_Cadastro.html';
-        }else if(u=="usuario" && s=="usuario"){
-            window.location.href ='../Usuarios/Representante/index.html';
-        }else{
-            swal({
-                title: "Login e/ou senha inválidos",
-                text: "Por favor tente novamente!",
-                icon: "error"
-            });
+
+    verificarAutenticacao();
+
+    function verificarAutenticacao() {
+        if (sessionStorage.usuario_bandtec != undefined) {
+            window.location.href = '../Usuarios/Representante/index.html';
         }
     }
+
+    function entrar() {
+        aguardar();
+        var formulario = new URLSearchParams(new FormData(form_login));
+        fetch("/usuarios/entrar", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+            
+            if (response.ok) {
+
+                response.json().then(function (resposta) {
+
+                    sessionStorage.usuario_bandtec = resposta.nome;
+                    verificarAutenticacao();
+
+                });
+            } else {
+
+                console.log('Erro de login!');
+                finalizar_aguardar();
+            }
+        });
+
+        return false;
+    }
+
+    function aguardar() {
+        btn_entrar.disabled = true;
+        swal({
+                title: "Aguarde, estamos te procurando!",
+                text: "   ",
+                icon: "info",
+                buttons: false 
+            });
+    }
+
+    function finalizar_aguardar() {
+        btn_entrar.disabled = false;
+        swal({
+                title: "Bem-Vindo(a)!",
+                icon: "success"
+            });
+    }
+
 </script>

@@ -177,7 +177,7 @@
         <div class="modal-body">Selecione "Logout" abaixo se você estiver pronto para terminar sua sessão atual.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="../../Login/login.html">Logout</a>
+          <a class="btn btn-primary" href="#" onclick="logoff()">Logout</a>
         </div>
       </div>
     </div>
@@ -196,3 +196,22 @@
 </body>
 
 </html>
+
+<script>
+
+  var exibiu_grafico = false;
+
+  verificarAutenticacao();
+
+  function verificarAutenticacao() {
+      usuario = sessionStorage.usuario_bandtec;
+      if (usuario == undefined) {
+          window.location.href = '../../Login/login.html'
+      }
+  }
+
+  function logoff() {
+      sessionStorage.removeItem('usuario_bandtec');
+      verificarAutenticacao();
+  }
+  </script>

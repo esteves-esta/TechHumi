@@ -37,7 +37,8 @@
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Procurar por..." aria-label="Search" aria-describedby="basic-addon2">
+        <input type="text" class="form-control" placeholder="Procurar por..." aria-label="Search"
+          aria-describedby="basic-addon2">
         <div class="input-group-append">
           <button class="btn btn-primary" type="button">
             <i class="fas fa-search"></i>
@@ -61,7 +62,7 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
-  
+
       <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
@@ -106,7 +107,8 @@
           <i class="fas fa-fw fa-folder"></i>
           <span>Configurações</span>
         </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
+          style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
           <a class="dropdown-item" href="perfil.html">Perfil</a>
           <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
           <a class="dropdown-item" href="rotina.html">Rotina</a>
@@ -161,9 +163,9 @@
             <i class="fas fa-chart-area">Histórico de Temperatura e Umidade</i>
           </div>
           <div class="card-body">
-            <canvas id="historico" width="100%" height="30"></canvas>
+            <div id="div_aguarde">Dados sendo obtidos...</div>
+            <canvas id="canvas_grafico"></canvas>
           </div>
-          <div class="card-footer small text-muted">Atualizado ontem às 23h59 PM</div>
         </div>
 
 
@@ -192,7 +194,8 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -204,7 +207,7 @@
         <div class="modal-body">Selecione "Logout" abaixo se você estiver pronto para terminar sua sessão atual.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="../../Login/login.html">Logout</a>
+          <a class="btn btn-primary" href="#" onclick="logoff()">Logout</a>
         </div>
       </div>
     </div>
@@ -229,11 +232,151 @@
   <script src="js/demo/datatables-demo.js"></script>
   <script src="js/demo/chart-area-demo.js"></script>
 
-  <!-- Graficos do Node  -->
+ <!-- Graficos do Node  -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-  <script src="configs/grafico.js"></script>
-  <script src="configs/socket.js"></script>
+  <!-- scripts do Chart.js -->
+  <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+  <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
 </body>
 
 </html>
+
+<script>
+
+
+  var exibiu_grafico = false;
+
+  verificarAutenticacao();
+
+  function verificarAutenticacao() {
+    usuario = sessionStorage.usuario_bandtec;
+    if (usuario == undefined) {
+      window.location.href = '../../Login/login.html'
+    } 
+  }
+
+  function logoff() {
+    sessionStorage.removeItem('usuario_bandtec');
+    verificarAutenticacao();
+  }
+
+  // só mexer se quiser alterar o tempo de atualização
+  // ou se souber o que está fazendo!
+  function atualizarGrafico() {
+    obterDadosGrafico();
+    setTimeout(atualizarGrafico, 10000);
+  }
+
+  // altere aqui as configurações do gráfico
+  // (tamanhos, cores, textos, etc)
+  function configurarGrafico() {
+    var configuracoes = {
+      responsive: true,
+      animation: exibiu_grafico ? false : { duration: 1500 },
+      hoverMode: 'index',
+      stacked: false,
+      title: {
+        display: true,
+        text: 'Histórico recente de temperatura e umidade'
+      },
+      scales: {
+        yAxes: [{
+          type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+          display: true,
+          position: 'left',
+          id: 'y-temperatura',
+        }, {
+          type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+          display: true,
+          position: 'right',
+          id: 'y-umidade',
+
+          // grid line settings
+          gridLines: {
+            drawOnChartArea: false, // only want the grid lines for one axis to show up
+          },
+        }],
+      }
+    };
+
+    exibiu_grafico = true;
+
+    return configuracoes;
+  }
+
+  // altere aqui como os dados serão exibidos
+  // e como são recuperados do BackEnd
+  function obterDadosGrafico() {
+
+    // neste JSON tem que ser 'labels', 'datasets' etc, 
+    // porque é o padrão do Chart.js
+    var dados = {
+      labels: [],
+      datasets: [
+        {
+          yAxisID: 'y-temperatura',
+          label: 'Temperatura',
+          borderColor: window.chartColors.red,
+          backgroundColor: window.chartColors.red,
+          fill: false,
+          data: []
+        },
+        {
+          yAxisID: 'y-umidade',
+          label: 'Umidade',
+          borderColor: window.chartColors.blue,
+          backgroundColor: window.chartColors.blue,
+          fill: false,
+          data: []
+        }
+      ]
+    };
+
+    fetch('/leituras/ultimas', { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+          resposta.reverse();
+
+          for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+
+            // aqui, após 'registro.' use os nomes 
+            // dos atributos que vem no JSON 
+            // que gerou na consulta ao banco de dados
+
+            dados.labels.push(registro.momento);
+
+            dados.datasets[0].data.push(registro.temperatura);
+            dados.datasets[1].data.push(registro.umidade);
+          }
+          console.log(JSON.stringify(dados));
+
+          div_aguarde.style.display = 'none';
+
+          plotarGrafico(dados);
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+
+  }
+
+  // só altere aqui se souber o que está fazendo!
+  function plotarGrafico(dados) {
+    console.log('iniciando plotagem do gráfico...');
+
+    var ctx = canvas_grafico.getContext('2d');
+    window.grafico_linha = Chart.Line(ctx, {
+      data: dados,
+      options: configurarGrafico()
+    });
+  }
+
+</script>
