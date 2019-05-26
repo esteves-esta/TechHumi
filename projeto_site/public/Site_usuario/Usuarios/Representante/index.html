@@ -14,6 +14,10 @@
   <!-- scripts do Chart.js -->
   <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
   <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
+
+  <!-- script do google charts -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
@@ -26,7 +30,7 @@
   <link rel="stylesheet" href="css/estilo.css">
 </head>
 
-<body id="page-top" onload="atualizarGrafico()">
+<body id="page-top" onload="comeca()">
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -143,49 +147,42 @@
         <!-- Area Chart Example-->
         <div class="card mb-3">
           <div class="card-header">
-            <i class="fas fa-chart-area">Temperatura</i>
+            <i class="fas fa-chart-area"> Temperatura e umidade em tempo real</i>
           </div>
           <div id="tudo">
-            <div id="divtemp">
-              <canvas id="temp">
-
-              </canvas>
-            </div>
-            <div id="divumi">
-              <canvas id="umid">
-
-              </canvas>
-            </div>
-          </div>
-          <div class="card-footer small text-muted">Atualizado ontem às 23h59 PM</div>
-        </div>
-
-        <div class="card mb-3">
-          <div class="card-header">
-            <i class="fas fa-chart-area">Histórico de Temperatura e Umidade</i>
-          </div>
-          <div class="card-body">
-            <div id="div_aguarde">Dados sendo obtidos...</div>
-            <canvas id="canvas_grafico"></canvas>
+            <div id="div_alerta" class="alerta"></div>
+            <div id="div_temperatura">Temperatura sendo obtida...</div> 
+            <div id="div_umidade">Umidade sendo obtida...</div>
           </div>
         </div>
-
-
-
       </div>
-      <!-- /.container-fluid -->
 
-      <!-- Sticky Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>TechHumi © 2019</span>
-          </div>
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-chart-area"> Histórico de Temperatura e Umidade</i>
         </div>
-      </footer>
+        <div class="card-body">
+          <div id="div_aguarde">Dados sendo obtidos...</div>
+          <canvas id="canvas_grafico"></canvas>
+        </div>
+      </div>
+
+
 
     </div>
-    <!-- /.content-wrapper -->
+    <!-- /.container-fluid -->
+
+    <!-- Sticky Footer -->
+    <footer class="sticky-footer">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>TechHumi © 2019</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <!-- /.content-wrapper -->
 
   </div>
   <!-- /#wrapper -->
@@ -251,6 +248,12 @@
   function atualizarGrafico() {
     obterDadosGrafico();
     setTimeout(atualizarGrafico, 10000);
+  }
+
+  //chama a atualização dos dois graficos no onload
+  function comeca() {
+    atualizarGrafico();
+    atualizarGraficoReal();
   }
 
   // altere aqui as configurações do gráfico
@@ -356,6 +359,140 @@
       });
 
   }
+  // Não mexa nestas 2 linhas! 
+  //google.load('current', {'packages':['gauge']});
+  //google.charts.setOnLoadCallback(obterDadosGraficoReal);
+  google.load('visualization', '1', {
+    packages: ['corechart', 'gauge'],
+    callback: obterDadosGraficoReal
+  });
+  // Não mexa nessas 2 linhas! 
+
+  // só mexer se quiser alterar o tempo de atualização
+  // ou se souber o que está fazendo!
+  function atualizarGraficoReal() {
+    obterDadosGraficoReal();
+    setTimeout(atualizarGraficoReal, 3000);
+  }
+
+  // altere aqui as configurações do gráfico
+  // (tamanhos, cores, textos, etc)
+  function configurarGraficoReal() {
+    // os valores de yellowTo, yellowTo, redFrom e redTo
+    // podem vir de um outro EndPoint
+    var configuracoes = {
+      temperatura: {
+        width: 400,
+        height: 250,
+        yellowFrom: 00,
+        yellowTo: 20,
+        yellowColor: 'cyan',
+        redFrom: 40,
+        redTo: 60,
+        max: 60,
+        minorTicks: 5
+      },
+      umidade: {
+        width: 400,
+        height: 250,
+        yellowFrom: 00,
+        yellowTo: 50,
+        yellowColor: 'cyan',
+        redFrom: 85,
+        redTo: 100,
+        max: 100,
+        minorTicks: 5
+      },
+    }
+
+    return configuracoes;
+  }
+
+  // altere aqui como os dados serão exibidos
+  // e como são recuperados do BackEnd
+  function obterDadosGraficoReal() {
+    var dadosReal;
+
+    fetch('/leituras/tempo-real', {
+        cache: 'no-store'
+      }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+
+            console.log(`Dados recebidos: ${JSON.stringify(dadosReal)}`);
+
+            // aqui, após registro. use os nomes 
+            // dos atributos que vem no JSON 
+            // que gerou na consulta ao banco de dados
+            dadosTemperatura = google.visualization.arrayToDataTable([
+              ['Label', 'Value'],
+              ['Temperatura', resposta.temperatura]
+            ]);
+
+            dadosUmidade = google.visualization.arrayToDataTable([
+              ['Label', 'Value'],
+              ['Umidade', resposta.umidade]
+            ]);
+
+            var dadosReal = {
+              temperatura: dadosTemperatura,
+              umidade: dadosUmidade
+            }
+
+            alertar(resposta.temperatura, resposta.umidade);
+            plotarGraficoReal(dadosReal);
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+
+  }
+
+  function alertar(temperatura, umidade) {
+    // ideal que venham de algum EndPoint
+    var limites = {
+      max_temperatura: 60,
+      min_temperatura: 20,
+      max_umidade: 60,
+      min_umidade: 40,
+      primeiroQ_temperatura: 21.2,
+      terceiroQ_temperatura: 22.3,
+      primeiroQ_umidade: 47,
+      terceiroQ_umidade: 56,
+    };
+
+    var mensagem = '';
+    if (temperatura > limites.max_temperatura) {
+      mensagem += '* Temperatura alta demais! <br>';
+    }
+    if (umidade > limites.max_umidade) {
+      mensagem += '* Umidade alta demais! <br>';
+    }
+    if (temperatura < limites.min_temperatura) {
+      mensagem = '* Temperatura baixa demais! <br>';
+    }
+    if (umidade < limites.min_umidade) {
+      mensagem = '* Umidade baixa demais! <br>';
+    }
+
+    div_alerta.innerHTML = mensagem;
+  }
+
+  // só altere aqui se souber o que está fazendo!
+  function plotarGraficoReal(dadosReal) {
+    console.log('iniciando plotagem dos gráficos...');
+
+    var chartTemperatura = new google.visualization.Gauge(div_temperatura);
+    chartTemperatura.draw(dadosReal.temperatura, configurarGraficoReal().temperatura);
+
+    var chartUmidade = new google.visualization.Gauge(div_umidade);
+    chartUmidade.draw(dadosReal.umidade, configurarGraficoReal().umidade);
+  }
+
 
   // só altere aqui se souber o que está fazendo!
   function plotarGrafico(dados) {
