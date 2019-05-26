@@ -11,7 +11,9 @@
   <link rel="shotcut icon" href="img/favicon.png">
 
   <title>Gráficos</title>
-
+  <!-- scripts do Chart.js -->
+  <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+  <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
@@ -24,7 +26,7 @@
   <link rel="stylesheet" href="css/estilo.css">
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="atualizarGrafico()">
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -213,37 +215,21 @@
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Page level plugin CSS-->
+  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
-  <!-- Page level plugin JavaScript-->
-  <script src="vendor/chart.js/Chart.min.js"></script>
-  <script src="vendor/datatables/jquery.dataTables.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilo.css">
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin.min.js"></script>
-
-  <!-- Demo scripts for this page-->
-  <script src="js/demo/datatables-demo.js"></script>
-  <script src="js/demo/chart-area-demo.js"></script>
-
- <!-- Graficos do Node  -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-  <!-- scripts do Chart.js -->
-  <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
-  <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
 </body>
 
 </html>
 
 <script>
-
-
   var exibiu_grafico = false;
 
   verificarAutenticacao();
@@ -252,7 +238,7 @@
     usuario = sessionStorage.usuario_bandtec;
     if (usuario == undefined) {
       window.location.href = '../../Login/login.html'
-    } 
+    }
   }
 
   function logoff() {
@@ -272,7 +258,9 @@
   function configurarGrafico() {
     var configuracoes = {
       responsive: true,
-      animation: exibiu_grafico ? false : { duration: 1500 },
+      animation: exibiu_grafico ? false : {
+        duration: 1500
+      },
       hoverMode: 'index',
       stacked: false,
       title: {
@@ -312,8 +300,7 @@
     // porque é o padrão do Chart.js
     var dados = {
       labels: [],
-      datasets: [
-        {
+      datasets: [{
           yAxisID: 'y-temperatura',
           label: 'Temperatura',
           borderColor: window.chartColors.red,
@@ -332,36 +319,38 @@
       ]
     };
 
-    fetch('/leituras/ultimas', { cache: 'no-store' }).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta) {
+    fetch('/leituras/ultimas', {
+        cache: 'no-store'
+      }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
 
-          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-          resposta.reverse();
+            resposta.reverse();
 
-          for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
+            for (i = 0; i < resposta.length; i++) {
+              var registro = resposta[i];
 
-            // aqui, após 'registro.' use os nomes 
-            // dos atributos que vem no JSON 
-            // que gerou na consulta ao banco de dados
+              // aqui, após 'registro.' use os nomes 
+              // dos atributos que vem no JSON 
+              // que gerou na consulta ao banco de dados
 
-            dados.labels.push(registro.momento);
+              dados.labels.push(registro.momento);
 
-            dados.datasets[0].data.push(registro.temperatura);
-            dados.datasets[1].data.push(registro.umidade);
-          }
-          console.log(JSON.stringify(dados));
+              dados.datasets[0].data.push(registro.temperatura);
+              dados.datasets[1].data.push(registro.umidade);
+            }
+            console.log(JSON.stringify(dados));
 
-          div_aguarde.style.display = 'none';
+            div_aguarde.style.display = 'none';
 
-          plotarGrafico(dados);
-        });
-      } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-      }
-    })
+            plotarGrafico(dados);
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
       .catch(function (error) {
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
       });
@@ -378,5 +367,4 @@
       options: configurarGrafico()
     });
   }
-
 </script>
