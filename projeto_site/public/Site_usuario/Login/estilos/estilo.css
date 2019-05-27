@@ -60,6 +60,10 @@ form {
     width: 80%;
 }
 
+#botoes{
+    margin-top: 20px;
+}
+
 .formLogin input
 {
     border-radius: 23px;
