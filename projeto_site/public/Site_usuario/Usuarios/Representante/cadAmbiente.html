@@ -9,6 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shotcut icon" href="img/favicon.png">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
     <title>Perfil</title>
 
@@ -128,19 +130,21 @@
           to the previous page, or
           <a href="index.html">return home</a>.</p>-->
 
-                <form class="">
+                <form id="form_Ambiente" method="post" onsubmit="return cadastrarAmbiente()">
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label for="colFormLabel" class="">Descrição:</label>
-                            <input type="text" class="form-control" placeholder="Ex: Sala de Reunião" required>
+                            <input type="text" name="descricaoAmbiente" class="form-control"
+                                placeholder="Ex: Sala de Reunião" required>
                         </div>
                         <div class="col-sm-4">
                             <label for="colFormLabel" class=""> Localização:</label>
-                            <input type="text" class="form-control" placeholder="Ex: 3º Andar, Sala 02" required>
+                            <input type="text" name="localizacaoAmbiente" class="form-control"
+                                placeholder="Ex: 3º Andar, Sala 02" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-outline-primary">Salvar</button>
+                        <button type="submit" class="btn btn-outline-primary" id="btn_salvar">Salvar</button>
                         <a href="tables.html"><button type="button" class="btn btn-outline-danger">Cancelar</button></a>
                     </div>
             </div>
@@ -204,18 +208,56 @@
 <script>
 
     var exibiu_grafico = false;
-  
+
     verificarAutenticacao();
-  
+
     function verificarAutenticacao() {
         usuario = sessionStorage.usuario_bandtec;
         if (usuario == undefined) {
             window.location.href = '../../Login/login.html'
         }
     }
-  
+
     function logoff() {
         sessionStorage.removeItem('usuario_bandtec');
         verificarAutenticacao();
     }
-    </script>
+    function cadastrarAmbiente() {
+        btn_salvar.disabled = true;
+        var formulario = new URLSearchParams(new FormData(form_Ambiente));
+        fetch("/cadastros/cadastrarAmbiente", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+
+            if (response.ok) {
+
+                console.log('Cadastrado com sucesso');
+                swal({
+                    title: "Cadastrado com sucesso!",
+                    text: "   ",
+                    icon: "success",
+                    buttons: false
+                });
+                limpar();
+                btn_salvar.disable = false;
+
+            } else {
+
+                console.log('Erro ao cadastrar!');
+                swal({
+                    title: "Erro ao cadastrar!",
+                    text: "   ",
+                    icon: "error"
+                });
+                btn_salvar.disable = false;
+            }
+        });
+
+        return false;
+    }
+    function limpar(){
+        descricaoAmbiente.value='';
+        localizacaoAmbiente.value='';
+    }
+</script>
