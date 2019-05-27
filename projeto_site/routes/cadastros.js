@@ -26,7 +26,7 @@ router.post('/cadastrarAmbiente', function (req, res, next) {
 
   }).catch(err => {
 
-    var erro = `Erro no login: ${err}`;
+    var erro = `Erro ao cadastrar: ${err}`;
     console.error(erro);
     res.status(500).send(erro);
 

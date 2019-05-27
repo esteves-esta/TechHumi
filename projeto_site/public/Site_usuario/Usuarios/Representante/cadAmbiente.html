@@ -231,7 +231,6 @@
         }).then(function (response) {
 
             if (response.ok) {
-
                 console.log('Cadastrado com sucesso');
                 swal({
                     title: "Cadastrado com sucesso!",
@@ -240,24 +239,21 @@
                     buttons: false
                 });
                 limpar();
-                btn_salvar.disable = false;
 
             } else {
-
                 console.log('Erro ao cadastrar!');
                 swal({
                     title: "Erro ao cadastrar!",
                     text: "   ",
                     icon: "error"
                 });
-                btn_salvar.disable = false;
             }
         });
-
+        btn_salvar.disable = false;
         return false;
     }
-    function limpar(){
-        descricaoAmbiente.value='';
-        localizacaoAmbiente.value='';
+    function limpar() {
+        descricaoAmbiente.value = '';
+        localizacaoAmbiente.value = '';
     }
 </script>
