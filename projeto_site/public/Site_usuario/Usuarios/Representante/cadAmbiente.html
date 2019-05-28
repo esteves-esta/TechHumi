@@ -223,7 +223,7 @@
         verificarAutenticacao();
     }
     function cadastrarAmbiente() {
-        btn_salvar.disabled = true;
+        //btn_salvar.disabled = true;
         var formulario = new URLSearchParams(new FormData(form_Ambiente));
         fetch("/cadastros/cadastrarAmbiente", {
             method: "POST",

@@ -16,13 +16,11 @@ router.post('/cadastrarAmbiente', function (req, res, next) {
     return banco.sql.query(`insert into Ambiente (descricaoAmbiente,localizacaoAmbiente) values ('${descricao}','${localizacao}');`);
   }).then(cadastro => {
 
-    console.log(`Usuários encontrados: ${JSON.stringify(cadastro.recordset)}`);
+    console.log(`Ambiente cadastrado com sucesso!`);
 
-    if (cadastro.recordset.length==1) {
-      res.send(cadastro.recordset[0]);
-    } else {
-      res.sendStatus(404);
-    }
+    
+      res.sendStatus(201);
+    
 
   }).catch(err => {
 
