@@ -284,4 +284,32 @@
       sessionStorage.removeItem('usuario_bandtec');
       verificarAutenticacao();
   }
+
+  consultar_dados();
+  function consultar_dados() {
+        
+        
+        fetch("/consulta-perfil/consulta", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+            
+            if (response.ok) {
+
+                response.json().then(function (resposta) {
+
+                    
+                    sessionStorage.usuario_bandtec = resposta.fkFuncionario;
+                    sessionStorage.idlogin = resposta.idLogin;
+                    sessionStorage.nivelacesso = resposta.nivelAcesso;
+                    verificarAutenticacao();
+
+                });
+            } else {
+                console.log('Erro de consulta!');
+            }
+        });
+
+        return false;
+    }
   </script>

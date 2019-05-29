@@ -57,7 +57,10 @@
 
                 response.json().then(function (resposta) {
 
-                    sessionStorage.usuario_bandtec = resposta.nome;
+                    
+                    sessionStorage.usuario_bandtec = resposta.fkFuncionario;
+                    sessionStorage.idlogin = resposta.idLogin;
+                    sessionStorage.nivelacesso = resposta.nivelAcesso;
                     verificarAutenticacao();
 
                 });
