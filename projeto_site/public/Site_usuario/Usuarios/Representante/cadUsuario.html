@@ -9,6 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shotcut icon" href="img/favicon.png">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <title>Perfil</title>
 
@@ -129,53 +130,45 @@
           to the previous page, or
           <a href="index.html">return home</a>.</p>-->
 
-                <form class="">
+                <form id="form_Usuario" method="post" onsubmit="return cadastrarUsuario()">
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label for="colFormLabel" class="">Nome:</label>
-                            <input type="text" class="form-control" placeholder="Nome do Usuario" required>
+                            <input type="text" name="nomeFuncionario" id="nomeFuncionario" class="form-control" placeholder="Nome do Usuario" required>
                         </div>
                         <div class="col-sm-4">
                             <label for="colFormLabel" class=""> E-mail:</label>
-                            <input type="email" class="form-control" placeholder="E-Mail do Usuario" required>
+                            <input type="email" name="emailFuncionario" id="emailFuncionario" class="form-control" placeholder="E-Mail do Usuario" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label for="colFormLabel">CPF:</label>
-                            <input type="text" class="form-control" placeholder="CPF do Usuario" required maxlength="14">
+                            <input type="text" name="cpfFuncionario" id="cpfFuncionario" class="form-control" placeholder="CPF do Usuario" required maxlength="14">
                         </div>
                         <div class="col-sm-4">
                             <label for="colFormLabel">RG:</label>
-                            <input type="text" class="form-control" placeholder="RG do Usuario" required>
+                            <input type="text" name="rgFuncionario" id="rgFuncionario" class="form-control" placeholder="RG do Usuario" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label for="colFormLabel">Telefone:</label>
-                            <input type="text" class="form-control" placeholder="Telefone - 1" required maxlength="14">
+                            <input type="text" name="telefoneFuncionario" id="telefoneFuncionario" class="form-control" placeholder="Telefone" required maxlength="20">
                         </div>
                         <div class="col-sm-4">
-                            <label for="colFormLabel">Telefone:</label>
-                            <input type="text" class="form-control" placeholder="Telefone - 2" maxlength="14">
+                            <label for="colFormLabel">Login:</label>
+                            <input type="text" name="loginUsuario" id="loginUsuario" class="form-control" placeholder="Login do Usuario" required maxlength="60">
                         </div>
-                        <div class="col-sm-4">
-                            <label for="colFormLabel"> </label>
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Cargo
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Gerente de Projetos</a>
-                                    <a class="dropdown-item" href="#">Recepcionista</a>
-                                    <a class="dropdown-item" href="#">Scrum Master</a>
-                                </div>
-                            </div>
 
-
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4" style="display: none">
+                            <input type="number" name="nivelAcesso" id="nivelAcesso" maxlength="20" value="3">
+                            <input type="text" name="senhaUsuario" id="senhaUsuario" value="123">
                         </div>
                     </div>
+                    
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-outline-primary">Salvar</button>
@@ -256,5 +249,42 @@
     function logoff() {
         sessionStorage.removeItem('usuario_bandtec');
         verificarAutenticacao();
+    }
+    function cadastrarUsuario() {
+        //btn_salvar.disabled = true;
+        var formulario = new URLSearchParams(new FormData(form_Usuario));
+        fetch("/cadastros/cadastrarUsuario", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+
+            if (response.ok) {
+                console.log('Cadastrado com sucesso');
+                swal({
+                    title: "Cadastrado com sucesso!",
+                    text: "   ",
+                    icon: "success"
+                });
+                limpar();
+
+            } else {
+                console.log('Erro ao cadastrar!');
+                swal({
+                    title: "Erro ao cadastrar!",
+                    text: "   ",
+                    icon: "error"
+                });
+            }
+        });
+        btn_salvar.disable = false;
+        return false;
+    }
+    function limpar() {
+        nomeFuncionario.value = '';
+        emailFuncionario.value = '';
+        cpfFuncionario.value = '';
+        rgFuncionario.value = '';
+        telefoneFuncionario.value = '';
+        loginUsuario.value = '';
     }
     </script>

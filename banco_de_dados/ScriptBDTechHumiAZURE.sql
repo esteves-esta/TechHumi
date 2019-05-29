@@ -13,22 +13,24 @@ create table Endereco(
 idEndereco int primary key identity(1,1),
 logradouro varchar(40) not null,
 numero varchar(15) not null,
-complemento varchar(30) not null,
+complemento varchar(30),
 bairro varchar(50) not null,
 cidade varchar(40) not null,
 uf char(2) not null,
 cep varchar(12) not null,
-referencia varchar(35) not null,
+referencia varchar(35),
 fkEmpresa int foreign key references Empresa(idEmpresa)
 );
 
 
 create table Funcionario(
 idFuncionario int primary key identity(1,1),
-nomeFuncionario varchar(55),
-rgFuncionario varchar(25),
-cpfFuncionario varchar(25),
-cargoFuncionario varchar(40),
+nomeFuncionario varchar(55) not null,
+rgFuncionario varchar(25) not null,
+cpfFuncionario varchar(25) not null,
+emailFuncionario varchar(80) not null,
+telefoneFuncionario varchar(20) not null,
+cargoFuncionario varchar(40) not null,
 fkEmpresa int foreign key references Empresa(idEmpresa)
 );
 
@@ -44,8 +46,8 @@ fkFuncionario int foreign key references Funcionario(idFuncionario)
 
 create table Ambiente(
 idAmbiente int primary key identity(1,1),
-descricaoAmbiente varchar(40),
-localizacaoAmbiente varchar(20),
+descricaoAmbiente varchar(40) not null,
+localizacaoAmbiente varchar(20) not null,
 fkEmpresa int foreign key references Empresa(idEmpresa)
 );
 

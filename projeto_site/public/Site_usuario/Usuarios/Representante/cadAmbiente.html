@@ -134,12 +134,12 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label for="colFormLabel" class="">Descrição:</label>
-                            <input type="text" name="descricaoAmbiente" class="form-control"
+                            <input type="text" name="descricaoAmbiente" id="descricaoAmbiente" class="form-control"
                                 placeholder="Ex: Sala de Reunião" required>
                         </div>
                         <div class="col-sm-4">
                             <label for="colFormLabel" class=""> Localização:</label>
-                            <input type="text" name="localizacaoAmbiente" class="form-control"
+                            <input type="text" name="localizacaoAmbiente" id="localizacaoAmbiente" class="form-control"
                                 placeholder="Ex: 3º Andar, Sala 02" required>
                         </div>
                     </div>
@@ -235,8 +235,7 @@
                 swal({
                     title: "Cadastrado com sucesso!",
                     text: "   ",
-                    icon: "success",
-                    buttons: false
+                    icon: "success"
                 });
                 limpar();
 
