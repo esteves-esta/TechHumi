@@ -7,6 +7,7 @@ var indexRouter = require('./routes/index');
 var usuariosRouter = require('./routes/usuarios');
 var cadastrosRouter = require('./routes/cadastros');
 var leiturasRouter = require('./routes/leituras');
+var consultaRouter = require('./routes/consulta-perfil');
 
 var app = express();
 
@@ -20,5 +21,6 @@ app.use('/', indexRouter);
 app.use('/usuarios', usuariosRouter);
 app.use('/cadastros', cadastrosRouter);
 app.use('/leituras', leiturasRouter);
+app.use('/consulta-perfil', consultaRouter);
 
 module.exports = app;

@@ -101,15 +101,17 @@
           <span>Usuarios</span></a>
       </li>
       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Configurações</span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
-            <a class="dropdown-item" href="perfil.html">Perfil</a>
-            <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
-            <a class="dropdown-item" href="rotina.html">Rotina</a>
-            <!--<div class="dropdown-divider"></div>
+        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Configurações</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
+          style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
+          <a class="dropdown-item" href="perfil.html">Perfil</a>
+          <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
+          <a class="dropdown-item" href="rotina.html">Rotina</a>
+          <!--<div class="dropdown-divider"></div>
             <h6 class="dropdown-header">Other Pages:</h6>
             <a class="dropdown-item active" href="404.html">404 Page</a>
             <a class="dropdown-item" href="blank.html">Blank Page</a>-->
@@ -135,76 +137,106 @@
           <a href="index.html">return home</a>.</p>-->
 
         <form class="">
+          <h4>Empresa</h4>
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel" class="">Nome:</label>
-              <input type="text" class="form-control" placeholder="Nome da Empresa" required>
+              <input type="text" class="form-control" placeholder="Nome da Empresa" id="empresa" required>
             </div>
-            <div class="col-sm-4">
-              <label for="colFormLabel" class=""> Representante:</label>
-              <input type="text" class="form-control" placeholder="Nome do Repesentante" required>
-            </div>
-          </div>
-          <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel">CNPJ:</label>
-              <input type="text" class="form-control" placeholder="CNPJ da Empresa" required maxlength="19">
-            </div>
-            <div class="col-sm-4">
-              <label for="colFormLabel">E-mail:</label>
-              <input type="email" class="form-control" placeholder="E-Mail do Representante" required>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-4">
-              <label for="colFormLabel">Telefone:</label>
-              <input type="text" class="form-control" placeholder="Telefone - 1" required>
-            </div>
-            <div class="col-sm-4">
-              <label for="colFormLabel">Telefone:</label>
-              <input type="text" class="form-control" placeholder="Telefone - 2">
+              <input type="text" class="form-control" id="cnpj" placeholder="CNPJ da Empresa" required maxlength="19">
             </div>
           </div>
 
           <div class="form-group row">
-              <div class="col-sm-4">
-                  <label for="colFormLabel">CEP:</label>
-                  <input type="text" class="form-control" placeholder="CEP" required maxlength="9">
-                </div>
+            <div class="col-sm-4">
+              <label for="colFormLabel">Telefone:</label>
+              <input type="text" class="form-control" id="tele2" placeholder="Telefone - 1" required>
+            </div>
+            <div class="col-sm-4">
+              <label for="colFormLabel">Telefone:</label>
+              <input type="text" class="form-control" id="tele1" placeholder="Telefone - 2">
+            </div>
+          </div>
+          <div class="form-group row">
 
             <div class="col-sm-4">
               <label for="colFormLabel">Logradouro:</label>
-              <input type="text" class="form-control" placeholder="Logradouro da Empresa" required>
+              <input type="text" class="form-control" id="logradouro" placeholder="Logradouro da Empresa" required>
+            </div>
+
+            <div class="col-sm-2">
+              <label for="colFormLabel">CEP:</label>
+              <input type="text" class="form-control" id="cep" placeholder="CEP" required maxlength="9">
+            </div>
+
+            <div class="col-sm-2">
+              <label for="colFormLabel">Número:</label>
+              <input type="text" class="form-control" id="numero" placeholder="20" required>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel">Bairro:</label>
-              <input type="text" class="form-control" placeholder="Bairro" required>
+              <input type="text" class="form-control" id="bairro" placeholder="Bairro" required>
             </div>
 
             <div class="col-sm-4">
-                <label for="colFormLabel">Complemento:</label>
-                <input type="text" class="form-control" placeholder="Complemento">
-              </div>
+              <label for="colFormLabel">Complemento:</label>
+              <input type="text" class="form-control" id="complemento" placeholder="Complemento">
+            </div>
           </div>
 
-      <div class="form-group row">
+          <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel">Referencia:</label>
-              <input type="text" class="form-control" placeholder="Ponto de Referencia">
+              <input type="text" class="form-control" id="referencia" placeholder="Ponto de Referencia">
             </div>
 
             <div class="col-sm-3">
               <label for="colFormLabel">Cidade:</label>
-              <input type="text" class="form-control" placeholder="Cidade" required>
+              <input type="text" class="form-control" id="cidade" placeholder="Cidade" required>
             </div>
             <div class="col-sm-1">
               <label for="colFormLabel">UF:</label>
-              <input type="text" class="form-control" placeholder="UF" required maxlength="2">
+              <input type="text" class="form-control" id="uf" placeholder="UF" required maxlength="2">
             </div>
           </div>
+
+          <hr>
+          <h4>Representante</h4>
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label for="colFormLabel" class=""> Representante:</label>
+              <input type="text" class="form-control" id="representante" placeholder="Nome do Representante" required>
+            </div>
+            <div class="col-sm-4">
+              <label for="colFormLabel">E-mail:</label>
+              <input type="email" class="form-control" id="email" placeholder="E-Mail do Representante" required>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label for="colFormLabel" class=""> RG:</label>
+              <input type="text" class="form-control" id="rg" placeholder="Nome do Representante" required>
+            </div>
+            <div class="col-sm-4">
+              <label for="colFormLabel">CPF:</label>
+              <input type="text" class="form-control" id="cpf" placeholder="E-Mail do Representante" required>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label for="colFormLabel" class=""> Telefone:</label>
+              <input type="text" class="form-control" id="telefone" placeholder="Nome do Representante" required>
+            </div>
+          </div>
+
 
           <div class="form-group">
             <button type="submit" class="btn btn-outline-primary">Salvar</button>
@@ -274,42 +306,65 @@
   verificarAutenticacao();
 
   function verificarAutenticacao() {
-      usuario = sessionStorage.usuario_bandtec;
-      if (usuario == undefined) {
-          window.location.href = '../../Login/login.html'
-      }
+    usuario = sessionStorage.usuario_bandtec;
+    if (usuario == undefined) {
+      window.location.href = '../../Login/login.html'
+    }
   }
 
   function logoff() {
-      sessionStorage.removeItem('usuario_bandtec');
-      verificarAutenticacao();
+    sessionStorage.removeItem('usuario_bandtec');
+    verificarAutenticacao();
   }
 
   consultar_dados();
+
+  var cargo, cd_empresa, cd_endereco;
   function consultar_dados() {
-        
-        
-        fetch("/consulta-perfil/consulta", {
-            method: "POST",
-            body: formulario
-        }).then(function (response) {
-            
-            if (response.ok) {
+    // guarda código do usuário que está no atributo usuario_bandtec
+    // em um json e depois utiliza a classe URLSearchParams
+    //para mandar para o arquivo js
+    var cdFunc = { codigo: sessionStorage.usuario_bandtec }
+    var corpo = new URLSearchParams(cdFunc);
 
-                response.json().then(function (resposta) {
+    fetch("/consulta-perfil/consulta", {
+      method: "POST",
+      body: corpo
+    }).then(function (response) {
 
-                    
-                    sessionStorage.usuario_bandtec = resposta.fkFuncionario;
-                    sessionStorage.idlogin = resposta.idLogin;
-                    sessionStorage.nivelacesso = resposta.nivelAcesso;
-                    verificarAutenticacao();
+      if (response.ok) {
 
-                });
-            } else {
-                console.log('Erro de consulta!');
-            }
+        response.json().then(function (resposta) {
+          // devolve informação da empresa
+          cd_empresa = resposta.idEmpresa;
+          empresa.value = resposta.nomeEmpresa;
+          cnpj.value = resposta.cnpjEmpresa;
+          tele1.value = resposta.telefoneEmpresa1;
+          tele2.value = resposta.telefoneEmpresa2;
+          //informações de endereço
+          cd_endereco = resposta.idEndereco;
+          cep.value = resposta.cep;
+          logradouro.value = resposta.logradouro;
+          bairro.value = resposta.bairro;
+          complemento.value = resposta.complemento;
+          referencia.value = resposta.referencia;
+          cidade.value = resposta.cidade;
+          uf.value = resposta.uf;
+          numero.value = resposta.numero;
+
+          //devolve informação do funcionario
+          representante.value = resposta.nomeFuncionario;
+          rg.value = resposta.rgFuncionario;
+          cpf.value = resposta.cpfFuncionario;
+          email.value = resposta.emailFuncionario;
+          telefone.value = resposta.telefoneFuncionario;
+          cargo = resposta.cargoFuncionario;
         });
+      } else {
+        console.log('Erro de consulta!');
+      }
+    });
 
-        return false;
-    }
-  </script>
+    return false;
+  }
+</script>
