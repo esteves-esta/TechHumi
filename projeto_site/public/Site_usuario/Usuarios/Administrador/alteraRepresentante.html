@@ -36,33 +36,19 @@
       <i class="fas fa-bars"></i>
     </button>
 
-    <!-- Navbar Search -->
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-      <!-- <div class="input-group">
-        <input type="text" class="form-control" placeholder="Procurar por..." aria-label="Search"
-          aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="button">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div> -->
-    </form>
+    <div class="d-none d-md-inline-block ml-auto mr-0 mr-md-3 my-2 my-md-0" id="usuario-nome">
+      <i class="fas fa-user-circle fa-fw"></i>
+      <span>Bem Vinda(o), <b id="usuario_logado"></b></span>
+    </div>
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
-      <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user-circle fa-fw"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <!-- <a class="dropdown-item" href="#">Settings</a>
-          <a class="dropdown-item" href="#">Activity Log</a>
-          <div class="dropdown-divider"></div>     </div>  -->
-          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-
-      </li>
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal"
+                data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt fa-fw"></i>
+            </a>
+        </li>
     </ul>
 
   </nav>
@@ -204,14 +190,6 @@
 
 </html>
 
-<script>
-  function validar() {
-    swal({
-      title: "Cadastro realizado com sucesso!"
-    });
-    console.log('asd');
-  }
-</script>
 
 <!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
 <script src="http://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
@@ -231,12 +209,22 @@
     if (usuario == undefined) {
       window.location.href = '../../Login/login.html'
     }
+    usuario_logado.innerHTML = sessionStorage.nome_usuario;
   }
+
+  function logoff() {
+    sessionStorage.removeItem('usuario_bandtec');
+    sessionStorage.removeItem('idlogin');
+    sessionStorage.removeItem('nivelacesso');
+    sessionStorage.removeItem('nome_usuario');
+    verificarAutenticacao();
+  }
+
 
   consultar_dados();
 
-var cd_empresa, cd_endereco, cdFunc;
-function consultar_dados() {
+  var cd_empresa, cd_endereco, cdFunc;
+  function consultar_dados() {
     // guarda código do usuário que está no atributo usuario_bandtec
     // em um json e depois utiliza a classe URLSearchParams
     //para mandar para o arquivo js
@@ -246,90 +234,90 @@ function consultar_dados() {
     var corpo = new URLSearchParams(cdFunc);
 
     fetch("/consulta-perfil/consulta", {
-        method: "POST",
-        body: corpo
+      method: "POST",
+      body: corpo
     }).then(function (response) {
 
-        if (response.ok) {
+      if (response.ok) {
 
-            response.json().then(function (resposta) {
-                //devolve informação do funcionario
-                representante.value = resposta.nomeFuncionario;
-                rg.value = resposta.rgFuncionario;
-                cpf.value = resposta.cpfFuncionario;
-                email.value = resposta.emailFuncionario;
-                telefone.value = resposta.telefoneFuncionario;
-            });
-        } else {
-            console.log('Erro de consulta!');
-        }
+        response.json().then(function (resposta) {
+          //devolve informação do funcionario
+          representante.value = resposta.nomeFuncionario;
+          rg.value = resposta.rgFuncionario;
+          cpf.value = resposta.cpfFuncionario;
+          email.value = resposta.emailFuncionario;
+          telefone.value = resposta.telefoneFuncionario;
+        });
+      } else {
+        console.log('Erro de consulta!');
+      }
     });
 
     return false;
-}
+  }
 
-function alterar() {
+  function alterar() {
 
     swal({
-        title: "Você tem certeza que deseja alterar estes dados?",
-        text: "Essa ação não poderá ser revertida!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
+      title: "Você tem certeza que deseja alterar estes dados?",
+      text: "Essa ação não poderá ser revertida!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
     })
-        .then((willDelete) => {
-            if (willDelete) {
-                alterar_dados();
-            } else {
-                swal("Seus dados não foram alterados.");
-            }
+      .then((willDelete) => {
+        if (willDelete) {
+          alterar_dados();
+        } else {
+          swal("Seus dados não foram alterados.");
+        }
+      });
+
+    return false;
+  }
+
+  function alterar_dados() {
+    // coloca valores dos codigo em input escondidos para enviar para o js
+    cd_func.value = cdFunc.codigo;
+
+
+    var formulario = new URLSearchParams(new FormData(form_Empresa));
+    fetch("/consulta-perfil/alterar-funcionario", {
+      method: "POST",
+      body: formulario
+    }).then(function (response) {
+
+      if (response.ok) {
+
+        swal({
+          title: "Alterado com sucesso!",
+          text: "   ",
+          icon: "success"
         });
 
-    return false;
-}
+        sessionStorage.removeItem("codigo_alterar");
+        window.location.href = 'consultaRepresentante.html';
 
-function alterar_dados() {
-// coloca valores dos codigo em input escondidos para enviar para o js
-cd_func.value = cdFunc.codigo;
+      } else {
 
-
-var formulario = new URLSearchParams(new FormData(form_Empresa));
-fetch("/consulta-perfil/alterar-funcionario", {
-  method: "POST",
-  body: formulario
-}).then(function (response) {
-
-  if (response.ok) {
-
-    swal({
-      title: "Alterado com sucesso!",
-      text: "   ",
-      icon: "success"
+        swal({
+          title: "Erro ao alterar!",
+          text: "   ",
+          icon: "error"
+        });
+      }
     });
 
-    sessionStorage.removeItem("codigo_alterar");
-    window.location.href = 'consultaRepresentante.html';
+    return false;
+  }
 
-  } else {
-
+  function aguardar() {
     swal({
-      title: "Erro ao alterar!",
+      title: "Aguarde, estamos te procurando!",
       text: "   ",
-      icon: "error"
+      icon: "info",
+      buttons: false,
+      timer: 2000,
     });
   }
-});
-
-return false;
-}
-
-function aguardar() {
-swal({
-  title: "Aguarde, estamos te procurando!",
-  text: "   ",
-  icon: "info",
-  buttons: false,
-  timer: 2000,
-});
-}
 </script>

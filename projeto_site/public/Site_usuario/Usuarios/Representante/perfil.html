@@ -37,10 +37,10 @@
       <i class="fas fa-bars"></i>
     </button>
 
-    <!-- Navbar Search -->
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-      <p>Bem Vindo(a), <b id="usuario_logado"></b></p>
-    </form>
+
+    <div class="d-none d-md-inline-block ml-auto mr-0 mr-md-3 my-2 my-md-0">
+      <span>Bem Vinda(o), <b id="usuario_logado"></b></span>
+    </div>
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
@@ -304,10 +304,14 @@
     if (usuario == undefined) {
       window.location.href = '../../Login/login.html'
     }
+    usuario_logado.innerHTML = sessionStorage.nome_usuario;
   }
 
   function logoff() {
     sessionStorage.removeItem('usuario_bandtec');
+    sessionStorage.removeItem('idlogin');
+    sessionStorage.removeItem('nivelacesso');
+    sessionStorage.removeItem('nome_usuario');
     verificarAutenticacao();
   }
 
@@ -354,8 +358,6 @@
           cpf.value = resposta.cpfFuncionario;
           email.value = resposta.emailFuncionario;
           telefone.value = resposta.telefoneFuncionario;
-
-          usuario_logado.innerHTML = representante.value;
         });
       } else {
         console.log('Erro de consulta!');

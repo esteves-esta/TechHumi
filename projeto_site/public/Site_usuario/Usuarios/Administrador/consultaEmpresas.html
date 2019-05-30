@@ -37,23 +37,19 @@
             <i class="fas fa-bars"></i>
         </button>
 
-        <!-- Navbar Search -->
-        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-
-        </form>
+        <div class="d-none d-md-inline-block ml-auto mr-0 mr-md-3 my-2 my-md-0" id="usuario-nome">
+            <i class="fas fa-user-circle fa-fw"></i>
+            <span>Bem Vinda(o), <b id="usuario_logado"></b></span>
+        </div>
 
         <!-- Navbar -->
         <ul class="navbar-nav ml-auto ml-md-0">
-            <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user-circle fa-fw"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-
-            </li>
+                <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal"
+                            data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-fw"></i>
+                        </a>
+                    </li>
         </ul>
 
     </nav>
@@ -209,12 +205,17 @@
         if (usuario == undefined) {
             window.location.href = '../../Login/login.html'
         }
+        usuario_logado.innerHTML = sessionStorage.nome_usuario;
     }
 
     function logoff() {
         sessionStorage.removeItem('usuario_bandtec');
+        sessionStorage.removeItem('idlogin');
+        sessionStorage.removeItem('nivelacesso');
+        sessionStorage.removeItem('nome_usuario');
         verificarAutenticacao();
     }
+
 
     consultar_dados();
 
@@ -256,8 +257,8 @@
                 <td>${atual.cep}</td>
                 <td>${atual.referencia}</td>
                 <td class="actions">
-                <a class="btn btn-warning btn-xs" onclick="alterar(${atual.idFuncionario})">Editar</a>
-                <a class="btn btn-danger btn-xs" data-toggle="modal"
+                <a class="consulta-btn btn btn-warning btn-xs mb-1" onclick="alterar(${atual.idFuncionario})">Editar</a>
+                <a class="consulta-btn btn btn-danger btn-xs mb-1" data-toggle="modal"
                     data-target="#delete-modal" onclick="excluir(${atual.idFuncionario})">Excluir</a>
                 </td>
             </tr>`;
@@ -283,26 +284,26 @@
         });
     }
 
-    function excluir(codigo){
+    function excluir(codigo) {
         swal({
-      title: "Você tem certeza que deseja excluir estes dados?",
-      text: "Essa ação não poderá ser revertida!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    })
-      .then((willDelete) => {
-        if (willDelete) {
-         
-         
-        } else {
-          swal("Seus dados não foram excluídos.");
-        }
-      });
+            title: "Você tem certeza que deseja excluir estes dados?",
+            text: "Essa ação não poderá ser revertida!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+
+
+                } else {
+                    swal("Seus dados não foram excluídos.");
+                }
+            });
     }
 
     function alterar(codigo) {
-            sessionStorage.codigo_alterar = codigo;
-            window.location.href = 'alteraEmpresa.html';
+        sessionStorage.codigo_alterar = codigo;
+        window.location.href = 'alteraEmpresa.html';
     }
 </script>

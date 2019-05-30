@@ -13,7 +13,9 @@ router.post('/entrar', function (req, res, next) {
     if (login == undefined || senha == undefined) {
       throw new Error(`Dados de login não chegaram completos: ${login} / ${senha}`);
     }
-    return banco.sql.query(`select * from Login where loginUsuario='${login}' and senhaUsuario='${senha}'`);
+    return banco.sql.query(`select Login.*, nomeFuncionario from Login 
+    inner join Funcionario on fkFuncionario = idFuncionario
+    where loginUsuario='${login}' and senhaUsuario='${senha}'`);
   }).then(consulta => {
 
     console.log(`Usuários encontrados: ${JSON.stringify(consulta.recordset)}`);
