@@ -4,6 +4,7 @@ var router = express.Router();
 var banco = require('../app-banco');
 // não mexa nessas 3 linhas!
 
+// consultar empresas e endereços e funcionario representante pelo código do usuário cadastrado
 router.post('/consulta', function (req, res, next) {
   banco.sql.close();
 
@@ -39,55 +40,73 @@ router.post('/consulta', function (req, res, next) {
 
 });
 
-router.post('/alterar', function (req, res, next) {
+var empresa = {
+  codigo: '',
+  nome: '',
+  cnpj: '',
+  telefone_um: '',
+  telefone_dois: '',
+};
 
+var funcionario = {
+  codigo: '',
+  nome: '',
+  rg: '',
+  cpf: '',
+  telefone: '',
+  email: '',
+};
 
-  var empresa = {
-    codigo: req.body.cd_emp,
-    nome: req.body.empresa,
-    cnpj: req.body.cnpj,
-    telefone_um: req.body.tele1,
-    telefone_dois: req.body.tele2
-  };
+var endereco = {
+  codigo: '',
+  logradouro: '',
+  cep: '',
+  bairro: '',
+  complemento: '',
+  referencia: '',
+  cidade: '',
+  uf: '',
+  numero: '',
+};
 
-  var funcionario = {
-    codigo: req.body.cd_func,
-    nome: req.body.representante,
-    rg: req.body.rg,
-    cpf: req.body.cpf,
-    telefone: req.body.telefone,
-    email: req.body.email
-  };
+//ALTERAÇÃO DO EMPRESA
+router.post('/alterar-empresa', function (req, res, next) {
 
-  var endereco = {
-    codigo: req.body.cd_end,
-    logradouro: req.body.logradouro,
-    cep: req.body.cep,
-    bairro: req.body.bairro,
-    complemento: req.body.complemento,
-    referencia: req.body.referencia,
-    cidade: req.body.cidade,
-    uf: req.body.uf,
-    numero: req.body.numero
-  };
+  empresa.codigo = req.body.cd_emp;
+  empresa.nome = req.body.empresa;
+  empresa.cnpj = req.body.cnpj;
+  empresa.telefone_um = req.body.tele1;
+  empresa.telefone_dois = req.body.tele2;
 
-console.log(funcionario);
+  endereco.codigo = req.body.cd_end;
+  endereco.logradouro = req.body.logradouro;
+  endereco.cep = req.body.cep;
+  endereco.bairro = req.body.bairro;
+  endereco.complemento = req.body.complemento;
+  endereco.referencia = req.body.referencia;
+  endereco.cidade = req.body.cidade;
+  endereco.uf = req.body.uf;
+  endereco.numero = req.body.numero;
+
+ 
 
   banco.conectar().then(() => {
-    // ALTERAÇÃO DO FUNCIONARIO
-    banco.sql.query(`update Funcionario set 
-      nomeFuncionario = '${funcionario.nome}', 
-      rgFuncionario = '${funcionario.rg}',
-      cpfFuncionario = '${funcionario.cpf}',
-      emailFuncionario = '${funcionario.email}',
-      telefoneFuncionario = '${funcionario.telefone}'
-      where idFuncionario = ${funcionario.codigo};`)
-      .then(function () {
-
+  
+    ///ALTERAÇÃO DA EMPRESA
+    banco.sql.query(`update Endereco set 
+         logradouro = '${endereco.logradouro}', 
+         numero = '${endereco.numero}',
+         complemento = '${endereco.complemento}',
+         bairro = '${endereco.bairro}',
+         cidade = '${endereco.cidade}',
+         uf = '${endereco.uf}',
+         cep = '${endereco.cep}',
+         referencia = '${endereco.referencia}'
+         where idEndereco = ${endereco.codigo};`)
+      .then(function() {
+        console.log('alterou 00');
         res.sendStatus(201);
-        console.log('alterou 4');
-        // status 201 significa que algo foi criado no back-end, 
-        // no caso, um registro de usuário ;)		
+        
       }).catch(err => {
 
         var erro = `Erro na alteração: ${err}`;
@@ -97,57 +116,103 @@ console.log(funcionario);
       }).finally(() => {
         banco.sql.close();
       });
+   
 
-      ///ALTERAÇÃO DA EMPRESA
-    banco.sql.query(`update Empresa set 
+        return banco.sql.query(`update Empresa set 
       nomeEmpresa = '${empresa.nome}', 
       cnpjEmpresa = '${empresa.cnpj}',
       telefoneEmpresa1 = '${empresa.telefone_dois}',
       telefoneEmpresa2 = '${empresa.telefone_um}'
-      where idEmpresa = ${empresa.codigo};`)
-      .then(function () {
+      where idEmpresa = ${empresa.codigo};`);
+
+      }).then(consulta => {
+        console.log('alterou 11');
         res.sendStatus(201);
-        console.log('alterou 2');
-        // status 201 significa que algo foi criado no back-end, 
-        // no caso, um registro de usuário ;)		
+
       }).catch(err => {
 
-        var erro = `Erro na alteração: ${err}`;
+        var erro = `Erro: ${err}`;
         console.error(erro);
+
         res.status(500).send(erro);
 
       }).finally(() => {
         banco.sql.close();
       });
-
-      //ALTERAÇÃO DO ENDEREÇO
-    return banco.sql.query(`update Endereco set 
-      logradouro = '${endereco.logradouro}', 
-      numero = '${endereco.numero}',
-      complemento = '${endereco.complemento}',
-      bairro = '${endereco.bairro}',
-      cidade = '${endereco.cidade}',
-      uf = '${endereco.uf}',
-      cep = '${endereco.cep}',
-      referencia = '${endereco.referencia}'
-      where idEndereco = ${endereco.codigo};`);
-
-  }).then(consulta => {
-    console.log('alterou');
-    res.sendStatus(201);
-
-  }).catch(err => {
-
-    var erro = `Erro: ${err}`;
-    console.error(erro);
-
-    res.status(500).send(erro);
-
-  }).finally(() => {
-    banco.sql.close();
-  });
-
+  
 });
 
-// não mexa nesta linha!
-module.exports = router;
+  // ALTERAÇÃO DO FUNCIONARIO
+  router.post('/alterar-funcionario', function (req, res, next) {
+    banco.sql.close();
+    banco.conectar().then(() => {
+
+      funcionario.codigo = req.body.cd_func;
+      funcionario.nome = req.body.representante;
+      funcionario.rg = req.body.rg;
+      funcionario.cpf = req.body.cpf;
+      funcionario.telefone = req.body.telefone;
+      funcionario.email = req.body.email;
+
+      return banco.sql.query(`update Funcionario set 
+    nomeFuncionario = '${funcionario.nome}', 
+    rgFuncionario = '${funcionario.rg}',
+    cpfFuncionario = '${funcionario.cpf}',
+    emailFuncionario = '${funcionario.email}',
+    telefoneFuncionario = '${funcionario.telefone}'
+    where idFuncionario = ${funcionario.codigo};`);
+
+    }).then(consulta => {
+      console.log('alterou');
+      res.sendStatus(201);
+
+    }).catch(err => {
+
+      var erro = `Erro: ${err}`;
+      console.error(erro);
+
+      res.status(500).send(erro);
+
+    }).finally(() => {
+      banco.sql.close();
+    });
+
+  });
+
+
+  // CONSULTAR TODAAS AS EMPRESAS
+  router.post('/consulta-empresas', function (req, res, next) {
+    banco.sql.close();
+
+    banco.conectar().then(() => {
+
+      return banco.sql.query(`select * from Empresa 
+    inner join Funcionario as f on f.fkEmpresa = idEmpresa
+    inner join Endereco as e on e.fkEmpresa = idEmpresa
+    where f.cargoFuncionario = 'Representante';`);
+
+    }).then(consulta => {
+
+      console.log(`Dados: ${JSON.stringify(consulta.recordset[1])}`);
+
+      if (consulta.recordset.length != 0) {
+        res.send(consulta.recordset);
+      } else {
+        res.sendStatus(404);
+      }
+
+    }).catch(err => {
+
+      var erro = `Erro: ${err}`;
+      console.error(erro);
+      res.status(500).send(erro);
+
+    }).finally(() => {
+      banco.sql.close();
+    });
+
+  });
+
+
+  // não mexa nesta linha!
+  module.exports = router;
