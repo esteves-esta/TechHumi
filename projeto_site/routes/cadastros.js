@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 var banco = require('../app-banco');
 // não mexa nessas 3 linhas!
-
+var login, senha, nivel, ultimoCod;
 router.post('/cadastrarAmbiente', function (req, res, next) {
 
   banco.conectar().then(() => {
@@ -18,9 +18,9 @@ router.post('/cadastrarAmbiente', function (req, res, next) {
 
     console.log(`Ambiente cadastrado com sucesso!`);
 
-    
-      res.sendStatus(201);
-    
+
+    res.sendStatus(201);
+
 
   }).catch(err => {
 
@@ -39,41 +39,62 @@ router.post('/cadastrarUsuario', function (req, res, next) {
   banco.conectar().then(() => {
     console.log(`Chegou p/ cadastrar novo funcionario: ${JSON.stringify(req.body)}`);
     //FUNCIONARIO
-    var nome = req.body.nomeFuncionario; 
-    var rg = req.body.rgFuncionario; 
+    var nome = req.body.nomeFuncionario;
+    var rg = req.body.rgFuncionario;
     var cpf = req.body.cpfFuncionario;
     var email = req.body.emailFuncionario;
-    var telefone = req.body.funcionarioFuncionario;
+    var cargo = req.body.cargoFuncionario;
+    var telefone = req.body.telefoneFuncionario;
     //LOGIN
-    var login = req.body.loginUsuario;
-    var senha = req.body.senhaUsuario;
-    var nivelAcesso = req.body.nivelAcesso;
-    
-    if (nome == undefined || rg == undefined || cpf == undefined || email == undefined || telefone == undefined 
-      || login == undefined || senha == undefined || nivelAcesso == undefined) {
-      throw new Error(`Dados de Funcionario não chegaram completos: ${nome} / ${rg} / ${cpf} / ${email} / ${telefone}
+     login = req.body.loginUsuario;
+     senha = req.body.senhaUsuario;
+     nivel = req.body.nivelAcesso;
+
+    if (nome == undefined || rg == undefined || cpf == undefined || email == undefined || telefone == undefined || cargo == undefined
+      || login == undefined || senha == undefined || nivel == undefined) {
+      throw new Error(`Dados de Funcionario não chegaram completos: ${nome} / ${rg} / ${cpf} / ${email} / ${telefone} / ${cargo} //
        / ${login} / ${senha} /`);
     }
-    return banco.sql.query(`insert into Funcionario (nomeFuncionario,rgFuncionario,cpfFuncionario,emailFuncionario) 
-    values ('${nome}','${rg}','${cpf}','${email}');`);
-  }).then(cadastro => {
+    return banco.sql.query(`insert into Funcionario (nomeFuncionario,rgFuncionario,cpfFuncionario,emailFuncionario,telefoneFuncionario,cargoFuncionario) 
+    values ('${nome}','${rg}','${cpf}','${email}','${telefone}','${cargo}');`);
+    }).then(cadastro => {//CADASTRO DE FUNCIONARIO
 
-    console.log(`Funcionario cadastrado com sucesso!`);
-
-    
+      console.log(`Funcionario cadastrado com sucesso!`);
       res.sendStatus(201);
     
+    }).then(cadastroLogin => { //CADASTRO DE LOGIN
+    
+      ultimoId();
+      
+    }).then(feito =>{
+      banco.sql.query(`insert into Login (loginUsuario,senhaUsuario,nivelAcesso,fkFuncionario) values
+      ('${login}','${senha}',${nivel},${ultimoCod})`);
+      console.log(`insert into Login (loginUsuario,senhaUsuario,nivelAcesso,fkFuncionario) values
+      ('${login}','${senha}',${nivel},${ultimoCod})`);
+    }).then(cadastro=>{
 
-  }).catch(err => {
+      console.log(`Login cadastrado com sucesso!`);
+      res.sendStatus(201);
 
-    var erro = `Erro ao cadastrar: ${err}`;
-    console.error(erro);
-    res.status(500).send(erro);
+    }).catch(err => {
 
-  }).finally(() => {
-    banco.sql.close();
+      var erro = `Erro ao cadastrar Login: ${err}`;
+      console.error(erro);
+      res.status(500).send(erro);
+
+    }).finally(() => {
+      banco.sql.close();
+    });
   });
 
-});
+function ultimoId() { //PEGA O ULTIMO FUNCIONARIO CADASTRADO
+  // banco.conectar().then()
+  banco.sql.query(`SELECT IDENT_CURRENT('Funcionario') as 'ultimoCodi'`).then(results =>{
+    resultado = results.recordsets[0];
+    ultimoCod = resultado[0].ultimoCodi;
+    console.log(`VAI PORRA`);
+  });
+  
+}
 // não mexa nesta linha!
 module.exports = router;
