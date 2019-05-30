@@ -110,81 +110,144 @@
               <label for="colFormLabel">CNPJ:</label>
               <input type="text" class="form-control" placeholder="CNPJ da Empresa" required maxlength="19">
             </div>
-            <div class="col-sm-4">
-              <label for="colFormLabel">E-mail:</label>
-              <input type="email" class="form-control" placeholder="E-Mail do Representante" required>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-4">
-              <label for="colFormLabel">Telefone:</label>
-              <input type="text" class="form-control" placeholder="Telefone - 1" required>
-            </div>
-            <div class="col-sm-4">
-              <label for="colFormLabel">Telefone:</label>
-              <input type="text" class="form-control" placeholder="Telefone - 2">
-            </div>
-          </div>
+            <div class="container-fluid">
 
-          <div class="form-group row">
-              <div class="col-sm-4">
-                  <label for="colFormLabel">CEP:</label>
-                  <input type="text" class="form-control" placeholder="CEP" required maxlength="9">
+              <h3 class="mb-5">Perfil</h3>
+
+              <form id="form_Empresa" method="post" onsubmit="return alterar()">
+                <h4 class="mb-4">Empresa</h4>
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                    <input type="hidden" id="cd_emp" name="cd_emp">
+                    <label for="colFormLabel" class="">Nome:</label>
+                    <input type="text" class="form-control" placeholder="Nome da Empresa" id="empresa" name="empresa"
+                      required>
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="colFormLabel">CNPJ:</label>
+                    <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ da Empresa" required
+                      maxlength="19">
+                  </div>
                 </div>
 
-            <div class="col-sm-4">
-              <label for="colFormLabel">Logradouro:</label>
-              <input type="text" class="form-control" placeholder="Logradouro da Empresa" required>
-            </div>
-          </div>
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                    <label for="colFormLabel">Telefone:</label>
+                    <input type="text" class="form-control" id="tele2" name="tele2" placeholder="Telefone - 1" required>
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="colFormLabel">Telefone:</label>
+                    <input type="text" class="form-control" id="tele1" name="tele1" placeholder="Telefone - 2">
+                  </div>
+                </div>
+                <div class="form-group row">
 
-          <div class="form-group row">
-            <div class="col-sm-4">
-              <label for="colFormLabel">Bairro:</label>
-              <input type="text" class="form-control" placeholder="Bairro" required>
-            </div>
+                  <div class="col-sm-4">
+                    <input type="hidden" id="cd_end" name="cd_end">
+                    <label for="colFormLabel">Logradouro:</label>
+                    <input type="text" class="form-control" id="logradouro" name="logradouro"
+                      placeholder="Logradouro da Empresa" required>
+                  </div>
 
-            <div class="col-sm-4">
-                <label for="colFormLabel">Complemento:</label>
-                <input type="text" class="form-control" placeholder="Complemento">
-              </div>
-          </div>
+                  <div class="col-sm-2">
+                    <label for="colFormLabel">CEP:</label>
+                    <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required
+                      maxlength="9">
+                  </div>
 
-      <div class="form-group row">
-            <div class="col-sm-4">
-              <label for="colFormLabel">Referencia:</label>
-              <input type="text" class="form-control" placeholder="Ponto de Referencia">
-            </div>
+                  <div class="col-sm-2">
+                    <label for="colFormLabel">Número:</label>
+                    <input type="text" class="form-control" id="numero" name="numero" placeholder="20" required>
+                  </div>
+                </div>
 
-            <div class="col-sm-3">
-              <label for="colFormLabel">Cidade:</label>
-              <input type="text" class="form-control" placeholder="Cidade" required>
-            </div>
-            <div class="col-sm-1">
-              <label for="colFormLabel">UF:</label>
-              <input type="text" class="form-control" placeholder="UF" required maxlength="2">
-            </div>
-          </div>
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                    <label for="colFormLabel">Bairro:</label>
+                    <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" required>
+                  </div>
 
-          <div class="form-group">
-            <button type="submit" class="btn btn-outline-primary" onclick="validar()">Cadastrar</button>
-            <button type="reset" class="btn btn-outline-danger">Cancelar</button>
-          </div>
+                  <div class="col-sm-4">
+                    <label for="colFormLabel">Complemento:</label>
+                    <input type="text" class="form-control" id="complemento" name="complemento"
+                      placeholder="Complemento">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                    <label for="colFormLabel">Referencia:</label>
+                    <input type="text" class="form-control" id="referencia" name="referencia"
+                      placeholder="Ponto de Referencia">
+                  </div>
+
+                  <div class="col-sm-3">
+                    <label for="colFormLabel">Cidade:</label>
+                    <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" required>
+                  </div>
+                  <div class="col-sm-1">
+                    <label for="colFormLabel">UF:</label>
+                    <input type="text" class="form-control" id="uf" name="uf" placeholder="UF" required maxlength="2">
+                  </div>
+                </div>
+
+                <hr>
+                <h4 class="mb-4">Representante</h4>
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                    <input type="hidden" id="cd_func" name="cd_func">
+                    <label for="colFormLabel" class=""> Representante:</label>
+                    <input type="text" class="form-control" id="representante" name="representante"
+                      placeholder="Nome do Representante" required>
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="colFormLabel">E-mail:</label>
+                    <input type="email" class="form-control" id="email" name="email"
+                      placeholder="E-Mail do Representante" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                    <label for="colFormLabel" class=""> RG:</label>
+                    <input type="text" class="form-control" id="rg" name="rg" placeholder="Nome do Representante"
+                      required>
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="colFormLabel">CPF:</label>
+                    <input type="text" class="form-control" id="cpf" name="cpf" placeholder="E-Mail do Representante"
+                      required>
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                    <label for="colFormLabel" class=""> Telefone:</label>
+                    <input type="text" class="form-control" id="telefone" name="telefone"
+                      placeholder="Nome do Representante" required>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <button class="btn btn-outline-primary">Alterar</button>
+                </div>
+            </div>
+        </form>
+
       </div>
-      </form>
+
+      <!-- Sticky Footer -->
+      <footer class="sticky-footer">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>TechHumi © 2019</span>
+          </div>
+        </div>
+      </footer>
 
     </div>
-
-    <!-- Sticky Footer -->
-    <footer class="sticky-footer">
-      <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-          <span>TechHumi © 2019</span>
-        </div>
-      </div>
-    </footer>
-
-  </div>
 
   </div>
 
@@ -229,9 +292,9 @@
 
 <script>
   function validar() {
-          swal({
-              title: "Cadastro realizado com sucesso!"
-          });
-          console.log('asd');
+    swal({
+      title: "Cadastro realizado com sucesso!"
+    });
+    console.log('asd');
   }
 </script>
