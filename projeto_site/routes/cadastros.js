@@ -3,7 +3,10 @@ var express = require('express');
 var router = express.Router();
 var banco = require('../app-banco');
 // não mexa nessas 3 linhas!
-var login, senha, nivel, ultimoCod;
+
+var login,senha,nivel;
+var ultimoCod = 0;
+
 router.post('/cadastrarAmbiente', function (req, res, next) {
 
   banco.conectar().then(() => {
@@ -46,9 +49,9 @@ router.post('/cadastrarUsuario', function (req, res, next) {
     var cargo = req.body.cargoFuncionario;
     var telefone = req.body.telefoneFuncionario;
     //LOGIN
-     login = req.body.loginUsuario;
-     senha = req.body.senhaUsuario;
-     nivel = req.body.nivelAcesso;
+    login = req.body.loginUsuario;
+    senha = req.body.senhaUsuario;
+    nivel = req.body.nivelAcesso;
 
     if (nome == undefined || rg == undefined || cpf == undefined || email == undefined || telefone == undefined || cargo == undefined
       || login == undefined || senha == undefined || nivel == undefined) {
@@ -56,45 +59,41 @@ router.post('/cadastrarUsuario', function (req, res, next) {
        / ${login} / ${senha} /`);
     }
     return banco.sql.query(`insert into Funcionario (nomeFuncionario,rgFuncionario,cpfFuncionario,emailFuncionario,telefoneFuncionario,cargoFuncionario) 
-    values ('${nome}','${rg}','${cpf}','${email}','${telefone}','${cargo}');`);
-    }).then(cadastro => {//CADASTRO DE FUNCIONARIO
-
+    values ('${nome}','${rg}','${cpf}','${email}','${telefone}','${cargo}')`);
+  }).then(cadastro => {//CADASTRO DE FUNCIONARIO
       console.log(`Funcionario cadastrado com sucesso!`);
       res.sendStatus(201);
-    
-    }).then(cadastroLogin => { //CADASTRO DE LOGIN
-    
-      ultimoId();
-      
-    }).then(feito =>{
-      banco.sql.query(`insert into Login (loginUsuario,senhaUsuario,nivelAcesso,fkFuncionario) values
-      ('${login}','${senha}',${nivel},${ultimoCod})`);
-      console.log(`insert into Login (loginUsuario,senhaUsuario,nivelAcesso,fkFuncionario) values
-      ('${login}','${senha}',${nivel},${ultimoCod})`);
-    }).then(cadastro=>{
-
-      console.log(`Login cadastrado com sucesso!`);
-      res.sendStatus(201);
-
     }).catch(err => {
-
-      var erro = `Erro ao cadastrar Login: ${err}`;
+      var erro = `Erro ao cadastrar FUNCIONARIO: ${err}`;
       console.error(erro);
       res.status(500).send(erro);
+    }).finally(() => { //CADASTRO DE LOGIN
+      ultimoId();
+      banco.sql.query(`go insert into Login (loginUsuario,senhaUsuario,nivelAcesso,fkFuncionario) values
+        ('${login}','${senha}',${nivel},${ultimoCod})`).then(function(){
+        console.log(`Login cadastrado com sucesso!`);
+       res.sendStatus(201);
 
-    }).finally(() => {
-      banco.sql.close();
-    });
+      }).catch(err =>{
+       var erro = `Erro no cadastro de LOGIN: ${err}`;
+			  console.error(erro);
+		  	res.status(500).send(erro);
+      
+      }).finally(() =>{
+        banco.sql.close();
+      });
   });
+});
 
 function ultimoId() { //PEGA O ULTIMO FUNCIONARIO CADASTRADO
-  // banco.conectar().then()
-  banco.sql.query(`SELECT IDENT_CURRENT('Funcionario') as 'ultimoCodi'`).then(results =>{
-    resultado = results.recordsets[0];
-    ultimoCod = resultado[0].ultimoCodi;
-    console.log(`VAI PORRA`);
+  banco.sql.query(`SELECT IDENT_CURRENT('Funcionario') as ultimo`).then(results =>{
+   ultimoCod = results.recordset[0].ultimo;
+    console.log(`Recuperamos o CODIGO: ${ultimoCod}`);
+  }).catch(err =>{
+    var erro = `Erro ao pegar o ultimo registro: ${err}`;
+    console.log(erro);
+    res.status(500).send(erro)
   });
-  
 }
 // não mexa nesta linha!
 module.exports = router;
