@@ -61,17 +61,24 @@ router.post('/cadastrarUsuario', function (req, res, next) {
     return banco.sql.query(`insert into Funcionario (nomeFuncionario,rgFuncionario,cpfFuncionario,emailFuncionario,telefoneFuncionario,cargoFuncionario) 
     values ('${nome}','${rg}','${cpf}','${email}','${telefone}','${cargo}')`);
   }).then(cadastro => {//CADASTRO DE FUNCIONARIO
+    
       console.log(`Funcionario ${nome}, cadastrado com sucesso!`);
       res.sendStatus(201);
+
     }).catch(err => {
+
       var erro = `Erro ao cadastrar FUNCIONARIO: ${err}`;
       console.error(erro);
       res.status(500).send(erro);
+
     }).finally(() => { //CONSULTANDO O ULTIMO FUNCIONARIO CADASTRADO
+
       banco.sql.query(`SELECT IDENT_CURRENT('Funcionario') as ultimo`).then(results =>{
         ultimoCod = results.recordset[0].ultimo;
+
       }).finally(() =>{//CADASTRO DE LOGIN
-        alo = banco.sql.query(`insert into Login (loginUsuario,senhaUsuario,nivelAcesso,fkFuncionario) values
+
+        banco.sql.query(`insert into Login (loginUsuario,senhaUsuario,nivelAcesso,fkFuncionario) values
         ('${login}','${senha}',${nivel},${ultimoCod})`);
         console.log(ultimoCod);
       }).then(function(){
@@ -80,30 +87,25 @@ router.post('/cadastrarUsuario', function (req, res, next) {
         res.sendStatus(201);
 
       }).catch(err=>{//Caso o cadastro do LOGIN dê certo
+
         var erro = `Erro no cadastro de LOGIN: ${err}`;
         console.error(erro);
       });
     }).then(function(){
+    
       console.log(`Recuperamos o CODIGO: ${ultimoCod}`);
 
     }).catch(err =>{
+
       var erro = `Erro ao recuperar ultimo id: ${err}`;
      console.error(erro);
 
     }).finally(() =>{
+
       banco.sql.close();
       console.log(`Banco FECHADO COM EXITO`)
-    })
-    // .then(function(){
-      //   console.log(`Login cadastrado com sucesso!`);
-      //   res.sendStatus(201);
-          // }).catch(err =>{
-          //   var erro = `Erro no cadastro de LOGIN: ${err}`;
-          //   console.error(erro);
-          //   res.status(500).send(erro);
-          // }).finally(() =>{
-          //   banco.sql.close();
-          // });
+    
+    });
 });
 
 // não mexa nesta linha!
