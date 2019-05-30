@@ -203,24 +203,6 @@
                 <td class='centered'>Registro de CNPJ completo da empresa.  Item deve ser único para cada ocorrência.</td>
             </tr>
             <tr>
-                <td class='field'>Nome do representante</td>
-                <td>nomeRepresentante</td>
-                <td class='centered'>Alfanumérico</td>
-                <td class='centered'>60</td>
-                <td class='centered'>Preenchimento obrigatório</td>
-                <td class='centered'>Nome completo do representante da empresa, sem abreviação.</td>
-
-            </tr>
-            <tr>
-                <td class='field'>E-mail do representante</td>
-                <td>emailRepresentante</td>
-                <td class='centered'>Alfanumérico</td>
-                <td class='centered'>80</td>
-                <td class='centered'>Chave única</td>
-                <td class='centered'>E-mail para contato com o representante.</td>
-
-            </tr>
-            <tr>
                 <td class='field'>Telefone da empresa1</td>
                 <td>telefoneEmpresa1</td>
                 <td class='centered'>Numérico inteiro</td>
@@ -452,6 +434,24 @@
 
             </tr>
             <tr>
+                <td class='field'>E-mail do funcionario</td>
+                <td>emailFuncionario</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>80</td>
+                <td class='centered'>Chave única</td>
+                <td class='centered'>E-mail para contato com o funcionario.</td>
+
+            </tr>
+            <tr>
+                <td class='field'>Telefone do funcionario</td>
+                <td>telefoneFuncionario</td>
+                <td class='centered'>Alfanumérico</td>
+                <td class='centered'>20</td>
+                <td class='centered'>Chave única</td>
+                <td class='centered'>Telefonepara contato com o funcionario.</td>
+
+            </tr>
+            <tr>
                 <td class='field'>Relacionamento de tabelas distintas</td>
                 <td>fkEmpresa</td>
                 <td class='centered'>Numérico inteiro</td>
@@ -506,7 +506,7 @@
                 <td class='centered'>Numérico inteiro</td>
                 <td class='centered'>1</td>
                 <td class='centered'>Preenchimento obrigatório</td>
-                <td class='centered'>Nível de acesso para o cliente. Categorizado de acordo com os cargos.</td>
+                <td class='centered'>Nível de acesso para o cliente. Categorizado de acordo com os cargos seguindo o seguinte código: 1 - Administrador Geral; 2 - Representante da Empresa; 3 - Funcionários Comuns.</td>
 
             </tr>
             <tr>
