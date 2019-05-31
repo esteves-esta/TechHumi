@@ -90,11 +90,12 @@ router.post('/consulta-empresas', function (req, res, next) {
 router.post('/consulta-funcionario', function (req, res, next) {
   banco.sql.close();
 
-  console.log('aa');
+
   banco.conectar().then(() => {
 
     var idempresa = req.body.codigo;
-    console.log(idempresa);
+    console.log('Código da empresa: ' + idempresa);
+    
     return banco.sql.query(`select * from Funcionario 
     where fkEmpresa = ${idempresa};`);
 
@@ -137,10 +138,11 @@ router.post('/consulta-ambiente', function (req, res, next) {
   }).then(consulta => {
 
     console.log(`Dados: ${JSON.stringify(consulta.recordset)}`);
-
-    if (consulta.recordset.length > 0) {
+    
+    if (consulta.recordset.length >= 0) {
       res.send(consulta.recordset);
-    } else {
+    } 
+    else {
       res.sendStatus(404);
     }
 
@@ -175,7 +177,7 @@ router.post('/consulta-historico', function (req, res, next) {
 
     console.log(`Dados: ${JSON.stringify(consulta.recordset)}`);
 
-    if (consulta.recordset.length > 0) {
+    if (consulta.recordset.length >= 0) {
       res.send(consulta.recordset);
     } else {
       res.sendStatus(404);

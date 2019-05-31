@@ -40,8 +40,8 @@
 
     <!-- Navbar Search -->
     <div class="d-none d-md-inline-block ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <span>Bem Vinda(o), <b id="usuario_logado"></b></span>
-      </div>
+      <span>Bem Vinda(o), <b id="usuario_logado"></b></span>
+    </div>
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
@@ -58,7 +58,7 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
-     
+
       <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
@@ -93,10 +93,10 @@
           <span>Ambientes</span></a>
       </li>
       <li class="nav-item active">
-          <a class="nav-link" href="historico.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Histórico Sensor</span></a>
-        </li>
+        <a class="nav-link" href="historico.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Histórico Sensor</span></a>
+      </li>
       <li class="nav-item" id="somente_adm">
         <a class="nav-link" href="consultaUsuarios.html">
           <i class="fas fa-fw fa-table"></i>
@@ -108,8 +108,7 @@
           <i class="fas fa-fw fa-folder"></i>
           <span>Configuraçoes</span>
         </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
-          style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
           <a class="dropdown-item" href="perfil.html" id="somente_adm1">Perfil</a>
           <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
           <a class="dropdown-item" href="rotina.html" id="somente_adm2">Rotina</a>
@@ -146,14 +145,14 @@
             <table class="table table-striped" cellspacing="0" cellpadding="0">
               <thead>
                 <tr>
-                  
+
                   <th scope="col">Data e Hora</th>
                   <th scope="col">Temperatura</th>
                   <th scope="col">Umidade</th>
                   <th scope="col">Id Ambiente</th>
                   <th scope="col">Descrição</th>
                   <th scope="col">Localização</th>
-                
+
                 </tr>
               </thead>
               <tbody id="corpo_tabela">
@@ -192,8 +191,7 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -239,88 +237,102 @@
   verificarAutenticacao();
 
   function verificarAutenticacao() {
-      usuario = sessionStorage.usuario_bandtec;
-      if (usuario == undefined || (sessionStorage.nivelacesso != 2 && sessionStorage.nivelacesso != 3)) {
+    usuario = sessionStorage.usuario_bandtec;
+    if (usuario == undefined || (sessionStorage.nivelacesso != 2 && sessionStorage.nivelacesso != 3)) {
       window.location.href = '../../Login/login.html'
     }
-    if(sessionStorage.nivelacesso == 3) {
+    if (sessionStorage.nivelacesso == 3) {
       somente_adm.style.display = 'none';
       somente_adm1.style.display = 'none';
       somente_adm2.style.display = 'none';
     }
-    if(sessionStorage.nivelacesso == 2) {
+    if (sessionStorage.nivelacesso == 2) {
       somente_adm.style.display = 'block';
       somente_adm1.style.display = 'block';
       somente_adm2.style.display = 'block';
     }
-      usuario_logado.innerHTML = sessionStorage.nome_usuario;
+    usuario_logado.innerHTML = sessionStorage.nome_usuario;
   }
 
   function logoff() {
-      sessionStorage.removeItem('idEmpresa');
-      sessionStorage.removeItem('usuario_bandtec');
-        sessionStorage.removeItem('idlogin');
-        sessionStorage.removeItem('nivelacesso');
-        sessionStorage.removeItem('nome_usuario');
-      verificarAutenticacao();
+    sessionStorage.removeItem('idEmpresa');
+    sessionStorage.removeItem('usuario_bandtec');
+    sessionStorage.removeItem('idlogin');
+    sessionStorage.removeItem('nivelacesso');
+    sessionStorage.removeItem('nome_usuario');
+    verificarAutenticacao();
   }
 
-  
+  aguardar();
   consultar_dados();
 
 
-function consultar_dados() {
+  function consultar_dados() {
     // guarda código do usuário que está no atributo usuario_bandtec
     // em um json e depois utiliza a classe URLSearchParams
     //para mandar para o arquivo js
-    aguardar();
+
 
     var cdEmpresa = { codigo: sessionStorage.idEmpresa }
     var corpo = new URLSearchParams(cdEmpresa);
 
 
     fetch("/consulta-perfil/consulta-historico", {
-        method: "POST",
-        body: corpo
+      method: "POST",
+      body: corpo
     }).then(function (response) {
-        console.log(response);
-        if (response.ok) {
+      console.log(response);
+      if (response.ok) {
 
-            response.json().then(function (resposta) {
-                // devolve informação da empresa
-                var conteudo = '';
-                for (r = 0; r < resposta.length; r++) {
-                    var atual = resposta[r];
+        response.json().then(function (resposta) {
+          if (response.length == undefined) {
 
-                    conteudo += `<tr>
+            swal({
+              title: "Você ainda não cadastrou nenhum ambiente.",
+              text: "   ",
+              icon: "info",
+              buttons: false,
+              timer: 2500,
+              closeOnClickOutside: true,
+            });
+          }
+          else {
+            // devolve informação da empresa
+            var conteudo = '';
+            for (r = 0; r < resposta.length; r++) {
+              var atual = resposta[r];
+
+              conteudo += `<tr>
                         <td>${atual.data_hora}</td>
                         <td>${atual.temperatura}</td>
                         <td>${atual.umidade}</td>
-            <td>${atual.idAmbiente}</td>
-            <td>${atual.descricaoAmbiente}</td>
-            <td>${atual.localizacaoAmbiente}</td>
-        </tr>`;
-                }
-                corpo_tabela.innerHTML = conteudo;
-            });
-        } else {
-            console.log('Erro de consulta!');
-            //window.location.reload(false); 
-        }
+                        <td>${atual.idAmbiente}</td>
+                        <td>${atual.descricaoAmbiente}</td>
+                        <td>${atual.localizacaoAmbiente}</td>
+                    </tr>`;
+            }
+            
+            corpo_tabela.innerHTML = conteudo;
+          }
+        });
+      } else {
+        console.log('Erro de consulta!');
+        //window.location.reload(false); 
+      }
     });
 
     return false;
-}
+  }
 
-function aguardar() {
+  function aguardar() {
     swal({
-        title: "Aguarde, estamos te procurando!",
-        text: "   ",
-        icon: "info",
-        buttons: false,
-        timer: 3000,
-        closeOnClickOutside: false, 
+      title: "Aguarde, estamos te procurando!",
+      text: "   ",
+      icon: "info",
+      buttons: false,
+      timer: 4000,
+      closeOnClickOutside: false,
     });
-}
+  }
 
-  </script>
+</script>
