@@ -8,7 +8,7 @@ router.post('/entrar', function (req, res, next) {
 
   banco.conectar().then(() => {
     console.log(`Chegou p/ login: ${JSON.stringify(req.body)}`);
-    var login = req.body.login; // depois de .body, use o nome (name) do campo em seu formulário de login
+    var login = req.body.login.toLowerCase(); // toLowerCase() deixa as letras minusculas
     var senha = req.body.senha; // depois de .body, use o nome (name) do campo em seu formulário de login
     if (login == undefined || senha == undefined) {
       throw new Error(`Dados de login não chegaram completos: ${login} / ${senha}`);

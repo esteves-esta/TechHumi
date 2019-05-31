@@ -290,7 +290,13 @@
     }
     usuario_logado.innerHTML = sessionStorage.nome_usuario;
   }
-
+  function logoff() {
+    sessionStorage.removeItem('usuario_bandtec');
+    sessionStorage.removeItem('idlogin');
+    sessionStorage.removeItem('nivelacesso');
+    sessionStorage.removeItem('nome_usuario');
+    verificarAutenticacao();
+  }
 
   function cadastro() {
     btn_salvar.disabled = true;
