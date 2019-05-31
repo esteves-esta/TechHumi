@@ -206,7 +206,7 @@
 
   function verificarAutenticacao() {
     usuario = sessionStorage.usuario_bandtec;
-    if (usuario == undefined) {
+    if (usuario == undefined || sessionStorage.nivelacesso !=1) {
       window.location.href = '../../Login/login.html'
     }
     usuario_logado.innerHTML = sessionStorage.nome_usuario;
