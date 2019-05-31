@@ -211,7 +211,8 @@
         sessionStorage.removeItem('nome_usuario');
         verificarAutenticacao();
     }
-
+    
+    aguardar();
     consultar_dados();
 
 
@@ -219,7 +220,7 @@
         // guarda código do usuário que está no atributo usuario_bandtec
         // em um json e depois utiliza a classe URLSearchParams
         //para mandar para o arquivo js
-        aguardar();
+    
 
         var cdFunc = sessionStorage.usuario_bandtec;
         var corpo = '';
@@ -268,7 +269,7 @@
             text: "   ",
             icon: "info",
             buttons: false,
-            timer: 3000,
+            timer: 4000,
             closeOnClickOutside: false, 
         });
     }
