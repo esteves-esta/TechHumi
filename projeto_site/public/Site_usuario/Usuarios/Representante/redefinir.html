@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt">
 
+
 <head>
 
   <meta charset="utf-8">
@@ -9,6 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="shotcut icon" href="img/favicon.png">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <title>Configurações</title>
 
@@ -29,20 +31,21 @@
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="index.html" ><img src="img/logo.png" alt="" class="logo" ></a>
+    <a class="navbar-brand mr-1" href="index.html"><img src="img/logo.png" alt="" class="logo"></a>
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
     </button>
 
     <!-- Navbar Search -->
     <div class="d-none d-md-inline-block ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <span>Bem Vinda(o), <b id="usuario_logado"></b></span>
-      </div>
+      <span>Bem Vinda(o), <b id="usuario_logado"></b></span>
+    </div>
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
       <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-bell fa-fw"></i>
           <span class="badge badge-danger">9+</span>
         </a>
@@ -54,15 +57,16 @@
         </div>
       </li>
       <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user-circle fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-         <!-- <a class="dropdown-item" href="#">Settings</a>
+          <!-- <a class="dropdown-item" href="#">Settings</a>
           <a class="dropdown-item" href="#">Activity Log</a>
           <div class="dropdown-divider"></div>     </div>   -->
           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-       
+
       </li>
     </ul>
 
@@ -77,23 +81,24 @@
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Gráficos</span></a>
       </li>
-       <li class="nav-item">
-          <a class="nav-link" href="consultaAmbientes.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Ambientes</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="historico.html">
-              <i class="fas fa-fw fa-table"></i>
-              <span>Histórico Sensor</span></a>
-          </li>
-        <li class="nav-item" id="somente_adm">
-          <a class="nav-link" href="consultaUsuarios.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Usuarios</span></a>
-        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="consultaAmbientes.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Ambientes</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="historico.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Histórico Sensor</span></a>
+      </li>
+      <li class="nav-item" id="somente_adm">
+        <a class="nav-link" href="consultaUsuarios.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Usuarios</span></a>
+      </li>
       <li class="nav-item dropdown active">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-folder"></i>
           <span>Configurações</span>
         </a>
@@ -101,7 +106,7 @@
           <a class="dropdown-item" href="perfil.html" id="somente_adm1">Perfil</a>
           <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
           <a class="dropdown-item" href="rotina.html" id="somente_adm2">Rotina</a>
-          </div>
+        </div>
       </li>
     </ul>
 
@@ -122,22 +127,25 @@
         <hr>
         <p>This is a great starting point for new custom pages.</p>-->
 
-        <form>
+        <form id="form_Redefinir" method="post" onsubmit="return redefinirSenha()">
           <!-- <input type="password" placeholder="Digite seu CNPJ"> <br><br> -->
           <div class="form-group row">
             <div class="col-sm-3 my-1">
               <label for="colFromLabel">Nova senha:</label>
-              <input type="password" class="form-control" placeholder="Nova Senha">
+              <input type="password" name="senha" id="senha" class="form-control" placeholder="Nova Senha" required>
             </div>
             <div class="col-sm-3 my-1">
-            <label for="colFormLabel">Repita a senha:</label>
-            <input type="password" class="form-control" placeholder="Repita Senha">
+              <label for="colFormLabel">Repita a senha:</label>
+              <input type="password" name="confirmaSenha" id="confirmaSenha" class="form-control" placeholder="Repita Senha"
+                required>
+              </div>
             </div>
-          </div>
-          <div class="form-gorup row"></div>
-          <button type="submit" class="btn btn-outline-primary">Salvar</button>
-          <button type="#" class="btn btn-outline-danger">Cancelar</button>
-        </form>
+            <div class="form-gorup row"></div>
+            <button type="submit" class="btn btn-outline-primary" id="btn_salvar">Salvar</button>
+            <button type="reset" class="btn btn-outline-danger">Cancelar</button>
+
+            <input type="number" style="display:none" name="estrangeira" id="estrangeira">
+          </form>
 
       </div>
       <!-- /.container-fluid -->
@@ -202,29 +210,73 @@
   verificarAutenticacao();
 
   function verificarAutenticacao() {
-      usuario = sessionStorage.usuario_bandtec;
-      if (usuario == undefined || (sessionStorage.nivelacesso != 2 && sessionStorage.nivelacesso != 3)) {
-          window.location.href = '../../Login/login.html'
-      }
-      if(sessionStorage.nivelacesso == 3) {
+    usuario = sessionStorage.usuario_bandtec;
+    if (usuario == undefined || (sessionStorage.nivelacesso != 2 && sessionStorage.nivelacesso != 3)) {
+      window.location.href = '../../Login/login.html'
+    }
+    if (sessionStorage.nivelacesso == 3) {
       somente_adm.style.display = 'none';
       somente_adm1.style.display = 'none';
       somente_adm2.style.display = 'none';
     }
-    if(sessionStorage.nivelacesso == 2) {
+    if (sessionStorage.nivelacesso == 2) {
       somente_adm.style.display = 'block';
       somente_adm1.style.display = 'block';
       somente_adm2.style.display = 'block';
     }
-      usuario_logado.innerHTML = sessionStorage.nome_usuario;
+    usuario_logado.innerHTML = sessionStorage.nome_usuario;
   }
 
   function logoff() {
-      sessionStorage.removeItem('idEmpresa');
-      sessionStorage.removeItem('usuario_bandtec');
-        sessionStorage.removeItem('idlogin');
-        sessionStorage.removeItem('nivelacesso');
-        sessionStorage.removeItem('nome_usuario');
-      verificarAutenticacao();
+    sessionStorage.removeItem('idEmpresa');
+    sessionStorage.removeItem('usuario_bandtec');
+    sessionStorage.removeItem('idlogin');
+    sessionStorage.removeItem('nivelacesso');
+    sessionStorage.removeItem('nome_usuario');
+    verificarAutenticacao();
   }
-  </script>
+  function redefinirSenha() {
+    //btn_salvar.disabled = true;
+    if(senha.value!=confirmaSenha.value){
+      console.log('Senhas não conferem!');
+          swal({
+            title: "Senhas não conferem!",
+          text: "   ",
+          icon: "error"
+          });
+    }else{
+      console.log(`As senhas conferem`);
+      estrangeira.value = sessionStorage.usuario_bandtec;
+      var formulario = new URLSearchParams(new FormData(form_Redefinir));
+      fetch("/alterar/alterar-senha", {
+        method: "POST",
+        body: formulario
+      }).then(function (response) {
+        
+        if (response.ok) {
+          console.log('Alterado com sucesso');
+          swal({
+            title: "Alterado com sucesso!",
+          text: "   ",
+          icon: "success"
+        });
+        limpar();
+
+      } else {
+        console.log('Erro ao alterar!');
+        swal({
+          title: "Erro ao alterar!",
+          text: "   ",
+          icon: "error"
+        });
+      }
+    });
+  }
+    btn_salvar.disable = false;
+    return false;
+  }
+  function limpar() {
+    senha.value = '';
+    confirmaSenha.value = '';
+  }
+</script>
