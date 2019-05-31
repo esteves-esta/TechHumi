@@ -85,16 +85,21 @@
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Gráficos</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Ambientes</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="adm.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Usuarios</span></a>
-      </li>
+      <li class="nav-item active">
+          <a class="nav-link" href="consultaAmbientes.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Ambientes</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="historico.html">
+              <i class="fas fa-fw fa-table"></i>
+              <span>Histórico Sensor</span></a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="consultaUsuarios.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Usuarios</span></a>
+        </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
@@ -300,21 +305,21 @@
   verificarAutenticacao();
 
   function verificarAutenticacao() {
-    usuario = sessionStorage.usuario_bandtec;
-    if (usuario == undefined) {
-      window.location.href = '../../Login/login.html'
-    }
-    usuario_logado.innerHTML = sessionStorage.nome_usuario;
+      usuario = sessionStorage.usuario_bandtec;
+      if (usuario == undefined) {
+          window.location.href = '../../Login/login.html'
+      }
+      usuario_logado.innerHTML = sessionStorage.nome_usuario;
   }
 
   function logoff() {
-    sessionStorage.removeItem('usuario_bandtec');
-    sessionStorage.removeItem('idlogin');
-    sessionStorage.removeItem('nivelacesso');
-    sessionStorage.removeItem('nome_usuario');
-    verificarAutenticacao();
+      sessionStorage.removeItem('idEmpresa');
+      sessionStorage.removeItem('usuario_bandtec');
+        sessionStorage.removeItem('idlogin');
+        sessionStorage.removeItem('nivelacesso');
+        sessionStorage.removeItem('nome_usuario');
+      verificarAutenticacao();
   }
-
   consultar_dados();
 
   var cd_empresa, cd_endereco, cdFunc;
@@ -332,8 +337,8 @@
       body: corpo
     }).then(function (response) {
 
+      
       if (response.ok) {
-
         response.json().then(function (resposta) {
           // devolve informação da empresa
           cd_empresa = resposta.idEmpresa;
@@ -449,7 +454,8 @@
       text: "   ",
       icon: "info",
       buttons: false,
-      timer: 2000,
+      timer: 3000,
+      closeOnClickOutside: false, 
     });
   }
 </script>

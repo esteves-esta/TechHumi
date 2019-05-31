@@ -41,17 +41,9 @@
     </button>
 
     <!-- Navbar Search -->
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Procurar por..." aria-label="Search"
-          aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="button">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
+    <div class="d-none d-md-inline-block ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <span>Bem Vinda(o), <b id="usuario_logado"></b></span>
       </div>
-    </form>
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
@@ -96,14 +88,18 @@
           <span>Gráficos</span>
         </a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+   <li class="nav-item active">
+        <a class="nav-link" href="consultaAmbientes.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Ambientes</span></a>
       </li>
+      <li class="nav-item active">
+          <a class="nav-link" href="historico.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Histórico Sensor</span></a>
+        </li>
       <li class="nav-item">
-        <a class="nav-link" href="adm.html">
+        <a class="nav-link" href="consultaUsuarios.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Usuarios</span></a>
       </li>
@@ -243,15 +239,20 @@
   verificarAutenticacao();
 
   function verificarAutenticacao() {
-    usuario = sessionStorage.usuario_bandtec;
-    if (usuario == undefined) {
-      window.location.href = '../../Login/login.html'
-    }
+      usuario = sessionStorage.usuario_bandtec;
+      if (usuario == undefined) {
+          window.location.href = '../../Login/login.html'
+      }
+      usuario_logado.innerHTML = sessionStorage.nome_usuario;
   }
 
   function logoff() {
-    sessionStorage.removeItem('usuario_bandtec');
-    verificarAutenticacao();
+      sessionStorage.removeItem('idEmpresa');
+      sessionStorage.removeItem('usuario_bandtec');
+        sessionStorage.removeItem('idlogin');
+        sessionStorage.removeItem('nivelacesso');
+        sessionStorage.removeItem('nome_usuario');
+      verificarAutenticacao();
   }
 
   // só mexer se quiser alterar o tempo de atualização

@@ -10,7 +10,10 @@
   <meta name="author" content="">
   <link rel="shotcut icon" href="img/favicon.png">
 
-  <title>Configurações</title>
+  <title>Ambientes</title>
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -20,8 +23,8 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/estilo.css">
 
+  <link rel="stylesheet" href="css/estilo.css">
 
 </head>
 
@@ -30,6 +33,7 @@
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
     <a class="navbar-brand mr-1" href="index.html"><img src="img/logo.png" alt="" class="logo"></a>
+
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
     </button>
@@ -54,16 +58,18 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
-    
+     
       <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user-circle fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <!--<a class="dropdown-item" href="#">Settings</a>
+          <!--<a class="dropdown-item" href="config.html">Configuraoes</a>
           <a class="dropdown-item" href="#">Activity Log</a>
-          <div class="dropdown-divider"></div>    </div>  -->
+          <div class="dropdown-divider"></div>  
+        
+        </div>    -->
           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
 
       </li>
@@ -77,80 +83,109 @@
     <ul class="sidebar navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Gráficos</span></a>
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Gráficos</span>
+        </a>
       </li>
       <li class="nav-item active">
-          <a class="nav-link" href="consultaAmbientes.html">
+        <a class="nav-link" href="consultaAmbientes.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Ambientes</span></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" href="historico.html">
             <i class="fas fa-fw fa-table"></i>
-            <span>Ambientes</span></a>
+            <span>Histórico Sensor</span></a>
         </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="historico.html">
-              <i class="fas fa-fw fa-table"></i>
-              <span>Histórico Sensor</span></a>
-          </li>
-        <li class="nav-item">
-          <a class="nav-link" href="consultaUsuarios.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Usuarios</span></a>
-        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="consultaUsuarios.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Usuarios</span></a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Configurações</span>
+          <span>Configuraçoes</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
           style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
           <a class="dropdown-item" href="perfil.html">Perfil</a>
           <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
           <a class="dropdown-item" href="rotina.html">Rotina</a>
+          <!--<div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">Other Pages:</h6>
+            <a class="dropdown-item active" href="404.html">404 Page</a>
+            <a class="dropdown-item" href="blank.html">Blank Page</a>-->
         </div>
       </li>
     </ul>
 
     <div id="content-wrapper">
 
-      <div class="container-fluid">
+      <div id="main" class="container-fluid">
+        <div id="top" class="row">
+          <div class="col-md-3">
+            <h4>Histórico de Dados</h4>
+          </div>
 
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="rotina.html">Rotina</a>
-          </li>
-        </ol>
-
-        <!-- Page Content -->
-        <form>
-          <div class="form-group row">
-            <div class="col-sm-2 my-1">
-              <label for="colFormLabel">Horario de Inicio:</label>
-              <input type="time" class="form-control" value="00:00">
-            </div>
-            <div class="col-sm-2 my-1">
-              <label for="colFormLabel">Horario de fim:</label>
-              <input type="time" class="form-control" value="00:00">
+          <div class="col-md-6">
+            <div class="input-group mb-3">
+              <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Ambientes">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                  <span class="fas fa-search"></span>
+                </button>
+              </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-outline-primary">Salvar</button>
-          <button type="reset" class="btn btn-outline-danger">Cancelar</button>
-        </form>
 
+          <div class="col-md-3">
+            <a href="cadAmbiente.html" class="btn btn-primary pull-right h2">Novo Ambiente</a>
+          </div>
+        </div> <!-- /#top -->
+
+        <div id="list" class="row">
+          <div class="table-responsive col-md-12">
+            <table class="table table-striped" cellspacing="0" cellpadding="0">
+              <thead>
+                <tr>
+                  
+                  <th scope="col">Data e Hora</th>
+                  <th scope="col">Temperatura</th>
+                  <th scope="col">Umidade</th>
+                  <th scope="col">Id Ambiente</th>
+                  <th scope="col">Descrição</th>
+                  <th scope="col">Localização</th>
+                
+                </tr>
+              </thead>
+              <tbody id="corpo_tabela">
+
+              </tbody>
+            </table>
+
+          </div>
+        </div> <!-- /#list -->
+
+        <div id="bottom" class="row">
+
+        </div> <!-- /#bottom -->
       </div>
-      <!-- /.container-fluid -->
-
-      <!-- Sticky Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>TechHumi © 2019</span>
-          </div>
-        </div>
-      </footer>
-
     </div>
-    <!-- /.content-wrapper -->
+    <!-- /.container-fluid -->
+
+    <!-- Sticky Footer -->
+    <footer class="sticky-footer">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>TechHumi © 2019</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <!-- /.content-wrapper -->
 
   </div>
   <!-- /#wrapper -->
@@ -187,8 +222,15 @@
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
+  <!-- Page level plugin JavaScript-->
+  <script src="vendor/datatables/jquery.dataTables.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin.min.js"></script>
+
+  <!-- Demo scripts for this page-->
+  <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 
@@ -216,4 +258,62 @@
         sessionStorage.removeItem('nome_usuario');
       verificarAutenticacao();
   }
+
+  
+  consultar_dados();
+
+
+function consultar_dados() {
+    // guarda código do usuário que está no atributo usuario_bandtec
+    // em um json e depois utiliza a classe URLSearchParams
+    //para mandar para o arquivo js
+    aguardar();
+
+    var cdEmpresa = { codigo: sessionStorage.idEmpresa }
+    var corpo = new URLSearchParams(cdEmpresa);
+
+
+    fetch("/consulta-perfil/consulta-ambiente", {
+        method: "POST",
+        body: corpo
+    }).then(function (response) {
+        console.log(response);
+        if (response.ok) {
+
+            response.json().then(function (resposta) {
+                // devolve informação da empresa
+                var conteudo = '';
+                for (r = 0; r < resposta.length; r++) {
+                    var atual = resposta[r];
+
+                    conteudo += `<tr>
+                        <td>${atual.data_hora}</td>
+                        <td>${atual.temperatura}</td>
+                        <td>${atual.umidade}</td>
+            <td>${atual.idAmbiente}</td>
+            <td>${atual.descricaoAmbiente}</td>
+            <td>${atual.localizacaoAmbiente}</td>
+        </tr>`;
+                }
+                corpo_tabela.innerHTML = conteudo;
+            });
+        } else {
+            console.log('Erro de consulta!');
+        }
+    });
+
+    return false;
+}
+
+function aguardar() {
+    swal({
+        title: "Aguarde, estamos te procurando!",
+        text: "   ",
+        icon: "info",
+        buttons: false,
+        timer: 3000,
+        closeOnClickOutside: false, 
+    });
+}
+
   </script>
