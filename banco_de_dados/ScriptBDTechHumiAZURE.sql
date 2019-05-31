@@ -46,7 +46,8 @@ create table Ambiente(
 idAmbiente int primary key identity(1,1),
 descricaoAmbiente varchar(40) not null,
 localizacaoAmbiente varchar(20) not null,
-fkEmpresa int foreign key references Empresa(idEmpresa)
+fkEmpresa int foreign key references Empresa(idEmpresa),
+fkAmbiente int foreign key references Ambiente(idAmbiente)
 );
 
 
@@ -54,16 +55,14 @@ create table Sensor(
 idSensor int primary key identity(1,1),
 temperatura float not null,
 umidade int not null,
-data_hora datetime not null,
-fkAmbiente int foreign key references Ambiente(idAmbiente)
+data_hora datetime not null
 );
 
 
 create table Funcionamento(
-idFuncionamento int,
+idFuncionamento int primary key identity(1,1),
 horaInicio time not null,
-horaFim time not null,
-fkSensor int foreign key references Sensor(idSensor) 
+horaFim time not null
 );
 
 insert into Empresa (nomeEmpresa,cnpjEmpresa,telefoneEmpresa1,telefoneEmpresa2) values
@@ -83,6 +82,9 @@ insert into Login (loginUsuario,senhaUsuario,nivelAcesso,fkFuncionario) values
 ('usuario','usuario',2,2);
 
 select * from Login;
+
+insert into Funcionamento(horaInicio,horaFim) values 
+('07:30:00','18:00:00');
 
 insert into Ambiente(descricaoAmbiente,localizacaoAmbiente,fkEmpresa) values
 ('Sala dos Devs','3º Andar',1);
