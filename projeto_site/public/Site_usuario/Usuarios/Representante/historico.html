@@ -285,10 +285,10 @@
       if (response.ok) {
 
         response.json().then(function (resposta) {
-          if (response.length == undefined) {
+          if (resposta.length == undefined) {
 
             swal({
-              title: "Você ainda não cadastrou nenhum ambiente.",
+              title: "Não foram registrados dados.",
               text: "   ",
               icon: "info",
               buttons: false,
