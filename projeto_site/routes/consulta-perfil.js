@@ -104,7 +104,7 @@ router.post('/alterar-empresa', function (req, res, next) {
          referencia = '${endereco.referencia}'
          where idEndereco = ${endereco.codigo};`)
       .then(function () {
-        console.log('alterou 00');
+        console.log('Endereço alterado com sucesso');
         res.sendStatus(201);
 
       }).catch(err => {
@@ -126,7 +126,7 @@ router.post('/alterar-empresa', function (req, res, next) {
       where idEmpresa = ${empresa.codigo};`);
 
   }).then(consulta => {
-    console.log('alterou 11');
+    console.log('Empresa alterada com sucesso!');
     res.sendStatus(201);
 
   }).catch(err => {
