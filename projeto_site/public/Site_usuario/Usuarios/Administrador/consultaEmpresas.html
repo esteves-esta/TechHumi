@@ -226,7 +226,7 @@
         //para mandar para o arquivo js
 
 
-        var cdFunc = sessionStorage.usuario_bandtec;
+        //var cdFunc = sessionStorage.usuario_bandtec;
         var corpo = '';
 
         fetch("/consulta-perfil/consulta-empresas", {
@@ -259,7 +259,7 @@
                 <td class="actions">
                 <a class="consulta-btn btn btn-warning btn-xs mb-1" onclick="alterar(${atual.idFuncionario})">Editar</a>
                 <a class="consulta-btn btn btn-danger btn-xs mb-1" data-toggle="modal"
-                    data-target="#delete-modal" onclick="excluir(${atual.idFuncionario})">Excluir</a>
+                    data-target="#delete-modal" onclick="excluir(${atual.idEmpresa})">Excluir</a>
                 </td>
             </tr>`;
 
@@ -295,12 +295,49 @@
         })
             .then((willDelete) => {
                 if (willDelete) {
-
+                    excluir_dados(codigo);
 
                 } else {
                     swal("Seus dados não foram excluídos.");
                 }
             });
+    }
+
+    function excluir_dados(cod) {
+        // coloca valores dos codigo em input escondidos para enviar para o js
+        cdFunc = { codigo: cod }
+        var corpo = new URLSearchParams(cdFunc);
+
+        fetch("/excluir/excluir-empresa", {
+            method: "POST",
+            body: corpo
+        }).then(function (response) {
+
+            if (response.ok) {
+           
+                swal({
+                    title: "Excluído com sucesso!",
+                    text: "Aguarde enquanto atualizamos os registros",
+                    icon: "success",
+                    buttons: false,
+                    timer: 3000,
+                    closeOnClickOutside: false,
+                });
+                consultar_dados();
+                
+            } else {
+          
+                swal({
+                    title: "Erro ao excluir! Por favor tente de novo.",
+                    text: "   ",
+                    icon: "error"
+                });
+            }
+        });
+
+            
+        // }
+        return false;
     }
 
     function alterar(codigo) {
