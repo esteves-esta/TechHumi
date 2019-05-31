@@ -132,7 +132,6 @@ router.post('/consulta-ambiente', function (req, res, next) {
   banco.conectar().then(() => {
 
     var cdempresa = req.body.codigo;
-
     return banco.sql.query(`select * from Ambiente where fkEmpresa = ${cdempresa};`);
 
   }).then(consulta => {
@@ -180,6 +179,40 @@ router.post('/consulta-historico', function (req, res, next) {
     if (consulta.recordset.length >= 0) {
       res.send(consulta.recordset);
     } else {
+      res.sendStatus(404);
+    }
+
+  }).catch(err => {
+
+    var erro = `Erro: ${err}`;
+    console.error(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
+
+});
+
+// CONSULTA AMBIENTE PARA ALTERAÇÃO
+router.post('/consulta-ambiente-alterar', function (req, res, next) {
+  banco.sql.close();
+
+
+  banco.conectar().then(() => {
+
+    var cdambiente = req.body.codigo;
+    console.log(cdambiente)
+    return banco.sql.query(`select * from Ambiente where idAmbiente = ${cdambiente};`);
+
+  }).then(consulta => {
+
+    console.log(`Dados: ${JSON.stringify(consulta.recordset)}`);
+    
+    if (consulta.recordset.length >= 0) {
+      res.send(consulta.recordset);
+    } 
+    else {
       res.sendStatus(404);
     }
 

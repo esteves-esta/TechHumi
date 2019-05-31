@@ -46,7 +46,12 @@ var senhas = {
   fkFuncionario: ''
 };
 
-
+var ambiente = {
+  codigo:'',
+  descricao: '',
+  localizacao: '',
+  fkEmpresa: ''
+};
 // ===============================================
 
 
@@ -280,6 +285,39 @@ router.post('/alterar-senha', function (req, res, next) {
     return banco.sql.query(`update Login set 
         senhaUsuario = '${senhas.senha}'
         where fkFuncionario = ${senhas.fkFuncionario};`);
+
+  }).then(consulta => {
+    console.log('alterou');
+    res.sendStatus(201);
+
+  }).catch(err => {
+
+    var erro = `Erro: ${err}`;
+    console.error(erro);
+
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
+
+});
+
+// ===============================================
+
+// ALTERAÇÃO DO AMBIENTE
+router.post('/alterar-ambiente', function (req, res, next) {
+  banco.sql.close();
+  banco.conectar().then(() => {
+
+    ambiente.codigo = req.body.cd_amb;
+    ambiente.descricao = req.body.descricao;
+    ambiente.localizacao = req.body.localizacao;
+
+    return banco.sql.query(`update Ambiente set 
+      descricaoAmbiente = '${ambiente.descricao}', 
+      localizacaoAmbiente = '${ambiente.localizacao}'
+      where idAmbiente = ${ambiente.codigo};`);
 
   }).then(consulta => {
     console.log('alterou');
