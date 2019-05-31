@@ -273,7 +273,7 @@ function consultar_dados() {
     var corpo = new URLSearchParams(cdEmpresa);
 
 
-    fetch("/consulta-perfil/consulta-ambiente", {
+    fetch("/consulta-perfil/consulta-historico", {
         method: "POST",
         body: corpo
     }).then(function (response) {
