@@ -164,6 +164,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-4" style="display: none"> 
+                            <input type="number" name="fkEmpresa" id="fkEmpresa">
                             <input type="text" name="cargoFuncionario" id="cargoFuncionario" value="Teste">
                             <input type="number" name="nivelAcesso" id="nivelAcesso" maxlength="20" value="3">
                             <input type="text" name="senhaUsuario" id="senhaUsuario" value="123">
@@ -252,6 +253,7 @@
         verificarAutenticacao();
     }
     function cadastrarUsuario() {
+        fkEmpresa.value = sessionStorage.idEmpresa;
         btn_salvar.disabled = true;
         var formulario = new URLSearchParams(new FormData(form_Usuario));
         fetch("/cadastros/cadastrarUsuario", {

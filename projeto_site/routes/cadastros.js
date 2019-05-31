@@ -4,8 +4,7 @@ var router = express.Router();
 var banco = require('../app-banco');
 // não mexa nessas 3 linhas!
 
-var login,senha,nivel;
-var ultimoCod = 0;
+var login,senha,nivel,ultimoCod;
 
 router.post('/cadastrarAmbiente', function (req, res, next) {
 
@@ -48,21 +47,22 @@ router.post('/cadastrarUsuario', function (req, res, next) {
     var email = req.body.emailFuncionario;
     var cargo = req.body.cargoFuncionario;
     var telefone = req.body.telefoneFuncionario;
+    var estrangeira = req.body.fkEmpresa;
     //LOGIN
     login = req.body.loginUsuario;
     senha = req.body.senhaUsuario;
     nivel = req.body.nivelAcesso;
 
-    if (nome == undefined || rg == undefined || cpf == undefined || email == undefined || telefone == undefined || cargo == undefined
+    if (nome == undefined || rg == undefined || cpf == undefined || email == undefined || telefone == undefined || cargo == undefined || fkEmpresa == undefined
       || login == undefined || senha == undefined || nivel == undefined) {
-      throw new Error(`Dados de Funcionario não chegaram completos: ${nome} / ${rg} / ${cpf} / ${email} / ${telefone} / ${cargo} //
+      throw new Error(`Dados de Funcionario não chegaram completos: ${nome} / ${rg} / ${cpf} / ${email} / ${telefone} / ${cargo} / ${estrangeira} ///
        / ${login} / ${senha} /`);
     }
-    return banco.sql.query(`insert into Funcionario (nomeFuncionario,rgFuncionario,cpfFuncionario,emailFuncionario,telefoneFuncionario,cargoFuncionario) 
-    values ('${nome}','${rg}','${cpf}','${email}','${telefone}','${cargo}')`);
+    return banco.sql.query(`insert into Funcionario (nomeFuncionario,rgFuncionario,cpfFuncionario,emailFuncionario,telefoneFuncionario,cargoFuncionario,fkEmpresa) 
+    values ('${nome}','${rg}','${cpf}','${email}','${telefone}','${cargo}',${estrangeira})`);
   }).then(cadastro => {//CADASTRO DE FUNCIONARIO
     
-      console.log(`Funcionario ${nome}, cadastrado com sucesso!`);
+      console.log(`Funcionario cadastrado com sucesso!`);
       res.sendStatus(201);
 
     }).catch(err => {
