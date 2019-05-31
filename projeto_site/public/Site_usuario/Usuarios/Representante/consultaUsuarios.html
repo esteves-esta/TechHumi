@@ -254,7 +254,7 @@
         verificarAutenticacao();
     }
 
-    aguardar();
+    aguardar("Aguarde, estamos te procurando!");
     consultar_dados();
 
 
@@ -276,7 +276,7 @@
             if (response.ok) {
 
                 response.json().then(function (resposta) {
-                   
+
                     if (resposta.length == undefined) {
 
                         swal({
@@ -303,11 +303,14 @@
                             <td>${atual.telefoneFuncionario}</td>
                             <td>${atual.cargoFuncionario}</td>
                             <td class="actions">
-                            <a class="consulta-btn btn btn-warning btn-xs mb-1" onclick="alterar(${atual.idFuncionario})">Editar</a>
-                            <a class="consulta-btn btn btn-danger btn-xs mb-1" data-toggle="modal"
-                                data-target="#delete-modal" onclick="excluir(${atual.idFuncionario})">Excluir</a>
-                            </td>
-                        </tr>`;
+                            <a class="consulta-btn btn btn-warning btn-xs mb-1" 
+                            onclick="alterar(${atual.idFuncionario})">Editar</a>`;
+
+                            if (atual.cargoFuncionario != 'Representante'){
+                                conteudo += `<a class="consulta-btn btn btn-danger btn-xs mb-1" data-toggle="modal"data-target="#delete-modal" onclick="excluir(${atual.idFuncionario})">Excluir</a>`;
+                            }
+                        
+                            conteudo +=  `</td></tr>`;
                         }
                         corpo_tabela.innerHTML = conteudo;
                     }
@@ -320,9 +323,9 @@
         return false;
     }
 
-    function aguardar() {
+    function aguardar(frase) {
         swal({
-            title: "Aguarde, estamos te procurando!",
+            title: frase,
             text: "   ",
             icon: "info",
             buttons: false,
@@ -341,12 +344,52 @@
         })
             .then((willDelete) => {
                 if (willDelete) {
+                    aguardar("Aguarde enquanto excluímos o registro!");
+                    excluir_dados(codigo);
 
 
                 } else {
                     swal("Seus dados não foram excluídos.");
                 }
             });
+    }
+
+
+    function excluir_dados(cod) {
+        // coloca valores dos codigo em input escondidos para enviar para o js
+        cdFunc = { codigo: cod }
+        var corpo = new URLSearchParams(cdFunc);
+
+        fetch("/excluir/excluir-funcionario", {
+            method: "POST",
+            body: corpo
+        }).then(function (response) {
+
+            if (response.ok) {
+           
+                swal({
+                    title: "Excluído com sucesso!",
+                    text: "Aguarde enquanto atualizamos os registros",
+                    icon: "success",
+                    buttons: false,
+                    timer: 3000,
+                    closeOnClickOutside: false,
+                });
+                consultar_dados();
+                
+            } else {
+          
+                swal({
+                    title: "Erro ao excluir! Por favor tente de novo.",
+                    text: "   ",
+                    icon: "error"
+                });
+            }
+        });
+
+            
+        // }
+        return false;
     }
 
     function alterar(codigo) {

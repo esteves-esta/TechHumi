@@ -248,8 +248,6 @@
                 <td>${atual.nomeEmpresa}</td>
                 <td class="actions">
                 <a class="consulta-btn btn btn-warning btn-xs mb-1" onclick="alterar(${atual.idFuncionario})">Editar</a>
-                <a class="consulta-btn btn btn-danger btn-xs mb-1" data-toggle="modal"
-                    data-target="#delete-modal" onclick="excluir(${atual.idFuncionario})">Excluir</a>
                 </td>
             </tr>`;
                     }
@@ -272,24 +270,6 @@
             timer: 4000,
             closeOnClickOutside: false, 
         });
-    }
-
-    function excluir(codigo) {
-        swal({
-            title: "Você tem certeza que deseja excluir estes dados?",
-            text: "Essa ação não poderá ser revertida!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-
-
-                } else {
-                    swal("Seus dados não foram excluídos.");
-                }
-            });
     }
 
     function alterar(codigo) {

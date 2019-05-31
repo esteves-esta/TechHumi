@@ -262,7 +262,7 @@
     sessionStorage.removeItem('nome_usuario');
     verificarAutenticacao();
   }
-  aguardar();
+  aguardar("Aguarde, estamos te procurando!");
   consultar_dados();
 
 
@@ -323,16 +323,16 @@
     return false;
   }
 
-  function aguardar() {
-    swal({
-      title: "Aguarde, estamos te procurando!",
-      text: "   ",
-      icon: "info",
-      buttons: false,
-      timer: 4000,
-      closeOnClickOutside: false,
-    });
-  }
+  function aguardar(frase) {
+        swal({
+            title: frase,
+            text: "   ",
+            icon: "info",
+            buttons: false,
+            timer: 4000,
+            closeOnClickOutside: false,
+        });
+    }
 
   function excluir(codigo) {
     swal({
@@ -344,13 +344,51 @@
     })
       .then((willDelete) => {
         if (willDelete) {
-
+          aguardar("Aguarde enquanto excluímos o registro!");
+          excluir_dados(codigo);
 
         } else {
           swal("Seus dados não foram excluídos.");
         }
       });
   }
+  var cd;
+  function excluir_dados(cod) {
+        // coloca valores dos codigo em input escondidos para enviar para o js
+        cd = { codigo: cod }
+        var corpo = new URLSearchParams(cd);
+
+        fetch("/excluir/excluir-ambiente", {
+            method: "POST",
+            body: corpo
+        }).then(function (response) {
+
+            if (response.ok) {
+              consultar_dados();
+                swal({
+                    title: "Excluído com sucesso!",
+                    text: "Aguarde enquanto atualizamos os registros",
+                    icon: "success",
+                    buttons: false,
+                    timer: 3000,
+                    closeOnClickOutside: false,
+                });
+                
+                
+            } else {
+          
+                swal({
+                    title: "Erro ao excluir! Por favor tente de novo.",
+                    text: "   ",
+                    icon: "error"
+                });
+            }
+        });
+
+            
+        // }
+        return false;
+    }
 
   function alterar(codigo) {
     sessionStorage.codigo_alterar = codigo;
