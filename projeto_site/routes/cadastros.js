@@ -58,8 +58,8 @@ router.post('/cadastrarUsuario', function (req, res, next) {
       throw new Error(`Dados de Funcionario não chegaram completos: ${nome} / ${rg} / ${cpf} / ${email} / ${telefone} / ${cargo} / ${estrangeira} ///
        / ${login} / ${senha} /`);
     }
-    return banco.sql.query(`insert into Funcionario (nomeFuncionario,rgFuncionario,cpfFuncionario,emailFuncionario,telefoneFuncionario,cargoFuncionario,fkEmpresa) 
-    values ('${nome}','${rg}','${cpf}','${email}','${telefone}','${cargo}',${estrangeira})`);
+    return banco.sql.query(`insert into Funcionario (nomeFuncionario,rgFuncionario,cpfFuncionario,emailFuncionario,telefoneFuncionario,cargoFuncionario) 
+    values ('${nome}','${rg}','${cpf}','${email}','${telefone}','${cargo}')`);
   }).then(cadastro => {//CADASTRO DE FUNCIONARIO
     
       console.log(`Funcionario cadastrado com sucesso!`);
