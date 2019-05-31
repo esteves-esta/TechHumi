@@ -40,7 +40,7 @@
     verificarAutenticacao();
 
     function verificarAutenticacao() {
-        if (sessionStorage.usuario_bandtec != undefined && sessionStorage.nivelacesso ==2) {
+        if (sessionStorage.usuario_bandtec != undefined && (sessionStorage.nivelacesso ==2 || sessionStorage.nivelacesso ==3)) {
             window.location.href = '../Usuarios/Representante/index.html';
         }else if(sessionStorage.usuario_bandtec != undefined && sessionStorage.nivelacesso ==1) {
             window.location.href = '../Usuarios/Administrador/cadastroEmpresa.html';

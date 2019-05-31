@@ -96,7 +96,7 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Histórico Sensor</span></a>
         </li>
-      <li class="nav-item">
+      <li class="nav-item" id="somente_adm">
         <a class="nav-link" href="consultaUsuarios.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Usuarios</span></a>
@@ -109,9 +109,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
           style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
-          <a class="dropdown-item" href="perfil.html">Perfil</a>
+          <a class="dropdown-item" href="perfil.html" id="somente_adm1">Perfil</a>
           <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
-          <a class="dropdown-item" href="rotina.html">Rotina</a>
+          <a class="dropdown-item" href="rotina.html" id="somente_adm2">Rotina</a>
           <!--<div class="dropdown-divider"></div>
             <h6 class="dropdown-header">Other Pages:</h6>
             <a class="dropdown-item active" href="404.html">404 Page</a>
@@ -239,9 +239,20 @@
 
   function verificarAutenticacao() {
       usuario = sessionStorage.usuario_bandtec;
-      if (usuario == undefined || sessionStorage.nivelacesso !=2) {
-          window.location.href = '../../Login/login.html'
-      }
+      if (usuario == undefined || (sessionStorage.nivelacesso != 2 && sessionStorage.nivelacesso != 3)) {
+      window.location.href = '../../Login/login.html'
+    }
+    if(sessionStorage.nivelacesso == 3) {
+      somente_adm.style.display = 'none';
+      somente_adm1.style.display = 'none';
+      somente_adm2.style.display = 'none';
+    }
+    if(sessionStorage.nivelacesso == 2) {
+      somente_adm.style.display = 'block';
+      somente_adm1.style.display = 'block';
+      somente_adm2.style.display = 'block';
+    }
+  
       usuario_logado.innerHTML = sessionStorage.nome_usuario;
   }
 
