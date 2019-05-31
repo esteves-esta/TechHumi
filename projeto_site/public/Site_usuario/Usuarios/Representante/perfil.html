@@ -136,7 +136,7 @@
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">CNPJ:</label>
-              <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ da Empresa" required
+              <input type="text" class="form-control" id="cnpj" name="cnpj" readonly placeholder="CNPJ da Empresa" required
                 maxlength="19">
             </div>
           </div>
@@ -144,11 +144,11 @@
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel">Telefone:</label>
-              <input type="text" class="form-control" id="tele2" name="tele2" placeholder="Telefone - 1" required>
+              <input type="text" class="form-control" id="tele1" name="tele1" placeholder="Telefone - 1" required>
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">Telefone:</label>
-              <input type="text" class="form-control" id="tele1" name="tele1" placeholder="Telefone - 2">
+              <input type="text" class="form-control" id="tele2" name="tele2" placeholder="Telefone - 2">
             </div>
           </div>
           <div class="form-group row">
@@ -323,15 +323,20 @@
         sessionStorage.removeItem('nome_usuario');
       verificarAutenticacao();
   }
+
+  // CHAMA FUNÇÃO QUANDO CARRREGA PÁGINA
+  // FUNÇÃO QUE COLOCA OS DADOS DO BANCO NOS CAMPOS DO FORMULÁRIO
+  // PARA USUÁRIO CONSULTAR E ALTERAR SE NECESSÁRIO
   consultar_dados();
 
   var cd_empresa, cd_endereco, cdFunc;
+
   function consultar_dados() {
+    aguardar();
+
     // guarda código do usuário que está no atributo usuario_bandtec
     // em um json e depois utiliza a classe URLSearchParams
     //para mandar para o arquivo js
-    aguardar();
-
     cdFunc = { codigo: sessionStorage.usuario_bandtec }
     var corpo = new URLSearchParams(cdFunc);
 
@@ -402,19 +407,25 @@
     cd_end.value = cd_endereco;
     cd_func.value = cdFunc.codigo;
 
-    var continuar = false;
     var formulario = new URLSearchParams(new FormData(form_Empresa));
-    fetch("/consulta-perfil/alterar-empresa", {
+    fetch("/consulta-perfil/alterar-perfil", {
       method: "POST",
       body: formulario
     }).then(function (response) {
 
       if (response.ok) {
+        swal({
+            title: "Alterado com sucesso!",
+            text: "   ",
+            icon: "success"
+          });
 
-        continuar = true;
-
+          // MUDA O NOME GUARDADO NO SESSION STORAGE
+          // E DEPOIS JÁ MUDA NO TOPO DA PÁGINA
+          sessionStorage.nome_usuario = representante.value;
+          usuario_logado.innerHTML = sessionStorage.nome_usuario;
       } else {
-        continuar = false;
+      
         swal({
           title: "Erro ao alterar!",
           text: "   ",
@@ -423,31 +434,7 @@
       }
     });
 
-    if (continuar = true) {
-      console.log('ola');
-      fetch("/consulta-perfil/alterar-funcionario", {
-        method: "POST",
-        body: formulario
-      }).then(function (response) {
-
-        if (response.ok) {
-          swal({
-            title: "Alterado com sucesso!",
-            text: "   ",
-            icon: "success"
-          });
-
-        } else {
-
-          swal({
-            title: "Erro ao alterar!",
-            text: "   ",
-            icon: "error"
-          });
-        }
-      });
-    }
-
+    
     return false;
   }
 
