@@ -13,10 +13,12 @@ router.post('/cadastrarAmbiente', function (req, res, next) {
     console.log(`Chegou p/ cadastrar novo ambiente: ${JSON.stringify(req.body)}`);
     var descricao = req.body.descricaoAmbiente; // depois de .body, use o nome (name) do campo em seu formulário de login
     var localizacao = req.body.localizacaoAmbiente; // depois de .body, use o nome (name) do campo em seu formulário de login
+    var fkEmpresa = req.body.idEmpresa; // depois de .body, use o nome (name) do campo em seu formulário de login
     if (descricao == undefined || localizacao == undefined) {
       throw new Error(`Dados de Ambiente não chegaram completos: ${descricao} / ${localizacao}`);
     }
-    return banco.sql.query(`insert into Ambiente (descricaoAmbiente,localizacaoAmbiente) values ('${descricao}','${localizacao}');`);
+    return banco.sql.query(`insert into Ambiente (descricaoAmbiente,localizacaoAmbiente, fkEmpresa) 
+    values ('${descricao}','${localizacao}', ${fkEmpresa});`);
   }).then(cadastro => {
 
     console.log(`Ambiente cadastrado com sucesso!`);
