@@ -75,7 +75,7 @@ select * from Endereco;
 
 insert into Funcionario(nomeFuncionario,rgFuncionario,cpfFuncionario,emailFuncionario,telefoneFuncionario,cargoFuncionario,fkEmpresa) values 
 ('Vitor Leonardo Gonçalves de Oliveira Silva','37.481.521-9','480.023.422.192-10','vitor.osilva@bandtec.com.br','(11)92312-3211','Representante',1),
-('Letícia Lago Mori','23.471.373-2','157.954.708-72','leticia.mori@bandtec.com.br','(11)95218-7232','Desenvolvedor Pleno',1);
+('Letícia Lago Mori','23.471.373-2','157.954.708-72','leticia.mori@bandtec.com.br','(11)95218-7232','Usuario',1);
 
 insert into Login (loginUsuario,senhaUsuario,nivelAcesso,fkFuncionario) values
 ('admin','admin',1,1),
