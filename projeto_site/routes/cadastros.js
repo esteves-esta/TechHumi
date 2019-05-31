@@ -4,7 +4,8 @@ var router = express.Router();
 var banco = require('../app-banco');
 // não mexa nessas 3 linhas!
 
-var login,senha,nivel,ultimoCod;
+var login,senha,nivel;
+let ultimoCod = 0;
 
 router.post('/cadastrarAmbiente', function (req, res, next) {
 
@@ -37,7 +38,7 @@ router.post('/cadastrarAmbiente', function (req, res, next) {
 });
 
 router.post('/cadastrarUsuario', function (req, res, next) {
-
+  banco.sql.close();
   banco.conectar().then(() => {
     console.log(`Chegou p/ cadastrar novo funcionario: ${JSON.stringify(req.body)}`);
     //FUNCIONARIO
@@ -53,13 +54,13 @@ router.post('/cadastrarUsuario', function (req, res, next) {
     senha = req.body.senhaUsuario;
     nivel = req.body.nivelAcesso;
 
-    if (nome == undefined || rg == undefined || cpf == undefined || email == undefined || telefone == undefined || cargo == undefined || fkEmpresa == undefined
+    if (nome == undefined || rg == undefined || cpf == undefined || email == undefined || telefone == undefined || cargo == undefined || estrangeira == undefined
       || login == undefined || senha == undefined || nivel == undefined) {
       throw new Error(`Dados de Funcionario não chegaram completos: ${nome} / ${rg} / ${cpf} / ${email} / ${telefone} / ${cargo} / ${estrangeira} ///
        / ${login} / ${senha} /`);
     }
-    return banco.sql.query(`insert into Funcionario (nomeFuncionario,rgFuncionario,cpfFuncionario,emailFuncionario,telefoneFuncionario,cargoFuncionario) 
-    values ('${nome}','${rg}','${cpf}','${email}','${telefone}','${cargo}')`);
+    return banco.sql.query(`insert into Funcionario (nomeFuncionario,rgFuncionario,cpfFuncionario,emailFuncionario,telefoneFuncionario,cargoFuncionario,fkEmpresa) 
+    values ('${nome}','${rg}','${cpf}','${email}','${telefone}','${cargo}',${estrangeira})`);
   }).then(cadastro => {//CADASTRO DE FUNCIONARIO
     
       console.log(`Funcionario cadastrado com sucesso!`);
@@ -80,7 +81,7 @@ router.post('/cadastrarUsuario', function (req, res, next) {
 
         banco.sql.query(`insert into Login (loginUsuario,senhaUsuario,nivelAcesso,fkFuncionario) values
         ('${login}','${senha}',${nivel},${ultimoCod})`);
-        console.log(ultimoCod);
+
       }).then(function(){
 
         console.log('Login cadastrado com sucesso!');
@@ -93,18 +94,13 @@ router.post('/cadastrarUsuario', function (req, res, next) {
       });
     }).then(function(){
     
-      console.log(`Recuperamos o CODIGO: ${ultimoCod}`);
+      console.log(`Recuperamos o ultimo codigo cadastrado!`);
 
     }).catch(err =>{
 
       var erro = `Erro ao recuperar ultimo id: ${err}`;
      console.error(erro);
 
-    }).finally(() =>{
-
-      banco.sql.close();
-      console.log(`Banco FECHADO COM EXITO`)
-    
     });
 });
 
