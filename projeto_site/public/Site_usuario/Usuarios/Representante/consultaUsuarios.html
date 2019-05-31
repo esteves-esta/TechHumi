@@ -303,11 +303,14 @@
                             <td>${atual.telefoneFuncionario}</td>
                             <td>${atual.cargoFuncionario}</td>
                             <td class="actions">
-                            <a class="consulta-btn btn btn-warning btn-xs mb-1" onclick="alterar(${atual.idFuncionario})">Editar</a>
-                            <a class="consulta-btn btn btn-danger btn-xs mb-1" data-toggle="modal"
-                                data-target="#delete-modal" onclick="excluir(${atual.idFuncionario})">Excluir</a>
-                            </td>
-                        </tr>`;
+                            <a class="consulta-btn btn btn-warning btn-xs mb-1" 
+                            onclick="alterar(${atual.idFuncionario})">Editar</a>`;
+
+                            if (atual.cargoFuncionario != 'Representante'){
+                                conteudo += `<a class="consulta-btn btn btn-danger btn-xs mb-1" data-toggle="modal"data-target="#delete-modal" onclick="excluir(${atual.idFuncionario})">Excluir</a>`;
+                            }
+                        
+                            conteudo +=  `</td></tr>`;
                         }
                         corpo_tabela.innerHTML = conteudo;
                     }
