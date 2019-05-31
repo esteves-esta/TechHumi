@@ -89,7 +89,7 @@
           to the previous page, or
           <a href="index.html">return home</a>.</p>-->
 
-        <form id="form_Empresa" method="post" onsubmit="return cadastro()">
+        <form id="form_Cadastro" method="post" onsubmit="return cadastro()">
           <h4 class="mb-4">Empresa</h4>
           <div class="form-group row">
             <div class="col-sm-4">
@@ -199,6 +199,12 @@
               <input type="text" class="form-control" id="telefone" name="telefone"
                 placeholder="Telefone do Representante" required>
             </div>
+
+            <div class="col-sm-4">
+              <label for="colFormLabel" class=""> Login:</label>
+              <input type="text" class="form-control" id="login" name="login"
+                placeholder="Login do Representante" required>
+            </div>
           </div>
 
 
@@ -243,7 +249,7 @@
         </div>
         <div class="modal-body">Selecione "Logout" abaixo se você estiver pronto para terminar sua sessão atual.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal" id="btn_salvar">Cancelar</button>
           <a class="btn btn-primary" href="#" onclick="logoff()">Logout</a>
         </div>
       </div>
@@ -286,21 +292,9 @@
   }
 
 
-  function aguardar() {
-    swal({
-      title: "Aguarde, estamos te procurando!",
-      text: "   ",
-      icon: "info",
-      buttons: false,
-      timer: 4000,
-      closeOnClickOutside: false,
-    });
-  }
-
-
   function cadastro() {
-    aguardar();
-    var formulario = new URLSearchParams(new FormData(form_Empresa));
+    btn_salvar.disabled = true;
+    var formulario = new URLSearchParams(new FormData(form_Cadastro));
     fetch("/consulta-perfil/cadastrar", {
       method: "POST",
       body: formulario
@@ -309,25 +303,22 @@
       if (response.ok) {
 
         swal({
-          title: "Alterado com sucesso!",
+          title: "Cadastro realizado com sucesso!",
           text: "   ",
           icon: "success"
         });
-
-        sessionStorage.removeItem("codigo_alterar");
-        window.location.href = 'consultaRepresentante.html';
-
       } else {
 
         swal({
-          title: "Erro ao alterar!",
+          title: "Erro ao cadastrar!",
           text: "   ",
           icon: "error"
         });
       }
     });
+
+    btn_salvar.disabled = false;
     return false;
-
-
   }
+
 </script>

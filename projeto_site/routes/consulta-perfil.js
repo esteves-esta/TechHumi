@@ -55,6 +55,7 @@ var funcionario = {
   cpf: '',
   telefone: '',
   email: '',
+  login: ''
 };
 
 var endereco = {
@@ -121,28 +122,28 @@ router.post('/alterar-perfil', function (req, res, next) {
 
       }).finally(() => {
 
-          banco.sql.query(`update Funcionario set 
+        banco.sql.query(`update Funcionario set 
           nomeFuncionario = '${funcionario.nome}', 
           rgFuncionario = '${funcionario.rg}',
           cpfFuncionario = '${funcionario.cpf}',
           emailFuncionario = '${funcionario.email}',
           telefoneFuncionario = '${funcionario.telefone}'
           where idFuncionario = ${funcionario.codigo};`)
-      
-        .then(consulta => {
-          console.log('alterou');
-          res.sendStatus(201);
-      
-        }).catch(err => {
-      
-          var erro = `Erro: ${err}`;
-          console.error(erro);
-      
-          res.status(500).send(erro);
-      
-        }).finally(() => {
-          banco.sql.close();
-        });
+
+          .then(consulta => {
+            console.log('alterou');
+            res.sendStatus(201);
+
+          }).catch(err => {
+
+            var erro = `Erro: ${err}`;
+            console.error(erro);
+
+            res.status(500).send(erro);
+
+          }).finally(() => {
+            banco.sql.close();
+          });
       });
 
 
@@ -318,16 +319,9 @@ router.post('/consulta-empresas', function (req, res, next) {
 });
 
 
-/*
 
-  
 
-insert into Funcionario(nomeFuncionario,rgFuncionario,cpfFuncionario,emailFuncionario,telefoneFuncionario,cargoFuncionario,fkEmpresa) values 
-('Vitor Leonardo Gonçalves de Oliveira Silva','37.481.521-9','480.023.422.192-10','vitor.osilva@bandtec.com.br','(11)92312-3211','Representante',1),
-
-*/
-var cadastro_valido;
-var empresa_ultimo;
+var ultimoCod;
 
 router.post('/cadastrar', function (req, res, next) {
 
@@ -350,74 +344,96 @@ router.post('/cadastrar', function (req, res, next) {
   endereco.numero = req.body.numero;
   banco.sql.close();
 
+  funcionario.codigo = req.body.cd_func;
+  funcionario.nome = req.body.representante;
+  funcionario.rg = req.body.rg;
+  funcionario.cpf = req.body.cpf;
+  funcionario.telefone = req.body.telefone;
+  funcionario.email = req.body.email;
+  funcionario.login = req.body.login;
+
   banco.conectar().then(() => {
 
-     banco.sql.query(`insert into Empresa (nomeEmpresa,cnpjEmpresa,telefoneEmpresa1,telefoneEmpresa2) values
-    ('${empresa.nome}','${empresa.cnpj}','${empresa.telefone_um}','${empresa.telefone_dois}');`)
-  .then(consulta => {
-    
+    banco.sql.query(`insert into Empresa (nomeEmpresa,cnpjEmpresa,telefoneEmpresa1,telefoneEmpresa2) values
+    ('${empresa.nome}','${empresa.cnpj}','${empresa.telefone_um}','${empresa.telefone_dois}');`);
+  }).then(consulta => {
+    console.log(`EMPRESA cadastrado com sucesso!`);
     res.status(400);
   }).catch(err => {
 
-    var erro = `Erro no cadastro: ${err}`;
+    var erro = `Erro no cadastro EMPRESA: ${err}`;
     console.error(erro);
     res.status(500).send(erro);
 
-  }).finally(() => {
-    banco.sql.close();
-  });   
-    
-  return banco.sql.query(`select top 1 idEmpresa from Empresa order by idEmpresa desc;`)
-    .then(consulta => {
+  }).finally(() => { //CONSULTANDO A ULTIMA EMPRESA CADASTRADO
+          banco.sql.query(`SELECT IDENT_CURRENT('Empresa') as ultimo`)
+          .then(results => {
+            ultimoCod = results.recordset[0].ultimo;
+
+          }).finally(() => {//CADASTRO DE LOGIN
+
+            banco.sql.query(`insert into Endereco(logradouro,numero,bairro,complemento,cidade,uf,cep,referencia,fkEmpresa) values
+             ('${endereco.logradouro}','${endereco.numero}','${endereco.bairro}','${endereco.complemento}','${endereco.cidade}',
+             '${endereco.uf}','${endereco.cep}','${endereco.referencia}', ${ultimoCod});`);
+          }).then(function () {
+
+            console.log('ENDEREÇO cadastrado com sucesso!');
+
+          }).catch(err => {
+
+            var erro = `Erro no cadastro de ENDEREÇO: ${err}`;
+            console.error(erro);
+          }).finally(() => {
+            banco.sql.query(`insert into Funcionario (nomeFuncionario,rgFuncionario,
+              cpfFuncionario,emailFuncionario,telefoneFuncionario,
+              cargoFuncionario,fkEmpresa) 
+            values ('${funcionario.nome}','${funcionario.rg}','${funcionario.cpf}','${funcionario.email}',
+            '${funcionario.telefone}','Representante',${ultimoCod})`);
+         }).then(function () {
+
+           console.log('FUNCIONÁRIO cadastrado com sucesso!');
+
+         }).catch(err => {
+
+           var erro = `Erro no cadastro de FUNCIONÁRIO: ${err}`;
+           console.error(erro);  
+          }).finally(() => {
+            banco.sql.query(`SELECT IDENT_CURRENT('Funcionario') as ultimo`).then(results =>{
+              ultimoCod = results.recordset[0].ultimo;
       
-
-      if (consulta.recordset.length != 0) {
-        empresa_ultimo = consulta.recordset;
-        console.log('asdf' + empresa_ultimo);
-      } else {
-        res.sendStatus(404);
-      }
+            }).finally(() =>{//CADASTRO DE LOGIN
+      
+              banco.sql.query(`insert into Login (loginUsuario,senhaUsuario,nivelAcesso,fkFuncionario) values
+              ('${funcionario.login}','123', 2,${ultimoCod})`);
+      
+            }).then(function(){
+      
+              console.log('Login cadastrado com sucesso!');
   
+      
+            }).catch(err=>{//Caso o cadastro do LOGIN dê certo
+      
+              var erro = `Erro no cadastro de LOGIN: ${err}`;
+              console.error(erro);
+            });
+          })
+  }).then(function () {
 
-    }).catch(err => {
+    console.log(`Recuperamos o ultimo codigo cadastrado!`);
+    res.sendStatus(201);
+  }).catch(err => {
 
-      var erro = `Erro no cadastro: ${err}`;
-      console.error(erro);
-      res.status(500).send(erro);
-
-    }).finally(() => {
-      banco.sql.close();
-    });
-
-//     if (empresa_ultimo != undefined) { }
-
-//     banco.conectar().then(() => {
-//       return banco.sql.query(`insert into Endereco(logradouro,numero,bairro,complemento,cidade,uf,cep,referencia,fkEmpresa) values
-// ('${endereco.logradouro}','${endereco.numero}','${endereco.bairro}','${endereco.complemento}','${endereco.cidade}',
-// '${endereco.uf}','${endereco.cep}','${endereco.referencia}', ${empresa_ultimo});`);
-//     }).then(consulta => {
-//       res.status(400);
-//     }).catch(err => {
-
-//       var erro = `Erro no cadastro: ${err}`;
-//       console.error(erro);
-//       res.status(500).send(erro);
-
-//     }).finally(() => {
-//       banco.sql.close();
-
-    
-  });
-
+    var erro = `Erro ao recuperar ultimo id: ${err}`;
+    console.error(erro);
 
   });
+});
 
-
-  // consultar 
+// consultar 
 router.post('/consulta-funcionario', function (req, res, next) {
   banco.sql.close();
 
-console.log('aa');
+  console.log('aa');
   banco.conectar().then(() => {
 
     var idempresa = req.body.codigo;
@@ -448,75 +464,75 @@ console.log('aa');
 });
 
 
-  // consultar 
-  router.post('/consulta-ambiente', function (req, res, next) {
-    banco.sql.close();
-  
+// consultar 
+router.post('/consulta-ambiente', function (req, res, next) {
+  banco.sql.close();
 
-    banco.conectar().then(() => {
-  
-      var cdempresa = req.body.codigo;
- 
-      return banco.sql.query(`select * from Ambiente where fkEmpresa = ${cdempresa};`);
-  
-    }).then(consulta => {
-  
-      console.log(`Dados: ${JSON.stringify(consulta.recordset)}`);
-  
-      if (consulta.recordset.length > 0) {
-        res.send(consulta.recordset);
-      } else {
-        res.sendStatus(404);
-      }
-  
-    }).catch(err => {
-  
-      var erro = `Erro: ${err}`;
-      console.error(erro);
-      res.status(500).send(erro);
-  
-    }).finally(() => {
-      banco.sql.close();
-    });
-  
+
+  banco.conectar().then(() => {
+
+    var cdempresa = req.body.codigo;
+
+    return banco.sql.query(`select * from Ambiente where fkEmpresa = ${cdempresa};`);
+
+  }).then(consulta => {
+
+    console.log(`Dados: ${JSON.stringify(consulta.recordset)}`);
+
+    if (consulta.recordset.length > 0) {
+      res.send(consulta.recordset);
+    } else {
+      res.sendStatus(404);
+    }
+
+  }).catch(err => {
+
+    var erro = `Erro: ${err}`;
+    console.error(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
   });
 
-  
-  // consultar 
-  router.post('/consulta-historico', function (req, res, next) {
-    banco.sql.close();
-  
+});
 
-    banco.conectar().then(() => {
-  
-      var cdempresa = req.body.codigo;
- 
-      return banco.sql.query(`select * from Ambiente inner join Sensor
+
+// consultar 
+router.post('/consulta-historico', function (req, res, next) {
+  banco.sql.close();
+
+
+  banco.conectar().then(() => {
+
+    var cdempresa = req.body.codigo;
+
+    return banco.sql.query(`select * from Ambiente inner join Sensor
       on fkAmbiente = idAmbiente where fkEmpresa = ${cdempresa};`);
-  
-    }).then(consulta => {
-  
-      console.log(`Dados: ${JSON.stringify(consulta.recordset)}`);
-  
-      if (consulta.recordset.length > 0) {
-        res.send(consulta.recordset);
-      } else {
-        res.sendStatus(404);
-      }
-  
-    }).catch(err => {
-  
-      var erro = `Erro: ${err}`;
-      console.error(erro);
-      res.status(500).send(erro);
-  
-    }).finally(() => {
-      banco.sql.close();
-    });
-  
+
+  }).then(consulta => {
+
+    console.log(`Dados: ${JSON.stringify(consulta.recordset)}`);
+
+    if (consulta.recordset.length > 0) {
+      res.send(consulta.recordset);
+    } else {
+      res.sendStatus(404);
+    }
+
+  }).catch(err => {
+
+    var erro = `Erro: ${err}`;
+    console.error(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
   });
 
+});
 
-  
+
+
 // não mexa nesta linha!
 module.exports = router;
