@@ -295,7 +295,7 @@
   function cadastro() {
     btn_salvar.disabled = true;
     var formulario = new URLSearchParams(new FormData(form_Cadastro));
-    fetch("/consulta-perfil/cadastrar", {
+    fetch("/cadastros/cadastrarEmpresa", {
       method: "POST",
       body: formulario
     }).then(function (response) {

@@ -408,7 +408,7 @@
     cd_func.value = cdFunc.codigo;
 
     var formulario = new URLSearchParams(new FormData(form_Empresa));
-    fetch("/consulta-perfil/alterar-perfil", {
+    fetch("/alterar/alterar-perfil", {
       method: "POST",
       body: formulario
     }).then(function (response) {

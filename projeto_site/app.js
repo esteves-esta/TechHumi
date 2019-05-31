@@ -8,6 +8,7 @@ var usuariosRouter = require('./routes/usuarios');
 var cadastrosRouter = require('./routes/cadastros');
 var leiturasRouter = require('./routes/leituras');
 var consultaRouter = require('./routes/consulta-perfil');
+var alteraRouter = require('./routes/alterar');
 
 var app = express();
 
@@ -22,5 +23,6 @@ app.use('/usuarios', usuariosRouter);
 app.use('/cadastros', cadastrosRouter);
 app.use('/leituras', leiturasRouter);
 app.use('/consulta-perfil', consultaRouter);
+app.use('/alterar', alteraRouter);
 
 module.exports = app;

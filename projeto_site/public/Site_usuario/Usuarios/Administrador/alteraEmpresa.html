@@ -334,7 +334,7 @@
         cd_end.value = cd_endereco;
 
         var formulario = new URLSearchParams(new FormData(form_Empresa));
-        fetch("/consulta-perfil/alterar-empresa", {
+        fetch("/alterar/alterar-empresa", {
             method: "POST",
             body: formulario
         }).then(function (response) {
