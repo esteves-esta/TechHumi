@@ -302,11 +302,10 @@
                             <td>${atual.emailFuncionario}</td>
                             <td>${atual.telefoneFuncionario}</td>
                             <td>${atual.cargoFuncionario}</td>
-                            <td class="actions">
-                            <a class="consulta-btn btn btn-warning btn-xs mb-1" 
-                            onclick="alterar(${atual.idFuncionario})">Editar</a>`;
+                            <td class="actions">`;
 
-                            if (atual.cargoFuncionario != 'Representante'){
+                            if (atual.cargoFuncionario != 'Administrador'){
+                                conteudo +=`<a class="consulta-btn btn btn-warning btn-xs mb-1" onclick="alterar(${atual.idFuncionario})">Editar</a>`
                                 conteudo += `<a class="consulta-btn btn btn-danger btn-xs mb-1" data-toggle="modal"data-target="#delete-modal" onclick="excluir(${atual.idFuncionario})">Excluir</a>`;
                             }
                         

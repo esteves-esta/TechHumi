@@ -41,16 +41,6 @@ nivelAcesso int not null,
 fkFuncionario int foreign key references Funcionario(idFuncionario)
 );
 
-
-create table Ambiente(
-idAmbiente int primary key identity(1,1),
-descricaoAmbiente varchar(40) not null,
-localizacaoAmbiente varchar(20) not null,
-fkEmpresa int foreign key references Empresa(idEmpresa),
-fkAmbiente int foreign key references Ambiente(idAmbiente)
-);
-
-
 create table Sensor(
 idSensor int primary key identity(1,1),
 temperatura float not null,
@@ -65,29 +55,43 @@ horaInicio time not null,
 horaFim time not null
 );
 
+create table Ambiente(
+idAmbiente int primary key identity(1,1),
+descricaoAmbiente varchar(40) not null,
+localizacaoAmbiente varchar(20) not null,
+fkEmpresa int foreign key references Empresa(idEmpresa),
+fkFuncionamento int foreign key references Funcionamento(idFuncionamento)
+);
+
+
+
 insert into Empresa (nomeEmpresa,cnpjEmpresa,telefoneEmpresa1,telefoneEmpresa2) values
-('TechHumi','28.118.114/0001-50','(11)2516-7236','(11)95366-5905');
+('TechHumi','28.118.114/0001-50','(11)2516-7236','(11)95366-5905'),
+('Grow7','86.970.771/0001-27','(11)2539-1233','(11)92312-2233');
 
 insert into Endereco(logradouro,numero,bairro,complemento,cidade,uf,cep,referencia,fkEmpresa) values
-('R. Edmundo Orioli','225','Cidade Tiradentes','44A','São Paulo','SP','08470-600','Escola Camilo',1);
+('R. Edmundo Orioli','225','Cidade Tiradentes','44A','São Paulo','SP','08470-600','Escola Camilo',1),
+('Av. Paulista','1230','Bela Vista',null,', São Paulo','SP','01310-100','Safra',2);
 
 select * from Endereco;
 
 insert into Funcionario(nomeFuncionario,rgFuncionario,cpfFuncionario,emailFuncionario,telefoneFuncionario,cargoFuncionario,fkEmpresa) values 
-('Vitor Leonardo Gonçalves de Oliveira Silva','37.481.521-9','480.023.422.192-10','vitor.osilva@bandtec.com.br','(11)92312-3211','Representante',1),
-('Letícia Lago Mori','23.471.373-2','157.954.708-72','leticia.mori@bandtec.com.br','(11)95218-7232','Usuario',1);
+('Vitor Leonardo Gonçalves de Oliveira Silva','37.481.521-9','480.023.422.192-10','vitor.osilva@bandtec.com.br','(11)92312-3211','Administrador',1),
+('Letícia Lago Mori','23.471.373-2','157.954.708-72','leticia.mori@bandtec.com.br','(11)95218-7232','Representante',2),
+('Gustavo Henrique','31.140.597-6','281.603.260-41','gustavo.henrique@bandtec.com.br','(11)92312-4212','Usuario',2);
 
 insert into Login (loginUsuario,senhaUsuario,nivelAcesso,fkFuncionario) values
 ('admin','admin',1,1),
-('usuario','usuario',2,2);
+('representante','representante',2,2),
+('usuario','usuario',3,3);
 
 select * from Login;
 
 insert into Funcionamento(horaInicio,horaFim) values 
 ('07:30:00','18:00:00');
 
-insert into Ambiente(descricaoAmbiente,localizacaoAmbiente,fkEmpresa) values
-('Sala dos Devs','3º Andar',1);
+insert into Ambiente(descricaoAmbiente,localizacaoAmbiente,fkEmpresa,fkFuncionamento) values
+('Sala dos Devs','3º Andar',2,1);
 
 select * from Sensor order by idSensor desc;
 
