@@ -302,11 +302,11 @@
                 }
             });
     }
-
+var cdEmpresa;
     function excluir_dados(cod) {
         // coloca valores dos codigo em input escondidos para enviar para o js
-        cdFunc = { codigo: cod }
-        var corpo = new URLSearchParams(cdFunc);
+        cdEmpresa = { codigo: cod }
+        var corpo = new URLSearchParams(cdEmpresa);
 
         fetch("/excluir/excluir-empresa", {
             method: "POST",

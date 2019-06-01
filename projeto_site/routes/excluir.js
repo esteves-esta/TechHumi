@@ -53,7 +53,7 @@ router.post('/excluir-funcionario', function (req, res, next) {
 
 
 // ===============================================
-var idExcluir;
+
 // EXCLUIR AMBIENTE
 // só exclui ambiente não as outras tabelas atreladas a ele
 // 
@@ -93,11 +93,148 @@ router.post('/excluir-ambiente', function (req, res, next) {
         res.status(500).send(erro);
 
     }).finally(() => {
-      banco.sql.close();
+        banco.sql.close();
 
     });
 
 });
+
+// ===============================================
+
+
+/* 
+https://pt.stackoverflow.com/questions/176847/deletar-registros-de-forma-din%C3%A2mica-no-sql
+
+DELETE FROM Funcionamento
+WHERE idFuncionamento IN (SELECT fkFuncionamento FROM Ambiente where fkEmpresa = 3)
+
+DELETE FROM Ambiente
+WHERE fkEmpresa = 3
+
+DELETE FROM Login
+WHERE fkFuncionario IN (SELECT idFuncionario FROM Funcionario where fkEmpresa = 3)
+
+DELETE FROM Funcionario
+WHERE fkEmpresa = 3
+
+DELETE FROM Endereco
+WHERE fkEmpresa = 3
+
+DELETE FROM Empresa
+WHERE idEmpresa = 3
+
+
+
+*/
+
+// EXCLUIR EMPRESA
+router.post('/excluir-empresa', function (req, res, next) {
+    banco.sql.close();
+    idExcluir = req.body.codigo;
+
+    banco.conectar().then(() => {
+        console.log(idExcluir);
+
+        banco.sql.query(`DELETE FROM Funcionamento
+                    WHERE idFuncionamento IN 
+                    (SELECT fkFuncionamento 
+                        FROM Ambiente where fkEmpresa = ${idExcluir});`);
+
+    }).then(consulta => {
+        console.log('excluiu Funcionamento');
+
+
+    }).catch(err => {
+
+        var erro = `Erro: ${err}`;
+        console.error(erro);
+        res.status(500).send(erro);
+
+    }).finally(() => {
+        banco.sql.query(`
+                        DELETE FROM Ambiente
+                        WHERE fkEmpresa = ${idExcluir};`)
+            .then(consulta => {
+                console.log('excluiu Ambiente');
+
+            }).catch(err => {
+
+                var erro = `Erro: ${err}`;
+                console.error(erro);
+
+                res.status(500).send(erro);
+
+            }).finally(() => {
+                banco.sql.query(`
+                DELETE FROM Login
+                WHERE fkFuncionario IN (SELECT idFuncionario FROM Funcionario 
+                    where fkEmpresa = ${idExcluir});`)
+                    .then(consulta => {
+                        console.log('excluiu LOGIN');
+
+
+                    }).catch(err => {
+
+                        var erro = `Erro: ${err}`;
+                        console.error(erro);
+
+                        res.status(500).send(erro);
+
+                    }).finally(() => {
+                        banco.sql.query(`
+                        DELETE FROM Funcionario
+                        WHERE fkEmpresa = ${idExcluir};`)
+                            .then(consulta => {
+                                console.log('excluiu Funcionario');
+
+                            }).catch(err => {
+
+                                var erro = `Erro: ${err}`;
+                                console.error(erro);
+
+                                res.status(500).send(erro);
+
+                            }).finally(() => {
+                                banco.sql.query(`
+                                DELETE FROM Endereco
+                                WHERE fkEmpresa = ${idExcluir};`)
+                                    .then(consulta => {
+                                        console.log('excluiu Endereco');
+
+
+                                    }).catch(err => {
+
+                                        var erro = `Erro: ${err}`;
+                                        console.error(erro);
+                                        res.status(500).send(erro);
+
+                                    }).finally(() => {
+                                        banco.sql.query(`
+                                        DELETE FROM Empresa
+                                        WHERE idEmpresa = ${idExcluir};`)
+                                        .then(consulta => {
+                                            console.log('excluiu Empresa');
+                                            res.sendStatus(201);
+
+                                        }).catch(err => {
+
+                                            var erro = `Erro: ${err}`;
+                                            console.error(erro);
+
+                                            res.status(500).send(erro);
+
+                                        }).finally(() => {
+                                            banco.sql.close();
+                                        });
+                                        });
+                            });
+                    });
+            });
+    });
+
+});
+
+
 
 // não mexa nesta linha!
 module.exports = router;

@@ -11,7 +11,7 @@ router.post('/cadastrarAmbiente', function (req, res, next) {
   var descricao = req.body.descricaoAmbiente; // depois de .body, use o nome (name) do campo em seu formulário de login
   var localizacao = req.body.localizacaoAmbiente; // depois de .body, use o nome (name) do campo em seu formulário de login
   var fkEmpresa = req.body.idEmpresa; // depois de .body, use o nome (name) do campo em seu formulário de login
-  
+  banco.sql.close();
   banco.conectar().then(() => {
     console.log(`Chegou p/ cadastrar novo ambiente: ${JSON.stringify(req.body)}`);
     
@@ -40,7 +40,7 @@ router.post('/cadastrarAmbiente', function (req, res, next) {
 
       banco.sql.query(`insert into Ambiente (descricaoAmbiente ,localizacaoAmbiente, fkEmpresa, fkFuncionamento) 
       values ('${descricao}','${localizacao}', ${fkEmpresa}, ${ultimoCod});`);
-      
+
     }).then(function () {
 
       console.log('AMBIENTE cadastrado com sucesso!');
@@ -50,6 +50,7 @@ router.post('/cadastrarAmbiente', function (req, res, next) {
       var erro = `Erro no cadastro de AMBIENTE: ${err}`;
       console.error(erro);
     }).finally(() => {
+
     });
 
   });
