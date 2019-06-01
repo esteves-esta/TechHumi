@@ -183,7 +183,7 @@
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel" class=""> RG:</label>
-              <input type="text" class="form-control" id="rg" name="rg" placeholder="Telefone do Representante"
+              <input type="text" class="form-control" id="rg" name="rg" placeholder="RG do Representante"
               maxlength="25" required>
             </div>
             <div class="col-sm-4">
@@ -209,7 +209,7 @@
 
 
           <div class="form-group">
-            <button type="submit" class="btn btn-outline-primary">Salvar</button>
+            <button type="submit" class="btn btn-outline-primary" id="btn_salvar">Salvar</button>
             <button type="reset" class="btn btn-outline-danger">Cancelar</button>
           </div>
       </div>
@@ -274,9 +274,9 @@
 <script src="http://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 
 <script>
-  $('#telefone').mask('(00) 0 0000-0000');
-  $('#tele1').mask('(00) 0 0000-0000');
-  $('#tele2').mask('(00) 0 0000-0000');
+  $('#telefone').mask('(00) 0000-0000');
+  $('#tele1').mask('(00) 0000-0000');
+  $('#tele2').mask('(00) 0000-0000');
   $('#cep').mask('00000-000');
   $('#cpf').mask('000.000.000-00');
   $('#cnpj').mask('00.000.000/0000-00');
@@ -313,6 +313,8 @@
           text: "   ",
           icon: "success"
         });
+
+        setTimeout(    limpar(),3000);
       } else {
 
         swal({
@@ -324,7 +326,30 @@
     });
 
     btn_salvar.disabled = false;
+   
+   
+
     return false;
   }
 
+  function limpar() {
+    empresa.value = ' ';
+    cnpj.value = ' ';
+    tele1.value = ' ';
+    tele2.value = ' ';
+    logradouro.value = ' ';
+    cep.value = ' ';
+    bairro.value = ' ';
+    complemento.value = ' ';
+    referencia.value = ' ';
+    cidade.value = ' ';
+    uf.value = ' ';
+    representante.value = ' ';
+    email.value = ' ';
+    rg.value = ' ';
+    cpf.value = ' ';
+        telefone.value = ' ';
+    login.value = ' ';
+    empresa.focus();
+  }
 </script>
