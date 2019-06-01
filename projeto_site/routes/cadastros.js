@@ -8,24 +8,22 @@ var login,senha,nivel;
 let ultimoCod = 0;
 
 router.post('/cadastrarAmbiente', function (req, res, next) {
-
+  var descricao = req.body.descricaoAmbiente; // depois de .body, use o nome (name) do campo em seu formulário de login
+  var localizacao = req.body.localizacaoAmbiente; // depois de .body, use o nome (name) do campo em seu formulário de login
+  var fkEmpresa = req.body.idEmpresa; // depois de .body, use o nome (name) do campo em seu formulário de login
+  
   banco.conectar().then(() => {
     console.log(`Chegou p/ cadastrar novo ambiente: ${JSON.stringify(req.body)}`);
-    var descricao = req.body.descricaoAmbiente; // depois de .body, use o nome (name) do campo em seu formulário de login
-    var localizacao = req.body.localizacaoAmbiente; // depois de .body, use o nome (name) do campo em seu formulário de login
-    var fkEmpresa = req.body.idEmpresa; // depois de .body, use o nome (name) do campo em seu formulário de login
+    
     if (descricao == undefined || localizacao == undefined) {
       throw new Error(`Dados de Ambiente não chegaram completos: ${descricao} / ${localizacao}`);
     }
-    return banco.sql.query(`insert into Ambiente (descricaoAmbiente,localizacaoAmbiente, fkEmpresa) 
-    values ('${descricao}','${localizacao}', ${fkEmpresa});`);
+     banco.sql.query(`insert into Funcionamento (horaInicio, horaFim) values 
+     ('07:30:00','18:00:00');`);
   }).then(cadastro => {
 
-    console.log(`Ambiente cadastrado com sucesso!`);
-
-
+    console.log(`FUNCIONAMENTO cadastrado com sucesso!`);
     res.sendStatus(201);
-
 
   }).catch(err => {
 
@@ -34,7 +32,26 @@ router.post('/cadastrarAmbiente', function (req, res, next) {
     res.status(500).send(erro);
 
   }).finally(() => {
-    banco.sql.close();
+    banco.sql.query(`SELECT IDENT_CURRENT('Funcionamento') as ultimo`)
+    .then(results => {
+      ultimoCod = results.recordset[0].ultimo;
+      console.log(ultimoCod);
+    }).finally(() => {//CADASTRO DE LOGIN
+
+      banco.sql.query(`insert into Ambiente (descricaoAmbiente ,localizacaoAmbiente, fkEmpresa, fkFuncionamento) 
+      values ('${descricao}','${localizacao}', ${fkEmpresa}, ${ultimoCod});`);
+      
+    }).then(function () {
+
+      console.log('AMBIENTE cadastrado com sucesso!');
+
+    }).catch(err => {
+
+      var erro = `Erro no cadastro de AMBIENTE: ${err}`;
+      console.error(erro);
+    }).finally(() => {
+    });
+
   });
 
 });
