@@ -169,8 +169,7 @@ router.post('/consulta-historico', function (req, res, next) {
 
     var cdempresa = req.body.codigo;
 
-    return banco.sql.query(`select * from Ambiente inner join Sensor
-      on fkAmbiente = idAmbiente where fkEmpresa = ${cdempresa};`);
+    return banco.sql.query(`select * from Sensor;`);
 
   }).then(consulta => {
 
