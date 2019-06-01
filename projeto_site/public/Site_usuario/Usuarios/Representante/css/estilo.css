@@ -32,3 +32,15 @@ height: 60px;
     width: 100%;
 }
 }
+
+.consulta-btn {
+    width: 75px;
+ }
+ 
+ #usuario-nome {
+     color: #2079b8;
+ }
+ 
+ .navbar-dark .navbar-nav .nav-link {
+     color: #2079b8 !important;
+ }
