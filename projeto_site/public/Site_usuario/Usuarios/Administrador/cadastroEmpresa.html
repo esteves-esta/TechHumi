@@ -95,12 +95,12 @@
             <div class="col-sm-4">
               <input type="hidden" id="cd_emp" name="cd_emp">
               <label for="colFormLabel" class="">Nome:</label>
-              <input type="text" class="form-control" placeholder="Nome da Empresa" id="empresa" name="empresa"
+              <input type="text" class="form-control" placeholder="Nome da Empresa" id="empresa" name="empresa" maxlength="60"
                 required>
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">CNPJ:</label>
-              <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ da Empresa" required
+              <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ da Empresa" maxlength="30" required
                 maxlength="19">
             </div>
           </div>
@@ -108,11 +108,11 @@
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel">Telefone:</label>
-              <input type="text" class="form-control" id="tele2" name="tele2" placeholder="Telefone - 1" required>
+              <input type="text" class="form-control" id="tele2" name="tele2" placeholder="Telefone - 1" maxlength="20" required>
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">Telefone:</label>
-              <input type="text" class="form-control" id="tele1" name="tele1" placeholder="Telefone - 2">
+              <input type="text" class="form-control" id="tele1" name="tele1" placeholder="Telefone - 2" maxlength="20">
             </div>
           </div>
           <div class="form-group row">
@@ -121,29 +121,29 @@
               <input type="hidden" id="cd_end" name="cd_end">
               <label for="colFormLabel">Logradouro:</label>
               <input type="text" class="form-control" id="logradouro" name="logradouro"
-                placeholder="Logradouro da Empresa" required>
+                placeholder="Logradouro da Empresa" maxlength="40" required>
             </div>
 
             <div class="col-sm-2">
               <label for="colFormLabel">CEP:</label>
-              <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required maxlength="9">
+              <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required maxlength="12">
             </div>
 
             <div class="col-sm-2">
               <label for="colFormLabel">Número:</label>
-              <input type="text" class="form-control" id="numero" name="numero" placeholder="20" required>
+              <input type="text" class="form-control" id="numero" name="numero" placeholder="20" maxlength="15" required>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel">Bairro:</label>
-              <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" required>
+              <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" maxlength="50" required>
             </div>
 
             <div class="col-sm-4">
               <label for="colFormLabel">Complemento:</label>
-              <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Complemento">
+              <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Complemento" maxlength="30">
             </div>
           </div>
 
@@ -151,12 +151,12 @@
             <div class="col-sm-4">
               <label for="colFormLabel">Referencia:</label>
               <input type="text" class="form-control" id="referencia" name="referencia"
-                placeholder="Ponto de Referencia">
+                placeholder="Ponto de Referencia" maxlength="35">
             </div>
 
             <div class="col-sm-3">
               <label for="colFormLabel">Cidade:</label>
-              <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" required>
+              <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" maxlength="40" required>
             </div>
             <div class="col-sm-1">
               <label for="colFormLabel">UF:</label>
@@ -171,12 +171,12 @@
               <input type="hidden" id="cd_func" name="cd_func">
               <label for="colFormLabel" class=""> Representante:</label>
               <input type="text" class="form-control" id="representante" name="representante"
-                placeholder="Nome do Representante" required>
+                placeholder="Nome do Representante" maxlength="55" required>
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">E-mail:</label>
               <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail do Representante"
-                required>
+              maxlength="80" required>
             </div>
           </div>
 
@@ -184,11 +184,11 @@
             <div class="col-sm-4">
               <label for="colFormLabel" class=""> RG:</label>
               <input type="text" class="form-control" id="rg" name="rg" placeholder="Telefone do Representante"
-                required>
+              maxlength="25" required>
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">CPF:</label>
-              <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF do Representante" required>
+              <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF do Representante" maxlength="25" required>
             </div>
           </div>
 
@@ -197,13 +197,13 @@
             <div class="col-sm-4">
               <label for="colFormLabel" class=""> Telefone:</label>
               <input type="text" class="form-control" id="telefone" name="telefone"
-                placeholder="Telefone do Representante" required>
+                placeholder="Telefone do Representante" maxlength="20" required>
             </div>
 
             <div class="col-sm-4">
               <label for="colFormLabel" class=""> Login:</label>
               <input type="text" class="form-control" id="login" name="login"
-                placeholder="Login do Representante" required>
+                placeholder="Login do Representante" maxlength="40" required>
             </div>
           </div>
 
