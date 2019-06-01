@@ -79,10 +79,12 @@ router.post('/excluir-ambiente', function (req, res, next) {
 
         console.log(idExcluir);
 
-        return banco.sql.query(`delete from Ambiente where idAmbiente = ${idExcluir}`);
+        banco.sql.query(`DELETE FROM Funcionamento
+        WHERE idFuncionamento IN 
+        (SELECT fkFuncionamento FROM Ambiente where fkEmpresa = ${idExcluir})`);
 
     }).then(consulta => {
-        console.log('excluiu ambiente');
+        console.log('excluiu Funcionamento');
         res.sendStatus(201);
 
     }).catch(err => {
@@ -93,8 +95,22 @@ router.post('/excluir-ambiente', function (req, res, next) {
         res.status(500).send(erro);
 
     }).finally(() => {
-        banco.sql.close();
+            banco.sql.query(`
+            delete from Ambiente where idAmbiente = ${idExcluir}`)
+                .then(consulta => {
+                    console.log('excluiu ambiente');
 
+
+                }).catch(err => {
+
+                    var erro = `Erro: ${err}`;
+                    console.error(erro);
+                    res.status(500).send(erro);
+
+                }).finally(() => {
+                    banco.sql.close();
+                        
+                });
     });
 
 });
@@ -212,21 +228,21 @@ router.post('/excluir-empresa', function (req, res, next) {
                                         banco.sql.query(`
                                         DELETE FROM Empresa
                                         WHERE idEmpresa = ${idExcluir};`)
-                                        .then(consulta => {
-                                            console.log('excluiu Empresa');
-                                            res.sendStatus(201);
+                                            .then(consulta => {
+                                                console.log('excluiu Empresa');
+                                                res.sendStatus(201);
 
-                                        }).catch(err => {
+                                            }).catch(err => {
 
-                                            var erro = `Erro: ${err}`;
-                                            console.error(erro);
+                                                var erro = `Erro: ${err}`;
+                                                console.error(erro);
 
-                                            res.status(500).send(erro);
+                                                res.status(500).send(erro);
 
-                                        }).finally(() => {
-                                            banco.sql.close();
-                                        });
-                                        });
+                                            }).finally(() => {
+                                                banco.sql.close();
+                                            });
+                                    });
                             });
                     });
             });
