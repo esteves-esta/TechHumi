@@ -339,7 +339,44 @@ router.post('/alterar-ambiente', function (req, res, next) {
 // ===============================================
 
 
+// ALTERAÇÃO DO FUNCIONARIO NA PARTE DE REPRESENTANTE --VIRTO
+router.post('/alterar-funcionario-rep', function (req, res, next) {
+  banco.sql.close();
+  banco.conectar().then(() => {
 
+    funcionario.codigo = req.body.cd_func;
+    funcionario.nome = req.body.nomeFuncionario;
+    funcionario.rg = req.body.rgFuncionario;
+    funcionario.cpf = req.body.cpfFuncionario;
+    funcionario.telefone = req.body.telefoneFuncionario;
+    funcionario.email = req.body.emailFuncionario;
+
+    return banco.sql.query(`update Funcionario set 
+      nomeFuncionario = '${funcionario.nome}', 
+      rgFuncionario = '${funcionario.rg}',
+      cpfFuncionario = '${funcionario.cpf}',
+      emailFuncionario = '${funcionario.email}',
+      telefoneFuncionario = '${funcionario.telefone}'
+      where idFuncionario = ${funcionario.codigo};`);
+
+  }).then(consulta => {
+    console.log('alterou');
+    res.sendStatus(201);
+
+  }).catch(err => {
+
+    var erro = `Erro: ${err}`;
+    console.error(erro);
+
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
+
+});
+
+// ===============================================
 
 
 // não mexa nesta linha!
