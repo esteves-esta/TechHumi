@@ -145,6 +145,22 @@
           <div id="div_aguarde">Dados sendo obtidos...</div>
           <canvas id="canvas_grafico"></canvas>
         </div>
+        <div id="estatisticas" style="display: none">
+          <div id="estatisticas-temp">
+            <div id="est-temp-titulo">
+              Temperatura
+            </div>
+            <div id="est-temp-subtitulo">
+              Minímo | 1° Quartil | Média | Mediana | 3° Quartil | Maximo
+            </div>
+            <div id="est-dados">
+              20 | 20.4 | <span id="temp_media_conteudo"></span> | <span id="temp_mediana_conteudo"></span> | 22.6 | 23
+            </div>
+          </div>
+          <div id="estatisticas-umid">
+            Umidade
+          </div>
+        </div>
       </div>
 
 
@@ -227,12 +243,12 @@
     if (usuario == undefined || (sessionStorage.nivelacesso != 2 && sessionStorage.nivelacesso != 3)) {
       window.location.href = '../../Login/login.html'
     }
-    if(sessionStorage.nivelacesso == 3) {
+    if (sessionStorage.nivelacesso == 3) {
       somente_adm.style.display = 'none';
       somente_adm1.style.display = 'none';
       somente_adm2.style.display = 'none';
     }
-    if(sessionStorage.nivelacesso == 2) {
+    if (sessionStorage.nivelacesso == 2) {
       somente_adm.style.display = 'block';
       somente_adm1.style.display = 'block';
       somente_adm2.style.display = 'block';
@@ -260,7 +276,28 @@
   function comeca() {
     atualizarGrafico();
     atualizarGraficoReal();
+    consultar_analitycs();
   }
+
+
+  function consultar_analitycs() {
+
+    fetch("/leituras/estatisticas", {
+      method: "POST"
+    }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          //devolve informação do ambiente
+          temp_mediana_conteudo.innerHTML = resposta[0].umid_media;
+          temp_media_conteudo.innerHTML = resposta[0].temp_media;
+        });
+      } else {
+        console.log('Erro de consulta!');
+      }
+    });
+    return false;
+  }
+
 
   // altere aqui as configurações do gráfico
   // (tamanhos, cores, textos, etc)
@@ -310,56 +347,56 @@
     var dados = {
       labels: [],
       datasets: [{
-        yAxisID: 'y-temperatura',
-        label: 'Temperatura',
-        borderColor: window.chartColors.red,
-        backgroundColor: window.chartColors.red,
-        fill: false,
-        data: []
-      },
-      {
-        yAxisID: 'y-umidade',
-        label: 'Umidade',
-        borderColor: window.chartColors.blue,
-        backgroundColor: window.chartColors.blue,
-        fill: false,
-        data: []
-      }
+          yAxisID: 'y-temperatura',
+          label: 'Temperatura',
+          borderColor: window.chartColors.red,
+          backgroundColor: window.chartColors.red,
+          fill: false,
+          data: []
+        },
+        {
+          yAxisID: 'y-umidade',
+          label: 'Umidade',
+          borderColor: window.chartColors.blue,
+          backgroundColor: window.chartColors.blue,
+          fill: false,
+          data: []
+        }
       ]
     };
 
     fetch('/leituras/ultimas', {
-      cache: 'no-store'
-    }).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta) {
+        cache: 'no-store'
+      }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
 
-          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-          resposta.reverse();
+            resposta.reverse();
 
-          for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
+            for (i = 0; i < resposta.length; i++) {
+              var registro = resposta[i];
 
-            // aqui, após 'registro.' use os nomes 
-            // dos atributos que vem no JSON 
-            // que gerou na consulta ao banco de dados
+              // aqui, após 'registro.' use os nomes 
+              // dos atributos que vem no JSON 
+              // que gerou na consulta ao banco de dados
 
-            dados.labels.push(registro.momento);
+              dados.labels.push(registro.momento);
 
-            dados.datasets[0].data.push(registro.temperatura);
-            dados.datasets[1].data.push(registro.umidade);
-          }
-          console.log(JSON.stringify(dados));
+              dados.datasets[0].data.push(registro.temperatura);
+              dados.datasets[1].data.push(registro.umidade);
+            }
+            console.log(JSON.stringify(dados));
 
-          div_aguarde.style.display = 'none';
+            div_aguarde.style.display = 'none';
 
-          plotarGrafico(dados);
-        });
-      } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-      }
-    })
+            plotarGrafico(dados);
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
       .catch(function (error) {
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
       });
@@ -422,38 +459,38 @@
     var dadosReal;
 
     fetch('/leituras/tempo-real', {
-      cache: 'no-store'
-    }).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta) {
+        cache: 'no-store'
+      }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
 
-          console.log(`Dados recebidos: ${JSON.stringify(dadosReal)}`);
+            console.log(`Dados recebidos: ${JSON.stringify(dadosReal)}`);
 
-          // aqui, após registro. use os nomes 
-          // dos atributos que vem no JSON 
-          // que gerou na consulta ao banco de dados
-          dadosTemperatura = google.visualization.arrayToDataTable([
-            ['Label', 'Value'],
-            ['Temperatura', resposta.temperatura]
-          ]);
+            // aqui, após registro. use os nomes 
+            // dos atributos que vem no JSON 
+            // que gerou na consulta ao banco de dados
+            dadosTemperatura = google.visualization.arrayToDataTable([
+              ['Label', 'Value'],
+              ['Temperatura', resposta.temperatura]
+            ]);
 
-          dadosUmidade = google.visualization.arrayToDataTable([
-            ['Label', 'Value'],
-            ['Umidade', resposta.umidade]
-          ]);
+            dadosUmidade = google.visualization.arrayToDataTable([
+              ['Label', 'Value'],
+              ['Umidade', resposta.umidade]
+            ]);
 
-          var dadosReal = {
-            temperatura: dadosTemperatura,
-            umidade: dadosUmidade
-          }
+            var dadosReal = {
+              temperatura: dadosTemperatura,
+              umidade: dadosUmidade
+            }
 
-          alertar(resposta.temperatura, resposta.umidade);
-          plotarGraficoReal(dadosReal);
-        });
-      } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-      }
-    })
+            alertar(resposta.temperatura, resposta.umidade);
+            plotarGraficoReal(dadosReal);
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
       .catch(function (error) {
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
       });
@@ -479,7 +516,7 @@
     }
     if (umidade > limites.max_umidade) {
       mensagem += ` Umidade alta demais!`;
-    }else{
+    } else {
       if (temperatura < limites.min_temperatura) {
         mensagem = ` Temperatura baixa demais!`;
       }
@@ -512,17 +549,16 @@
       options: configurarGrafico()
     });
   }
+
   function notificacao(frase) {
-        swal({
-            title: frase,
-            text: " ",
-            icon: "info",
-            timer: 600000,
-        });
-    }
+    swal({
+      title: frase,
+      text: " ",
+      icon: "info",
+      timer: 600000,
+    });
+  }
 </script>
 
- <!-- script do suporte -->
- <script type="text/javascript" src="js/suporte.js"></script>
-
-  
+<!-- script do suporte -->
+<script type="text/javascript" src="js/suporte.js"></script>

@@ -44,3 +44,11 @@ height: 60px;
  .navbar-dark .navbar-nav .nav-link {
      color: #2079b8 !important;
  }
+ #estatisticas-temp{
+     width: 50%;
+     text-align: center;
+ }
+ #estatisticas-umid{
+    width: 50%;
+    text-align: center;
+}

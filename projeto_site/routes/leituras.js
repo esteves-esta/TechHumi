@@ -35,22 +35,25 @@ router.get('/estatisticas', function (req, res, next) {
   console.log(banco.conexao);
 
   var estatisticas = {
-    temp_maxima: 0,
-    temp_minima: 0,
-    temp_media: 0
+    umid_media: 0,
+    umid_mediana: 0,
+    temp_mediana: 0,
+    temp_media: 0,
+    temp_max: 23,
+    temp_min: 20,
+    umid_max: 60,
+    umid_min: 40
   };
-
+  banco.sql.close();
   banco.conectar().then(() => {
     return banco.sql.query(`
-        select 
-          max(temperatura) as temp_maxima, 
-          min(temperatura) as temp_minima, 
+        select top 100
+          avg(umdidade) as umid_media, 
           avg(temperatura) as temp_media 
         from Sensor
         `);
   }).then(consulta => {
-    estatisticas.temp_maxima = consulta.recordset[0].temp_maxima;
-    estatisticas.temp_minima = consulta.recordset[0].temp_minima;
+    estatisticas.temp_media = consulta.recordset[0].umid_media;
     estatisticas.temp_media = consulta.recordset[0].temp_media;
     console.log(`Estatísticas: ${JSON.stringify(estatisticas)}`);
     res.send(estatisticas);
