@@ -169,7 +169,7 @@ router.post('/consulta-historico', function (req, res, next) {
 
     var cdempresa = req.body.codigo;
 
-    return banco.sql.query(`select * from Sensor;`);
+    return banco.sql.query(`select idSensor,temperatura,umidade,FORMAT(data_hora,'HH:mm:ss') as data, FORMAT(data_hora,'dd/MM/yyyy') as hora from Sensor;`);
 
   }).then(consulta => {
 

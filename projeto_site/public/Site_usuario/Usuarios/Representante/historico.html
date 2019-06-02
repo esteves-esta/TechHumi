@@ -124,7 +124,8 @@
               <thead>
                 <tr>
 
-                  <th scope="col">Data e Hora</th>
+                  <th scope="col">Data</th>
+                  <th scope="col">Hora</th>
                   <th scope="col">Temperatura</th>
                   <th scope="col">Umidade</th>
                   <!-- <th scope="col">Id Ambiente</th>
@@ -281,7 +282,8 @@
               var atual = resposta[r];
 
               conteudo += `<tr>
-                        <td>${atual.data_hora}</td>
+                        <td>${atual.data}</td>
+                        <td>${atual.hora}</td>
                         <td>${atual.temperatura}</td>
                         <td>${atual.umidade}</td>   
                     </tr>`;
