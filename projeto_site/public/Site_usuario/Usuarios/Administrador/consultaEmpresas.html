@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="shotcut icon" href="img/favicon.png">
 
-    <title>Consulta</title>
+    <title>Consulta - Empresa</title>
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -100,7 +100,7 @@
                         <table class="table table-striped" cellspacing="0" cellpadding="0">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
+                                    <!-- <th scope="col">ID</th> -->
                                     <th scope="col">Nome</th>
                                     <th scope="col">CNPJ</th>
                                     <th scope="col">Telefone</th>
@@ -242,8 +242,8 @@
                     for (r = 0; r < resposta.length; r++) {
                         var atual = resposta[r];
 
+                // <td>${atual.idEmpresa}</td>
                         conteudo += `<tr>
-                <td>${atual.idEmpresa}</td>
                 <td>${atual.nomeEmpresa}</td>
                 <td>${atual.cnpjEmpresa}</td>
                 <td>${atual.telefoneEmpresa1}</td>

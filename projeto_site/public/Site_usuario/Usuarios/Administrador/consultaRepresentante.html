@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="shotcut icon" href="img/favicon.png">
 
-    <title>Consulta</title>
+    <title>Consulta - Representante</title>
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -101,7 +101,7 @@
                         <table class="table table-striped" cellspacing="0" cellpadding="0">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
+                                    <!-- <th scope="col">ID</th> -->
                                     <th scope="col">Nome</th>
                                     <th scope="col">RG</th>
                                     <th scope="col">CPF</th>
@@ -238,8 +238,8 @@
                     for (r = 0; r < resposta.length; r++) {
                         var atual = resposta[r];
 
+                        // <td>${atual.idFuncionario}</td>
                         conteudo += `<tr>
-                <td>${atual.idFuncionario}</td>
                 <td>${atual.nomeFuncionario}</td>
                 <td>${atual.rgFuncionario}</td>
                 <td>${atual.cpfFuncionario}</td>

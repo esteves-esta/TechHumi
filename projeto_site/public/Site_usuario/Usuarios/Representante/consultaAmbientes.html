@@ -10,7 +10,7 @@
   <meta name="author" content="">
   <link rel="shotcut icon" href="img/favicon.png">
 
-  <title>Ambientes</title>
+  <title>Consulta - Ambientes</title>
 
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -126,7 +126,7 @@
             <table class="table table-striped" cellspacing="0" cellpadding="0">
               <thead>
                 <tr>
-                  <th scope="col">ID</th>
+                  <!-- <th scope="col">ID</th> -->
                   <th scope="col">Descrição</th>
                   <th scope="col">Localização</th>
                   <th class="actions">Ações</th>
@@ -279,8 +279,9 @@
             for (r = 0; r < resposta.length; r++) {
               var atual = resposta[r];
 
+              // <td>${atual.idAmbiente}</td>
+
               conteudo += `<tr>
-            <td>${atual.idAmbiente}</td>
             <td>${atual.descricaoAmbiente}</td>
             <td>${atual.localizacaoAmbiente}</td>
             <td class="actions">
