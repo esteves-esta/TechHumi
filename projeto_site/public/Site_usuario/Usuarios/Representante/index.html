@@ -9,6 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="shotcut icon" href="img/favicon.png">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 
@@ -389,23 +390,25 @@
       temperatura: {
         width: 400,
         height: 250,
-        yellowFrom: 00,
-        yellowTo: 20,
-        yellowColor: 'cyan',
-        redFrom: 40,
-        redTo: 60,
-        max: 60,
+        yellowFrom: 20,
+        yellowTo: 20.4,
+        yellowColor: 'yellow',
+        redFrom: 22.6,
+        redTo: 23,
+        min: 20,
+        max: 23,
         minorTicks: 5
       },
       umidade: {
         width: 400,
         height: 250,
-        yellowFrom: 00,
-        yellowTo: 50,
-        yellowColor: 'cyan',
-        redFrom: 85,
-        redTo: 100,
-        max: 100,
+        yellowFrom: 40,
+        yellowTo: 44,
+        yellowColor: 'yellow',
+        redFrom: 56,
+        redTo: 60,
+        min: 40,
+        max: 60,
         minorTicks: 5
       },
     }
@@ -460,7 +463,7 @@
   function alertar(temperatura, umidade) {
     // ideal que venham de algum EndPoint
     var limites = {
-      max_temperatura: 60,
+      max_temperatura: 23,
       min_temperatura: 20,
       max_umidade: 60,
       min_umidade: 40,
@@ -470,21 +473,21 @@
       terceiroQ_umidade: 56,
     };
 
-    var mensagem = '';
+    var mensagem = ``;
     if (temperatura > limites.max_temperatura) {
-      mensagem += '* Temperatura alta demais! <br>';
+      mensagem += ` Temperatura alta demais!`;
     }
     if (umidade > limites.max_umidade) {
-      mensagem += '* Umidade alta demais! <br>';
+      mensagem += ` Umidade alta demais!`;
+    }else{
+      if (temperatura < limites.min_temperatura) {
+        mensagem = ` Temperatura baixa demais!`;
+      }
+      if (umidade < limites.min_umidade) {
+        mensagem = ` Umidade baixa demais!`;
+      }
     }
-    if (temperatura < limites.min_temperatura) {
-      mensagem = '* Temperatura baixa demais! <br>';
-    }
-    if (umidade < limites.min_umidade) {
-      mensagem = '* Umidade baixa demais! <br>';
-    }
-
-    div_alerta.innerHTML = mensagem;
+    notificacao(mensagem);
   }
 
   // só altere aqui se souber o que está fazendo!
@@ -509,6 +512,14 @@
       options: configurarGrafico()
     });
   }
+  function notificacao(frase) {
+        swal({
+            title: frase,
+            text: " ",
+            icon: "info",
+            timer: 600000,
+        });
+    }
 </script>
 
  <!-- script do suporte -->
