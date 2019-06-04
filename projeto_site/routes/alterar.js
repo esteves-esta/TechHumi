@@ -284,6 +284,8 @@ router.post('/alterar-perfil', function (req, res, next) {
 // ALTERAÇÃO DE SENHA
 router.post('/alterar-senha', function (req, res, next) {
   banco.sql.close();
+
+  console.log(req); 
   banco.conectar().then(() => {
 
     senhas.senha = req.body.senha;
