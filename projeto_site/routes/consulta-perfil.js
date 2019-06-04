@@ -132,7 +132,10 @@ router.post('/consulta-ambiente', function (req, res, next) {
   banco.conectar().then(() => {
 
     var cdempresa = req.body.codigo;
-    return banco.sql.query(`select * from Ambiente where fkEmpresa = ${cdempresa};`);
+    return banco.sql.query(`select * from Ambiente 
+    inner join Funcionamento
+    on fkFuncionamento = idFuncionamento
+    where fkEmpresa = ${cdempresa};`);
 
   }).then(consulta => {
 
@@ -156,6 +159,8 @@ router.post('/consulta-ambiente', function (req, res, next) {
   });
 
 });
+
+
 
 // ===============================================
 

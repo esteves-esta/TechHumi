@@ -50,7 +50,15 @@ var ambiente = {
   codigo:'',
   descricao: '',
   localizacao: '',
-  fkEmpresa: ''
+  fkEmpresa: '',
+  fkAmbiente: ''
+};
+
+
+var funcionamento = {
+  codigo:'',
+  horaIn: '',
+  horaFi: '',
 };
 // ===============================================
 
@@ -335,6 +343,41 @@ router.post('/alterar-ambiente', function (req, res, next) {
   });
 
 });
+
+
+// ===============================================
+
+// ALTERAÇÃO DO FUNCIONAMENTO DE UM AMBIENTE
+router.post('/alterar-funcionamento', function (req, res, next) {
+  banco.sql.close();
+  banco.conectar().then(() => {
+
+    funcionamento.codigo = req.body.funcionamento;
+    funcionamento.horaIn = req.body.inicio;
+    funcionamento.horaFi = req.body.fim;
+
+    return banco.sql.query(`update Funcionamento set 
+      horaInicio = '${funcionamento.horaIn}', 
+      horaFim = '${funcionamento.horaFi}'
+      where idFuncionamento = ${funcionamento.codigo};`);
+
+  }).then(consulta => {
+    console.log('alterou');
+    res.sendStatus(201);
+
+  }).catch(err => {
+
+    var erro = `Erro: ${err}`;
+    console.error(erro);
+
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
+
+});
+
 
 // ===============================================
 

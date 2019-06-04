@@ -116,10 +116,8 @@
             aria-haspopup="true" aria-expanded="false">
             Ambiente
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Sala de Reunião</a>
-            <a class="dropdown-item" href="#">Recepção</a>
-            <a class="dropdown-item" href="#">Sala dos Devs</a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="ambientes_lista"> 
+         
           </div>
         </div>
 
@@ -558,6 +556,48 @@
       timer: 600000,
     });
   }
+
+
+  consultar_dados();
+  function consultar_dados() {
+        // guarda código do usuário que está no atributo usuario_bandtec
+        // em um json e depois utiliza a classe URLSearchParams
+        //para mandar para o arquivo js
+
+
+        var cdEmpresa = { codigo: sessionStorage.idEmpresa }
+        var corpo = new URLSearchParams(cdEmpresa);
+
+
+        fetch("/consulta-perfil/consulta-ambiente", {
+            method: "POST",
+            body: corpo
+        }).then(function (response) {
+            console.log(response);
+            if (response.ok) {
+
+                response.json().then(function (resposta) {
+
+                    if (resposta.length == undefined) {
+
+                    }
+                    else {
+                        // devolve informação da empresa
+                        var conteudo = '';
+                        for (r = 0; r < resposta.length; r++) {
+                            var atual = resposta[r];
+                            conteudo += `<a class="dropdown-item" href="#">${atual.descricaoAmbiente}</a>`;
+                        }
+                        ambientes_lista.innerHTML = conteudo;
+                    }
+                });
+            } else {
+                console.log('Erro de consulta!');
+            }
+        });
+
+        return false;
+    }
 </script>
 
 <!-- script do suporte -->

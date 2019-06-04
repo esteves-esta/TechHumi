@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="shotcut icon" href="img/favicon.png">
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <title>Configurações - Rotina</title>
 
   <!-- Custom fonts for this template-->
@@ -36,8 +36,8 @@
 
     <!-- Navbar Search -->
     <div class="d-none d-md-inline-block ml-auto mr-0 mr-md-3 my-2 my-md-0" id="usuario-nome">
-        <span>Bem Vinda(o), <b id="usuario_logado"></b></span>
-      </div>
+      <span>Bem Vinda(o), <b id="usuario_logado"></b></span>
+    </div>
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
@@ -61,20 +61,20 @@
           <span>Gráficos</span></a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="consultaAmbientes.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Ambientes</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="historico.html">
-              <i class="fas fa-fw fa-table"></i>
-              <span>Histórico Sensor</span></a>
-          </li>
-        <li class="nav-item">
-          <a class="nav-link" href="consultaUsuarios.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Usuarios</span></a>
-        </li>
+        <a class="nav-link" href="consultaAmbientes.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Ambientes</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="historico.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Histórico Sensor</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="consultaUsuarios.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Usuarios</span></a>
+      </li>
       <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
@@ -102,15 +102,21 @@
         </ol>
 
         <!-- Page Content -->
-        <form>
+        <form id="form_funcionamento" onsubmit="return alterar_dados()">
           <div class="form-group row">
             <div class="col-sm-2 my-1">
               <label for="colFormLabel">Horario de Inicio:</label>
-              <input type="time" class="form-control" value="00:00">
+              <input type="time" class="form-control" value="00:00" name="inicio" id="campo_inicio">
             </div>
             <div class="col-sm-2 my-1">
               <label for="colFormLabel">Horario de fim:</label>
-              <input type="time" class="form-control" value="00:00">
+              <input type="time" class="form-control" value="00:00" name="fim" id="campo_fim">
+            </div>
+            <div class="col-sm-4 my-1">
+              <label for="colFormLabel">Ambiente:</label>
+              <select id="ambientes_empresa" class="form-control" name="funcionamento" onchange="muda_tempo()">
+
+              </select>
             </div>
           </div>
           <button type="submit" class="btn btn-outline-primary">Salvar</button>
@@ -181,25 +187,126 @@
   verificarAutenticacao();
 
   function verificarAutenticacao() {
-      usuario = sessionStorage.usuario_bandtec;
-      if (usuario == undefined || sessionStorage.nivelacesso !=2) {
-          window.location.href = '../../Login/login.html'
-      }
-    
-      usuario_logado.innerHTML = sessionStorage.nome_usuario;
+    usuario = sessionStorage.usuario_bandtec;
+    if (usuario == undefined || sessionStorage.nivelacesso != 2) {
+      window.location.href = '../../Login/login.html'
+    }
+
+    usuario_logado.innerHTML = sessionStorage.nome_usuario;
   }
 
   function logoff() {
-      sessionStorage.removeItem('idEmpresa');
-      sessionStorage.removeItem('usuario_bandtec');
-        sessionStorage.removeItem('idlogin');
-        sessionStorage.removeItem('nivelacesso');
-        sessionStorage.removeItem('nome_usuario');
-      verificarAutenticacao();
+    sessionStorage.removeItem('idEmpresa');
+    sessionStorage.removeItem('usuario_bandtec');
+    sessionStorage.removeItem('idlogin');
+    sessionStorage.removeItem('nivelacesso');
+    sessionStorage.removeItem('nome_usuario');
+    verificarAutenticacao();
   }
-  </script>
 
-   <!-- script do suporte -->
- <script type="text/javascript" src="js/suporte.js"></script>
 
+
+  consultar_dados();
+
+  var guarda_consulta = [];
+
+
+  function consultar_dados() {
+    // guarda código do usuário que está no atributo usuario_bandtec
+    // em um json e depois utiliza a classe URLSearchParams
+    //para mandar para o arquivo js
+
+
+    var cdEmpresa = { codigo: sessionStorage.idEmpresa }
+    var corpo = new URLSearchParams(cdEmpresa);
+
+
+    fetch("/consulta-perfil/consulta-ambiente", {
+      method: "POST",
+      body: corpo
+    }).then(function (response) {
+      //console.log(response);
+      if (response.ok) {
+
+        response.json().then(function (resposta) {
+
+          if (resposta.length == undefined) {
+
+          }
+          else {
+            // devolve informação da empresa
+            var conteudo = '';
+            conteudo = `<option selected disabled>Escolha um dos seus ambientes</option>`;
+            for (r = 0; r < resposta.length; r++) {
+
+              var atual = resposta[r];
+              conteudo += `<option value="${atual.idFuncionamento}">${atual.descricaoAmbiente}</option>`;
+
+              // GUARDA VALOR DE FUNCIONAMENTO PARA JOGAR NO CAMPO DEPOIS
+              var consulta = {
+                idFun: atual.idFuncionamento,
+                inicio: atual.horaInicio,
+                fim: atual.horaFim,
+              }
+
+              guarda_consulta.push(consulta);
+            }
+            ambientes_empresa.innerHTML = conteudo;
+          }
+        });
+      } else {
+        console.log('Erro de consulta!');
+      }
+    });
+
+    return false;
+  }
+
+
+  function alterar_dados() {
+    // coloca valores dos codigo em input escondidos para enviar para o js
+    var formulario = new URLSearchParams(new FormData(form_funcionamento));
+
+    fetch("/alterar/alterar-funcionamento", {
+      method: "POST",
+      body: formulario
+    }).then(function (response) {
+
+      if (response.ok) {
+
+        swal({
+          title: "Alterado com sucesso!",
+          text: "   ",
+          icon: "success"
+        });
+      } else {
+
+        swal({
+          title: "Erro ao alterar!",
+          text: "   ",
+          icon: "error"
+        });
+      }
+    });
+
+    return false;
+  }
+
+  function muda_tempo() {
   
+    for (r = 0; r < guarda_consulta.length; r++) {
+      
+      if (guarda_consulta[r].idFun == ambientes_empresa.value) {
+        // CORTA A DATA DO TEMPO PARA JOGAR NO CAMPO = SUBSTRING
+
+        campo_inicio.value = guarda_consulta[r].inicio.substring(11,19);
+        campo_fim.value = guarda_consulta[r].fim.substring(11,19);
+
+        break;
+      }
+    }
+  }
+</script>
+
+<!-- script do suporte -->
+<script type="text/javascript" src="js/suporte.js"></script>
