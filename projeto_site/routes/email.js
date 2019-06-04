@@ -27,7 +27,9 @@ const transporter = nodemailer.createTransport({
     from: 'techhumicorporation@gmail.com',
     to: email,
     subject: 'Redefinição de senha',
-    text: 'Sua nova senha temporaria vai ser: 1234'
+    html: `<h1>Redefinição de senha</h1> <br>
+    <p>Sua nova senha temporaria é <b>1234</b></p>
+    <p>Por favor altere essa senha quando logar</p>`
   };
 
   // Autentifica se foi enviado e envia notificação

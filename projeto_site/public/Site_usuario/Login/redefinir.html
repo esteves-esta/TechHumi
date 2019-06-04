@@ -52,7 +52,7 @@
             if (response.ok) {
                 swal({
             title:`Enviamos um Email de Redefinição de Senha para esse Endereço`
-        });
+        }); consultarEmail();
             } else {
 
                 console.log('Erro de login!');
@@ -66,5 +66,69 @@
 
         return false;
     }
+
+    function consultarEmail(){
+        var formulario = new URLSearchParams(new FormData(redefinir));
+        fetch("/consulta-perfil/consulta-email", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+            
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    alterar_dados(resposta[0].idLogin);
+
+                    console.log(resposta[0].idLogin);
+                });
+                
+
+            } else {
+
+                console.log('Erro de conexão!');
+                
+
+            }
+        });
+
+        return false;
+    }
+
+    //Alterar senha
+    function alterar_dados(codigo) {
+
+        var info = {
+            senha : "1234",
+            confirmaSenha :"1234",
+            estrangeira: codigo
+        }
+
+    var formulario = new URLSearchParams(info);
+    fetch("/alterar/alterar-senha", {
+      method: "POST",
+      body: formulario
+    }).then(function (response) {
+
+      if (response.ok) {
+
+        swal({
+          title: "Alterado com sucesso!",
+          text: "   ",
+          icon: "success"
+        });
+        
+
+      } else {
+
+        swal({
+          title: "Erro ao alterar!",
+          text: "   ",
+          icon: "error"
+        });
+      }
+    });
+
+    return false;
+  }
+
 
 </script>

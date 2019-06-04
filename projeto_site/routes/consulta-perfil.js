@@ -233,6 +233,40 @@ router.post('/consulta-ambiente-alterar', function (req, res, next) {
 
 });
 
+//Redefição
+router.post('/consulta-email', function (req, res, next) {
+  banco.sql.close();
+
+
+  banco.conectar().then(() => {
+
+    var cdempresa = req.body.email;
+    return banco.sql.query(`select * from Funcionario 
+    inner join  login on fkfuncionario=idfuncionario
+    where emailFuncionario='${cdempresa}';`);
+
+  }).then(consulta => {
+
+    console.log(`Dados: ${JSON.stringify(consulta.recordset)}`);
+    
+    if (consulta.recordset.length >= 0) {
+      res.send(consulta.recordset);
+    } 
+    else {
+      res.sendStatus(404);
+    }
+
+  }).catch(err => {
+
+    var erro = `Erro: ${err}`;
+    console.error(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
+
+});
 
 
 // não mexa nesta linha!
