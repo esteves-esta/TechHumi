@@ -15,9 +15,9 @@
     <div class="tudo">
         <img src="imgs/logo.png">
         <div class="formLogin" style="height:200px;">
-                <form action="">
+                <form id="redefinir" onsubmit="return senhaesqueceu()">
                 <p>Email</p>
-                <input type="email" id="email" placeholder="Email" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
                 <div id=botoes> 
                     <button type="button" class="botao" onclick="valida()">Redefinir Senha</button>
                     <a class="botao" href="login.html">Sair</a>
@@ -38,11 +38,33 @@
       }
       
       else{
-        swal({
+        senhaesqueceu()
+      } 
+    }
+
+    function senhaesqueceu(){
+        var formulario = new URLSearchParams(new FormData(redefinir));
+        fetch("/email/enviar_email", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+            
+            if (response.ok) {
+                swal({
             title:`Enviamos um Email de Redefinição de Senha para esse Endereço`
         });
-      }
-        
-        
+            } else {
+
+                console.log('Erro de login!');
+                swal({
+            icon :"error",
+            title:`Por Favor, Insira Seu Email!`
+        });
+
+            }
+        });
+
+        return false;
     }
+
 </script>

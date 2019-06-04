@@ -10,6 +10,7 @@ var leiturasRouter = require('./routes/leituras');
 var consultaRouter = require('./routes/consulta-perfil');
 var alteraRouter = require('./routes/alterar');
 var excluiRouter = require('./routes/excluir');
+var emailRouter = require('./routes/email');
 
 var app = express();
 
@@ -26,5 +27,6 @@ app.use('/leituras', leiturasRouter);
 app.use('/consulta-perfil', consultaRouter);
 app.use('/alterar', alteraRouter);
 app.use('/excluir', excluiRouter);
+app.use('/email', emailRouter);
 
 module.exports = app;
