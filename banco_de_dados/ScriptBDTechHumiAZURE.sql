@@ -41,14 +41,6 @@ nivelAcesso int not null,
 fkFuncionario int foreign key references Funcionario(idFuncionario)
 );
 
-create table Sensor(
-idSensor int primary key identity(1,1),
-temperatura float not null,
-umidade int not null,
-data_hora datetime not null
-);
-
-
 create table Funcionamento(
 idFuncionamento int primary key identity(1,1),
 horaInicio time not null,
@@ -61,10 +53,17 @@ descricaoAmbiente varchar(40) not null,
 localizacaoAmbiente varchar(20) not null,
 fkEmpresa int foreign key references Empresa(idEmpresa),
 fkFuncionamento int foreign key references Funcionamento(idFuncionamento),
-fkSensor int foreign key references Sensor(idSensor)
 );
 
+create table Sensor(
+idSensor int primary key identity(1,1),
+temperatura float not null,
+umidade int not null,
+data_hora datetime not null,
+fkAmbiente int foreign key references Ambiente(idAmbiente)
+);
 
+--INSERTS
 
 insert into Empresa (nomeEmpresa,cnpjEmpresa,telefoneEmpresa1,telefoneEmpresa2) values
 ('TechHumi','28.118.114/0001-50','(11)2516-7236','(11)95366-5905'),
@@ -89,10 +88,17 @@ insert into Login (loginUsuario,senhaUsuario,nivelAcesso,fkFuncionario) values
 select * from Login;
 
 insert into Funcionamento(horaInicio,horaFim) values 
+('00:00:00','00:00:00'),
 ('07:30:00','18:00:00');
 
 insert into Ambiente(descricaoAmbiente,localizacaoAmbiente,fkEmpresa,fkFuncionamento) values
 ('Sala dos Devs','3º Andar',2,1);
+
+insert into Sensor (temperatura,umidade,data_hora,fkAmbiente) values
+('23','57',CURRENT_TIMESTAMP,1),
+('22.4','46',CURRENT_TIMESTAMP,1),
+('21.3','50',CURRENT_TIMESTAMP,1);
+
 
 select * from Sensor order by idSensor desc;
 
@@ -101,6 +107,6 @@ select * from Sensor order by idSensor desc;
 -- drop table login;
 -- drop table Funcionario;
 -- drop table Funcionamento;
--- drop table Sensor;
 -- drop table Ambiente;
+-- drop table Sensor;
 -- drop table Empresa;
