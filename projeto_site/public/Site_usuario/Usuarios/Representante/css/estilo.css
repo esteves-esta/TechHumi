@@ -11,11 +11,16 @@
 #umid{
     width: 50%; 
     height: 60px;
+  
 }
 
 #tudo{
     margin:20px;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
 }
 
 @media (max-width: 600px) {

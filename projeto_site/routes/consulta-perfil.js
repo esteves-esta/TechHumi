@@ -174,11 +174,12 @@ router.post('/consulta-historico', function (req, res, next) {
 
     var cdempresa = req.body.codigo;
 
-    return banco.sql.query(`select top 100 idSensor,temperatura,umidade,FORMAT(data_hora,'HH:mm:ss') as hora, FORMAT(data_hora,'dd/MM/yyyy') as data from Sensor;`);
+    return banco.sql.query(`select top 100 idSensor,temperatura,
+    umidade,FORMAT(data_hora,'HH:mm:ss') as hora, FORMAT(data_hora,'dd/MM/yyyy') as data from Sensor order by idSensor desc;`);
 
   }).then(consulta => {
 
-    console.log(`Dados: ${JSON.stringify(consulta.recordset)}`);
+    //console.log(`Dados: ${JSON.stringify(consulta.recordset)}`);
 
     if (consulta.recordset.length >= 0) {
       res.send(consulta.recordset);

@@ -111,10 +111,10 @@
       <div class="container-fluid">
 
         <!-- Dropdown-->
-        <div class="dropdown">
+        <div class="dropdown mb-4">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            Ambiente
+            Selecione um dos ambiente de sua empresa
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="ambientes_lista"> 
          
@@ -125,19 +125,22 @@
         <!-- Area Chart Example-->
         <div class="card mb-3">
           <div class="card-header">
-            <i class="fas fa-chart-area"> Temperatura e umidade em tempo real</i>
+            <i class="fas fa-chart-area"></i>
+            Temperatura e umidade em tempo real
           </div>
+          <div id="div_alerta" class="alerta"></div>
           <div id="tudo">
-            <div id="div_alerta" class="alerta"></div>
+           
             <div id="div_temperatura">Temperatura sendo obtida...</div>
             <div id="div_umidade">Umidade sendo obtida...</div>
           </div>
         </div>
       </div>
 
-      <div class="card mb-3">
+      <div class="card m-3">
         <div class="card-header">
-          <i class="fas fa-chart-area"> Histórico de Temperatura e Umidade</i>
+          <i class="fas fa-chart-area"> </i>
+          Histórico de Temperatura e Umidade
         </div>
         <div class="card-body">
           <div id="div_aguarde">Dados sendo obtidos...</div>
