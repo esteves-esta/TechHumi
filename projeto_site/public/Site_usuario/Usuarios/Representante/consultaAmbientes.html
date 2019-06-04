@@ -129,6 +129,7 @@
                   <!-- <th scope="col">ID</th> -->
                   <th scope="col">Descrição</th>
                   <th scope="col">Localização</th>
+                  <th scope="col">Horário de Funcionamento</th>
                   <th class="actions">Ações</th>
                 </tr>
               </thead>
@@ -284,6 +285,7 @@
               conteudo += `<tr>
             <td>${atual.descricaoAmbiente}</td>
             <td>${atual.localizacaoAmbiente}</td>
+            <td>${atual.horaInicio} às ${atual.horaFim}</td>
             <td class="actions">
             <a class="consulta-btn btn btn-warning btn-xs mb-1" onclick="alterar(${atual.idAmbiente})">Editar</a>
             <a class="consulta-btn btn btn-danger btn-xs mb-1" data-toggle="modal"

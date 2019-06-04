@@ -525,7 +525,12 @@
         mensagem = ` Umidade baixa demais!`;
       }
     }
-    notificacao(mensagem);
+
+    if(mensagem==''){
+
+    }else{
+      notificacao(mensagem);
+    }
   }
 
   // só altere aqui se souber o que está fazendo!
