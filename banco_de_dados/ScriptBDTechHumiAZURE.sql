@@ -60,7 +60,8 @@ idAmbiente int primary key identity(1,1),
 descricaoAmbiente varchar(40) not null,
 localizacaoAmbiente varchar(20) not null,
 fkEmpresa int foreign key references Empresa(idEmpresa),
-fkFuncionamento int foreign key references Funcionamento(idFuncionamento)
+fkFuncionamento int foreign key references Funcionamento(idFuncionamento),
+fkSensor int foreign key references Sensor(idSensor)
 );
 
 
