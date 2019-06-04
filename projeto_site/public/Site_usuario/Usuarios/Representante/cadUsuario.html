@@ -37,18 +37,18 @@
 
         <!-- Navbar Search -->
         <div class="d-none d-md-inline-block ml-auto mr-0 mr-md-3 my-2 my-md-0" id="usuario-nome">
-                <span>Bem Vinda(o), <b id="usuario_logado"></b></span>
-              </div>
+            <span>Bem Vinda(o), <b id="usuario_logado"></b></span>
+        </div>
 
         <!-- Navbar -->
         <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal"
-                data-target="#logoutModal">
-                <i class="fas fa-sign-out-alt fa-fw"></i>
-              </a>
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal"
+                    data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-fw"></i>
+                </a>
             </li>
-          </ul>
+        </ul>
     </nav>
 
     <div id="wrapper">
@@ -63,28 +63,27 @@
                     <span>Gráficos</span></a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link" href="consultaAmbientes.html">
-                      <i class="fas fa-fw fa-table"></i>
-                      <span>Ambientes</span></a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="historico.html">
-                        <i class="fas fa-fw fa-table"></i>
-                        <span>Histórico Sensor</span></a>
-                    </li>
-                  <li class="nav-item active">
-                    <a class="nav-link" href="consultaUsuarios.html">
-                      <i class="fas fa-fw fa-table"></i>
-                      <span>Usuarios</span></a>
-                  </li>
+                <a class="nav-link" href="consultaAmbientes.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Ambientes</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="historico.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Histórico Sensor</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="consultaUsuarios.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Usuarios</span></a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Configurações</span>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
-                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
+                <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
                     <a class="dropdown-item" href="perfil.html">Perfil</a>
                     <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
                     <a class="dropdown-item" href="rotina.html">Rotina</a>
@@ -110,43 +109,49 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label for="colFormLabel" class="">Nome:</label>
-                            <input type="text" name="nomeFuncionario" id="nomeFuncionario" class="form-control" placeholder="Nome do Usuario" maxlength="55" required>
+                            <input type="text" name="nomeFuncionario" id="nomeFuncionario" class="form-control"
+                                placeholder="Nome do Usuario" maxlength="55" required>
                         </div>
                         <div class="col-sm-4">
                             <label for="colFormLabel" class=""> E-mail:</label>
-                            <input type="email" name="emailFuncionario" id="emailFuncionario" class="form-control" placeholder="E-Mail do Usuario" maxlength="80" required>
+                            <input type="email" name="emailFuncionario" id="emailFuncionario" class="form-control"
+                                placeholder="E-Mail do Usuario" maxlength="80" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label for="colFormLabel">CPF:</label>
-                            <input type="text" name="cpfFuncionario" id="cpfFuncionario" class="form-control" placeholder="CPF do Usuario" required maxlength="14">
+                            <input type="text" name="cpfFuncionario" id="cpfFuncionario" class="form-control"
+                                placeholder="CPF do Usuario" required maxlength="14">
                         </div>
                         <div class="col-sm-4">
                             <label for="colFormLabel">RG:</label>
-                            <input type="text" name="rgFuncionario" id="rgFuncionario" class="form-control" placeholder="RG do Usuario" maxlength="20" required>
+                            <input type="text" name="rgFuncionario" id="rgFuncionario" class="form-control" placeholder="RG do Usuario"
+                                maxlength="20" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label for="colFormLabel">Telefone:</label>
-                            <input type="text" name="telefoneFuncionario" id="telefoneFuncionario" class="form-control" placeholder="Telefone" required maxlength="20">
+                            <input type="text" name="telefoneFuncionario" id="telefoneFuncionario" class="form-control"
+                                placeholder="Telefone" required maxlength="20">
                         </div>
                         <div class="col-sm-4">
                             <label for="colFormLabel">Login:</label>
-                            <input type="text" name="loginUsuario" id="loginUsuario" class="form-control" placeholder="Login do Usuario" required maxlength="40">
+                            <input type="text" name="loginUsuario" id="loginUsuario" class="form-control" placeholder="Login do Usuario"
+                                required maxlength="40">
                         </div>
 
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-4" style="display: none"> 
+                        <div class="col-sm-4" style="display: none">
                             <input type="number" name="fkEmpresa" id="fkEmpresa">
                             <input type="text" name="cargoFuncionario" id="cargoFuncionario" value="Usuario">
                             <input type="number" name="nivelAcesso" id="nivelAcesso" maxlength="20" value="3">
                             <input type="text" name="senhaUsuario" id="senhaUsuario" value="123">
                         </div>
                     </div>
-                    
+
 
                     <div class="form-group">
                         <button type="submit" id="btn_salvar" class="btn btn-outline-primary">Salvar</button>
@@ -186,7 +191,8 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Selecione "Logout" abaixo se você estiver pronto para terminar sua sessão atual.
+                <div class="modal-body">Selecione "Logout" abaixo se você estiver pronto para terminar sua sessão
+                    atual.
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
@@ -212,57 +218,85 @@
 
 <script>
 
-   
-    var exibiu_grafico = false;
-  
-    verificarAutenticacao();
-  
-    function verificarAutenticacao() {
-      usuario = sessionStorage.usuario_bandtec;
-      if (usuario == undefined || sessionStorage.nivelacesso !=2) {
-          window.location.href = '../../Login/login.html'
-      }
-      usuario_logado.innerHTML = sessionStorage.nome_usuario;
-  }
 
-  function logoff() {
-      sessionStorage.removeItem('idEmpresa');
-      sessionStorage.removeItem('usuario_bandtec');
+    var exibiu_grafico = false;
+
+    verificarAutenticacao();
+
+    function verificarAutenticacao() {
+        usuario = sessionStorage.usuario_bandtec;
+        if (usuario == undefined || sessionStorage.nivelacesso != 2) {
+            window.location.href = '../../Login/login.html'
+        }
+        usuario_logado.innerHTML = sessionStorage.nome_usuario;
+    }
+
+    function logoff() {
+        sessionStorage.removeItem('idEmpresa');
+        sessionStorage.removeItem('usuario_bandtec');
         sessionStorage.removeItem('idlogin');
         sessionStorage.removeItem('nivelacesso');
         sessionStorage.removeItem('nome_usuario');
-      verificarAutenticacao();
-  }
-    function cadastrarUsuario() {
-        fkEmpresa.value = sessionStorage.idEmpresa;
-        btn_salvar.disabled = true;
-        var formulario = new URLSearchParams(new FormData(form_Usuario));
-        fetch("/cadastros/cadastrarUsuario", {
-            method: "POST",
-            body: formulario
-        }).then(function (response) {
-
-            if (response.ok) {
-                console.log('Cadastrado com sucesso');
-                swal({
-                    title: "Cadastrado com sucesso!",
-                    text: "   ",
-                    icon: "success"
-                });
-                limpar();
-
-            } else {
-                console.log('Erro ao cadastrar!');
-                swal({
-                    title: "Erro ao cadastrar!",
-                    text: "   ",
-                    icon: "error"
-                });
-            }
-        });
-        btn_salvar.disabled = false;
-        return false;
+        verificarAutenticacao();
     }
+    function cadastrarUsuario() {
+        btn_salvar.disabled = true;
+
+        if (validar == true) {
+            fkEmpresa.value = sessionStorage.idEmpresa;
+            var formulario = new URLSearchParams(new FormData(form_Usuario));
+            fetch("/cadastros/cadastrarUsuario", {
+                method: "POST",
+                body: formulario
+            }).then(function (response) {
+
+                if (response.ok) {
+                    console.log('Cadastrado com sucesso');
+                    swal({
+                        title: "Cadastrado com sucesso!",
+                        text: "   ",
+                        icon: "success"
+                    });
+                    limpar();
+
+                } else {
+                    console.log('Erro ao cadastrar!');
+                    swal({
+                        title: "Erro ao cadastrar!",
+                        text: "   ",
+                        icon: "error"
+                    });
+                }
+            });
+           
+        }
+        else {
+            swal({
+                title: "Esse usuário já foi cadastrado!",
+                text: "Verifique na tela de consulta e edite o registro desejado.",
+                icon: "error"
+            });
+        }
+
+        btn_salvar.disabled = false;
+            return false;
+    }
+
+    var validar = false;
+    var cpfs = [];
+
+    function validar_cpf() {
+        for (r = 0; r < cpfs.length; r++) {
+            if (cpfFuncionario.value == cpfs[r]) {
+                validar = false;
+                break;
+            } else {
+                validar = true;
+                
+            }
+        }
+    }
+
     function limpar() {
         nomeFuncionario.value = '';
         emailFuncionario.value = '';
@@ -271,17 +305,54 @@
         telefoneFuncionario.value = '';
         loginUsuario.value = '';
     }
-    </script>
 
-    <!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
+    consultar_dados();
+
+
+function consultar_dados() {
+    // guarda código do usuário que está no atributo usuario_bandtec
+    // em um json e depois utiliza a classe URLSearchParams
+    //para mandar para o arquivo js
+
+
+    var cdEmpresa = { codigo: sessionStorage.idEmpresa }
+    var corpo = new URLSearchParams(cdEmpresa);
+
+
+    fetch("/consulta-perfil/consulta-funcionario", {
+        method: "POST",
+        body: corpo
+    }).then(function (response) {
+        console.log(response);
+        if (response.ok) {
+
+            response.json().then(function (resposta) {
+
+                if (resposta.length != undefined) {
+                    // devolve informação da empresa
+                    var conteudo = '';
+                    for (r = 0; r < resposta.length; r++) {
+                        var atual = resposta[r];
+                        cpfs.push(atual.cpfFuncionario);
+                }
+            }
+            });
+        } else {
+            console.log('Erro de consulta!');
+        }
+    });
+
+    return false;
+}
+</script>
+
+<!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
 <script src="http://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 
 <script>
-  $('#telefoneFuncionario').mask('(00) 0 0000-0000');
-  $('#cpfFuncionario').mask('000.000.000-00');
+    $('#telefoneFuncionario').mask('(00) 0 0000-0000');
+    $('#cpfFuncionario').mask('000.000.000-00');
 </script>
 
- <!-- script do suporte -->
- <script type="text/javascript" src="js/suporte.js"></script>
-
-  
+<!-- script do suporte -->
+<script type="text/javascript" src="js/suporte.js"></script>
