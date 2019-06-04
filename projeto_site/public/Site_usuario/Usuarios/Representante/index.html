@@ -146,7 +146,7 @@
           <div id="div_aguarde">Dados sendo obtidos...</div>
           <canvas id="canvas_grafico"></canvas>
         </div>
-        <div id="estatisticas" style="display: none">
+        <div id="estatisticas" style="display: block">
           <div id="estatisticas-temp">
             <div id="est-temp-titulo">
               Temperatura
@@ -236,7 +236,7 @@
 
 <script>
   var exibiu_grafico = false;
-
+  consultar_analitycs();
   verificarAutenticacao();
 
   function verificarAutenticacao() {
@@ -277,28 +277,25 @@
   function comeca() {
     atualizarGrafico();
     atualizarGraficoReal();
-    consultar_analitycs();
   }
-
-
   function consultar_analitycs() {
 
-    fetch("/leituras/estatisticas", {
-      method: "POST"
-    }).then(function (response) {
-      if (response.ok) {
+fetch("/leituras/estatisticas", {
+    method: "GET"
+}).then(function (response) {
+    if (response.ok) {
         response.json().then(function (resposta) {
-          //devolve informação do ambiente
-          temp_mediana_conteudo.innerHTML = resposta[0].umid_media;
-          temp_media_conteudo.innerHTML = resposta[0].temp_media;
+            //devolve informação do ambiente
+            //temp_mediana_conteudo.innerHTML = resposta[0].umid_media;
+            console.log(resposta);
+            temp_media_conteudo.innerHTML = resposta.temp_media.toFixed(2);
         });
-      } else {
+    } else {
         console.log('Erro de consulta!');
-      }
-    });
-    return false;
-  }
-
+    }
+});
+return false;
+}
 
   // altere aqui as configurações do gráfico
   // (tamanhos, cores, textos, etc)

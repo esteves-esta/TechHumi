@@ -48,7 +48,7 @@ router.get('/estatisticas', function (req, res, next) {
   banco.conectar().then(() => {
     return banco.sql.query(`
         select top 100
-          avg(umdidade) as umid_media, 
+          avg(umidade) as umid_media, 
           avg(temperatura) as temp_media 
         from Sensor
         `);
@@ -57,6 +57,7 @@ router.get('/estatisticas', function (req, res, next) {
     estatisticas.temp_media = consulta.recordset[0].temp_media;
     console.log(`Estatísticas: ${JSON.stringify(estatisticas)}`);
     res.send(estatisticas);
+    res.status(201);
   }).catch(err => {
 
     var erro = `Erro na leitura dos últimos registros: ${err}`;
