@@ -95,24 +95,25 @@
             <div class="col-sm-4">
               <input type="hidden" id="cd_emp" name="cd_emp">
               <label for="colFormLabel" class="">Nome:</label>
-              <input type="text" class="form-control" placeholder="Nome da Empresa" id="empresa" name="empresa" maxlength="60"
-                required>
+              <input type="text" class="form-control" placeholder="Nome da Empresa" id="empresa" name="empresa"
+                maxlength="60" minlength="5" required>
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">CNPJ:</label>
-              <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ da Empresa" maxlength="30" required
-                maxlength="19">
+              <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ da Empresa" maxlength="30" minlength="18"
+                required>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel">Telefone:</label>
-              <input type="text" class="form-control" id="tele2" name="tele2" placeholder="Telefone - 1" maxlength="20" required>
+              <input type="text" class="form-control" id="tele2" name="tele2" placeholder="Telefone - 1" maxlength="20"  minlength="14"
+                required>
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">Telefone:</label>
-              <input type="text" class="form-control" id="tele1" name="tele1" placeholder="Telefone - 2" maxlength="20">
+              <input type="text" class="form-control" id="tele1" name="tele1" placeholder="Telefone - 2" maxlength="20"  minlength="14">
             </div>
           </div>
           <div class="form-group row">
@@ -126,24 +127,27 @@
 
             <div class="col-sm-2">
               <label for="colFormLabel">CEP:</label>
-              <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required maxlength="12">
+              <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required maxlength="12"  minlength="9">
             </div>
 
             <div class="col-sm-2">
               <label for="colFormLabel">Número:</label>
-              <input type="text" class="form-control" id="numero" name="numero" placeholder="20" maxlength="15" required>
+              <input type="text" class="form-control" id="numero" name="numero" placeholder="20" maxlength="15"
+                required>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel">Bairro:</label>
-              <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" maxlength="50" required>
+              <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" maxlength="50"
+                required>
             </div>
 
             <div class="col-sm-4">
               <label for="colFormLabel">Complemento:</label>
-              <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Complemento" maxlength="30">
+              <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Complemento"
+                maxlength="30">
             </div>
           </div>
 
@@ -156,11 +160,12 @@
 
             <div class="col-sm-3">
               <label for="colFormLabel">Cidade:</label>
-              <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" maxlength="40" required>
+              <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" maxlength="40"
+                required>
             </div>
             <div class="col-sm-1">
               <label for="colFormLabel">UF:</label>
-              <input type="text" class="form-control" id="uf" name="uf" placeholder="UF" required maxlength="2">
+              <input type="text" class="form-control" id="uf" name="uf" placeholder="UF" required maxlength="2"  minlength="2">
             </div>
           </div>
 
@@ -176,19 +181,20 @@
             <div class="col-sm-4">
               <label for="colFormLabel">E-mail:</label>
               <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail do Representante"
-              maxlength="80" required>
+                maxlength="80" required  minlength="6">
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel" class=""> RG:</label>
-              <input type="text" class="form-control" id="rg" name="rg" placeholder="RG do Representante"
-              maxlength="25" required>
+              <input type="text" class="form-control" id="rg" name="rg" placeholder="RG do Representante" maxlength="25"  minlength="8"
+                required>
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">CPF:</label>
-              <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF do Representante" maxlength="25" required>
+              <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF do Representante" 
+                maxlength="25"  minlength="14" required>
             </div>
           </div>
 
@@ -197,13 +203,13 @@
             <div class="col-sm-4">
               <label for="colFormLabel" class=""> Telefone:</label>
               <input type="text" class="form-control" id="telefone" name="telefone"
-                placeholder="Telefone do Representante" maxlength="20" required>
+                placeholder="Telefone do Representante" maxlength="20" required minlength="14">
             </div>
 
             <div class="col-sm-4">
               <label for="colFormLabel" class=""> Login:</label>
-              <input type="text" class="form-control" id="login" name="login"
-                placeholder="Login do Representante" maxlength="40" required>
+              <input type="text" class="form-control" id="login" name="login" placeholder="Login do Representante"
+                maxlength="40" required minlength="5">
             </div>
           </div>
 
@@ -285,7 +291,7 @@
 
   function verificarAutenticacao() {
     usuario = sessionStorage.usuario_bandtec;
-    if (usuario == undefined || sessionStorage.nivelacesso !=1) {
+    if (usuario == undefined || sessionStorage.nivelacesso != 1) {
       window.location.href = '../../Login/login.html'
     }
     usuario_logado.innerHTML = sessionStorage.nome_usuario;
@@ -300,34 +306,46 @@
 
   function cadastro() {
     btn_salvar.disabled = true;
-    var formulario = new URLSearchParams(new FormData(form_Cadastro));
-    fetch("/cadastros/cadastrarEmpresa", {
-      method: "POST",
-      body: formulario
-    }).then(function (response) {
 
-      if (response.ok) {
+    validar_cnpj();
 
-        swal({
-          title: "Cadastro realizado com sucesso!",
-          text: "   ",
-          icon: "success"
-        });
+    if (validar == true) {
+      var formulario = new URLSearchParams(new FormData(form_Cadastro));
+      fetch("/cadastros/cadastrarEmpresa", {
+        method: "POST",
+        body: formulario
+      }).then(function (response) {
 
-        setTimeout(    limpar(),3000);
-      } else {
+        if (response.ok) {
 
-        swal({
-          title: "Erro ao cadastrar!",
-          text: "   ",
-          icon: "error"
-        });
-      }
-    });
+          swal({
+            title: "Cadastro realizado com sucesso!",
+            text: "   ",
+            icon: "success"
+          });
+
+          setTimeout(limpar(), 3000);
+        } else {
+
+          swal({
+            title: "Erro ao cadastrar!",
+            text: "   ",
+            icon: "error"
+          });
+        }
+      });
+    }
+    else {
+      swal({
+        title: "Esse usuário já foi cadastrado!",
+        text: "Verifique na tela de consulta e edite o registro desejado.",
+        icon: "error"
+      });
+    }
 
     btn_salvar.disabled = false;
-   
-   
+
+
 
     return false;
   }
@@ -348,8 +366,61 @@
     email.value = ' ';
     rg.value = ' ';
     cpf.value = ' ';
-        telefone.value = ' ';
+    telefone.value = ' ';
     login.value = ' ';
     empresa.focus();
+  }
+
+  consultar_dados();
+
+
+  function consultar_dados() {
+    // guarda código do usuário que está no atributo usuario_bandtec
+    // em um json e depois utiliza a classe URLSearchParams
+    //para mandar para o arquivo js
+
+
+    var cdEmpresa = { codigo: '' }
+    var corpo = new URLSearchParams(cdEmpresa);
+
+
+    fetch("/consulta-perfil/consulta-empresas", {
+      method: "POST",
+      body: corpo
+    }).then(function (response) {
+      console.log(response);
+      if (response.ok) {
+
+        response.json().then(function (resposta) {
+
+          if (resposta.length != undefined) {
+            // devolve informação da empresa
+            var conteudo = '';
+            for (r = 0; r < resposta.length; r++) {
+              var atual = resposta[r];
+              vCnpj.push(atual.cnpjEmpresa);
+            }
+          }
+        });
+      } else {
+        console.log('Erro de consulta!');
+      }
+    });
+
+    return false;
+  }
+
+  var validar = false;
+  var vCnpj = [];
+
+  function validar_cnpj() {
+    for (r = 0; r < vCnpj.length; r++) {
+      if (cnpj.value == vCnpj[r]) {
+        validar = false;
+        break;
+      } else {
+        validar = true;
+      }
+    }
   }
 </script>

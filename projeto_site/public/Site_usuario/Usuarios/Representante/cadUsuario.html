@@ -241,7 +241,7 @@
     }
     function cadastrarUsuario() {
         btn_salvar.disabled = true;
-
+        validar_cpf();
         if (validar == true) {
             fkEmpresa.value = sessionStorage.idEmpresa;
             var formulario = new URLSearchParams(new FormData(form_Usuario));
