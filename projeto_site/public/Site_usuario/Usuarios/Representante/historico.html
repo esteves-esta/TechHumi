@@ -107,20 +107,20 @@
           </div>
 
           <div class="col-md-6">
-            <div class="input-group mb-3">
+            <!-- <div class="input-group mb-3">
               <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Histórico de dados">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="submit">
                   <span class="fas fa-search"></span>
                 </button>
               </div>
-            </div>
+            </div> -->
           </div>
         </div> <!-- /#top -->
 
         <div id="list" class="row">
-          <div class="table-responsive col-md-12">
-            <table class="table table-striped" cellspacing="0" cellpadding="0">
+          <div class="table-responsive col-md-12 mt-5">
+            <table class="table table-striped" cellspacing="0" cellpadding="0" id="tabela">
               <thead>
                 <tr>
 
@@ -297,6 +297,11 @@
         //window.location.reload(false); 
       }
     });
+
+    setTimeout(() => {
+                $('#tabela').dataTable();
+                $('input[type="search"').attr('id', 'search');
+        }, 2000);
 
     return false;
   }

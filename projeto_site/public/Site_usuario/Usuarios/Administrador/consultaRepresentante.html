@@ -84,7 +84,7 @@
                     </div>
 
                     <div class="col-md-7">
-                        <div class="input-group mb-3">
+                        <!-- <div class="input-group mb-3">
                             <input name="data[search]" class="form-control" id="search" type="text"
                                 placeholder="Pesquisar Representante">
                             <div class="input-group-append">
@@ -92,13 +92,13 @@
                                     <span class="fas fa-search"></span>
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div> <!-- /#top -->
 
                 <div id="list" class="row">
-                    <div class="table-responsive col-md-12">
-                        <table class="table table-striped" cellspacing="0" cellpadding="0">
+                    <div class="table-responsive col-md-12 mt-5">
+                        <table class="table table-striped" cellspacing="0" cellpadding="0" id="tabela">
                             <thead>
                                 <tr>
                                     <!-- <th scope="col">ID</th> -->
@@ -109,6 +109,7 @@
                                     <th scope="col">Telefone</th>
                                     <!-- <th scope="col">Cargo</th> -->
                                     <th scope="col">Empresa</th>
+                                    <th scope="col">Ações</th>
                                 </tr>
                             </thead>
                             <tbody id="corpo_tabela">
@@ -258,6 +259,10 @@
             }
         });
 
+        setTimeout(() => {
+                $('#tabela').dataTable();
+                $('input[type="search"').attr('id', 'search');
+        }, 2000);
         return false;
     }
 

@@ -100,7 +100,7 @@
                         <h4>Usuarios Cadastrados</h4>
                     </div>
 
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="input-group mb-3">
                             <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Usuários">
                             <div class="input-group-append">
@@ -109,16 +109,16 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <a href="cadUsuario.html" class="btn btn-primary pull-right h2">Novo Usuario</a>
                     </div>
                 </div> <!-- /#top -->
 
                 <div id="list" class="row">
-                    <div class="table-responsive col-md-12">
-                        <table class="table table-striped" cellspacing="0" cellpadding="0">
+                    <div class="table-responsive col-md-12 mt-5">
+                        <table class="table table-striped" cellspacing="0" cellpadding="0" id="tabela">
                             <thead>
                                 <tr>
                                     <!-- <th scope="col">ID</th> -->
@@ -297,6 +297,11 @@
                 console.log('Erro de consulta!');
             }
         });
+
+        setTimeout(() => {
+                $('#tabela').dataTable();
+                $('input[type="search"').attr('id', 'search');
+        }, 2000);
 
         return false;
     }

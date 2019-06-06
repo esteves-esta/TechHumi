@@ -14,11 +14,16 @@
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Page level plugin CSS-->
     <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+    
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin.css" rel="stylesheet">
@@ -27,7 +32,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="consultar_dados()">
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -44,12 +49,12 @@
 
         <!-- Navbar -->
         <ul class="navbar-nav ml-auto ml-md-0">
-                <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal"
-                            data-target="#logoutModal">
-                            <i class="fas fa-sign-out-alt fa-fw"></i>
-                        </a>
-                    </li>
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal"
+                    data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-fw"></i>
+                </a>
+            </li>
         </ul>
 
     </nav>
@@ -82,7 +87,7 @@
                         <h4>Empresas Cadastradas</h4>
                     </div>
 
-                    <div class="col-md-7">
+                    <!-- <div class="col-md-7">
                         <div class="input-group mb-3">
                             <input name="data[search]" class="form-control" id="search" type="text"
                                 placeholder="Pesquisar Empresas">
@@ -92,12 +97,12 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div> <!-- /#top -->
 
-                <div id="list" class="row">
+                <div id="list" class="row mt-5">
                     <div class="table-responsive col-md-12">
-                        <table class="table table-striped" cellspacing="0" cellpadding="0">
+                        <table id="yourtable" class="table table-striped" cellspacing="0" cellpadding="0">
                             <thead>
                                 <tr>
                                     <!-- <th scope="col">ID</th> -->
@@ -111,8 +116,9 @@
                                     <th scope="col">Bairro</th>
                                     <th scope="col">Cidade</th>
                                     <th scope="col">UF</th>
-                                    <th class="actions">CEP</th>
+                                    <th scope="col">CEP</th>
                                     <th scope="col">Referência</th>
+                                    <th scope="col">Ações</th>
                                 </tr>
                             </thead>
                             <tbody id="corpo_tabela">
@@ -202,7 +208,7 @@
 
     function verificarAutenticacao() {
         usuario = sessionStorage.usuario_bandtec;
-        if (usuario == undefined || sessionStorage.nivelacesso !=1) {
+        if (usuario == undefined || sessionStorage.nivelacesso != 1) {
             window.location.href = '../../Login/login.html'
         }
         usuario_logado.innerHTML = sessionStorage.nome_usuario;
@@ -217,7 +223,10 @@
     }
 
     aguardar();
-    consultar_dados();
+
+
+     
+    
 
 
     function consultar_dados() {
@@ -242,7 +251,7 @@
                     for (r = 0; r < resposta.length; r++) {
                         var atual = resposta[r];
 
-                // <td>${atual.idEmpresa}</td>
+                        // <td>${atual.idEmpresa}</td>
                         conteudo += `<tr>
                 <td>${atual.nomeEmpresa}</td>
                 <td>${atual.cnpjEmpresa}</td>
@@ -265,12 +274,17 @@
 
                     }
                     corpo_tabela.innerHTML = conteudo;
+                    
                 });
             } else {
                 console.log('Erro de consulta!');
             }
         });
 
+        setTimeout(() => {
+                $('#yourtable').dataTable();
+                $('input[type="search"').attr('id', 'search');
+        }, 2000);
         return false;
     }
 
@@ -281,7 +295,7 @@
             icon: "info",
             buttons: false,
             timer: 4000,
-            closeOnClickOutside: false, 
+            closeOnClickOutside: false,
         });
     }
 
@@ -302,7 +316,7 @@
                 }
             });
     }
-var cdEmpresa;
+    var cdEmpresa;
     function excluir_dados(cod) {
         // coloca valores dos codigo em input escondidos para enviar para o js
         cdEmpresa = { codigo: cod }
@@ -314,7 +328,7 @@ var cdEmpresa;
         }).then(function (response) {
 
             if (response.ok) {
-           
+
                 swal({
                     title: "Excluído com sucesso!",
                     text: "Aguarde enquanto atualizamos os registros",
@@ -324,9 +338,9 @@ var cdEmpresa;
                     closeOnClickOutside: false,
                 });
                 consultar_dados();
-                
+
             } else {
-          
+
                 swal({
                     title: "Erro ao excluir! Por favor tente de novo.",
                     text: "   ",
@@ -335,7 +349,7 @@ var cdEmpresa;
             }
         });
 
-            
+
         // }
         return false;
     }
