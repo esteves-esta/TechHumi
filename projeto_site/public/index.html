@@ -176,21 +176,21 @@
                     Tem interesse em nosso produto? Preencha o formulário abaixo!</p>
                 </div>
                 <div class="col-lg-4 col-lg-offset-2 ">
-                    <form>
+                    <form id="contatoEmp" onsubmit="return contatoEmpresa()">
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nome da Empresa</label>
-                            <input type="text" class="form-control" id="empresa" placeholder="Insira o nome da Empresa">
+                            <input name="nomeEmp" type="text" class="form-control" id="empresa" placeholder="Insira o nome da Empresa">
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nome do Representante</label>
-                            <input type="text" class="form-control" id="representante" placeholder="Insira o nome do Representante">
+                            <input name="nomeRep" type="text" class="form-control" id="representante" placeholder="Insira o nome do Representante">
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">CNPJ</label>
-                            <input type="text" class="form-control" id="cnpj" placeholder="Insira seu CNPJ">
+                            <input name="cnpjEmp" type="text" class="form-control" id="cnpj" placeholder="Insira seu CNPJ">
                         </div>
 
                         <div class="form-group">
@@ -198,7 +198,7 @@
 
                             <div class="form-row">
                                 <div class="col-lg-4">
-                                    <select class="form-control form-control-sm" id="ddd">
+                                    <select name="dd" class="form-control form-control-sm" id="ddd">
                                         <option>DDD</option>
                                         <option value="11">11</option>
                                         <option value="12">12</option>
@@ -217,7 +217,7 @@
 
 
                                 <div class="col-lg-8">
-                                    <input type="text" class="form-control" id="telefone"
+                                    <input name="telEmp" type="text" class="form-control" id="telefone"
                                         placeholder="Insira seu Telefone">
                                 </div>
 
@@ -228,7 +228,7 @@
                         <br><br>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Escreva sua mensagem.</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea name="msg" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
 
                         <button type="button" class="btn btn-info" onclick="preCadastrar()">Enviar</button>
@@ -273,9 +273,7 @@
 <script>
     function preCadastrar(){
         if (empresa.value != '' && representante.value != '' && cnpj.value != '' && ddd.value != 'DDD' && telefone.value != ''){
-            swal({
-                title: `Obrigado pelo Interrese, Aguarde Nosso Retorno!`
-            }); 
+            contatoEmpresa() 
         }
         else{
             swal({
@@ -284,6 +282,7 @@
         }
        
     }
+
 function calcular() {
         var media_metro = (Number(media.value) / Number(escritorio.value));
         var ar_condicionado;
@@ -325,4 +324,31 @@ function calcular() {
 
 
     }
+
+    
+    function contatoEmpresa(){
+        var formulario = new URLSearchParams(new FormData(contatoEmp));
+        fetch("/email/emailEmp", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+            
+            if (response.ok) {
+                swal({
+                title: `Obrigado pelo Interrese, Aguarde Nosso Retorno!`,
+                timer:100
+            });
+             consultarEmail();
+            } else {
+
+                console.log('Erro de login!');
+                swal({
+            icon :"error",
+            title:`Houve um problema de conexão`
+        });
+            }
+        });
+        return false;
+    }
+
     </script>
