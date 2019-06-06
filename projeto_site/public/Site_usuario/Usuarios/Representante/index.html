@@ -330,7 +330,7 @@ fetch("/leituras/estatisticas", {
             temp_min_conteudo.innerHTML = resposta.temp_min.toFixed(1);
             temp_1q_conteudo.innerHTML = resposta.temp_1q.toFixed(1);
             temp_media_conteudo.innerHTML = resposta.temp_media.toFixed(1);
-            temp_mediana_conteudo.innerHTML = resposta.temp_mediana.toFixed(1);
+            temp_mediana_conteudo.innerHTML = parseInt(resposta.temp_mediana);
             temp_3q_conteudo.innerHTML = resposta.temp_3q.toFixed(1);
             temp_max_conteudo.innerHTML = resposta.temp_max.toFixed (1);
             //UMIDADE
