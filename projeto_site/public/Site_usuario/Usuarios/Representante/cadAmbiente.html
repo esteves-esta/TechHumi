@@ -85,8 +85,7 @@
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Configurações</span>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
-                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
+                <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
                     <a class="dropdown-item" href="perfil.html" id="somente_adm1">Perfil</a>
                     <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
                     <a class="dropdown-item" href="rotina.html" id="somente_adm2">Rotina</a>
@@ -124,8 +123,7 @@
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-outline-primary" id="btn_salvar">Salvar</button>
-                        <a href="consultaAmbientes.html"><button type="button"
-                                class="btn btn-outline-danger">Cancelar</button></a>
+                        <a href="consultaAmbientes.html"><button type="button" class="btn btn-outline-danger">Cancelar</button></a>
                     </div>
             </div>
             </form>
@@ -161,7 +159,8 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Selecione "Logout" abaixo se você estiver pronto para terminar sua sessão atual.
+                <div class="modal-body">Selecione "Logout" abaixo se você estiver pronto para terminar sua sessão
+                    atual.
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
@@ -221,6 +220,8 @@
     function cadastrarAmbiente() {
         //btn_salvar.disabled = true;
 
+        validar_nomeambiente();
+        if (validar == true) {
         var formulario = new URLSearchParams(new FormData(form_Ambiente));
         fetch("/cadastros/cadastrarAmbiente", {
             method: "POST",
@@ -234,7 +235,7 @@
                     text: "   ",
                     icon: "success"
                 });
-
+                consultar_dados();
             } else {
                 console.log('Erro ao cadastrar!');
                 swal({
@@ -244,13 +245,71 @@
                 });
             }
         });
+    }  else {
+            swal({
+                title: "Este ambiente já foi cadastrado!",
+                text: "Verifique na tela de consulta e edite o registro desejado.",
+                icon: "error"
+            });
+        }
+
         btn_salvar.disable = false;
+       
         return false;
     }
+
+
     function limpar() {
         descricaoAmbiente.value = '';
         localizacaoAmbiente.value = '';
     }
+
+
+    consultar_dados();
+
+
+    function consultar_dados() {
+        var cdEmpresa = { codigo: sessionStorage.idEmpresa }
+        var corpo = new URLSearchParams(cdEmpresa);
+
+
+        fetch("/consulta-perfil/consulta-ambiente", {
+            method: "POST",
+            body: corpo
+        }).then(function (response) {
+
+            if (response.ok) {
+      
+                response.json().then(function (resposta) {
+                    // devolve informação da empresa
+                    for (r = 0; r < resposta.length; r++) {
+                        var atual = resposta[r];
+                        ambientesLista.push(atual.descricaoAmbiente);
+                    }
+
+                });
+            } else {
+                console.log('Erro de consulta!');
+            }
+        });
+
+    }
+
+    var validar = false;
+    var ambientesLista = [];
+
+    function validar_nomeambiente() {
+        for (r = 0; r < ambientesLista.length; r++) {
+            if (descricaoAmbiente.value == ambientesLista[r]) {
+                validar = false;
+                break;
+            } else {
+                validar = true;
+
+            }
+        }
+    }
+
 </script>
 
 <!-- script do suporte -->
