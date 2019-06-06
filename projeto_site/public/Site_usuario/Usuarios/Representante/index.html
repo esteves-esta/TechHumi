@@ -163,12 +163,12 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>20</td>
-                  <td>20.4 </td>
+                  <td id="temp_min_conteudo"></td>
+                  <td id="temp_1q_conteudo"></td>
                   <td id="temp_media_conteudo"></td>
                   <td id="temp_mediana_conteudo"></td>
-                  <td>22.6</td>
-                  <td>23</td>
+                  <td id="temp_3q_conteudo"></td>
+                  <td id="temp_max_conteudo"></td>
               </tr>
               </tbody>
             </table>
@@ -189,12 +189,12 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>20</td>
-                  <td>20.4 </td>
+                  <td id="umid_min_conteudo"></td>
+                  <td id="umid_1q_conteudo"></td>
                   <td id="umid_media_conteudo"></td>
                   <td id="umid_mediana_conteudo"></td>
-                  <td>22.6</td>
-                  <td>23</td>
+                  <td id="umid_3q_conteudo"></td>
+                  <td id="umid_max_conteudo"></td>
               </tr>
               </tbody>
             </table>
@@ -276,7 +276,6 @@
 
 <script>
   var exibiu_grafico = false;
-  consultar_analitycs();
   verificarAutenticacao();
 
   function verificarAutenticacao() {
@@ -318,6 +317,7 @@
     atualizarGrafico();
     atualizarGraficoReal();
   }
+  setInterval(consultar_analitycs,10000);
   function consultar_analitycs() {
 
 fetch("/leituras/estatisticas", {
@@ -325,10 +325,21 @@ fetch("/leituras/estatisticas", {
 }).then(function (response) {
     if (response.ok) {
         response.json().then(function (resposta) {
-            //devolve informação do ambiente
-            //temp_mediana_conteudo.innerHTML = resposta[0].umid_media;
+            //devolve informação do analitycs
             console.log(resposta);
-            temp_media_conteudo.innerHTML = resposta.temp_media.toFixed(2);
+            temp_min_conteudo.innerHTML = resposta.temp_min.toFixed(1);
+            temp_1q_conteudo.innerHTML = resposta.temp_1q.toFixed(1);
+            temp_media_conteudo.innerHTML = resposta.temp_media.toFixed(1);
+            temp_mediana_conteudo.innerHTML = resposta.temp_mediana.toFixed(1);
+            temp_3q_conteudo.innerHTML = resposta.temp_3q.toFixed(1);
+            temp_max_conteudo.innerHTML = resposta.temp_max.toFixed (1);
+            //UMIDADE
+            umid_min_conteudo.innerHTML = parseInt(resposta.umid_min);
+            umid_1q_conteudo.innerHTML = parseInt(resposta.umid_1q);
+            umid_media_conteudo.innerHTML = parseInt(resposta.umid_media);
+            umid_mediana_conteudo.innerHTML = parseInt(resposta.umid_mediana);
+            umid_3q_conteudo.innerHTML = parseInt(resposta.umid_3q);
+            umid_max_conteudo.innerHTML = parseInt(resposta.umid_max);
         });
     } else {
         console.log('Erro de consulta!');
@@ -603,7 +614,7 @@ return false;
   }
 
 
-  consultar_dados();
+  setTimeout(consultar_dados,5000);
   function consultar_dados() {
         // guarda código do usuário que está no atributo usuario_bandtec
         // em um json e depois utiliza a classe URLSearchParams
