@@ -9,14 +9,14 @@ telefoneEmpresa2 varchar(20) unique
 
 create table Endereco(
 idEndereco int primary key identity(1,1),
-logradouro varchar(40) not null,
+logradouro varchar(80) not null,
 numero varchar(15) not null,
 complemento varchar(30),
 bairro varchar(50) not null,
 cidade varchar(40) not null,
 uf char(2) not null,
 cep varchar(12) not null,
-referencia varchar(35),
+referencia varchar(80),
 fkEmpresa int foreign key references Empresa(idEmpresa)
 );
 

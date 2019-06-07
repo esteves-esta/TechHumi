@@ -44,8 +44,7 @@
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
       <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal"
-          data-target="#logoutModal">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal" data-target="#logoutModal">
           <i class="fas fa-sign-out-alt fa-fw"></i>
         </a>
       </li>
@@ -100,20 +99,21 @@
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">CNPJ:</label>
-              <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ da Empresa" maxlength="30" minlength="18"
-                required>
+              <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ da Empresa" maxlength="30"
+                minlength="18" required>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel">Telefone:</label>
-              <input type="text" class="form-control" id="tele2" name="tele2" placeholder="Telefone - 1" maxlength="20"  minlength="14"
-                required>
+              <input type="text" class="form-control" id="tele2" name="tele2" placeholder="Telefone - 1" maxlength="20"
+                minlength="14" required>
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">Telefone:</label>
-              <input type="text" class="form-control" id="tele1" name="tele1" placeholder="Telefone - 2" maxlength="20"  minlength="14">
+              <input type="text" class="form-control" id="tele1" name="tele1" placeholder="Telefone - 2" maxlength="20"
+                minlength="14">
             </div>
           </div>
           <div class="form-group row">
@@ -121,13 +121,14 @@
             <div class="col-sm-4">
               <input type="hidden" id="cd_end" name="cd_end">
               <label for="colFormLabel">Logradouro:</label>
-              <input type="text" class="form-control" id="logradouro" name="logradouro"
-                placeholder="Logradouro da Empresa" maxlength="40" required>
+              <input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="Logradouro da Empresa"
+                maxlength="40" required>
             </div>
 
             <div class="col-sm-2">
               <label for="colFormLabel">CEP:</label>
-              <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required maxlength="12"  minlength="9">
+              <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required maxlength="12"
+                minlength="9" onblur="pesquisacep(this.value);">
             </div>
 
             <div class="col-sm-2">
@@ -154,8 +155,8 @@
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel">Referencia:</label>
-              <input type="text" class="form-control" id="referencia" name="referencia"
-                placeholder="Ponto de Referencia" maxlength="35">
+              <input type="text" class="form-control" id="referencia" name="referencia" placeholder="Ponto de Referencia"
+                maxlength="35">
             </div>
 
             <div class="col-sm-3">
@@ -165,7 +166,8 @@
             </div>
             <div class="col-sm-1">
               <label for="colFormLabel">UF:</label>
-              <input type="text" class="form-control" id="uf" name="uf" placeholder="UF" required maxlength="2"  minlength="2">
+              <input type="text" class="form-control" id="uf" name="uf" placeholder="UF" required maxlength="2"
+                minlength="2">
             </div>
           </div>
 
@@ -175,26 +177,26 @@
             <div class="col-sm-4">
               <input type="hidden" id="cd_func" name="cd_func">
               <label for="colFormLabel" class=""> Representante:</label>
-              <input type="text" class="form-control" id="representante" name="representante"
-                placeholder="Nome do Representante" maxlength="55" required>
+              <input type="text" class="form-control" id="representante" name="representante" placeholder="Nome do Representante"
+                maxlength="55" required>
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">E-mail:</label>
               <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail do Representante"
-                maxlength="80" required  minlength="6">
+                maxlength="80" required minlength="6">
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel" class=""> RG:</label>
-              <input type="text" class="form-control" id="rg" name="rg" placeholder="RG do Representante" maxlength="25"  minlength="8"
-                required>
+              <input type="text" class="form-control" id="rg" name="rg" placeholder="RG do Representante" maxlength="25"
+                minlength="8" required>
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">CPF:</label>
-              <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF do Representante" 
-                maxlength="25"  minlength="14" required>
+              <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF do Representante" maxlength="25"
+                minlength="14" required>
             </div>
           </div>
 
@@ -202,8 +204,8 @@
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel" class=""> Telefone:</label>
-              <input type="text" class="form-control" id="telefone" name="telefone"
-                placeholder="Telefone do Representante" maxlength="20" required minlength="14">
+              <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone do Representante"
+                maxlength="20" required minlength="14">
             </div>
 
             <div class="col-sm-4">
@@ -243,8 +245,7 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -423,4 +424,81 @@
       }
     }
   }
+</script>
+
+<!-- Adicionando Javascript -->
+<script type="text/javascript">
+  function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('logradouro').value = ("");
+    document.getElementById('bairro').value = ("");
+    document.getElementById('cidade').value = ("");
+    document.getElementById('uf').value = ("");
+  }
+
+  function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+      //Atualiza os campos com os valores.
+      document.getElementById('logradouro').value = (conteudo.logradouro);
+      document.getElementById('bairro').value = (conteudo.bairro);
+      document.getElementById('cidade').value = (conteudo.localidade);
+      document.getElementById('uf').value = (conteudo.uf);
+    } //end if.
+    else {
+      //CEP não Encontrado.
+      limpa_formulário_cep();
+      swal({
+            title: "CEP não encontrado!",
+            text: "   ",
+            icon: "error"
+      });
+    }
+  }
+
+  function pesquisacep(valor) {
+
+    //Nova variável "cep" somente com dígitos.
+    var cep = valor.replace(/\D/g, '');
+
+    //Verifica se campo cep possui valor informado.
+    if (cep != "") {
+
+      //Expressão regular para validar o CEP.
+      var validacep = /^[0-9]{8}$/;
+
+      //Valida o formato do CEP.
+      if (validacep.test(cep)) {
+
+        //Preenche os campos com "..." enquanto consulta webservice.
+        document.getElementById('logradouro').value = "...";
+        document.getElementById('bairro').value = "...";
+        document.getElementById('cidade').value = "...";
+        document.getElementById('uf').value = "...";
+
+        //Cria um elemento javascript.
+        var script = document.createElement('script');
+
+        //Sincroniza com o callback.
+        script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+        //Insere script no documento e carrega o conteúdo.
+        document.body.appendChild(script);
+
+      } //end if.
+      else {
+        //cep é inválido.
+        limpa_formulário_cep();
+        swal({
+            title: "CEP não encontrado!",
+            text: "   ",
+            icon: "error"
+          });
+      }
+    } //end if.
+    else {
+      //cep sem valor, limpa formulário.
+      limpa_formulário_cep();
+    }
+  };
+
 </script>
