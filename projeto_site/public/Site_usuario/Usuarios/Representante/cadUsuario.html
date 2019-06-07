@@ -110,36 +110,36 @@
                         <div class="col-sm-4">
                             <label for="colFormLabel" class="">Nome:</label>
                             <input type="text" name="nomeFuncionario" id="nomeFuncionario" class="form-control"
-                                placeholder="Nome do Usuario" maxlength="55" required>
+                                placeholder="Nome do Usuario" maxlength="55"  minlength="6" required>
                         </div>
                         <div class="col-sm-4">
                             <label for="colFormLabel" class=""> E-mail:</label>
                             <input type="email" name="emailFuncionario" id="emailFuncionario" class="form-control"
-                                placeholder="E-Mail do Usuario" maxlength="80" required>
+                                placeholder="E-Mail do Usuario" maxlength="80" required   minlength="6">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label for="colFormLabel">CPF:</label>
                             <input type="text" name="cpfFuncionario" id="cpfFuncionario" class="form-control"
-                                placeholder="CPF do Usuario" required maxlength="14">
+                                placeholder="CPF do Usuario" minlength="14" required maxlength="14">
                         </div>
                         <div class="col-sm-4">
                             <label for="colFormLabel">RG:</label>
                             <input type="text" name="rgFuncionario" id="rgFuncionario" class="form-control" placeholder="RG do Usuario"
-                                maxlength="20" required>
+                                maxlength="20" minlength="8" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label for="colFormLabel">Telefone:</label>
                             <input type="text" name="telefoneFuncionario" id="telefoneFuncionario" class="form-control"
-                                placeholder="Telefone" required maxlength="20">
+                                placeholder="Telefone" minlength="14" required maxlength="20">
                         </div>
                         <div class="col-sm-4">
                             <label for="colFormLabel">Login:</label>
                             <input type="text" name="loginUsuario" id="loginUsuario" class="form-control" placeholder="Login do Usuario"
-                                required maxlength="40">
+                                required maxlength="40" minlength="5">
                         </div>
 
                     </div>
@@ -257,7 +257,11 @@
                         text: "   ",
                         icon: "success"
                     });
-                    limpar();
+
+                    //limpar();
+                    setTimeout(function() {
+                        window.location.href = 'consultaUsuarios.html';
+                    }, 2000);
 
                 } else {
                     console.log('Erro ao cadastrar!');

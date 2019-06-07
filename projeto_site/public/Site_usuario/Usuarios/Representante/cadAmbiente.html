@@ -113,12 +113,12 @@
                             <label for="colFormLabel" class="">Descrição:</label>
                             <input type="text" id="idEmpresa" name="idEmpresa" style="display: none">
                             <input type="text" name="descricaoAmbiente" id="descricaoAmbiente" class="form-control"
-                                placeholder="Ex: Sala de Reunião" maxlength="40" required>
+                                placeholder="Ex: Sala de Reunião" maxlength="40" minlength="6" required>
                         </div>
                         <div class="col-sm-4">
                             <label for="colFormLabel" class=""> Localização:</label>
                             <input type="text" name="localizacaoAmbiente" id="localizacaoAmbiente" class="form-control"
-                                placeholder="Ex: 3º Andar, Sala 02" maxlength="20" required>
+                                placeholder="Ex: 3º Andar, Sala 02" maxlength="20" minlength="5" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -235,7 +235,11 @@
                     text: "   ",
                     icon: "success"
                 });
-                consultar_dados();
+
+                setTimeout(function() {
+                        window.location.href = 'consultaUsuarios.html';
+                    }, 2000);
+                    
             } else {
                 console.log('Erro ao cadastrar!');
                 swal({
