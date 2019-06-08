@@ -49,14 +49,7 @@ height: 60px;
  .navbar-dark .navbar-nav .nav-link {
      color: #2079b8 !important;
  }
- #estatisticas-temp{
-     width: 50%;
-     text-align: center;
- }
- #estatisticas-umid{
-    width: 50%;
-    text-align: center;
-}
+
 
 .esta_table:first-child {
     margin: 0px 20px;
@@ -64,7 +57,7 @@ height: 60px;
 
 .esta_table td {
     border: 0.3px solid #36a2eb;
-    padding: 5px 10px
+    padding: 5px 10px;
 }
 
 .esta_table thead td {
@@ -72,7 +65,7 @@ height: 60px;
     letter-spacing: 1px;
     font-size: 0.8em;
     font-weight: bold;
-
+text-align: center;
 }
 
 .esta_table tbody td {
