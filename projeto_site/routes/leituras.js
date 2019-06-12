@@ -55,6 +55,14 @@ router.get('/estatisticas', function (req, res, next) {
     select top 100
     avg(umidade) as umid_media, 
     avg(temperatura) as temp_media,
+    min(umidade) AS umid_min, 
+    min(temperatura) AS temp_min,
+    max(umidade) AS umid_max, 
+    max(temperatura) AS temp_max,
+    ((min(temperatura) - max(temperatura)) / 2) + min(temperatura) AS temp_1q,
+    ((min(umidade) - max(umidade)) / 2) + min(umidade) AS umid_1q,
+    (((min(temperatura) - max(temperatura)) / 2) * 3) + min(temperatura) AS temp_3q,
+    (((min(umidade) - max(umidade)) / 2) * 3) + min(umidade) AS umid_3q,
     ((SELECT MAX(umidade) FROM (SELECT TOP 50 PERCENT umidade FROM Sensor ORDER BY data_hora) AS primeira_metade)
     +
     (SELECT MIN(umidade) FROM (SELECT TOP 50 PERCENT umidade FROM Sensor ORDER BY data_hora DESC) AS segunda_metade)) / 2 AS mediana_umidade,
@@ -64,10 +72,18 @@ router.get('/estatisticas', function (req, res, next) {
     from Sensor;
         `);
   }).then(consulta => {
+    estatisticas.temp_min = consulta.recordset[0].temp_min;
+    estatisticas.umid_min = consulta.recordset[0].umid_min;
+    estatisticas.temp_1q = consulta.recordset[0].temp_1q;
+    estatisticas.umid_1q = consulta.recordset[0].umid_1q;
     estatisticas.temp_media = consulta.recordset[0].temp_media;
     estatisticas.umid_media = consulta.recordset[0].umid_media;
     estatisticas.temp_mediana = consulta.recordset[0].mediana_temperatura;
     estatisticas.umid_mediana = consulta.recordset[0].mediana_umidade;
+    estatisticas.temp_3q = consulta.recordset[0].temp_3q;
+    estatisticas.umid_3q = consulta.recordset[0].umid_3q;
+    estatisticas.temp_max = consulta.recordset[0].temp_max;
+    estatisticas.umid_max = consulta.recordset[0].umid_max;
     console.log(`Estatísticas: ${JSON.stringify(estatisticas)}`);
     res.send(estatisticas);
     res.status(201);

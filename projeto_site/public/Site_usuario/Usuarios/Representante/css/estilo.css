@@ -81,4 +81,5 @@ text-align: center;
     align-content: center;
     flex-wrap: wrap;
     flex-flow: row;
+    height: 115px;
 }
