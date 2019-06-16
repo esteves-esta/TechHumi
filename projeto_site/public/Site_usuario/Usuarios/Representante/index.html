@@ -561,18 +561,12 @@ return false;
     };
 
     var mensagem = ``;
-    if (temperatura > limites.max_temperatura) {
-      mensagem += ` Temperatura alta demais!`;
-    }
-    if (umidade > limites.max_umidade) {
-      mensagem += ` Umidade alta demais!`;
-    } else {
-      if (temperatura < limites.min_temperatura) {
-        mensagem = ` Temperatura baixa demais!`;
-      }
-      if (umidade < limites.min_umidade) {
-        mensagem = ` Umidade baixa demais!`;
-      }
+    if (temperatura < limites.primeiroQ_temperatura && temperatura > limites.min_temperatura || 
+    temperatura > limites.terceiroQ_temperatura && temperatura < limites.max_temperatura) {
+      mensagem += `Temperatura fora de padrão  `;
+    }if(umidade > limites.min_umidade && umidade < limites.primeiroQ_umidade ||
+    umidade < limites.max_umidade && umidade > limites.terceiroQ_umidade){
+      mensagem += `Umidade fora de padrão`;
     }
 
     if(mensagem==''){

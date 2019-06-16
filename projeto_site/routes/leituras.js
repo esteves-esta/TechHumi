@@ -12,7 +12,7 @@ router.get('/ultimas', function (req, res, next) {
     return banco.sql.query(`select top ${limite_linhas} 
                             temperatura, 
                             umidade, 
-                            FORMAT(data_hora,'HH:mm:ss') as momento 
+                            FORMAT(data_hora AT TIME ZONE 'UTC' AT TIME ZONE 'E. South America Standard Time','HH:mm:ss') as momento 
                             from Sensor order by idSensor desc`);
   }).then(consulta => {
 
@@ -52,51 +52,51 @@ router.get('/estatisticas', function (req, res, next) {
   banco.sql.close();
   banco.conectar().then(() => {
     return banco.sql.query(`
-    select top 100
-    avg(umidade) as umid_media, 
-    avg(temperatura) as temp_media,
-    min(umidade) AS umid_min, 
-    min(temperatura) AS temp_min,
-    max(umidade) AS umid_max, 
-    max(temperatura) AS temp_max,
-    ((min(temperatura) - max(temperatura)) / 2) + min(temperatura) AS temp_1q,
-    ((min(umidade) - max(umidade)) / 2) + min(umidade) AS umid_1q,
-    (((min(temperatura) - max(temperatura)) / 2) * 3) + min(temperatura) AS temp_3q,
-    (((min(umidade) - max(umidade)) / 2) * 3) + min(umidade) AS umid_3q,
-    ((SELECT MAX(umidade) FROM (SELECT TOP 50 PERCENT umidade FROM Sensor ORDER BY data_hora) AS primeira_metade)
-    +
-    (SELECT MIN(umidade) FROM (SELECT TOP 50 PERCENT umidade FROM Sensor ORDER BY data_hora DESC) AS segunda_metade)) / 2 AS mediana_umidade,
-    ((SELECT MAX(temperatura) FROM (SELECT TOP 50 PERCENT temperatura FROM Sensor ORDER BY data_hora) AS primeira_metade)
-    +
-    (SELECT MIN(temperatura) FROM (SELECT TOP 50 PERCENT temperatura FROM Sensor ORDER BY data_hora DESC) AS segunda_metade)) / 2 AS mediana_temperatura 
-    from Sensor;
+    select top 100 umidade from Sensor order by idSensor desc;
         `);
   }).then(consulta => {
-    estatisticas.temp_min = consulta.recordset[0].temp_min;
-    estatisticas.umid_min = consulta.recordset[0].umid_min;
-    estatisticas.temp_1q = consulta.recordset[0].temp_1q;
-    estatisticas.umid_1q = consulta.recordset[0].umid_1q;
-    estatisticas.temp_media = consulta.recordset[0].temp_media;
-    estatisticas.umid_media = consulta.recordset[0].umid_media;
-    estatisticas.temp_mediana = consulta.recordset[0].mediana_temperatura;
-    estatisticas.umid_mediana = consulta.recordset[0].mediana_umidade;
-    estatisticas.temp_3q = consulta.recordset[0].temp_3q;
-    estatisticas.umid_3q = consulta.recordset[0].umid_3q;
-    estatisticas.temp_max = consulta.recordset[0].temp_max;
-    estatisticas.umid_max = consulta.recordset[0].umid_max;
-    console.log(`Estatísticas: ${JSON.stringify(estatisticas)}`);
-    res.send(estatisticas);
-    res.status(201);
+    function ordenar(a,b){
+      return a.umidade - b.umidade;
+    }
+    consulta.recordset.sort(ordenar);
+    estatisticas.umid_min = Number(consulta.recordset[0].umidade);
+    estatisticas.umid_max = Number(consulta.recordset[consulta.recordset.length-1].umidade);
+    estatisticas.umid_mediana = Number(consulta.recordset[consulta.recordset.length/2].umidade);
+    estatisticas.umid_1q = Number(consulta.recordset[25].umidade);
+    estatisticas.umid_3q = Number(consulta.recordset[75].umidade);
+    for(i=0;i<consulta.recordset.length;i++){
+      estatisticas.umid_media += Number(consulta.recordset[i].umidade);
+    }
+    estatisticas.umid_media = estatisticas.umid_media/consulta.recordset.length;
   }).catch(err => {
-
-    var erro = `Erro na leitura dos últimos registros: ${err}`;
+    var erro = `Erro UMIDADE: ${err}`;
     console.error(erro);
     res.status(500).send(erro);
-
-  }).finally(() => {
-    banco.sql.close();
+  }).finally(() =>{
+    banco.sql.query(`select top 100 temperatura from Sensor order by idSensor desc;`).then(consulta =>{
+      function ordenar(a,b){
+        return a.temperatura - b.temperatura;
+      }
+      consulta.recordset.sort(ordenar);
+      estatisticas.temp_min = Number(consulta.recordset[0].temperatura);
+      estatisticas.temp_max = Number(consulta.recordset[consulta.recordset.length-1].temperatura);
+      estatisticas.temp_mediana = Number(consulta.recordset[consulta.recordset.length/2].temperatura);
+      estatisticas.temp_1q = Number(consulta.recordset[25].temperatura);
+      estatisticas.temp_3q = Number(consulta.recordset[75].temperatura);
+      for(i=0;i<consulta.recordset.length;i++){
+        estatisticas.temp_media += Number(consulta.recordset[i].temperatura);
+      }
+      estatisticas.temp_media = estatisticas.temp_media/consulta.recordset.length;
+    }).then(function(){
+      console.log(`Estatísticas: ${JSON.stringify(estatisticas)}`);
+      res.send(estatisticas);
+      res.status(201);
+    }).catch(err =>{
+      var erro = `Erro TEMPERATURA: ${err}`;
+      console.error(erro);
+      res.status(500).send(erro);
+    }); 
   });
-
 });
 
 
