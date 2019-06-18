@@ -562,10 +562,12 @@ return false;
 
     var mensagem = ``;
     if (temperatura < limites.primeiroQ_temperatura && temperatura > limites.min_temperatura || 
-    temperatura > limites.terceiroQ_temperatura && temperatura < limites.max_temperatura) {
+    temperatura > limites.terceiroQ_temperatura && temperatura < limites.max_temperatura ||
+    temperatura < limites.min_temperatura || temperatura > limites.max_temperatura) {
       mensagem += `Temperatura fora de padrão  `;
     }if(umidade > limites.min_umidade && umidade < limites.primeiroQ_umidade ||
-    umidade < limites.max_umidade && umidade > limites.terceiroQ_umidade){
+    umidade < limites.max_umidade && umidade > limites.terceiroQ_umidade || 
+    umidade < limites.min_umidade || umidade > limites.max_umidade){
       mensagem += `Umidade fora de padrão`;
     }
 
