@@ -550,24 +550,21 @@ return false;
   function alertar(temperatura, umidade) {
     // ideal que venham de algum EndPoint
     var limites = {
-      max_temperatura: 23,
-      min_temperatura: 20,
+      max_temperatura: 23.0,
+      min_temperatura: 20.0,
       max_umidade: 60,
       min_umidade: 40,
-      primeiroQ_temperatura: 21.2,
-      terceiroQ_temperatura: 22.3,
-      primeiroQ_umidade: 47,
+      primeiroQ_temperatura: 20.4,
+      terceiroQ_temperatura: 22.6,
+      primeiroQ_umidade: 44,
       terceiroQ_umidade: 56,
     };
 
     var mensagem = ``;
-    if (temperatura < limites.primeiroQ_temperatura && temperatura > limites.min_temperatura || 
-    temperatura > limites.terceiroQ_temperatura && temperatura < limites.max_temperatura ||
-    temperatura < limites.min_temperatura || temperatura > limites.max_temperatura) {
+    if (temperatura < limites.primeiroQ_temperatura || temperatura > limites.terceiroQ_temperatura) {
       mensagem += `Temperatura fora de padrão  `;
-    }if(umidade > limites.min_umidade && umidade < limites.primeiroQ_umidade ||
-    umidade < limites.max_umidade && umidade > limites.terceiroQ_umidade || 
-    umidade < limites.min_umidade || umidade > limites.max_umidade){
+    }
+    if(umidade < limites.primeiroQ_umidade || umidade > limites.terceiroQ_umidade){
       mensagem += `Umidade fora de padrão`;
     }
 
