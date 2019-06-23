@@ -6,23 +6,25 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="shotcut icon" href="img/favicon.png">
+
+  <meta name="description" content="Projeto acadêmico de aplicação utilizando IOT">
 
   <title>Cadastro - Empresa</title>
 
+  <link rel="shotcut icon" href="../theme/img/favicon.png">
+
+  <script src="../theme/js/sweetalert.min.js"></script>
+
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 
   <!-- Page level plugin CSS-->
-  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="../theme/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/estilo.css">
+  <link href="../theme/css/sb-admin.css" rel="stylesheet">
 
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="../theme/css/estilo.css">
 
 </head>
 
@@ -30,7 +32,7 @@
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="index.html"><img src="img/logo.png" alt="" class="logo"></a>
+    <a class="navbar-brand mr-1" href="index.html"><img src="../theme/img/logo.png" alt="" class="logo"></a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
@@ -44,7 +46,8 @@
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
       <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal" data-target="#logoutModal">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal"
+          data-target="#logoutModal">
           <i class="fas fa-sign-out-alt fa-fw"></i>
         </a>
       </li>
@@ -82,12 +85,6 @@
           <h3 class="mb-5">Cadastro</h3 class="mb-5">
         </div>
 
-        <!-- Page Content 
-        <p class="lead">Page not found. You can
-          <a href="javascript:history.back()">go back</a>
-          to the previous page, or
-          <a href="index.html">return home</a>.</p>-->
-
         <form id="form_Cadastro" method="post" onsubmit="return cadastro()">
           <h4 class="mb-4">Empresa</h4>
           <div class="form-group row">
@@ -121,8 +118,8 @@
             <div class="col-sm-4">
               <input type="hidden" id="cd_end" name="cd_end">
               <label for="colFormLabel">Logradouro:</label>
-              <input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="Logradouro da Empresa"
-                maxlength="40" required>
+              <input type="text" class="form-control" id="logradouro" name="logradouro"
+                placeholder="Logradouro da Empresa" maxlength="40" required>
             </div>
 
             <div class="col-sm-2">
@@ -155,8 +152,8 @@
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel">Referencia:</label>
-              <input type="text" class="form-control" id="referencia" name="referencia" placeholder="Ponto de Referencia"
-                maxlength="35">
+              <input type="text" class="form-control" id="referencia" name="referencia"
+                placeholder="Ponto de Referencia" maxlength="35">
             </div>
 
             <div class="col-sm-3">
@@ -177,8 +174,8 @@
             <div class="col-sm-4">
               <input type="hidden" id="cd_func" name="cd_func">
               <label for="colFormLabel" class=""> Representante:</label>
-              <input type="text" class="form-control" id="representante" name="representante" placeholder="Nome do Representante"
-                maxlength="55" required>
+              <input type="text" class="form-control" id="representante" name="representante"
+                placeholder="Nome do Representante" maxlength="55" required>
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">E-mail:</label>
@@ -195,8 +192,8 @@
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">CPF:</label>
-              <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF do Representante" maxlength="25"
-                minlength="14" required>
+              <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF do Representante"
+                maxlength="25" minlength="14" required>
             </div>
           </div>
 
@@ -204,8 +201,8 @@
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel" class=""> Telefone:</label>
-              <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone do Representante"
-                maxlength="20" required minlength="14">
+              <input type="text" class="form-control" id="telefone" name="telefone"
+                placeholder="Telefone do Representante" maxlength="20" required minlength="14">
             </div>
 
             <div class="col-sm-4">
@@ -245,7 +242,8 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -264,241 +262,34 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../theme/vendor/jquery/jquery.min.js"></script>
+  <script src="../theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../theme/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin.min.js"></script>
+  <script src="../theme/js/sb-admin.min.js"></script>
 
+  <!-- SCRIPTS DO PROJETO -->
+
+  <!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
+  <script src="../theme/js/jquery.mask.min.js"></script>
+
+  <!-- SCRIPT PARA AUTENTIFICAÇÃO -->
+  <script src="../theme/js/autentificacao.js"></script>
+
+  <!-- SCRIPT PARA GERAL -->
+  <script src="../theme/js/geral.js"></script>
+
+  <!-- SCRIPT ESPECIFICO DA PÁGINA -->
+  <script src="../theme/js/cad-empresa.js"></script>
+  
+  <!-- SCRIPT ESPECIFICO DA PÁGINA -->
+  <script src="../theme/js/pesquisa-cep.js"></script>
+
+  <!-- script do suporte -->
+  <script type="text/javascript" src="../theme/js/suporte.js"></script>
 </body>
 
 </html>
-
-<!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
-<script src="http://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
-
-<script>
-  $('#telefone').mask('(00) 0000-0000');
-  $('#tele1').mask('(00) 0000-0000');
-  $('#tele2').mask('(00) 0000-0000');
-  $('#cep').mask('00000-000');
-  $('#cpf').mask('000.000.000-00');
-  $('#cnpj').mask('00.000.000/0000-00');
-
-  verificarAutenticacao();
-
-  function verificarAutenticacao() {
-    usuario = sessionStorage.usuario_bandtec;
-    if (usuario == undefined || sessionStorage.nivelacesso != 1) {
-      window.location.href = '../../Login/login.html'
-    }
-    usuario_logado.innerHTML = sessionStorage.nome_usuario;
-  }
-  function logoff() {
-    sessionStorage.removeItem('usuario_bandtec');
-    sessionStorage.removeItem('idlogin');
-    sessionStorage.removeItem('nivelacesso');
-    sessionStorage.removeItem('nome_usuario');
-    verificarAutenticacao();
-  }
-
-  function cadastro() {
-    btn_salvar.disabled = true;
-
-    validar_cnpj();
-
-    if (validar == true) {
-      var formulario = new URLSearchParams(new FormData(form_Cadastro));
-      fetch("/cadastros/cadastrarEmpresa", {
-        method: "POST",
-        body: formulario
-      }).then(function (response) {
-
-        if (response.ok) {
-
-          swal({
-            title: "Cadastro realizado com sucesso!",
-            text: "   ",
-            icon: "success"
-          });
-
-          setTimeout(limpar(), 3000);
-        } else {
-
-          swal({
-            title: "Erro ao cadastrar!",
-            text: "   ",
-            icon: "error"
-          });
-        }
-      });
-    }
-    else {
-      swal({
-        title: "Esse usuário já foi cadastrado!",
-        text: "Verifique na tela de consulta e edite o registro desejado.",
-        icon: "error"
-      });
-    }
-
-    btn_salvar.disabled = false;
-
-
-
-    return false;
-  }
-
-  function limpar() {
-    empresa.value = ' ';
-    cnpj.value = ' ';
-    tele1.value = ' ';
-    tele2.value = ' ';
-    logradouro.value = ' ';
-    cep.value = ' ';
-    bairro.value = ' ';
-    complemento.value = ' ';
-    referencia.value = ' ';
-    cidade.value = ' ';
-    uf.value = ' ';
-    representante.value = ' ';
-    email.value = ' ';
-    rg.value = ' ';
-    cpf.value = ' ';
-    telefone.value = ' ';
-    login.value = ' ';
-    empresa.focus();
-  }
-
-  consultar_dados();
-
-
-  function consultar_dados() {
-    // guarda código do usuário que está no atributo usuario_bandtec
-    // em um json e depois utiliza a classe URLSearchParams
-    //para mandar para o arquivo js
-
-
-    var cdEmpresa = { codigo: '' }
-    var corpo = new URLSearchParams(cdEmpresa);
-
-
-    fetch("/consulta-perfil/consulta-empresas", {
-      method: "POST",
-      body: corpo
-    }).then(function (response) {
-      console.log(response);
-      if (response.ok) {
-
-        response.json().then(function (resposta) {
-
-          if (resposta.length != undefined) {
-            // devolve informação da empresa
-            var conteudo = '';
-            for (r = 0; r < resposta.length; r++) {
-              var atual = resposta[r];
-              vCnpj.push(atual.cnpjEmpresa);
-            }
-          }
-        });
-      } else {
-        console.log('Erro de consulta!');
-      }
-    });
-
-    return false;
-  }
-
-  var validar = false;
-  var vCnpj = [];
-
-  function validar_cnpj() {
-    for (r = 0; r < vCnpj.length; r++) {
-      if (cnpj.value == vCnpj[r]) {
-        validar = false;
-        break;
-      } else {
-        validar = true;
-      }
-    }
-  }
-</script>
-
-<!-- Adicionando Javascript -->
-<script type="text/javascript">
-  function limpa_formulário_cep() {
-    //Limpa valores do formulário de cep.
-    document.getElementById('logradouro').value = ("");
-    document.getElementById('bairro').value = ("");
-    document.getElementById('cidade').value = ("");
-    document.getElementById('uf').value = ("");
-  }
-
-  function meu_callback(conteudo) {
-    if (!("erro" in conteudo)) {
-      //Atualiza os campos com os valores.
-      document.getElementById('logradouro').value = (conteudo.logradouro);
-      document.getElementById('bairro').value = (conteudo.bairro);
-      document.getElementById('cidade').value = (conteudo.localidade);
-      document.getElementById('uf').value = (conteudo.uf);
-    } //end if.
-    else {
-      //CEP não Encontrado.
-      limpa_formulário_cep();
-      swal({
-            title: "CEP não encontrado!",
-            text: "   ",
-            icon: "error"
-      });
-    }
-  }
-
-  function pesquisacep(valor) {
-
-    //Nova variável "cep" somente com dígitos.
-    var cep = valor.replace(/\D/g, '');
-
-    //Verifica se campo cep possui valor informado.
-    if (cep != "") {
-
-      //Expressão regular para validar o CEP.
-      var validacep = /^[0-9]{8}$/;
-
-      //Valida o formato do CEP.
-      if (validacep.test(cep)) {
-
-        //Preenche os campos com "..." enquanto consulta webservice.
-        document.getElementById('logradouro').value = "...";
-        document.getElementById('bairro').value = "...";
-        document.getElementById('cidade').value = "...";
-        document.getElementById('uf').value = "...";
-
-        //Cria um elemento javascript.
-        var script = document.createElement('script');
-
-        //Sincroniza com o callback.
-        script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
-
-        //Insere script no documento e carrega o conteúdo.
-        document.body.appendChild(script);
-
-      } //end if.
-      else {
-        //cep é inválido.
-        limpa_formulário_cep();
-        swal({
-            title: "CEP não encontrado!",
-            text: "   ",
-            icon: "error"
-          });
-      }
-    } //end if.
-    else {
-      //cep sem valor, limpa formulário.
-      limpa_formulário_cep();
-    }
-  };
-
-</script>

@@ -6,39 +6,41 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="shotcut icon" href="img/favicon.png">
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+  <meta name="description" content="Projeto acadêmico de aplicação utilizando IOT">
 
+  <title>Dashboard</title>
 
-  <title>Gráficos</title>
+  <link rel="shotcut icon" href="../theme/img/favicon.png">
+
+  <script src="../theme/js/sweetalert.min.js"></script>
+
   <!-- scripts do Chart.js -->
-  <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
-  <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
+  <script type="text/javascript" src="../theme/vendor/chart.js/Chart.min.js"></script>
+  <!-- <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script> -->
 
   <!-- script do google charts -->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 
   <!-- Page level plugin CSS-->
-  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="../theme/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin.css" rel="stylesheet">
+  <link href="../theme/css/sb-admin.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="../theme/css/estilo.css">
+
 </head>
 
 <body id="page-top" onload="comeca()">
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="index.html"><img src="img/logo.png" alt="" class="logo"></a>
+    <a class="navbar-brand mr-1" href="index.html"><img src="../theme/img/logo.png" alt="" class="logo"></a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
@@ -98,10 +100,6 @@
           <a class="dropdown-item" href="perfil.html" id="somente_adm1">Perfil</a>
           <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
           <a class="dropdown-item" href="rotina.html" id="somente_adm2">Rotina</a>
-          <!--<div class="dropdown-divider"></div>
-            <h6 class="dropdown-header">Other Pages:</h6>
-            <a class="dropdown-item active" href="404.html">404 Page</a>
-            <a class="dropdown-item" href="blank.html">Blank Page</a>-->
         </div>
       </li>
     </ul>
@@ -116,19 +114,19 @@
             <option disabled selected>Selecione um dos ambiente de sua empresa</option>
 
           </select>
-         
+
         </div>
 
 
         <!-- Area Chart Example-->
         <div class="card mb-3">
           <div class="card-header">
-              <i class="fas fa-chart-bar"> </i>
+            <i class="fas fa-chart-bar"> </i>
             Temperatura e umidade em tempo real
           </div>
           <div id="div_alerta" class="alerta"></div>
           <div id="tudo">
-           
+
             <div id="div_temperatura">Temperatura sendo obtida...</div>
             <div id="div_umidade">Umidade sendo obtida...</div>
           </div>
@@ -144,13 +142,13 @@
           <div id="div_aguarde">Dados sendo obtidos...</div>
           <canvas id="canvas_grafico"></canvas>
         </div>
-        
-          <div id="estatisticas-temp" class="table-responsive col-md-12">
 
-            <table class="esta_table">
-              <thead>
-                <tr>
-                  <td colspan="6">Temperatura</td>
+        <div id="estatisticas-temp" class="table-responsive col-md-12">
+
+          <table class="esta_table">
+            <thead>
+              <tr>
+                <td colspan="6">Temperatura</td>
               </tr>
               <tr>
                 <td>Minímo</td>
@@ -159,24 +157,24 @@
                 <td>Mediana</td>
                 <td>3°Quartil</td>
                 <td>Maximo</td>
-            </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td id="temp_min_conteudo"></td>
-                  <td id="temp_1q_conteudo"></td>
-                  <td id="temp_media_conteudo"></td>
-                  <td id="temp_mediana_conteudo"></td>
-                  <td id="temp_3q_conteudo"></td>
-                  <td id="temp_max_conteudo"></td>
               </tr>
-              </tbody>
-            </table>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="temp_min_conteudo"></td>
+                <td id="temp_1q_conteudo"></td>
+                <td id="temp_media_conteudo"></td>
+                <td id="temp_mediana_conteudo"></td>
+                <td id="temp_3q_conteudo"></td>
+                <td id="temp_max_conteudo"></td>
+              </tr>
+            </tbody>
+          </table>
 
-            <table class="esta_table">
-              <thead>
-                <tr>
-                  <td colspan="6">Umidade</td>
+          <table class="esta_table">
+            <thead>
+              <tr>
+                <td colspan="6">Umidade</td>
               </tr>
               <tr>
                 <td>Minímo</td>
@@ -185,21 +183,21 @@
                 <td>Mediana</td>
                 <td>3°Quartil</td>
                 <td>Maximo</td>
-            </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td id="umid_min_conteudo"></td>
-                  <td id="umid_1q_conteudo"></td>
-                  <td id="umid_media_conteudo"></td>
-                  <td id="umid_mediana_conteudo"></td>
-                  <td id="umid_3q_conteudo"></td>
-                  <td id="umid_max_conteudo"></td>
               </tr>
-              </tbody>
-            </table>
-          </div>
-      
+            </thead>
+            <tbody>
+              <tr>
+                <td id="umid_min_conteudo"></td>
+                <td id="umid_1q_conteudo"></td>
+                <td id="umid_media_conteudo"></td>
+                <td id="umid_mediana_conteudo"></td>
+                <td id="umid_3q_conteudo"></td>
+                <td id="umid_max_conteudo"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
 
 
@@ -247,409 +245,34 @@
     </div>
   </div>
 
-  <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
-  <!-- Page level plugin CSS-->
-  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="css/sb-admin.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/estilo.css">
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../theme/vendor/jquery/jquery.min.js"></script>
+  <script src="../theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- <script src="../theme/vendor/jquery-easing/jquery.easing.min.js"></script> -->
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin.min.js"></script>
+  <script src="../theme/js/sb-admin.min.js"></script>
 
+  <!-- SCRIPTS DO PROJETO -->
+
+  <!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
+  <script src="../theme/js/jquery.mask.min.js"></script>
+
+  <!-- SCRIPT PARA AUTENTIFICAÇÃO -->
+  <script src="../theme/js/autentificacao.js"></script>
+
+  <!-- SCRIPT PARA GERAL -->
+  <script src="../theme/js/geral.js"></script>
+
+  <!-- SCRIPT ESPECIFICO DA PÁGINA -->
+  <script src="../theme/js/index-dashboard.js"></script>
+
+  <!-- script do suporte -->
+  <script type="text/javascript" src="../theme/js/suporte.js"></script>
 
 </body>
 
 </html>
-
-<script>
-  var exibiu_grafico = false;
-  verificarAutenticacao();
-
-  function verificarAutenticacao() {
-    usuario = sessionStorage.usuario_bandtec;
-    if (usuario == undefined || (sessionStorage.nivelacesso != 2 && sessionStorage.nivelacesso != 3)) {
-      window.location.href = '../../Login/login.html'
-    }
-    if (sessionStorage.nivelacesso == 3) {
-      somente_adm.style.display = 'none';
-      somente_adm1.style.display = 'none';
-      somente_adm2.style.display = 'none';
-    }
-    if (sessionStorage.nivelacesso == 2) {
-      somente_adm.style.display = 'block';
-      somente_adm1.style.display = 'block';
-      somente_adm2.style.display = 'block';
-    }
-    usuario_logado.innerHTML = sessionStorage.nome_usuario;
-  }
-
-  function logoff() {
-    sessionStorage.removeItem('idEmpresa');
-    sessionStorage.removeItem('usuario_bandtec');
-    sessionStorage.removeItem('idlogin');
-    sessionStorage.removeItem('nivelacesso');
-    sessionStorage.removeItem('nome_usuario');
-    verificarAutenticacao();
-  }
-
-  // só mexer se quiser alterar o tempo de atualização
-  // ou se souber o que está fazendo!
-  function atualizarGrafico() {
-    obterDadosGrafico();
-    setTimeout(atualizarGrafico, 10000);
-  }
-
-  //chama a atualização dos dois graficos no onload
-  function comeca() {
-    atualizarGrafico();
-    atualizarGraficoReal();
-  }
-
-  setInterval(consultar_analitycs,10000);
-
-  
-  function consultar_analitycs() {
-
-fetch("/leituras/estatisticas", {
-    method: "GET"
-}).then(function (response) {
-    if (response.ok) {
-        response.json().then(function (resposta) {
-            //devolve informação do analitycs
-            console.log(resposta);
-            temp_min_conteudo.innerHTML = resposta.temp_min.toFixed(1);
-            temp_1q_conteudo.innerHTML = resposta.temp_1q.toFixed(1);
-            temp_media_conteudo.innerHTML = resposta.temp_media.toFixed(1);
-            temp_mediana_conteudo.innerHTML = parseInt(resposta.temp_mediana);
-            temp_3q_conteudo.innerHTML = resposta.temp_3q.toFixed(1);
-            temp_max_conteudo.innerHTML = resposta.temp_max.toFixed (1);
-            //UMIDADE
-            umid_min_conteudo.innerHTML = parseInt(resposta.umid_min);
-            umid_1q_conteudo.innerHTML = parseInt(resposta.umid_1q);
-            umid_media_conteudo.innerHTML = parseInt(resposta.umid_media);
-            umid_mediana_conteudo.innerHTML = parseInt(resposta.umid_mediana);
-            umid_3q_conteudo.innerHTML = parseInt(resposta.umid_3q);
-            umid_max_conteudo.innerHTML = parseInt(resposta.umid_max);
-        });
-    } else {
-        console.log('Erro de consulta!');
-    }
-});
-return false;
-}
-
-  // altere aqui as configurações do gráfico
-  // (tamanhos, cores, textos, etc)
-  function configurarGrafico() {
-    var configuracoes = {
-      responsive: true,
-      animation: exibiu_grafico ? false : {
-        duration: 1500
-      },
-      hoverMode: 'index',
-      stacked: false,
-      title: {
-        display: true,
-        text: 'Histórico recente de temperatura e umidade'
-      },
-      scales: {
-        yAxes: [{
-          type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-          display: true,
-          position: 'left',
-          id: 'y-temperatura',
-        }, {
-          type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-          display: true,
-          position: 'right',
-          id: 'y-umidade',
-
-          // grid line settings
-          gridLines: {
-            drawOnChartArea: false, // only want the grid lines for one axis to show up
-          },
-        }],
-      }
-    };
-
-    exibiu_grafico = true;
-
-    return configuracoes;
-  }
-
-  // altere aqui como os dados serão exibidos
-  // e como são recuperados do BackEnd
-  function obterDadosGrafico() {
-
-    // neste JSON tem que ser 'labels', 'datasets' etc, 
-    // porque é o padrão do Chart.js
-    var dados = {
-      labels: [],
-      datasets: [{
-          yAxisID: 'y-temperatura',
-          label: 'Temperatura',
-          borderColor: window.chartColors.red,
-          backgroundColor: window.chartColors.red,
-          fill: false,
-          data: []
-        },
-        {
-          yAxisID: 'y-umidade',
-          label: 'Umidade',
-          borderColor: window.chartColors.blue,
-          backgroundColor: window.chartColors.blue,
-          fill: false,
-          data: []
-        }
-      ]
-    };
-
-    fetch('/leituras/ultimas', {
-        cache: 'no-store'
-      }).then(function (response) {
-        if (response.ok) {
-          response.json().then(function (resposta) {
-
-            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-            resposta.reverse();
-
-            for (i = 0; i < resposta.length; i++) {
-              var registro = resposta[i];
-
-              // aqui, após 'registro.' use os nomes 
-              // dos atributos que vem no JSON 
-              // que gerou na consulta ao banco de dados
-
-              dados.labels.push(registro.momento);
-
-              dados.datasets[0].data.push(registro.temperatura);
-              dados.datasets[1].data.push(registro.umidade);
-            }
-            console.log(JSON.stringify(dados));
-
-            div_aguarde.style.display = 'none';
-
-            plotarGrafico(dados);
-          });
-        } else {
-          console.error('Nenhum dado encontrado ou erro na API');
-        }
-      })
-      .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-      });
-
-  }
-  // Não mexa nestas 2 linhas! 
-  //google.load('current', {'packages':['gauge']});
-  //google.charts.setOnLoadCallback(obterDadosGraficoReal);
-  google.load('visualization', '1', {
-    packages: ['corechart', 'gauge'],
-    callback: obterDadosGraficoReal
-  });
-  // Não mexa nessas 2 linhas! 
-
-  // só mexer se quiser alterar o tempo de atualização
-  // ou se souber o que está fazendo!
-  function atualizarGraficoReal() {
-    obterDadosGraficoReal();
-    setTimeout(atualizarGraficoReal, 3000);
-  }
-
-  // altere aqui as configurações do gráfico
-  // (tamanhos, cores, textos, etc)
-  function configurarGraficoReal() {
-    // os valores de yellowTo, yellowTo, redFrom e redTo
-    // podem vir de um outro EndPoint
-    var configuracoes = {
-      temperatura: {
-        width: 400,
-        height: 250,
-        yellowFrom: 20,
-        yellowTo: 20.4,
-        yellowColor: 'yellow',
-        redFrom: 22.6,
-        redTo: 23,
-        min: 20,
-        max: 23,
-        minorTicks: 5
-      },
-      umidade: {
-        width: 400,
-        height: 250,
-        yellowFrom: 40,
-        yellowTo: 44,
-        yellowColor: 'yellow',
-        redFrom: 56,
-        redTo: 60,
-        min: 40,
-        max: 60,
-        minorTicks: 5
-      },
-    }
-
-    return configuracoes;
-  }
-
-  // altere aqui como os dados serão exibidos
-  // e como são recuperados do BackEnd
-  function obterDadosGraficoReal() {
-    var dadosReal;
-
-    fetch('/leituras/tempo-real', {
-        cache: 'no-store'
-      }).then(function (response) {
-        if (response.ok) {
-          response.json().then(function (resposta) {
-
-            console.log(`Dados recebidos: ${JSON.stringify(dadosReal)}`);
-
-            // aqui, após registro. use os nomes 
-            // dos atributos que vem no JSON 
-            // que gerou na consulta ao banco de dados
-            dadosTemperatura = google.visualization.arrayToDataTable([
-              ['Label', 'Value'],
-              ['Temperatura', resposta.temperatura]
-            ]);
-
-            dadosUmidade = google.visualization.arrayToDataTable([
-              ['Label', 'Value'],
-              ['Umidade', resposta.umidade]
-            ]);
-
-            var dadosReal = {
-              temperatura: dadosTemperatura,
-              umidade: dadosUmidade
-            }
-
-            alertar(resposta.temperatura, resposta.umidade);
-            plotarGraficoReal(dadosReal);
-          });
-        } else {
-          console.error('Nenhum dado encontrado ou erro na API');
-        }
-      })
-      .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-      });
-
-  }
-
-  function alertar(temperatura, umidade) {
-    // ideal que venham de algum EndPoint
-    var limites = {
-      max_temperatura: 23.0,
-      min_temperatura: 20.0,
-      max_umidade: 60,
-      min_umidade: 40,
-      primeiroQ_temperatura: 20.4,
-      terceiroQ_temperatura: 22.6,
-      primeiroQ_umidade: 44,
-      terceiroQ_umidade: 56,
-    };
-
-    var mensagem = ``;
-    if (temperatura < limites.primeiroQ_temperatura || temperatura > limites.terceiroQ_temperatura) {
-      mensagem += `Temperatura fora de padrão  `;
-    }
-    if(umidade < limites.primeiroQ_umidade || umidade > limites.terceiroQ_umidade){
-      mensagem += `Umidade fora de padrão`;
-    }
-
-    if(mensagem==''){
-
-    }else{
-      notificacao(mensagem);
-    }
-  }
-
-  // só altere aqui se souber o que está fazendo!
-  function plotarGraficoReal(dadosReal) {
-    console.log('iniciando plotagem dos gráficos...');
-
-    var chartTemperatura = new google.visualization.Gauge(div_temperatura);
-    chartTemperatura.draw(dadosReal.temperatura, configurarGraficoReal().temperatura);
-
-    var chartUmidade = new google.visualization.Gauge(div_umidade);
-    chartUmidade.draw(dadosReal.umidade, configurarGraficoReal().umidade);
-  }
-
-
-  // só altere aqui se souber o que está fazendo!
-  function plotarGrafico(dados) {
-    console.log('iniciando plotagem do gráfico...');
-
-    var ctx = canvas_grafico.getContext('2d');
-    window.grafico_linha = Chart.Line(ctx, {
-      data: dados,
-      options: configurarGrafico()
-    });
-  }
-
-  function notificacao(frase) {
-    swal({
-      title: frase,
-      text: " ",
-      icon: "info",
-      timer: 600000,
-    });
-  }
-
-
-  setTimeout(consultar_dados, 5000);
-
-  function consultar_dados() {
-        // guarda código do usuário que está no atributo usuario_bandtec
-        // em um json e depois utiliza a classe URLSearchParams
-        //para mandar para o arquivo js
-
-
-        var cdEmpresa = { codigo: sessionStorage.idEmpresa }
-        var corpo = new URLSearchParams(cdEmpresa);
-
-
-        fetch("/consulta-perfil/consulta-ambiente", {
-            method: "POST",
-            body: corpo
-        }).then(function (response) {
-            console.log(response);
-            if (response.ok) {
-
-                response.json().then(function (resposta) {
-
-                    if (resposta.length == undefined) {
-
-                    }
-                    else {
-                        // devolve informação da empresa
-                        var conteudo = '';
-                        for (r = 0; r < resposta.length; r++) {
-                            var atual = resposta[r];
-                            conteudo += `<option value="">${atual.descricaoAmbiente}</option>`;
-                        }
-                        ambientes_lista.innerHTML += conteudo;
-                    }
-                });
-            } else {
-                console.log('Erro de consulta!');
-            }
-        });
-
-        return false;
-    }
-</script>
-
-<!-- script do suporte -->
-<script type="text/javascript" src="js/suporte.js"></script>

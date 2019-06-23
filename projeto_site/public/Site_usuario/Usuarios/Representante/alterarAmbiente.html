@@ -6,25 +6,25 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shotcut icon" href="img/favicon.png">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <meta name="description" content="Projeto acadêmico de aplicação utilizando IOT">
 
     <title>Edição - Ambiente</title>
 
+    <link rel="shotcut icon" href="../theme/img/favicon.png">
 
+    <script src="../theme/js/sweetalert.min.js"></script>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 
     <!-- Page level plugin CSS-->
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../theme/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="../theme/css/sb-admin.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="../theme/css/estilo.css">
 
 </head>
 
@@ -32,7 +32,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-        <a class="navbar-brand mr-1" href="index.html"><img src="img/logo.png" alt="" class="logo"></a>
+        <a class="navbar-brand mr-1" href="index.html"><img src="../theme/img/logo.png" alt="" class="logo"></a>
 
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
@@ -45,12 +45,12 @@
         <!-- Navbar -->
         <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal"
-                data-target="#logoutModal">
-                <i class="fas fa-sign-out-alt fa-fw"></i>
-              </a>
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal"
+                    data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-fw"></i>
+                </a>
             </li>
-          </ul>
+        </ul>
 
     </nav>
 
@@ -85,14 +85,12 @@
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Configuraçoes</span>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
+                <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
+                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
                     <a class="dropdown-item" href="perfil.html" id="somente_adm1">Perfil</a>
                     <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
                     <a class="dropdown-item" href="rotina.html" id="somente_adm2">Rotina</a>
-                    <!--<div class="dropdown-divider"></div>
-            <h6 class="dropdown-header">Other Pages:</h6>
-            <a class="dropdown-item active" href="404.html">404 Page</a>
-            <a class="dropdown-item" href="blank.html">Blank Page</a>-->
+
                 </div>
             </li>
         </ul>
@@ -106,11 +104,6 @@
                     <h3 class="mb-5">Alterar Ambiente</h3 class="mb-5">
                 </div>
 
-                <!-- Page Content 
-        <p class="lead">Page not found. You can
-          <a href="javascript:history.back()">go back</a>
-          to the previous page, or
-          <a href="index.html">return home</a>.</p>-->
 
                 <form id="form_Ambiente" method="post" onsubmit="return alterar()">
 
@@ -119,19 +112,20 @@
                         <div class="col-sm-4">
                             <input type="hidden" id="cd_amb" name="cd_amb">
                             <label for="colFormLabel" class=""> Descrição:</label>
-                            <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Ex: Sala de Reunião" maxlength="40"
-                                required>
+                            <input type="text" class="form-control" id="descricao" name="descricao"
+                                placeholder="Ex: Sala de Reunião" maxlength="40" required>
                         </div>
                         <div class="col-sm-4">
                             <label for="colFormLabel">Localização:</label>
-                            <input type="text" class="form-control" id="localizacao" name="localizacao" placeholder="Ex: 3º Andar, Sala 02" maxlength="20"
-                                required>
+                            <input type="text" class="form-control" id="localizacao" name="localizacao"
+                                placeholder="Ex: 3º Andar, Sala 02" maxlength="20" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-outline-primary">Salvar</button>
-                        <a href="consultaAmbientes.html"><button type="button" class="btn btn-outline-danger">Cancelar</button></a>
+                        <a href="consultaAmbientes.html"><button type="button"
+                                class="btn btn-outline-danger">Cancelar</button></a>
                     </div>
             </div>
             </form>
@@ -179,151 +173,36 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../theme/vendor/jquery/jquery.min.js"></script>
+    <script src="../theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../theme/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin.min.js"></script>
+    <script src="../theme/js/sb-admin.min.js"></script>
 
+
+
+    <!-- SCRIPTS DO PROJETO -->
+
+    <!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
+    <script src="../theme/js/jquery.mask.min.js"></script>
+
+    <!-- SCRIPT PARA AUTENTIFICAÇÃO -->
+    <script src="../theme/js/autentificacao.js"></script>
+
+    <!-- SCRIPT PARA GERAL -->
+    <script src="../theme/js/geral.js"></script>
+
+    <!-- SCRIPT ESPECIFICO DA PÁGINA -->
+    <script src="../theme/js/alt-ambiente.js"></script>
+
+    <!-- script do suporte -->
+    <script type="text/javascript" src="../theme/js/suporte.js"></script>
 </body>
 
 </html>
 
 
-<!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
-<script src="http://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 
-<script>
-    $('#telefone').mask('(00) 0 0000-0000');
-    $('#tele1').mask('(00) 0 0000-0000');
-    $('#tele2').mask('(00) 0 0000-0000');
-    $('#cep').mask('00000-000');
-    $('#cpf').mask('000.000.000-00');
-    $('#cnpj').mask('00.000.000/0000-00');
-
-    verificarAutenticacao();
-
-    function verificarAutenticacao() {
-        usuario = sessionStorage.usuario_bandtec;
-        if (usuario == undefined) {
-            window.location.href = '../../Login/login.html'
-        }
-        usuario_logado.innerHTML = sessionStorage.nome_usuario;
-    }
-
-    function logoff() {
-        sessionStorage.removeItem('usuario_bandtec');
-        sessionStorage.removeItem('idlogin');
-        sessionStorage.removeItem('nivelacesso');
-        sessionStorage.removeItem('nome_usuario');
-        verificarAutenticacao();
-    }
-
-
-    consultar_dados();
-
-    var cdAmbi;
-    function consultar_dados() {
-        // guarda código do usuário que está no atributo usuario_bandtec
-        // em um json e depois utiliza a classe URLSearchParams
-        //para mandar para o arquivo js
-        aguardar();
-
-        cdAmbi = { codigo: sessionStorage.codigo_alterar }
-        var corpo = new URLSearchParams(cdAmbi);
-
-        fetch("/consulta-perfil/consulta-ambiente-alterar", {
-            method: "POST",
-            body: corpo
-        }).then(function (response) {
-
-            if (response.ok) {
-
-                response.json().then(function (resposta) {
-                    //devolve informação do ambiente
-                    descricao.value = resposta[0].descricaoAmbiente;
-                    localizacao.value = resposta[0].localizacaoAmbiente;
-                });
-            } else {
-                console.log('Erro de consulta!');
-            }
-        });
-
-        return false;
-    }
-
-    function alterar() {
-
-        swal({
-            title: "Você tem certeza que deseja alterar estes dados?",
-            text: "Essa ação não poderá ser revertida!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    alterar_dados();
-                } else {
-                    swal("Seus dados não foram alterados.");
-                }
-            });
-
-        return false;
-    }
-
-    function alterar_dados() {
-        // coloca valores dos codigo em input escondidos para enviar para o js
-        cd_amb.value = cdAmbi.codigo;
-
-
-        var formulario = new URLSearchParams(new FormData(form_Ambiente));
-        fetch("/alterar/alterar-ambiente", {
-            method: "POST",
-            body: formulario
-        }).then(function (response) {
-
-            if (response.ok) {
-
-                swal({
-                    title: "Alterado com sucesso!",
-                    text: "   ",
-                    icon: "success"
-                });
-
-                // SE ALTEROU REMOVER DO SESSION STORAGE 
-                //  CODIGO DO REPRESENTANTE QUE ERA PRA CADASTRAR
-                sessionStorage.removeItem("codigo_alterar");
-                window.location.href = 'consultaAmbientes.html';
-
-            } else {    
-
-                swal({
-                    title: "Erro ao alterar!",
-                    text: "   ",
-                    icon: "error"
-                });
-            }
-        });
-
-        return false;
-    }
-
-    function aguardar() {
-        swal({
-            title: "Aguarde!",
-            text: "   ",
-            icon: "info",
-            buttons: false,
-            timer: 2000,
-        });
-    }
-</script>
-
- <!-- script do suporte -->
- <script type="text/javascript" src="js/suporte.js"></script>
-
-  
