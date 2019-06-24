@@ -14,7 +14,7 @@
     <link rel="shotcut icon" href="../theme/img/favicon.png">
 
     <script src="../theme/js/sweetalert.min.js"></script>
-    
+
     <!--  jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -99,21 +99,27 @@
 
         <div id="content-wrapper">
 
-            <div id="main" class="container-fluid">
+            <div id="main" class="container-fluid m-5">
                 <div id="top" class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-9">
                         <h4>Usuarios Cadastrados</h4>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <a href="cadUsuario.html" class="btn btn-primary pull-right h2">Novo Usuario</a>
                     </div>
                 </div> <!-- /#top -->
 
                 <div id="list" class="row">
-                    <div class="table-responsive col-md-12 mt-5">
+                    <div class="table-responsive col-md-11 mt-5">
+
+                        <div class="carregamento" id="div_aguarde">
+                            <img src="../theme/img/loader2.gif" alt="">
+                        </div>
+
+
                         <table class="table table-striped" cellspacing="0" cellpadding="0" id="tabela">
-                            <thead>
+                            <thead id="cabeca_tabela">
                                 <tr>
 
                                     <th scope="col">Nome</th>
@@ -192,14 +198,11 @@
     <script src="../theme/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../theme/js/sb-admin.min.js"></script>
+    <script src="../theme/js/sb-admin.js"></script>
 
     <!-- Page level plugin JavaScript-->
     <script src="../theme/vendor/datatables/jquery.dataTables.js"></script>
     <script src="../theme/vendor/datatables/dataTables.bootstrap4.js"></script>
-
-    <!-- Demo scripts for this page-->
-    <script src="../theme/js/demo/datatables-demo.js"></script>
 
     <!-- SCRIPTS DO PROJETO -->
 

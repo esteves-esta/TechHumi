@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt">
 
-  <head>
-    
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <meta name="description" content="Projeto acadêmico de aplicação utilizando IOT">
-    
-    <title>Configurações - Rotina</title>
-  
-      <link rel="shotcut icon" href="../theme/img/favicon.png">
-  
-      <script src="../theme/js/sweetalert.min.js"></script>
-  
-      <!-- Custom fonts for this template-->
-      <link href="../theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  
-      <!-- Page level plugin CSS-->
-      <link href="../theme/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-  
-      <!-- Custom styles for this template-->
-      <link href="../theme/css/sb-admin.css" rel="stylesheet">
-  
-      <link rel="stylesheet" href="../theme/css/estilo.css">
-  
-  </head>
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <meta name="description" content="Projeto acadêmico de aplicação utilizando IOT">
+
+  <title>Configurações - Rotina</title>
+
+  <link rel="shotcut icon" href="../theme/img/favicon.png">
+
+  <script src="../theme/js/sweetalert.min.js"></script>
+
+  <!-- Custom fonts for this template-->
+  <link href="../theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+  <!-- Page level plugin CSS-->
+  <link href="../theme/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="../theme/css/sb-admin.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="../theme/css/estilo.css">
+
+</head>
+
 <body id="page-top">
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -94,14 +95,7 @@
 
     <div id="content-wrapper">
 
-      <div class="container-fluid">
-
-        <!-- Breadcrumbs-->
-        <!-- <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="rotina.html">Rotina</a>
-          </li>
-        </ol> -->
+      <div class="container-fluid m-5">
 
         <h4 class="mb-4">Rotina de Funcionamento</h4>
 
@@ -113,19 +107,25 @@
               <label for="colFormLabel">Horario de Inicio:</label>
               <input type="time" class="form-control" value="00:00" name="inicio" id="campo_inicio">
             </div>
+
             <div class="col-sm-2 my-1">
               <label for="colFormLabel">Horario de fim:</label>
               <input type="time" class="form-control" value="00:00" name="fim" id="campo_fim">
             </div>
+
             <div class="col-sm-4 my-1">
               <label for="colFormLabel">Ambiente:</label>
               <select id="ambientes_empresa" class="form-control" name="funcionamento" onchange="muda_tempo()">
 
               </select>
             </div>
+
           </div>
-          <button type="submit" class="btn btn-outline-primary">Salvar</button>
-          <button type="reset" class="btn btn-outline-danger">Cancelar</button>
+
+          <div class="mt-5">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="reset" class="btn btn-danger">Cancelar</button>
+          </div>
         </form>
 
       </div>
@@ -171,32 +171,32 @@
     </div>
   </div>
 
-   <!-- Bootstrap core JavaScript-->
-   <script src="../theme/vendor/jquery/jquery.min.js"></script>
-   <script src="../theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="../theme/vendor/jquery/jquery.min.js"></script>
+  <script src="../theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-   <!-- Core plugin JavaScript-->
-   <script src="../theme/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="../theme/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-   <!-- Custom scripts for all pages-->
-   <script src="../theme/js/sb-admin.min.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="../theme/js/sb-admin.js"></script>
 
-   <!-- SCRIPTS DO PROJETO -->
+  <!-- SCRIPTS DO PROJETO -->
 
-   <!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
-   <script src="../theme/js/jquery.mask.min.js"></script>
+  <!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
+  <script src="../theme/js/jquery.mask.min.js"></script>
 
-   <!-- SCRIPT PARA AUTENTIFICAÇÃO -->
-   <script src="../theme/js/autentificacao.js"></script>
+  <!-- SCRIPT PARA AUTENTIFICAÇÃO -->
+  <script src="../theme/js/autentificacao.js"></script>
 
-   <!-- SCRIPT PARA GERAL -->
-   <script src="../theme/js/geral.js"></script>
+  <!-- SCRIPT PARA GERAL -->
+  <script src="../theme/js/geral.js"></script>
 
-   <!-- SCRIPT ESPECIFICO DA PÁGINA -->
-   <script src="../theme/js/alt-rotina.js"></script>
+  <!-- SCRIPT ESPECIFICO DA PÁGINA -->
+  <script src="../theme/js/alt-rotina.js"></script>
 
-   <!-- script do suporte -->
-   <script type="text/javascript" src="../theme/js/suporte.js"></script>
+  <!-- script do suporte -->
+  <script type="text/javascript" src="../theme/js/suporte.js"></script>
 
 </body>
 

@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt">
 
-    <head>
+<head>
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-        <meta name="description" content="Projeto acadêmico de aplicação utilizando IOT">
-    
-        <title>Edição - Usuário</title>
-    
-        <link rel="shotcut icon" href="../theme/img/favicon.png">
-    
-        <script src="../theme/js/sweetalert.min.js"></script>
-    
-        <!-- Custom fonts for this template-->
-        <link href="../theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    
-        <!-- Page level plugin CSS-->
-        <link href="../theme/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    
-        <!-- Custom styles for this template-->
-        <link href="../theme/css/sb-admin.css" rel="stylesheet">
-    
-        <link rel="stylesheet" href="../theme/css/estilo.css">
-    
-    </head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="Projeto acadêmico de aplicação utilizando IOT">
+
+    <title>Edição - Usuário</title>
+
+    <link rel="shotcut icon" href="../theme/img/favicon.png">
+
+    <script src="../theme/js/sweetalert.min.js"></script>
+
+    <!-- Custom fonts for this template-->
+    <link href="../theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+    <!-- Page level plugin CSS-->
+    <link href="../theme/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../theme/css/sb-admin.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../theme/css/estilo.css">
+
+</head>
 
 <body id="page-top">
 
@@ -45,12 +45,12 @@
         <!-- Navbar -->
         <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal"
-                data-target="#logoutModal">
-                <i class="fas fa-sign-out-alt fa-fw"></i>
-              </a>
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal"
+                    data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-fw"></i>
+                </a>
             </li>
-          </ul>
+        </ul>
 
     </nav>
 
@@ -85,7 +85,8 @@
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Configuraçoes</span>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
+                <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
+                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
                     <a class="dropdown-item" href="perfil.html" id="somente_adm1">Perfil</a>
                     <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
                     <a class="dropdown-item" href="rotina.html" id="somente_adm2">Rotina</a>
@@ -95,57 +96,63 @@
 
         <div id="content-wrapper">
 
-            <div class="container-fluid">
+            <div class="container-fluid m-5">
 
                 <!-- Breadcrumbs-->
                 <div class="">
                     <h3 class="mb-5">Alterar Usuário</h3 class="mb-5">
                 </div>
-          <form id="form_Usuario" method="post" onsubmit="return alterar()">
-            <div class="form-group row">
-                <div class="col-sm-4">
-                    <label for="colFormLabel" class="">Nome:</label>
-                    <input type="hidden" id="cd_func" name="cd_func">
-                    <input type="text" name="nomeFuncionario" id="nomeFuncionario" class="form-control" placeholder="Nome do Usuario" maxlength="55" required>
-                </div>
-                <div class="col-sm-4">
-                    <label for="colFormLabel" class=""> E-mail:</label>
-                    <input type="email" name="emailFuncionario" id="emailFuncionario" class="form-control" placeholder="E-Mail do Usuario" maxlength="80" required>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-4">
-                    <label for="colFormLabel">CPF:</label>
-                    <input type="text" name="cpfFuncionario" id="cpfFuncionario" class="form-control" placeholder="CPF do Usuario" required maxlength="14">
-                </div>
-                <div class="col-sm-4">
-                    <label for="colFormLabel">RG:</label>
-                    <input type="text" name="rgFuncionario" id="rgFuncionario" class="form-control" placeholder="RG do Usuario" maxlength="25" required>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-4">
-                    <label for="colFormLabel">Telefone:</label>
-                    <input type="text" name="telefoneFuncionario" id="telefoneFuncionario" class="form-control" placeholder="Telefone" required maxlength="20">
-                </div>
+                <form id="form_Usuario" method="post" onsubmit="return alterar()">
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <label for="colFormLabel" class="">Nome:</label>
+                            <input type="hidden" id="cd_func" name="cd_func">
+                            <input type="text" name="nomeFuncionario" id="nomeFuncionario" class="form-control"
+                                placeholder="Nome do Usuario" maxlength="55" required>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="colFormLabel" class=""> E-mail:</label>
+                            <input type="email" name="emailFuncionario" id="emailFuncionario" class="form-control"
+                                placeholder="E-Mail do Usuario" maxlength="80" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <label for="colFormLabel">CPF:</label>
+                            <input type="text" name="cpfFuncionario" id="cpfFuncionario" class="form-control"
+                                placeholder="CPF do Usuario" required maxlength="14">
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="colFormLabel">RG:</label>
+                            <input type="text" name="rgFuncionario" id="rgFuncionario" class="form-control"
+                                placeholder="RG do Usuario" maxlength="25" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <label for="colFormLabel">Telefone:</label>
+                            <input type="text" name="telefoneFuncionario" id="telefoneFuncionario" class="form-control"
+                                placeholder="Telefone" required maxlength="20">
+                        </div>
 
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-4" style="display: none"> 
-                    <input type="number" name="fkEmpresa" id="fkEmpresa">
-                    <input type="text" name="cargoFuncionario" id="cargoFuncionario" value="Usuario">
-                    <input type="number" name="nivelAcesso" id="nivelAcesso" maxlength="20" value="3">
-                    <input type="text" name="senhaUsuario" id="senhaUsuario" value="123">
-                </div>
-            </div>
-            
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4" style="display: none">
+                            <input type="number" name="fkEmpresa" id="fkEmpresa">
+                            <input type="text" name="cargoFuncionario" id="cargoFuncionario" value="Usuario">
+                            <input type="number" name="nivelAcesso" id="nivelAcesso" maxlength="20" value="3">
+                            <input type="text" name="senhaUsuario" id="senhaUsuario" value="123">
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <button type="submit" id="btn_salvar" class="btn btn-outline-primary">Salvar</button>
-                <a href="consultaUsuarios.html"><button type="button" class="btn btn-outline-danger">Cancelar</button></a>
+
+                    <div class="form-group mt-5">
+                        <button type="submit" id="btn_salvar" class="btn btn-primary">Salvar</button>
+                        <a href="consultaUsuarios.html"><button type="button"
+                                class="btn btn-danger">Cancelar</button></a>
+                    </div>
             </div>
-    </div>
-    </form>
+            </form>
 
 
         </div>
@@ -197,9 +204,9 @@
     <script src="../theme/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../theme/js/sb-admin.min.js"></script>
+    <script src="../theme/js/sb-admin.js"></script>
 
-      <!-- SCRIPTS DO PROJETO -->
+    <!-- SCRIPTS DO PROJETO -->
 
     <!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
     <script src="../theme/js/jquery.mask.min.js"></script>
@@ -218,4 +225,3 @@
 </body>
 
 </html>
-

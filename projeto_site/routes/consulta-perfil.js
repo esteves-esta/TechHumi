@@ -165,38 +165,38 @@ router.post('/consulta-ambiente', function (req, res, next) {
 
 // CONSULTA OS DADOS DO SENSOR DOS AMBIENTES 
 // DA EMPRESA DO FUNCIONARIO LOGADO
-router.post('/consulta-historico', function (req, res, next) {
-  banco.sql.close();
+// router.post('/consulta-historico', function (req, res, next) {
+//   banco.sql.close();
 
 
-  banco.conectar().then(() => {
+//   banco.conectar().then(() => {
 
-    var cdempresa = req.body.codigo;
+//     var cdempresa = req.body.codigo;
 
-    return banco.sql.query(`select top 100 idSensor,temperatura,
-    umidade,FORMAT(data_hora AT TIME ZONE 'UTC' AT TIME ZONE 'E. South America Standard Time','HH:mm:ss') as hora, FORMAT(data_hora,'dd/MM/yyyy') as data from Sensor order by idSensor desc;`);
+//     return banco.sql.query(`select top 100 idSensor,temperatura,
+//     umidade,FORMAT(data_hora AT TIME ZONE 'UTC' AT TIME ZONE 'E. South America Standard Time','HH:mm:ss') as hora, FORMAT(data_hora,'dd/MM/yyyy') as data from Sensor order by idSensor desc;`);
 
-  }).then(consulta => {
+//   }).then(consulta => {
 
-    //console.log(`Dados: ${JSON.stringify(consulta.recordset)}`);
+//     //console.log(`Dados: ${JSON.stringify(consulta.recordset)}`);
 
-    if (consulta.recordset.length >= 0) {
-      res.send(consulta.recordset);
-    } else {
-      res.sendStatus(404);
-    }
+//     if(consulta.recordset.length >= 0) {
+//       res.send(consulta.recordset);
+//     } else {
+//       res.sendStatus(404);
+//     } 
 
-  }).catch(err => {
+//   }).catch(err => {
 
-    var erro = `Erro: ${err}`;
-    console.error(erro);
-    res.status(500).send(erro);
+//     var erro = `Erro: ${err}`;
+//     console.error(erro);
+//     res.status(500).send(erro);
 
-  }).finally(() => {
-    banco.sql.close();
-  });
+//   }).finally(() => {
+//     banco.sql.close();
+//   });
 
-});
+// });
 
 // CONSULTA AMBIENTE PARA ALTERAÇÃO
 router.post('/consulta-ambiente-alterar', function (req, res, next) {

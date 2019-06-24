@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt">
-  
-  <head>
-    
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      
-      <meta name="description" content="Projeto acadêmico de aplicação utilizando IOT">
-      
-      <title>Histórico de Dados</title>
-  
-      <link rel="shotcut icon" href="../theme/img/favicon.png">
-  
-      <script src="../theme/js/sweetalert.min.js"></script>
 
-      <!--  jquery -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<head>
 
-      <!-- Custom fonts for this template-->
-      <link href="../theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  
-      <!-- Page level plugin CSS-->
-      <link href="../theme/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-  
-      <!-- Custom styles for this template-->
-      <link href="../theme/css/sb-admin.css" rel="stylesheet">
-  
-      <link rel="stylesheet" href="../theme/css/estilo.css">
-  
-  </head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<body id="page-top">
+  <meta name="description" content="Projeto acadêmico de aplicação utilizando IOT">
+
+  <title>Histórico de Dados</title>
+
+  <link rel="shotcut icon" href="../theme/img/favicon.png">
+
+  <script src="../theme/js/sweetalert.min.js"></script>
+
+  <!--  jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+   <!-- scripts do Chart.js -->
+   <script type="text/javascript" src="../theme/vendor/chart.js/Chart.min.js"></script>
+   <!-- <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script> -->
+
+   
+  <!-- Custom fonts for this template-->
+  <link href="../theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+  <!-- Page level plugin CSS-->
+  <link href="../theme/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="../theme/css/sb-admin.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="../theme/css/estilo.css">
+
+</head>
+
+<body id="page-top" onload="carregar_grafico()">
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -89,7 +94,8 @@
           <i class="fas fa-fw fa-cog"></i>
           <span>Configuraçoes</span>
         </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
+          style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
           <a class="dropdown-item" href="perfil.html" id="somente_adm1">Perfil</a>
           <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
           <a class="dropdown-item" href="rotina.html" id="somente_adm2">Rotina</a>
@@ -99,27 +105,30 @@
 
     <div id="content-wrapper">
 
-      <div id="main" class="container-fluid">
-        <div id="top" class="row">
-          <div class="col-md-5">
+      <div id="main" class="container-fluid m-5">
+        <div id="" class="">
+          <div class="">
             <h4>Histórico de Dados</h4>
-          </div>
-
-          <div class="col-md-6">
           </div>
         </div> <!-- /#top -->
 
-        <div id="list" class="row">
-          <div class="table-responsive col-md-12 mt-5">
-            <table class="table table-striped" cellspacing="0" cellpadding="0" id="tabela">
-              <thead>
-                <tr>
+        <div id="list" class="">
+          <div class="row graf-historico">
+           <div class="carregamento" id="div_aguarde">
+              <img src="../theme/img/loader2.gif" alt="">
+            </div> 
+            <canvas id="canvas_grafico"></canvas>
+          </div>
 
-                  <th scope="col">Data</th>
-                  <th scope="col">Hora</th>
-                  <th scope="col">Temperatura</th>
-                  <th scope="col">Umidade</th>
-                </tr>
+          <div class="table-responsive col-md-11 mt-5">
+            <table class="table table-striped" cellspacing="0" cellpadding="0" id="tabela">
+              <thead id="cabeca_tabela"> 
+                  <tr>
+                      <th scope="col">Data</th>
+                      <th scope="col">Hora</th>
+                      <th scope="col">Temperatura</th>
+                      <th scope="col">Umidade</th>
+                      </tr>
               </thead>
               <tbody id="corpo_tabela">
 
@@ -129,24 +138,21 @@
           </div>
         </div> <!-- /#list -->
 
-        <div id="bottom" class="row">
 
-        </div> <!-- /#bottom -->
       </div>
-    </div>
-    <!-- /.container-fluid -->
+      <!-- /.container-fluid -->
 
-    <!-- Sticky Footer -->
-    <footer class="sticky-footer">
-      <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-          <span>TechHumi © 2019</span>
+      <!-- Sticky Footer -->
+      <footer class="sticky-footer">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>TechHumi © 2019</span>
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
 
-  </div>
-  <!-- /.content-wrapper -->
+    </div>
+    <!-- /.content-wrapper -->
 
   </div>
   <!-- /#wrapper -->
@@ -157,7 +163,8 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -175,40 +182,43 @@
     </div>
   </div>
 
- <!-- Bootstrap core JavaScript-->
- <script src="../theme/vendor/jquery/jquery.min.js"></script>
- <script src="../theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="../theme/vendor/jquery/jquery.min.js"></script>
+  <script src="../theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
- <!-- Core plugin JavaScript-->
- <script src="../theme/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="../theme/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Page level plugin JavaScript-->
   <script src="../theme/vendor/datatables/jquery.dataTables.js"></script>
   <script src="../theme/vendor/datatables/dataTables.bootstrap4.js"></script>
 
- <!-- Custom scripts for all pages-->
- <script src="../theme/js/sb-admin.min.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="../theme/js/sb-admin.js"></script>
 
   <!-- Demo scripts for this page-->
-  <script src="../theme/js/demo/datatables-demo.js"></script>
+  <!-- <script src="../theme/js/demo/datatables-demo.js"></script> -->
 
 
- <!-- SCRIPTS DO PROJETO -->
+  <!-- SCRIPTS DO PROJETO -->
 
- <!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
- <script src="../theme/js/jquery.mask.min.js"></script>
+  <!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
+  <script src="../theme/js/jquery.mask.min.js"></script>
 
- <!-- SCRIPT PARA AUTENTIFICAÇÃO -->
- <script src="../theme/js/autentificacao.js"></script>
+  <!-- SCRIPT PARA AUTENTIFICAÇÃO -->
+  <script src="../theme/js/autentificacao.js"></script>
 
- <!-- SCRIPT PARA GERAL -->
- <script src="../theme/js/geral.js"></script>
+  <!-- SCRIPT PARA GERAL -->
+  <script src="../theme/js/geral.js"></script>
 
- <!-- SCRIPT ESPECIFICO DA PÁGINA -->
- <script src="../theme/js/con-historico.js"></script>
+  <!-- SCRIPT ESPECIFICO DA PÁGINA -->
+  <script src="../theme/js/con-grafico-his.js"></script>
 
- <!-- script do suporte -->
- <script type="text/javascript" src="../theme/js/suporte.js"></script>
+  <!-- SCRIPT ESPECIFICO DA PÁGINA -->
+  <script src="../theme/js/con-historico.js"></script>
+
+  <!-- script do suporte -->
+  <script type="text/javascript" src="../theme/js/suporte.js"></script>
 
 </body>
 

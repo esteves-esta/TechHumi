@@ -124,83 +124,76 @@
             <i class="fas fa-chart-bar"> </i>
             Temperatura e umidade em tempo real
           </div>
-          <div id="div_alerta" class="alerta"></div>
-          <div id="tudo">
 
-            <div id="div_temperatura">Temperatura sendo obtida...</div>
-            <div id="div_umidade">Umidade sendo obtida...</div>
+          <div id="ambientes-dados">
+
+            <div class="carregamento" id="div_aguarde">
+              <img src="../theme/img/loader2.gif" alt="">
+            </div>
+
+            <div id="div_temperatura"></div>
+            <div id="div_umidade"></div>
+
           </div>
         </div>
       </div>
 
-      <div class="card m-3">
-        <div class="card-header">
-          <i class="fas fa-chart-bar"> </i>
-          Histórico de Temperatura e Umidade
-        </div>
-        <div class="card-body">
-          <div id="div_aguarde">Dados sendo obtidos...</div>
-          <canvas id="canvas_grafico"></canvas>
-        </div>
 
-        <div id="estatisticas-temp" class="table-responsive col-md-12">
 
-          <table class="esta_table">
-            <thead>
-              <tr>
-                <td colspan="6">Temperatura</td>
-              </tr>
-              <tr>
-                <td>Minímo</td>
-                <td>1°Quartil</td>
-                <td>Média</td>
-                <td>Mediana</td>
-                <td>3°Quartil</td>
-                <td>Maximo</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td id="temp_min_conteudo"></td>
-                <td id="temp_1q_conteudo"></td>
-                <td id="temp_media_conteudo"></td>
-                <td id="temp_mediana_conteudo"></td>
-                <td id="temp_3q_conteudo"></td>
-                <td id="temp_max_conteudo"></td>
-              </tr>
-            </tbody>
-          </table>
+      <div id="estatisticas-temp" class="table-responsive col-md-12">
 
-          <table class="esta_table">
-            <thead>
-              <tr>
-                <td colspan="6">Umidade</td>
-              </tr>
-              <tr>
-                <td>Minímo</td>
-                <td>1°Quartil</td>
-                <td>Média</td>
-                <td>Mediana</td>
-                <td>3°Quartil</td>
-                <td>Maximo</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td id="umid_min_conteudo"></td>
-                <td id="umid_1q_conteudo"></td>
-                <td id="umid_media_conteudo"></td>
-                <td id="umid_mediana_conteudo"></td>
-                <td id="umid_3q_conteudo"></td>
-                <td id="umid_max_conteudo"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <table class="esta_table">
+          <thead>
+            <tr>
+              <td colspan="6">Temperatura</td>
+            </tr>
+            <tr>
+              <td>Minímo</td>
+              <td>1°Quartil</td>
+              <td>Média</td>
+              <td>Mediana</td>
+              <td>3°Quartil</td>
+              <td>Maximo</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="temp_min_conteudo"></td>
+              <td id="temp_1q_conteudo"></td>
+              <td id="temp_media_conteudo"></td>
+              <td id="temp_mediana_conteudo"></td>
+              <td id="temp_3q_conteudo"></td>
+              <td id="temp_max_conteudo"></td>
+            </tr>
+          </tbody>
+        </table>
 
+        <table class="esta_table">
+          <thead>
+            <tr>
+              <td colspan="6">Umidade</td>
+            </tr>
+            <tr>
+              <td>Minímo</td>
+              <td>1°Quartil</td>
+              <td>Média</td>
+              <td>Mediana</td>
+              <td>3°Quartil</td>
+              <td>Maximo</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="umid_min_conteudo"></td>
+              <td id="umid_1q_conteudo"></td>
+              <td id="umid_media_conteudo"></td>
+              <td id="umid_mediana_conteudo"></td>
+              <td id="umid_3q_conteudo"></td>
+              <td id="umid_max_conteudo"></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-
-
 
     </div>
     <!-- /.container-fluid -->
@@ -254,7 +247,7 @@
   <!-- <script src="../theme/vendor/jquery-easing/jquery.easing.min.js"></script> -->
 
   <!-- Custom scripts for all pages-->
-  <script src="../theme/js/sb-admin.min.js"></script>
+  <script src="../theme/js/sb-admin.js"></script>
 
   <!-- SCRIPTS DO PROJETO -->
 
@@ -268,7 +261,7 @@
   <script src="../theme/js/geral.js"></script>
 
   <!-- SCRIPT ESPECIFICO DA PÁGINA -->
-  <script src="../theme/js/index-dashboard.js"></script>
+  <!-- <script src="../theme/js/index-dashboard.js"></script> -->
 
   <!-- script do suporte -->
   <script type="text/javascript" src="../theme/js/suporte.js"></script>

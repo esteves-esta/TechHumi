@@ -33,7 +33,7 @@
 
 </head>
 
-<body id="page-top" onload="consultar_dados()">
+<body id="page-top">
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -82,62 +82,67 @@
         </ul>
         <div id="content-wrapper">
 
-            <div id="main" class="container-fluid">
+            <div id="main" class="container-fluid m-5">
                 <div id="top" class="row">
                     <div class="col-md-4">
                         <h4>Empresas Cadastradas</h4>
                     </div>
                 </div>
 
-                    <div id="list" class="row mt-5">
-                        <div class="table-responsive col-md-12">
-                            <table id="yourtable" class="table table-striped" cellspacing="0" cellpadding="0">
-                                <thead>
-                                    <tr>
-                                        <!-- <th scope="col">ID</th> -->
-                                        <th scope="col">Nome</th>
-                                        <th scope="col">CNPJ</th>
-                                        <th scope="col">Telefone</th>
-                                        <th scope="col">Telefone</th>
-                                        <th scope="col">Logradouro</th>
-                                        <th scope="col">Número</th>
-                                        <th scope="col">Complemento</th>
-                                        <th scope="col">Bairro</th>
-                                        <th scope="col">Cidade</th>
-                                        <th scope="col">UF</th>
-                                        <th scope="col">CEP</th>
-                                        <th scope="col">Referência</th>
-                                        <th scope="col">Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="corpo_tabela">
-
-                                    <!-- celulas da tabela gerada em tempo real -->
-
-                                </tbody>
-                            </table>
-
+                <div id="list" class="row">
+                    <div class="table-responsive col-md-11 mt-5">
+                        <div class="carregamento" id="div_aguarde">
+                            <img src="../theme/img/loader2.gif" alt="">
                         </div>
-                    </div> <!-- /#list -->
 
-                    <div id="bottom" class="row">
 
-                    </div> <!-- /#bottom -->
+                        <table id="tabela" class="table table-striped" cellspacing="0" cellpadding="0">
+                            <thead id="cabeca_tabela">
+                                <tr>
+                                    <!-- <th scope="col">ID</th> -->
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">CNPJ</th>
+                                    <th scope="col">Telefone</th>
+                                    <th scope="col">Telefone</th>
+                                    <th scope="col">Logradouro</th>
+                                    <th scope="col">Número</th>
+                                    <th scope="col">Complemento</th>
+                                    <th scope="col">Bairro</th>
+                                    <th scope="col">Cidade</th>
+                                    <th scope="col">UF</th>
+                                    <th scope="col">CEP</th>
+                                    <th scope="col">Referência</th>
+                                    <th scope="col">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="corpo_tabela">
+
+                                <!-- celulas da tabela gerada em tempo real -->
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div> <!-- /#list -->
+
+                <div id="bottom" class="row">
+
+                </div> <!-- /#bottom -->
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>TechHumi © 2019</span>
                 </div>
             </div>
-            <!-- /.container-fluid -->
+        </footer>
 
-            <!-- Sticky Footer -->
-            <footer class="sticky-footer">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>TechHumi © 2019</span>
-                    </div>
-                </div>
-            </footer>
-
-        </div>
-        <!-- /.content-wrapper -->
+    </div>
+    <!-- /.content-wrapper -->
 
     </div>
     <!-- /#wrapper -->
@@ -182,11 +187,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../theme/js/sb-admin.min.js"></script>
-
-    <!-- Demo scripts for this page-->
-    <script src="../theme/js/demo/datatables-demo.js"></script>
-
-
+    
     <!-- SCRIPTS DO PROJETO -->
 
     <!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->

@@ -40,7 +40,7 @@ function consultar_dados() {
                 telefone.value = resposta.telefoneFuncionario;
             });
         } else {
-            console.log('Erro de consulta!');
+            consultar_dados();
         }
     });
 

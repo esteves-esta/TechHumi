@@ -13,7 +13,7 @@
 */
 
 function autentificar(tipo) {
-    var usuario = sessionStorage.usuario_bandtec;
+    var usuario = sessionStorage.idFuncionario;
     var nivel = sessionStorage.nivelacesso;
 
     switch (tipo) {
@@ -31,12 +31,12 @@ function autentificar(tipo) {
             if (usuario == undefined || nivel == 1) {
                 window.location.href = '../../Login/login.html';
             }
-            if (sessionStorage.nivelacesso == 3) {
+            if (nivel == 3) {
                 somente_adm.style.display = 'none';
                 somente_adm1.style.display = 'none';
                 somente_adm2.style.display = 'none';
             }
-            if (sessionStorage.nivelacesso == 2) {
+            if (nivel == 2) {
                 somente_adm.style.display = 'block';
                 somente_adm1.style.display = 'block';
                 somente_adm2.style.display = 'block';
@@ -52,7 +52,7 @@ function autentificar(tipo) {
 
 function logoff() {
     sessionStorage.removeItem('idEmpresa');
-    sessionStorage.removeItem('usuario_bandtec');
+    sessionStorage.removeItem('idFuncionario');
     sessionStorage.removeItem('idlogin');
     sessionStorage.removeItem('nivelacesso');
     sessionStorage.removeItem('nome_usuario');

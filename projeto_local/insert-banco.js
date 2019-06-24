@@ -70,6 +70,59 @@ function iniciar_escuta() {
     }).catch(error => console.error(`Erro ao receber dados do Arduino ${error}`));
 }
 
+var ambientes = [];
+
+function consultar_ambientes() {
+
+    banco.conectar().then(() => {
+      return banco.sql.query(`select idAmbiente from Ambiente;`);
+  
+    }).then(consulta => {
+
+      if (consulta.recordset.length >= 0) {
+        ambientes = consulta.recordset;
+      } 
+  
+    }).catch(err => {
+  
+      var erro = `Erro: ${err}`;
+        console.log(erro);
+
+    }).finally(() => {
+      banco.sql.close();
+    });
+
+}
+
+let inserts = '';
+// FUNÇÃO PARA SIMULAR REGISTROS PARA TODOS OS AMBIENTES CADASTRADOS
+function gerador_linhas(temperatura, umidade) {
+
+    consultar_ambientes();
+    let sinal = ['+', '-'];
+
+    for (let r = 0; r < ambientes.length; r++) {
+
+        var random = Math.floor(Math.random() * 10);
+        var al_bool = Math.floor(Math.random());
+
+        // pega dado normal e altera levemente
+        // subtraindo ou adicionando para todos os ambientes cadastrados
+        inserts += `(
+            ${temperatura}${sinal[al_bool]}0.${random}0, 
+            ${umidade}${sinal[al_bool]}2${random}, 
+            CURRENT_TIMESTAMP, 
+            ${ambientes[r].idAmbiente})`;
+
+        var x = r+1;
+        
+        // verifica se não é o ultimo, se não for coloca virgula 
+        if(x < ambientes.length){
+            inserts += ',';
+        }
+    }
+}
+
 // função que recebe valores de temperatura e umidade
 // e faz um insert no banco de dados
 function registrar_leitura(temperatura, umidade) {
@@ -87,10 +140,12 @@ function registrar_leitura(temperatura, umidade) {
     console.log(`temperatura: ${temperatura}`);
     console.log(`umidade: ${umidade}`);
 
+   gerador_linhas(temperatura, umidade);
+
     banco.conectar().then(() => {
 
         return banco.sql.query(`INSERT into Sensor (temperatura, umidade, data_hora,fkAmbiente)
-                                values (${temperatura}-2.20, ${umidade}-24, CURRENT_TIMESTAMP,1);`);
+                                values ${inserts};`);
 
     }).catch(err => {
 

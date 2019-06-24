@@ -1,10 +1,10 @@
 // CHAMAR FUNÇÕES
 autentificar('adm');
-
-aguardar_consulta("Aguarde!");
+consultar_dados()
+//aguardar_consulta("Aguarde!");
 // ---------------------------------------------------------------
 // DECLARAR FUNÇÕES
-
+cabeca_tabela.style.display = "none";
 function consultar_dados() {
     // guarda código do usuário que está no atributo usuario_bandtec
     // em um json e depois utiliza a classe URLSearchParams
@@ -47,6 +47,10 @@ function consultar_dados() {
                               </tr>`;
                 }
                 corpo_tabela.innerHTML = conteudo;
+                cabeca_tabela.style.display = "";
+                div_aguarde.style.display = 'none';
+                $('#tabela').dataTable();
+                $('input[type="search"').attr('id', 'search');
 
             });
         } else {
@@ -54,10 +58,6 @@ function consultar_dados() {
         }
     });
 
-    setTimeout(() => {
-        $('#yourtable').dataTable();
-        $('input[type="search"').attr('id', 'search');
-    }, 3000);
     return false;
 }
 // ---------------------------------------------------------------

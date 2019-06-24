@@ -1,13 +1,14 @@
 // CHAMAR FUNÇÕES
 
 autentificar('funcionario');
-aguardar_consulta("Aguarde!");
 consultar_dados();
+//aguardar_consulta("Aguarde!");
 
 // ---------------------------------------------------------------
 // DECLARAR FUNÇÕES
 
-var exibiu_grafico = false;
+
+cabeca_tabela.style.display = "none";
 
 function consultar_dados() {
     // guarda código do usuário que está no atributo usuario_bandtec
@@ -56,17 +57,20 @@ function consultar_dados() {
         </tr>`;
                     }
                     corpo_tabela.innerHTML = conteudo;
+                    cabeca_tabela.style.display = "";
+                    div_aguarde.style.display = 'none';
+                    $('#tabela').dataTable();
+                    $('input[type="search"').attr('id', 'search');
                 }
             });
         } else {
-            console.log('Erro de consulta!');
+            consultar_dados();
         }
+    }).catch(() => {
+        // setInterval(consultar_dados(), 100);
+        consultar_dados()
+       
     });
-
-    setTimeout(() => {
-        $('#tabela').dataTable();
-        $('input[type="search"').attr('id', 'search');
-    }, 3000);
 
     return false;
 }

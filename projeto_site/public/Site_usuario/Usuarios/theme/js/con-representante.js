@@ -1,15 +1,15 @@
 // CHAMAR FUNÇÕES
 
 autentificar('adm');
-
-aguardar_consulta("Aguarde!");
-
 consultar_dados();
+
+//aguardar_consulta("Aguarde!");
+
 
 // DECLARAR FUNÇÕES
 
 // ---------------------------------------------------------------
-
+cabeca_tabela.style.display = "none";
 function consultar_dados() {
 
     var corpo = '';
@@ -41,16 +41,16 @@ function consultar_dados() {
                 }
 
                 corpo_tabela.innerHTML = conteudo;
+                cabeca_tabela.style.display = "";
+                div_aguarde.style.display = 'none';
+                $('#tabela').dataTable();
+                $('input[type="search"').attr('id', 'search');
+
             });
         } else {
             console.log('Erro de consulta!');
         }
     });
-
-    setTimeout(() => {
-        $('#tabela').dataTable();
-        $('input[type="search"').attr('id', 'search');
-    }, 3000);
 
     return false;
 }

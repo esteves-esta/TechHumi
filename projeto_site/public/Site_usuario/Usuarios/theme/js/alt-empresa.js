@@ -51,7 +51,7 @@ function consultar_dados() {
                 numero.value = resposta.numero;
             });
         } else {
-            console.log('Erro de consulta!');
+            consultar_dados();
         }
     });
 

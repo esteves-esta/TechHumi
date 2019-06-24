@@ -5,28 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <link rel="stylesheet" href="estilos/estilo.css">
+
     <link rel="shotcut icon" href="imgs/favicon.png">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <title>Redefinição de Senha</title>
+
+    <meta name="description" content="Projeto acadêmico de aplicação utilizando IOT">
+
+    <script src="../Usuarios/theme/js/sweetalert.min.js"></script>
+
+    <title>Login</title>
 </head>
 
-<body class="fundo">
-    <div class="tudo">
+<body>
+    <nav class="imagem">
         <img src="imgs/logo.png">
-        <div class="formLogin" style="height:200px;">
-                <form id="redefinir" onsubmit="return senhaesqueceu()">
-                <p>Email</p>
-                <input type="email" id="email" name="email" placeholder="Email" required>
-                <div id=botoes> 
-                    <button type="button" class="botao" onclick="valida()">Redefinir Senha</button>
-                    <a class="botao" href="login.html">Sair</a>
+    </nav>
+
+    <article>
+        <section class="formulario">
+
+
+            <form id="form_login" method="post" onsubmit="return senhaesqueceu()">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Email cadastrado" required>
+
+                <div>
+                        <button type="button" class="botao" onclick="valida()">Redefinir Senha</button>
+                        <a class="botao" href="login.html">Fazer login</a>
                 </div>
-                 </form>
-            
-        </div>
-    </div>
+            </form>
+
+        </section>
+
+        <section class="welcome">
+            <div>
+                <h1>Bem vindo à TechHumi</h1>
+                <h3>Faça o login para acessar sua conta.</h3>
+            </div>
+        </section>
+
+    </article>
+
+
+    <!-- SCRIPTS DO PROJETO -->
+
+    <!-- script do suporte -->
+    <script type="text/javascript" src="../Usuarios/theme/js/suporte.js"></script>
 </body>
+
 </html>
 <script>
     function valida() {
