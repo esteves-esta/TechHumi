@@ -1,68 +1,9 @@
 // CHAMAR FUNÇÕES
-autentificar('representante');
-aguardar();
-consultar_dados();
-
-// ---------------------------------------------------------------
-// DECLARAR VARIÁVEIS
-var guarda_consulta = [];
+autentificar('funcionario');
 
 // ---------------------------------------------------------------
 // DECLARAR FUNÇÕES
 
-
-function consultar_dados() {
-    // guarda código do usuário que está no atributo usuario_bandtec
-    // em um json e depois utiliza a classe URLSearchParams
-    //para mandar para o arquivo js
-
-
-    var cdEmpresa = { codigo: sessionStorage.idEmpresa }
-    var corpo = new URLSearchParams(cdEmpresa);
-
-
-    fetch("/consulta-perfil/consulta-ambiente", {
-        method: "POST",
-        body: corpo
-    }).then(function (response) {
-        //console.log(response);
-        if (response.ok) {
-
-            response.json().then(function (resposta) {
-
-                if (resposta.length == undefined) {
-
-                }
-                else {
-                    // devolve informação da empresa
-                    var conteudo = '';
-                    conteudo = `<option selected disabled>Escolha um dos seus ambientes</option>`;
-                    for (r = 0; r < resposta.length; r++) {
-
-                        var atual = resposta[r];
-                        conteudo += `<option value="${atual.idFuncionamento}">${atual.descricaoAmbiente}</option>`;
-
-                        // GUARDA VALOR DE FUNCIONAMENTO PARA JOGAR NO CAMPO DEPOIS
-                        var consulta = {
-                            idFun: atual.idFuncionamento,
-                            inicio: atual.horaInicio,
-                            fim: atual.horaFim,
-                        }
-
-                        guarda_consulta.push(consulta);
-                    }
-                    ambientes_empresa.innerHTML = conteudo;
-                }
-            });
-        } else {
-            console.log('Erro de consulta!');
-        }
-    });
-
-    return false;
-}
-
-// ---------------------------------------------------------------
 
 function alterar() {
 
@@ -102,6 +43,10 @@ function alterar_dados() {
                 text: "   ",
                 icon: "success"
             });
+
+            setTimeout(function () {
+                window.location.href = 'consultaAmbientes.html';
+            }, 2000);
         } else {
 
             swal({
@@ -113,21 +58,4 @@ function alterar_dados() {
     });
 
     return false;
-}
-
-// ---------------------------------------------------------------
-
-function muda_tempo() {
-
-    for (r = 0; r < guarda_consulta.length; r++) {
-
-        if (guarda_consulta[r].idFun == ambientes_empresa.value) {
-            // CORTA A DATA DO TEMPO PARA JOGAR NO CAMPO = SUBSTRING
-
-            campo_inicio.value = guarda_consulta[r].inicio.substring(11, 16);
-            campo_fim.value = guarda_consulta[r].fim.substring(11, 16);
-
-            break;
-        }
-    }
 }

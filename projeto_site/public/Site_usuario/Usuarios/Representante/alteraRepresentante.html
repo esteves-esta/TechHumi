@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt">
 
+
 <head>
 
   <meta charset="utf-8">
@@ -9,7 +10,7 @@
 
   <meta name="description" content="Projeto acadêmico de aplicação utilizando IOT">
 
-  <title>Configurações - Rotina</title>
+  <title>Representante</title>
 
   <link rel="shotcut icon" href="../theme/img/favicon.png">
 
@@ -33,11 +34,12 @@
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
     <a class="navbar-brand mr-1" href="index.html"><img src="../theme/img/logo.png" alt="" class="logo"></a>
+
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
     </button>
 
-    <!-- Navbar Search -->
+
     <div class="d-none d-md-inline-block ml-auto mr-0 mr-md-3 my-2 my-md-0" id="usuario-nome">
       <span>Bem Vinda(o), <b id="usuario_logado"></b></span>
     </div>
@@ -58,6 +60,8 @@
 
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
+
+
       <li class="nav-item">
         <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-chart-area"></i>
@@ -71,9 +75,9 @@
       <li class="nav-item">
         <a class="nav-link" href="historico.html">
           <i class="fas fa-fw fa-table"></i>
-          <span>Histórico Sensor</span></a>
+          <span>Histórico</span></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" id="somente_adm">
         <a class="nav-link" href="consultaUsuarios.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Usuarios</span></a>
@@ -86,9 +90,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
           style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
-          <a class="dropdown-item" href="perfil.html">Perfil</a>
+          <a class="dropdown-item" href="alteraEmpresa.html" id="somente_adm1">Empresa</a>
+          <a class="dropdown-item" href="alteraRepresentante.html" id="somente_adm2">Representante</a>
           <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
-          <a class="dropdown-item" href="rotina.html">Rotina</a>
         </div>
       </li>
     </ul>
@@ -97,54 +101,74 @@
 
       <div class="container-fluid m-5">
 
-        <h4 class="mb-4">Rotina de Funcionamento</h4>
+        <h3 class="mb-5">Edição</h3 class="mb-5">
 
+          
+          <div class="carregamento col-sm-6" id="div_aguarde">
+              <img src="../theme/img/loader2.gif" alt="">
+          </div>
+          
+        <form id="form_Empresa" class="inicia-escondido" method="post" onsubmit="return alterar()">
 
-        <!-- Page Content -->
-        <form id="form_funcionamento" onsubmit="return alterar()">
+          <h4 class="mb-4">Representante</h4>
           <div class="form-group row">
-            <div class="col-sm-2 my-1">
-              <label for="colFormLabel">Horario de Inicio:</label>
-              <input type="time" class="form-control" value="00:00" name="inicio" id="campo_inicio">
+            <div class="col-sm-4">
+              <input type="hidden" id="cd_func" name="cd_func">
+              <label for="colFormLabel" class=""> Representante:</label>
+              <input type="text" class="form-control" id="representante" name="representante"
+                placeholder="Nome do Representante" maxlength="55" required>
             </div>
-
-            <div class="col-sm-2 my-1">
-              <label for="colFormLabel">Horario de fim:</label>
-              <input type="time" class="form-control" value="00:00" name="fim" id="campo_fim">
+            <div class="col-sm-4">
+              <label for="colFormLabel">E-mail:</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail do Representante"
+                maxlength="80" required>
             </div>
-
-            <div class="col-sm-4 my-1">
-              <label for="colFormLabel">Ambiente:</label>
-              <select id="ambientes_empresa" class="form-control" name="funcionamento" onchange="muda_tempo()">
-
-              </select>
-            </div>
-
           </div>
 
-          <div class="mt-5">
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label for="colFormLabel" class=""> RG:</label>
+              <input type="text" class="form-control" id="rg" name="rg" placeholder="Telefone do Representante"
+                maxlength="25" required>
+            </div>
+            <div class="col-sm-4">
+              <label for="colFormLabel">CPF:</label>
+              <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF do Representante"
+                maxlength="25" required>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label for="colFormLabel" class=""> Telefone:</label>
+              <input type="text" class="form-control" id="telefone" name="telefone"
+                placeholder="Telefone do Representante" maxlength="20" required>
+            </div>
+          </div>
+
+
+          <div class="form-group">
             <button type="submit" class="btn btn-primary">Salvar</button>
-            <button type="reset" class="btn btn-danger">Cancelar</button>
+            <a href="consultaRepresentante.html"><button type="button" class="btn btn-danger">Cancelar</button></a>
           </div>
         </form>
-
       </div>
-      <!-- /.container-fluid -->
-
-      <!-- Sticky Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>TechHumi © 2019</span>
-          </div>
-        </div>
-      </footer>
 
     </div>
-    <!-- /.content-wrapper -->
+
+    <!-- Sticky Footer -->
+    <footer class="sticky-footer">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>TechHumi © 2019</span>
+        </div>
+      </div>
+    </footer>
 
   </div>
-  <!-- /#wrapper -->
+
+  </div>
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
@@ -193,11 +217,16 @@
   <script src="../theme/js/geral.js"></script>
 
   <!-- SCRIPT ESPECIFICO DA PÁGINA -->
-  <script src="../theme/js/alt-rotina.js"></script>
+  <script src="../theme/js/alt-representante.js"></script>
+
+  <!-- SCRIPT ESPECIFICO DA PÁGINA -->
+  <script src="../theme/js/alt-rep-usu.js"></script>
+
+  <!-- SCRIPT ESPECIFICO DA PÁGINA -->
+  <script src="../theme/js/pesquisa-cep.js"></script>
 
   <!-- script do suporte -->
   <script type="text/javascript" src="../theme/js/suporte.js"></script>
-
 </body>
 
 </html>

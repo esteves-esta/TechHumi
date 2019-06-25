@@ -73,7 +73,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="historico.html">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Histórico Sensor</span></a>
+                    <span>Histórico</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="consultaUsuarios.html">
@@ -88,9 +88,9 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
                     style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
-                    <a class="dropdown-item" href="perfil.html">Perfil</a>
+                    <a class="dropdown-item" href="alteraEmpresa.html" id="somente_adm1">Empresa</a>
+                    <a class="dropdown-item" href="alteraRepresentante.html" id="somente_adm2">Representante</a>
                     <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
-                    <a class="dropdown-item" href="rotina.html">Rotina</a>
                 </div>
             </li>
         </ul>
@@ -98,6 +98,9 @@
         <div id="content-wrapper">
 
             <div class="container-fluid m-5">
+
+                <h3>Cadastro Usuário</h3>
+
                 <form id="form_Usuario" method="post" onsubmit="return cadastrarUsuario()">
                     <div class="form-group row">
                         <div class="col-sm-4">

@@ -2,21 +2,17 @@
 //aguardar();
 
 autentificar('funcionario');
-
-
-
 // ---------------------------------------------------------------
 
 //chama a atualização dos dois graficos no onload
 function carregar_grafico() {
     atualizarGrafico();
-    setTimeout(consultar_dados(), 2000);
+    setTimeout(consultar_dados(), 10000);
 }
 
 
 // ---------------------------------------------------------------
 // DECLARAR FUNÇÕES
-cabeca_tabela.style.display = "none";
 
 function consultar_dados() {
     // guarda código do usuário que está no atributo usuario_bandtec
@@ -25,7 +21,7 @@ function consultar_dados() {
     var cdEmpresa = { codigo: sessionStorage.idEmpresa }
     var corpo = new URLSearchParams(cdEmpresa);
 
-    fetch("/consulta-perfil/consulta-historico", {
+    fetch("/consulta/consulta-historico", {
         method: "POST",
         body: corpo
     }).then(function (response) {
@@ -72,12 +68,12 @@ function consultar_dados() {
                
             });
         } else {
-            consultar_dados();
+            //consultar_dados();
             
         }
     }).catch(() => {
         // setInterval(consultar_dados(), 100);
-        consultar_dados()
+        //consultar_dados()
         
     });
 

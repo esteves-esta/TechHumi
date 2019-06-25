@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt">
 
-    <head>
+<head>
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-        <meta name="description" content="Projeto acadêmico de aplicação utilizando IOT">
-    
-        <title>Edição - Representante</title>
-    
-        <link rel="shotcut icon" href="../theme/img/favicon.png">
-    
-        <script src="../theme/js/sweetalert.min.js"></script>
-    
-        <!-- Custom fonts for this template-->
-        <link href="../theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    
-        <!-- Page level plugin CSS-->
-        <link href="../theme/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    
-        <!-- Custom styles for this template-->
-        <link href="../theme/css/sb-admin.css" rel="stylesheet">
-    
-        <link rel="stylesheet" href="../theme/css/estilo.css">
-    
-    </head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <meta name="description" content="Projeto acadêmico de aplicação utilizando IOT">
+
+  <title>Edição - Representante</title>
+
+  <link rel="shotcut icon" href="../theme/img/favicon.png">
+
+  <script src="../theme/js/sweetalert.min.js"></script>
+
+  <!-- Custom fonts for this template-->
+  <link href="../theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+  <!-- Page level plugin CSS-->
+  <link href="../theme/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="../theme/css/sb-admin.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="../theme/css/estilo.css">
+
+</head>
 
 <body id="page-top">
 
@@ -45,12 +45,12 @@
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal"
-                data-target="#logoutModal">
-                <i class="fas fa-sign-out-alt fa-fw"></i>
-            </a>
-        </li>
+      <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="modal"
+          data-target="#logoutModal">
+          <i class="fas fa-sign-out-alt fa-fw"></i>
+        </a>
+      </li>
     </ul>
 
   </nav>
@@ -80,12 +80,14 @@
 
       <div class="container-fluid m-5">
 
-        <!-- Breadcrumbs-->
-        <div class="">
-          <h3 class="mb-5">Edição</h3 class="mb-5">
-        </div>
+        <h3 class="mb-5">Edição</h3 class="mb-5">
 
-        <form id="form_Empresa" method="post" onsubmit="return alterar()">
+
+          <div class="carregamento col-sm-6" id="div_aguarde">
+              <img src="../theme/img/loader2.gif" alt="">
+          </div>
+
+        <form id="form_Empresa" class="inicia-escondido" method="post" onsubmit="return alterar()">
 
           <h4 class="mb-4">Representante</h4>
           <div class="form-group row">
@@ -97,20 +99,21 @@
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">E-mail:</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail do Representante" maxlength="80"
-                required>
+              <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail do Representante"
+                maxlength="80" required>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel" class=""> RG:</label>
-              <input type="text" class="form-control" id="rg" name="rg" placeholder="Telefone do Representante" maxlength="25"
-                required>
+              <input type="text" class="form-control" id="rg" name="rg" placeholder="Telefone do Representante"
+                maxlength="25" required>
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">CPF:</label>
-              <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF do Representante" maxlength="25" required>
+              <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF do Representante"
+                maxlength="25" required>
             </div>
           </div>
 
@@ -128,9 +131,9 @@
             <button type="submit" class="btn btn-primary">Salvar</button>
             <a href="consultaRepresentante.html"><button type="button" class="btn btn-danger">Cancelar</button></a>
           </div>
+        </form>
+        
       </div>
-      </form>
-
 
     </div>
 
@@ -180,7 +183,7 @@
   <script src="../theme/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="../theme/js/sb-admin.min.js"></script>
+  <script src="../theme/js/sb-admin.js"></script>
 
   <!-- SCRIPTS DO PROJETO -->
 
@@ -195,6 +198,9 @@
 
   <!-- SCRIPT ESPECIFICO DA PÁGINA -->
   <script src="../theme/js/alt-representante.js"></script>
+
+   <!-- SCRIPT ESPECIFICO DA PÁGINA -->
+   <script src="../theme/js/alt-rep-adm.js"></script>
 
   <!-- script do suporte -->
   <script type="text/javascript" src="../theme/js/suporte.js"></script>

@@ -2,7 +2,6 @@
 
 autentificar('funcionario');
 consultar_dados();
-//aguardar_consulta("Aguarde!");
 
 // ---------------------------------------------------------------
 // DECLARAR FUNÇÕES
@@ -18,7 +17,7 @@ function consultar_dados() {
     var cdEmpresa = { codigo: sessionStorage.idEmpresa }
     var corpo = new URLSearchParams(cdEmpresa);
 
-    fetch("/consulta-perfil/consulta-ambiente", {
+    fetch("/consulta/consulta-ambiente", {
         method: "POST",
         body: corpo
     }).then(function (response) {
@@ -46,19 +45,21 @@ function consultar_dados() {
                         // <td>${atual.idAmbiente}</td>
 
                         conteudo += `<tr>
-            <td>${atual.descricaoAmbiente}</td>
-            <td>${atual.localizacaoAmbiente}</td>
-            <td>${atual.horaInicio.substring(11, 16)} às ${atual.horaFim.substring(11, 16)}</td>
-            <td class="actions">
-            <a class="consulta-btn btn btn-warning btn-xs mb-1" onclick="alterar(${atual.idAmbiente})">Editar</a>
-            <a class="consulta-btn btn btn-danger btn-xs mb-1" data-toggle="modal"
-                data-target="#delete-modal" onclick="excluir(${atual.idAmbiente})">Excluir</a>
-            </td>
-        </tr>`;
+                                    <td>${atual.descricaoAmbiente}</td>
+                                    <td>${atual.localizacaoAmbiente}</td>
+                                    <td>${atual.horaInicio.substring(11, 16)} às ${atual.horaFim.substring(11, 16)}</td>
+                                    <td class="actions">
+                                    <a class="consulta-btn btn btn-warning btn-xs mb-1" onclick="alterar(${atual.idAmbiente})">Editar</a>
+                                    <a class="consulta-btn btn btn-danger btn-xs mb-1" data-toggle="modal"
+                                        data-target="#delete-modal" onclick="excluir(${atual.idAmbiente})">Excluir</a>
+                                    </td>
+                                </tr>`;
                     }
                     corpo_tabela.innerHTML = conteudo;
+
                     cabeca_tabela.style.display = "";
                     div_aguarde.style.display = 'none';
+
                     $('#tabela').dataTable({
                         "language": {
                             "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
@@ -70,7 +71,7 @@ function consultar_dados() {
             consultar_dados();
         }
     }).catch(() => {
-        // setInterval(consultar_dados(), 100);
+       
         consultar_dados()
        
     });

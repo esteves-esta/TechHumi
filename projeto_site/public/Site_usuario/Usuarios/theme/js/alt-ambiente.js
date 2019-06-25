@@ -18,12 +18,12 @@ function consultar_dados() {
     // guarda código do usuário que está no atributo usuario_bandtec
     // em um json e depois utiliza a classe URLSearchParams
     //para mandar para o arquivo js
-    aguardar();
+    
 
     cdAmbi = { codigo: sessionStorage.codigo_alterar }
     var corpo = new URLSearchParams(cdAmbi);
 
-    fetch("/consulta-perfil/consulta-ambiente-alterar", {
+    fetch("/consulta/consulta-ambiente-alterar", {
         method: "POST",
         body: corpo
     }).then(function (response) {
@@ -34,6 +34,13 @@ function consultar_dados() {
                 //devolve informação do ambiente
                 descricao.value = resposta[0].descricaoAmbiente;
                 localizacao.value = resposta[0].localizacaoAmbiente;
+                campo_inicio.value = resposta[0].horaInicio.substring(11, 16);
+                campo_fim.value = resposta[0].horaFim.substring(11, 16);
+                toggleShow(form_Ambiente, div_aguarde);
+
+                setTimeout(function () {
+                    window.location.href = 'consultaAmbientes.html';
+                }, 2000);
             });
         } else {
             console.log('Erro de consulta!');
@@ -67,7 +74,6 @@ function alterar_dados() {
     // coloca valores dos codigo em input escondidos para enviar para o js
     cd_amb.value = cdAmbi.codigo;
 
-
     var formulario = new URLSearchParams(new FormData(form_Ambiente));
     fetch("/alterar/alterar-ambiente", {
         method: "POST",
@@ -85,7 +91,10 @@ function alterar_dados() {
             // SE ALTEROU REMOVER DO SESSION STORAGE 
             //  CODIGO DO REPRESENTANTE QUE ERA PRA CADASTRAR
             sessionStorage.removeItem("codigo_alterar");
-            window.location.href = 'consultaAmbientes.html';
+            
+            setTimeout(function () {
+                window.location.href = 'consultaAmbientes.html';
+            }, 2000);
 
         } else {
 

@@ -79,12 +79,16 @@
 
             <div class="container-fluid m-5">
 
-                <!-- Breadcrumbs-->
+
                 <div class="">
                     <h3 class="mb-5">Edição</h3 class="mb-5">
                 </div>
 
-                <form id="form_Empresa" method="post" onsubmit="return alterar()">
+                <div class="carregamento col-sm-6" id="div_aguarde">
+                    <img src="../theme/img/loader2.gif" alt="">
+                </div>
+                
+                <form id="form_Empresa" class="inicia-escondido" method="post" onsubmit="return alterar()">
                     <h4 class="mb-4">Empresa</h4>
                     <div class="form-group row">
                         <div class="col-sm-4">
@@ -172,8 +176,8 @@
                         <a href="consultaEmpresas.html"><button type="button"
                                 class="btn btn-danger">Cancelar</button></a>
                     </div>
+                </form>
             </div>
-            </form>
 
 
         </div>
@@ -225,7 +229,7 @@
     <script src="../theme/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../theme/js/sb-admin.min.js"></script>
+    <script src="../theme/js/sb-admin.js"></script>
 
     <!-- SCRIPTS DO PROJETO -->
 
@@ -241,8 +245,11 @@
     <!-- SCRIPT ESPECIFICO DA PÁGINA -->
     <script src="../theme/js/alt-empresa.js"></script>
 
-        <!-- SCRIPT ESPECIFICO DA PÁGINA -->
-        <script src="../theme/js/pesquisa-cep.js"></script>
+    <!-- SCRIPT ESPECIFICO DA PÁGINA -->
+    <script src="../theme/js/alt-empresa-adm.js"></script>
+
+    <!-- SCRIPT ESPECIFICO DA PÁGINA -->
+    <script src="../theme/js/pesquisa-cep.js"></script>
 
 
     <!-- script do suporte -->

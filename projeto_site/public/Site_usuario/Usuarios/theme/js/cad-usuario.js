@@ -28,7 +28,7 @@ function cadastrarUsuario() {
         }).then(function (response) {
 
             if (response.ok) {
-                console.log('Cadastrado com sucesso');
+                ;
                 swal({
                     title: "Cadastrado com sucesso!",
                     text: "   ",
@@ -41,7 +41,7 @@ function cadastrarUsuario() {
                 }, 2000);
 
             } else {
-                console.log('Erro ao cadastrar!');
+               
                 swal({
                     title: "Erro ao cadastrar!",
                     text: "   ",
@@ -118,9 +118,9 @@ function consultar_dados() {
                     }
                 }
             });
-        } else {
-            console.log('Erro de consulta!');
         }
+    }).catch(()=>{
+        consultar_dados();
     });
 
     return false;

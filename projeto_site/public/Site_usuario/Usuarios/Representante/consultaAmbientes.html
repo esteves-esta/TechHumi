@@ -75,7 +75,7 @@
       <li class="nav-item">
         <a class="nav-link" href="historico.html">
           <i class="fas fa-fw fa-table"></i>
-          <span>Histórico Sensor</span></a>
+          <span>Histórico</span></a>
       </li>
       <li class="nav-item" id="somente_adm">
         <a class="nav-link" href="consultaUsuarios.html">
@@ -86,13 +86,13 @@
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Configuraçoes</span>
+          <span>Configurações</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
           style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
-          <a class="dropdown-item" href="perfil.html" id="somente_adm1">Perfil</a>
+          <a class="dropdown-item" href="alteraEmpresa.html" id="somente_adm1">Empresa</a>
+          <a class="dropdown-item" href="alteraRepresentante.html" id="somente_adm2">Representante</a>
           <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
-          <a class="dropdown-item" href="rotina.html" id="somente_adm2">Rotina</a>
         </div>
       </li>
     </ul>
@@ -101,9 +101,13 @@
 
       <div id="main" class="container-fluid m-5">
         <div id="top" class="row">
-          <div class="col-md-9">
+          <div class="col-md-4">
             <h4>Ambientes Cadastrados</h4>
           </div>
+
+          <div class="col-md-5">
+              <a href="alteraRotina.html" class="btn btn-secondary pull-right h2">Alterar funcionamento de todos os ambientes</a>
+            </div>
 
           <div class="col-md-2">
             <a href="cadAmbiente.html" class="btn btn-primary pull-right h2">Novo Ambiente</a>
@@ -118,7 +122,7 @@
             </div>
 
             <table class="table table-stripe" cellspacing="0" cellpadding="0" id="tabela">
-              <thead id="cabeca_tabela">
+              <thead id="cabeca_tabela" class="inicia-escondido">
                 <tr>
                   <!-- <th scope="col">ID</th> -->
                   <th scope="col">Descrição</th>

@@ -5,7 +5,7 @@ autentificar('funcionario');
 
 function cadastrarAmbiente() {
     //btn_salvar.disabled = true;
-
+    idEmpresa.value =  sessionStorage.idEmpresa;
     validar_nomeambiente();
 
     if (validar == true) {
@@ -16,7 +16,7 @@ function cadastrarAmbiente() {
         }).then(function (response) {
 
             if (response.ok) {
-                console.log('Cadastrado com sucesso');
+                
                 swal({
                     title: "Cadastrado com sucesso!",
                     text: "   ",
@@ -24,11 +24,11 @@ function cadastrarAmbiente() {
                 });
 
                 setTimeout(function () {
-                    window.location.href = 'consultaUsuarios.html';
+                    window.location.href = 'consultaAmbientes.html';
                 }, 2000);
 
             } else {
-                console.log('Erro ao cadastrar!');
+                
                 swal({
                     title: "Erro ao cadastrar!",
                     text: "   ",
@@ -63,7 +63,7 @@ function consultar_dados() {
     var corpo = new URLSearchParams(cdEmpresa);
 
 
-    fetch("/consulta-perfil/consulta-ambiente", {
+    fetch("/consulta/consulta-ambiente", {
         method: "POST",
         body: corpo
     }).then(function (response) {
@@ -78,9 +78,9 @@ function consultar_dados() {
                 }
 
             });
-        } else {
-            console.log('Erro de consulta!');
-        }
+        } 
+    }).catch(()=>{
+        consultar_dados();
     });
 
 }

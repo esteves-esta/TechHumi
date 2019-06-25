@@ -11,6 +11,8 @@ router.post('/cadastrarAmbiente', function (req, res, next) {
   var descricao = req.body.descricaoAmbiente; // depois de .body, use o nome (name) do campo em seu formulário de login
   var localizacao = req.body.localizacaoAmbiente; // depois de .body, use o nome (name) do campo em seu formulário de login
   var fkEmpresa = req.body.idEmpresa; // depois de .body, use o nome (name) do campo em seu formulário de login
+  var inicio = req.body.inicio;
+  var fim = req.body.fim;
   banco.sql.close();
   banco.conectar().then(() => {
     console.log(`Chegou p/ cadastrar novo ambiente: ${JSON.stringify(req.body)}`);
@@ -19,11 +21,13 @@ router.post('/cadastrarAmbiente', function (req, res, next) {
       throw new Error(`Dados de Ambiente não chegaram completos: ${descricao} / ${localizacao}`);
     }
      banco.sql.query(`insert into Funcionamento (horaInicio, horaFim) values 
-     ('07:30:00','18:00:00');`);
+     ('${inicio}:00', '${fim}:00');`);
+      
+  
   }).then(cadastro => {
 
     console.log(`FUNCIONAMENTO cadastrado com sucesso!`);
-    res.sendStatus(201);
+    
 
   }).catch(err => {
 
@@ -35,15 +39,16 @@ router.post('/cadastrarAmbiente', function (req, res, next) {
     banco.sql.query(`SELECT IDENT_CURRENT('Funcionamento') as ultimo`)
     .then(results => {
       ultimoCod = results.recordset[0].ultimo;
-      console.log(ultimoCod);
+     
     }).finally(() => {//CADASTRO DE LOGIN
 
       banco.sql.query(`insert into Ambiente (descricaoAmbiente ,localizacaoAmbiente, fkEmpresa, fkFuncionamento) 
       values ('${descricao}','${localizacao}', ${fkEmpresa}, ${ultimoCod});`);
-
+     
     }).then(function () {
 
       console.log('AMBIENTE cadastrado com sucesso!');
+      res.sendStatus(201);
 
     }).catch(err => {
 

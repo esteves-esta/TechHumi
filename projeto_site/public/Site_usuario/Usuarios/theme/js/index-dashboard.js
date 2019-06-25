@@ -37,7 +37,7 @@ function consultar_dados() {
     var cdEmpresa = { codigo: sessionStorage.idEmpresa }
     var corpo = new URLSearchParams(cdEmpresa);
 
-    fetch("/consulta-perfil/consulta-ambiente", {
+    fetch("/consulta/consulta-ambiente", {
         method: "POST",
         body: corpo
     }).then(function (response) {
@@ -251,13 +251,6 @@ function foco(n, status) {
         toggleShow(foco_ambiente, div_aguarde);
     }, 2000);
 
-}
-
-// ---------------------------------------------------------------
-
-function toggleShow(show, hide) {
-    hide.style.display = 'none';
-    show.style.display = 'block';
 }
 
 // ---------------------------------------------------------------

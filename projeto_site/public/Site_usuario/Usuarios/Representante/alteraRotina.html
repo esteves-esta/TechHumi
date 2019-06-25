@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt">
 
-  <head>
-    
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <meta name="description" content="Projeto acadêmico de aplicação utilizando IOT">
-    
-    <title>Configurações - Redefinição</title>
-    
-      <link rel="shotcut icon" href="../theme/img/favicon.png">
-  
-      <script src="../theme/js/sweetalert.min.js"></script>
-  
-      <!-- Custom fonts for this template-->
-      <link href="../theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  
-      <!-- Page level plugin CSS-->
-      <link href="../theme/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-  
-      <!-- Custom styles for this template-->
-      <link href="../theme/css/sb-admin.css" rel="stylesheet">
-  
-      <link rel="stylesheet" href="../theme/css/estilo.css">
-  
-  </head>
-  
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <meta name="description" content="Projeto acadêmico de aplicação utilizando IOT">
+
+  <title>Alterar funcionamento</title>
+
+  <link rel="shotcut icon" href="../theme/img/favicon.png">
+
+  <script src="../theme/js/sweetalert.min.js"></script>
+
+  <!-- Custom fonts for this template-->
+  <link href="../theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+  <!-- Page level plugin CSS-->
+  <link href="../theme/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="../theme/css/sb-admin.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="../theme/css/estilo.css">
+
+</head>
+
 <body id="page-top">
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -84,7 +84,8 @@
           <i class="fas fa-fw fa-cog"></i>
           <span>Configurações</span>
         </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
+          style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
           <a class="dropdown-item" href="alteraEmpresa.html" id="somente_adm1">Empresa</a>
           <a class="dropdown-item" href="alteraRepresentante.html" id="somente_adm2">Representante</a>
           <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
@@ -96,28 +97,30 @@
 
       <div class="container-fluid m-5">
 
-        <h4 class="mb-4">Redefinição de senha</h4>
+        <h4 class="mb-3">Rotina de Funcionamento</h4>
+        <h5 class="mb-4">Todos os ambientes cadastrados terão sua rotina de funcionamento alterada para o horário
+          inserido abaixo.</h5>
 
-        <form id="form_Redefinir" method="post" onsubmit="return redefinirSenha()">
-          <!-- <input type="password" placeholder="Digite seu CNPJ"> <br><br> -->
+        <!-- Page Content -->
+        <form id="form_funcionamento" onsubmit="return alterar()">
           <div class="form-group row">
-            <div class="col-sm-3 my-1">
-              <label for="colFromLabel">Nova senha:</label>
-              <input type="password" name="senha" id="senha" class="form-control" placeholder="Nova Senha" maxlength="50" required>
-            </div>
-            <div class="col-sm-3 my-1">
-              <label for="colFormLabel">Repita a senha:</label>
-              <input type="password" name="confirmaSenha" id="confirmaSenha" class="form-control" placeholder="Repita Senha" maxlength="50"
-                required>
-              </div>
+            <div class="col-sm-2 my-1">
+              <label for="colFormLabel">Horario de Inicio:</label>
+              <input type="time" class="form-control" value="00:00" name="inicio" id="campo_inicio">
             </div>
 
-            <div class=" mt-5">
-            <button type="submit" class="btn btn-primary" id="btn_salvar">Salvar</button>
-            <button type="reset" class="btn btn-danger">Cancelar</button>
+            <div class="col-sm-2 my-1">
+              <label for="colFormLabel">Horario de fim:</label>
+              <input type="time" class="form-control" value="00:00" name="fim" id="campo_fim">
+            </div>
+
           </div>
-            <input type="number" style="display:none" name="estrangeira" id="estrangeira">
-          </form>
+
+          <div class="mt-5">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            
+          </div>
+        </form>
 
       </div>
       <!-- /.container-fluid -->
@@ -143,7 +146,8 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -161,33 +165,34 @@
     </div>
   </div>
 
- <!-- Bootstrap core JavaScript-->
- <script src="../theme/vendor/jquery/jquery.min.js"></script>
- <script src="../theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="../theme/vendor/jquery/jquery.min.js"></script>
+  <script src="../theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
- <!-- Core plugin JavaScript-->
- <script src="../theme/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="../theme/vendor/jquery-easing/jquery.easing.min.js"></script>
 
- <!-- Custom scripts for all pages-->
- <script src="../theme/js/sb-admin.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="../theme/js/sb-admin.js"></script>
 
- <!-- SCRIPTS DO PROJETO -->
+  <!-- SCRIPTS DO PROJETO -->
 
- <!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
- <script src="../theme/js/jquery.mask.min.js"></script>
+  <!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
+  <script src="../theme/js/jquery.mask.min.js"></script>
 
- <!-- SCRIPT PARA AUTENTIFICAÇÃO -->
- <script src="../theme/js/autentificacao.js"></script>
+  <!-- SCRIPT PARA AUTENTIFICAÇÃO -->
+  <script src="../theme/js/autentificacao.js"></script>
 
- <!-- SCRIPT PARA GERAL -->
- <script src="../theme/js/geral.js"></script>
 
- <!-- SCRIPT ESPECIFICO DA PÁGINA -->
- <script src="../theme/js/alt-senha.js"></script>
+  <!-- SCRIPT PARA GERAL -->
+  <script src="../theme/js/geral.js"></script>
 
- <!-- script do suporte -->
- <script type="text/javascript" src="../theme/js/suporte.js"></script>
+  <!-- SCRIPT ESPECIFICO DA PÁGINA -->
+  <script src="../theme/js/alt-rotina.js"></script>
+
+  <!-- script do suporte -->
+  <script type="text/javascript" src="../theme/js/suporte.js"></script>
+
 </body>
 
 </html>
-  

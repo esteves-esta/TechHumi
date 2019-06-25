@@ -19,3 +19,10 @@ function aguardar_consulta(texto) {
   });
 }
 
+
+// ---------------------------------------------------------------
+
+function toggleShow(show, hide) {
+  hide.style.display = 'none';
+  show.style.display = 'block';
+}

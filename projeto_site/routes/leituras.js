@@ -8,7 +8,7 @@ router.get('/ultimas', function (req, res, next) {
   console.log(banco.conexao);
   banco.sql.close();
   banco.conectar().then(() => {
-    var limite_linhas = 8;
+    var limite_linhas = 20;
     return banco.sql.query(`select top ${limite_linhas} 
                             temperatura, 
                             umidade, 

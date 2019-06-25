@@ -1,3 +1,7 @@
+.inicia-escondido {
+    display: none;
+}
+
 .logo{
     width: 130px;
 }

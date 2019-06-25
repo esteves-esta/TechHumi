@@ -10,7 +10,7 @@
 
   <meta name="description" content="Projeto acadêmico de aplicação utilizando IOT">
 
-  <title>Perfil - Empresa</title>
+  <title>Empresa</title>
 
   <link rel="shotcut icon" href="../theme/img/favicon.png">
 
@@ -75,7 +75,7 @@
       <li class="nav-item">
         <a class="nav-link" href="historico.html">
           <i class="fas fa-fw fa-table"></i>
-          <span>Histórico Sensor</span></a>
+          <span>Histórico</span></a>
       </li>
       <li class="nav-item" id="somente_adm">
         <a class="nav-link" href="consultaUsuarios.html">
@@ -90,9 +90,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
           style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
-          <a class="dropdown-item" href="perfil.html" id="somente_adm1">Perfil</a>
+          <a class="dropdown-item" href="alteraEmpresa.html" id="somente_adm1">Empresa</a>
+          <a class="dropdown-item" href="alteraRepresentante.html" id="somente_adm2">Representante</a>
           <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
-          <a class="dropdown-item" href="rotina.html" id="somente_adm2">Rotina</a>
         </div>
       </li>
     </ul>
@@ -101,9 +101,14 @@
 
       <div class="container-fluid m-5">
 
-        <h3 class="mb-5">Perfil</h3>
+        <h3 class="mb-5">Edição</h3 class="mb-5">
 
-        <form id="form_Empresa" method="post" onsubmit="return alterar()">
+
+          <div class="carregamento col-sm-6" id="div_aguarde">
+              <img src="../theme/img/loader2.gif" alt="">
+          </div>
+
+        <form id="form_Empresa" class="inicia-escondido" method="post" onsubmit="return alterar()">
           <h4 class="mb-4">Empresa</h4>
           <div class="form-group row">
             <div class="col-sm-4">
@@ -114,20 +119,20 @@
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">CNPJ:</label>
-              <input type="text" class="form-control" id="cnpj" name="cnpj" readonly placeholder="CNPJ da Empresa"
-                maxlength="30" required maxlength="19">
+              <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ da Empresa" required
+                maxlength="19">
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel">Telefone:</label>
-              <input type="text" class="form-control" id="tele1" name="tele1" placeholder="Telefone - 1" maxlength="20"
+              <input type="text" class="form-control" id="tele2" name="tele2" placeholder="Telefone - 1" maxlength="20"
                 required>
             </div>
             <div class="col-sm-4">
               <label for="colFormLabel">Telefone:</label>
-              <input type="text" class="form-control" id="tele2" name="tele2" placeholder="Telefone - 2" maxlength="20">
+              <input type="text" class="form-control" id="tele1" name="tele1" placeholder="Telefone - 2" maxlength="20">
             </div>
           </div>
           <div class="form-group row">
@@ -147,7 +152,8 @@
 
             <div class="col-sm-2">
               <label for="colFormLabel">Número:</label>
-              <input type="text" class="form-control" id="numero" name="numero" placeholder="15" required>
+              <input type="text" class="form-control" id="numero" name="numero" placeholder="20" maxlength="15"
+                required>
             </div>
           </div>
 
@@ -160,16 +166,16 @@
 
             <div class="col-sm-4">
               <label for="colFormLabel">Complemento:</label>
-              <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Complemento"
-                maxlength="30">
+              <input type="text" class="form-control" id="complemento" name="complemento" maxlength="30"
+                placeholder="Complemento">
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4">
               <label for="colFormLabel">Referencia:</label>
-              <input type="text" class="form-control" id="referencia" name="referencia"
-                placeholder="Ponto de Referencia" maxlength="35">
+              <input type="text" class="form-control" id="referencia" name="referencia" maxlength="35"
+                placeholder="Ponto de Referencia">
             </div>
 
             <div class="col-sm-3">
@@ -183,51 +189,13 @@
             </div>
           </div>
 
-          <hr class="mb-5 mt-5">
-          <h4 class="mb-4">Representante</h4>
-          <div class="form-group row">
-            <div class="col-sm-4">
-              <input type="hidden" id="cd_func" name="cd_func">
-              <label for="colFormLabel" class=""> Representante:</label>
-              <input type="text" class="form-control" id="representante" name="representante"
-                placeholder="Nome do Representante" maxlength="55" required>
-            </div>
-            <div class="col-sm-4">
-              <label for="colFormLabel">E-mail:</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail do Representante"
-                maxlength="80" required>
-            </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Alterar</button>
+            <a href="consultaEmpresas.html"><button type="button" class="btn btn-danger">Cancelar</button></a>
           </div>
+        </form>
 
-          <div class="form-group row">
-            <div class="col-sm-4">
-              <label for="colFormLabel" class=""> RG:</label>
-              <input type="text" class="form-control" id="rg" name="rg" placeholder="Telefone do Representante"
-                maxlength="20" required>
-            </div>
-            <div class="col-sm-4">
-              <label for="colFormLabel">CPF:</label>
-              <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF do Representante"
-                maxlength="25" required>
-            </div>
-          </div>
-
-
-          <div class="form-group row">
-            <div class="col-sm-4">
-              <label for="colFormLabel" class=""> Telefone:</label>
-              <input type="text" class="form-control" id="telefone" name="telefone"
-                placeholder="Telefone do Representante" maxlength="20" required>
-            </div>
-          </div>
-
-
-          <div class="form-group mt-5">
-            <button class="btn btn-primary">Alterar</button>
-          </div>
       </div>
-      </form>
-
     </div>
 
     <!-- Sticky Footer -->
@@ -290,7 +258,10 @@
   <script src="../theme/js/geral.js"></script>
 
   <!-- SCRIPT ESPECIFICO DA PÁGINA -->
-  <script src="../theme/js/perfil.js"></script>
+  <script src="../theme/js/alt-empresa.js"></script>
+
+  <!-- SCRIPT ESPECIFICO DA PÁGINA -->
+  <script src="../theme/js/alt-empresa-usu.js"></script>
 
   <!-- SCRIPT ESPECIFICO DA PÁGINA -->
   <script src="../theme/js/pesquisa-cep.js"></script>

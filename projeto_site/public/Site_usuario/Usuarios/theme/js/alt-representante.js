@@ -6,25 +6,21 @@ $('#cep').mask('00000-000');
 $('#cpf').mask('000.000.000-00');
 $('#cnpj').mask('00.000.000/0000-00');
 
-autentificar('adm');
-
-consultar_dados();
-
 // ---------------------------------------------------------------
 
 // DECLARAR FUNÇÕES
 
 var cd_empresa, cd_endereco, cdFunc;
-function consultar_dados() {
+function consultar_dados(cod) {
     // guarda código do usuário que está no atributo usuario_bandtec
     // em um json e depois utiliza a classe URLSearchParams
     //para mandar para o arquivo js
-    aguardar();
 
-    cdFunc = { codigo: sessionStorage.codigo_alterar }
+
+    cdFunc = { codigo: cod }
     var corpo = new URLSearchParams(cdFunc);
 
-    fetch("/consulta-perfil/consulta", {
+    fetch("/consulta/consultar", {
         method: "POST",
         body: corpo
     }).then(function (response) {
@@ -39,9 +35,11 @@ function consultar_dados() {
                 email.value = resposta.emailFuncionario;
                 telefone.value = resposta.telefoneFuncionario;
             });
-        } else {
-            consultar_dados();
-        }
+
+            toggleShow(form_Empresa, div_aguarde);
+        } 
+    }).catch(()=>{
+        consultar_dados();
     });
 
     return false;
@@ -95,7 +93,7 @@ function alterar_dados() {
             // SE ALTEROU REMOVER DO SESSION STORAGE 
             //  CODIGO DO REPRESENTANTE QUE ERA PRA CADASTRAR
             sessionStorage.removeItem("codigo_alterar");
-            window.location.href = 'consultaRepresentante.html';
+           
 
         } else {
 

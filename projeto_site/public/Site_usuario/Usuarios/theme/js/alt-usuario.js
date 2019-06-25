@@ -13,12 +13,11 @@ function consultar_dados() {
     // guarda código do usuário que está no atributo usuario_bandtec
     // em um json e depois utiliza a classe URLSearchParams
     //para mandar para o arquivo js
-    aguardar();
 
     cdFunc = { codigo: sessionStorage.codigo_alterar }
     var corpo = new URLSearchParams(cdFunc);
 
-    fetch("/consulta-perfil/consulta", {
+    fetch("/consulta/consultar", {
         method: "POST",
         body: corpo
     }).then(function (response) {
@@ -33,11 +32,18 @@ function consultar_dados() {
                 emailFuncionario.value = resposta.emailFuncionario;
                 telefoneFuncionario.value = resposta.telefoneFuncionario;
 
+                toggleShow(form_Usuario, div_aguarde);
+
+                   
+            setTimeout(function () {
+                window.location.href = 'consultaUsuario.html'
+            }, 2000);
             });
-        } else {
-            console.log('Erro de consulta!');
         }
+    }).catch(() =>{
+        consultar_dados();
     });
+    
 
     return false;
 }
@@ -84,7 +90,10 @@ function alterar_dados() {
             // SE ALTEROU REMOVER DO SESSION STORAGE 
             //  CODIGO DO REPRESENTANTE QUE ERA PRA CADASTRAR
             sessionStorage.removeItem("codigo_alterar");
-            window.location.href = 'consultaUsuarios.html';
+
+            setTimeout(function () {
+                window.location.href = 'consultaUsuarios.html';
+            }, 2000);
 
         } else {
 

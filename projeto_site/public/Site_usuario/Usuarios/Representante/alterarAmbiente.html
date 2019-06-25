@@ -72,7 +72,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="historico.html">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Histórico Sensor</span></a>
+                    <span>Histórico</span></a>
             </li>
             <li class="nav-item" id="somente_adm">
                 <a class="nav-link" href="consultaUsuarios.html">
@@ -87,10 +87,9 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start"
                     style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 56px, 0px);">
-                    <a class="dropdown-item" href="perfil.html" id="somente_adm1">Perfil</a>
+                    <a class="dropdown-item" href="alteraEmpresa.html" id="somente_adm1">Empresa</a>
+                    <a class="dropdown-item" href="alteraRepresentante.html" id="somente_adm2">Representante</a>
                     <a class="dropdown-item" href="redefinir.html">Redefinição de senha</a>
-                    <a class="dropdown-item" href="rotina.html" id="somente_adm2">Rotina</a>
-
                 </div>
             </li>
         </ul>
@@ -99,13 +98,13 @@
 
             <div class="container-fluid m-5">
 
-                <!-- Breadcrumbs-->
-                <div class="">
-                    <h3 class="mb-5">Alterar Ambiente</h3 class="mb-5">
+                <h3 class="mb-5">Alterar Ambiente</h3 class="mb-5">
+
+                <div class="carregamento col-sm-6" id="div_aguarde">
+                    <img src="../theme/img/loader2.gif" alt="">
                 </div>
 
-
-                <form id="form_Ambiente" method="post" onsubmit="return alterar()">
+                <form id="form_Ambiente" method="post" onsubmit="return alterar()" style="display: none">
 
                     <h4 class="mb-4">Ambiente</h4>
                     <div class="form-group row">
@@ -119,6 +118,20 @@
                             <label for="colFormLabel">Localização:</label>
                             <input type="text" class="form-control" id="localizacao" name="localizacao"
                                 placeholder="Ex: 3º Andar, Sala 02" maxlength="20" required>
+                        </div>
+                    </div>
+
+                    <h5 class="mb-4">Rotina de Funcionamento</h5>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2 my-1">
+                            <label for="colFormLabel">Horario de Inicio:</label>
+                            <input type="time" class="form-control" value="00:00" name="inicio" id="campo_inicio">
+                        </div>
+
+                        <div class="col-sm-2 my-1">
+                            <label for="colFormLabel">Horario de fim:</label>
+                            <input type="time" class="form-control" value="00:00" name="fim" id="campo_fim">
                         </div>
                     </div>
 
@@ -198,11 +211,9 @@
     <!-- SCRIPT ESPECIFICO DA PÁGINA -->
     <script src="../theme/js/alt-ambiente.js"></script>
 
+
     <!-- script do suporte -->
     <script type="text/javascript" src="../theme/js/suporte.js"></script>
 </body>
 
 </html>
-
-
-
