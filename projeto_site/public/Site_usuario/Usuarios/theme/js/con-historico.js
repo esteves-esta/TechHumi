@@ -61,7 +61,11 @@ function consultar_dados() {
                     corpo_tabela.innerHTML = conteudo;
                     cabeca_tabela.style.display = "";
 
-                    $('#tabela').dataTable();
+                    $('#tabela').dataTable({
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                        }
+                      });
                     $('input[type="search"').attr('id', 'search');
 
                 }

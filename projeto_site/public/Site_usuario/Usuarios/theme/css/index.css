@@ -1,0 +1,143 @@
+/* INDEX - DASHBOARD */
+
+/* estilo do container das divs */
+#conteudo {
+    justify-content: space-between;
+}
+
+
+/* ESTILO DA TABELA */
+/* células da tabela */
+.tableholder table td {
+    border-bottom: 2px solid #eaeaea;
+    padding: 20px 15px;
+}
+
+/* estilo da linha da tabela */
+.tableholder table tr {
+    transition: all ease-in .3s;
+    cursor:pointer;
+}
+
+.tableholder table tr:hover {
+    background-color: #e9e9e9;
+}
+
+/* estilo específico para células do corpo da tabela */
+.tableholder tbody td {
+    font-size: 1em;
+    font-weight: 600;
+}
+
+/* estilo específico para o nome das colunas da tabela */
+#ambiente-col td {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.75em;
+    font-weight: bold;
+    color: #9F9F9F;
+}
+
+/* ESTILO PERTINENTE A TAG DE STATUS */
+/* layout da tag */
+.status {
+    border-radius: 2px;
+    color: #fff;
+    font-weight: 700;
+    font-size: .8em;
+    padding: 6px 10px;
+    text-transform: uppercase;
+    width: 115%;
+    display: block;
+    text-align: center;
+}
+
+/* cores da tag e também da div de foco onde estará os detalhes do ambiente  */
+.normal {
+    background-color: #28a745;
+    background-image: linear-gradient(
+        100deg, #e6ff07 -120%,
+         #28a745 100%);
+}
+
+.bom {
+    background-color: #ffc107;
+    background-image: linear-gradient(100deg, 
+    #ffc107 -20%, 
+    #fd7e14 150%);
+}
+
+.critico {
+    background-color: #dc3545;
+    background-image: linear-gradient(
+        100deg, #fd7e14 -80%,
+         #dc3545 120%);
+}
+
+/* ESTILO DA DIV COM DETALHES DO AMBIENTE E SEUS DADOS */
+#foco_ambiente{
+    border-radius: 5px;
+    padding: 50px;
+    color: #fff;
+    align-self: flex-start;
+}
+
+/* ESTILO DO NOME DO AMBIENTE */
+#foco_ambiente #nome {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+/* dados de localicação e horario */
+#foco_ambiente p {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* estilo da temperatura e umidade real */
+.foco-dados h2{
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+/* layout */
+.foco-dados, .foco-analytics {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+}
+
+/* analytics */
+.foco-analytics ul {
+    display: flex;
+    list-style: none;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    margin: 25px 0px;
+}
+
+.foco-analytics li span {
+    display: block;
+}
+
+
+.foco-label {
+    font-size: .71em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.foco-info {
+    font-size: 1.2em;
+}
+
+.foco-info b {
+    font-weight: 600;
+}

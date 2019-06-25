@@ -118,7 +118,7 @@ router.get('/tempo-real', function (req, res, next) {
     estatisticas.umidade = consulta.recordset[0].umidade;
     console.log(`Tempo real: ${JSON.stringify(estatisticas)}`);
 
-    res.send(estatisticas);
+    res .send(estatisticas);
 
   }).catch(err => {
 

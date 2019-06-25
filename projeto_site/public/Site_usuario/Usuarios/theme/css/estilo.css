@@ -2,93 +2,11 @@
     width: 130px;
 }
 
-#divtemp,
-#divumi{
-    width: 50%;
-}
-
-#temp,
-#umid{
-    width: 50%; 
-    height: 60px;
-  
-}
-
-#tudo{
-    margin:20px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: center;
-}
-
-@media (max-width: 600px) {
-    #tudo{
-        flex-flow: wrap;
-    }
-
-    #temp,
-    #umid{
-        width: 60%; 
-        height: 60px;
-    }
-}
-
-#divtemp,
-#divumi{
-    width: 100%;
-}
-
-
-.consulta-btn {
-    width: 75px;
- }
-
  .navbar-dark .navbar-nav .nav-link {
      color: #2079b8 !important;
  }
 
-
-.esta_table:first-child {
-    margin: 0px 20px;
-}
-
-.esta_table td {
-    border: 0.3px solid #36a2eb;
-    padding: 5px 10px;
-}
-
-.esta_table thead td {
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.8em;
-    font-weight: bold;
-text-align: center;
-}
-
-.esta_table tbody td {
-    color: #df3f61;
-    font-weight: bold;
-    font-size: 1.2em;
-    letter-spacing: 1px;
-}
-
-#estatisticas-temp {
-    display: flex;
-    /* justify-content: space-around; */
-    align-content: center;
-    flex-wrap: wrap;
-    flex-flow: row;
-    height: 115px;
-}
-
-.graf-historico canvas{
-    width: 100% !important;
-    height: 100% !important;
-}
-
-.carregamento{
+ .carregamento{
     width: 70vw;
     height: 50vh;
     display: flex;
@@ -104,11 +22,17 @@ text-align: center;
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, #1f2c42 -28%, #227ABA 25%, #34A1C4 100%) !important
+    background-image: linear-gradient(
+        180deg, #1f2c42 -28%, 
+        #227ABA 25%, #34A1C4 100%) 
+        !important
 }
 
 .bg-dark {
-    background-image: linear-gradient(180deg, #1f2c42 0%, #227ABA 193%) !important;
+    background-image: linear-gradient(
+        180deg, 
+        #1f2c42 0%, 
+        #227ABA 193%) !important;
 }
 
 .btn-primary {
@@ -116,7 +40,10 @@ text-align: center;
     border-color:  #006095 ;
 }
 
-.btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary:visited {
+.btn-primary:hover, 
+.btn-primary:active, 
+.btn-primary:focus, 
+.btn-primary:visited {
     background-color: #024970;
     border-color:  #024970;
 }
@@ -126,7 +53,10 @@ text-align: center;
     border-color:  #34A1C4 ;
 }
 
-.btn-warning:hover, .btn-warning:active, .btn-warning:focus.btn-warning.focus, .btn-warning:visited{
+.btn-warning:hover, 
+.btn-warning:active, 
+.btn-warning:focus.btn-warning.focus, 
+.btn-warning:visited{
     background-color: rgb(26, 117, 148) ;
     border-color:  rgb(26, 117, 148) ;
 }
@@ -155,11 +85,13 @@ h3, .h3 {
 
 
 
-#usuario-nome, .navbar-dark .navbar-nav .nav-link {
+#usuario-nome, 
+.navbar-dark 
+.navbar-nav 
+.nav-link {
     color: #fff !important;
 }
 
 #usuario-nome {
     letter-spacing: .9px;
 }
-

@@ -15,14 +15,6 @@
 
   <script src="../theme/js/sweetalert.min.js"></script>
 
-  <!-- scripts do Chart.js -->
-  <script type="text/javascript" src="../theme/vendor/chart.js/Chart.min.js"></script>
-  <!-- <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script> -->
-
-  <!-- script do google charts -->
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-
   <!-- Custom fonts for this template-->
   <link href="../theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 
@@ -34,9 +26,11 @@
 
   <link rel="stylesheet" href="../theme/css/estilo.css">
 
+  <link rel="stylesheet" href="../theme/css/index.css">
+
 </head>
 
-<body id="page-top" onload="comeca()">
+<body id="page-top">
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -104,167 +98,197 @@
       </li>
     </ul>
 
-    <div id="content-wrapper">
+    <!--          tela          -->
+
+    <div id="content-wrapper" class="m-5">
 
       <div class="container-fluid">
+         
+        <section class="row" id="conteudo" >
 
-        <!-- Dropdown-->
-        <div class="dropdown mb-4">
-          <select class="btn btn-secondary" id="ambientes_lista">
-            <option disabled selected>Selecione um dos ambiente de sua empresa</option>
-
-          </select>
-
-        </div>
-
-
-        <!-- Area Chart Example-->
-        <div class="card mb-3">
-          <div class="card-header">
-            <i class="fas fa-chart-bar"> </i>
-            Temperatura e umidade em tempo real
+          <div class="col-sm-11 mb-5">
+            <h4>Dashboard</h4>
+            <p>Clique em um ambiente da lista abaixo para visualiza-lo em detalhe</p>
           </div>
 
-          <div id="ambientes-dados">
+          
 
-            <div class="carregamento" id="div_aguarde">
+          
+
+          <div class="col-sm-5 tableholder" id="lista" style="display: none">
+            <table class="table-responsive" id="ambientes-dados">
+              <thead id="ambiente-col">
+                <tr>
+                  <td>Status</td>
+                  <td>Ambiente</td>
+                  <td>Temp.</td>
+                  <td>Umid.</td>
+                </tr>
+              </thead>
+
+              <tbody id="ambientes_lista">
+              <!-- carregado em tempo real -->
+
+              </tbody>
+            </table>
+          </div>
+
+          <div class="carregamento col-sm-6" id="div_aguarde">
               <img src="../theme/img/loader2.gif" alt="">
             </div>
 
-            <div id="div_temperatura"></div>
-            <div id="div_umidade"></div>
 
+          <div class="col-sm-6" id="foco_ambiente" style="display: none">
+              <h5 id="nome"></h5>
+              <p><span id="localizacao"></span> | <span id="funcionamento"></span></p>
+              <section class="row">
+  
+                <div class="foco-dados col-sm-4">
+                  <h2 id="foco_t"></h2>
+                  <h2 id="foco_u"></h2>
+                </div>
+  
+                <div class="foco-analytics col-sm-8">
+                  <!-- <h5 title="Explicação">Analytics</h5> -->
+  
+                  <ul>
+                    <li>
+                      <span class="foco-label">Máxima</span>
+                      <span class="foco-info">
+                        <b id="t_max"></b>
+                        ºC</span>
+                    </li>
+                    <li>
+                      <span class="foco-label">Média</span>
+                      <span class="foco-info">
+                        <b id="t_med"></b>
+                        ºC</span>
+                    </li>
+                    <li>
+                      <span class="foco-label">Mediana</span>
+                      <span class="foco-info">
+                        <b id="t_mda"></b>
+                        ºC</span>
+                    </li>
+                    <li>
+                      <span class="foco-label">Mínimo</span>
+                      <span class="foco-info">
+                        <b id="t_min"></b>
+                        ºC</span>
+                    </li>
+                  </ul>
+  
+                  <!-- umidade  -->
+                  <ul>
+                    <li>
+                      <span class="foco-label">Máxima</span>
+                      <span class="foco-info">
+                        <b id="u_max"></b>
+                        %</span>
+                    </li>
+                    <li>
+                      <span class="foco-label">Média</span>
+                      <span class="foco-info">
+                        <b id="u_med"></b>
+                        %</span>
+                    </li>
+                    <li>
+                      <span class="foco-label">Mediana</span>
+                      <span class="foco-info">
+                        <b id="u_mda"></b>
+                        %</span>
+                    </li>
+                    <li>
+                      <span class="foco-label">Mínimo</span>
+                      <span class="foco-info">
+                        <b id="u_min"></b>
+                        %</span>
+                    </li>
+                  </ul>
+                </div>
+  
+              </section>
+              
+            </div>
+
+        </section>
+
+
+
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>TechHumi © 2019</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Pronto para partir?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Selecione "Logout" abaixo se você estiver pronto para terminar sua sessão atual.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-primary" href="#" onclick="logoff()">Logout</a>
           </div>
         </div>
       </div>
-
-
-
-      <div id="estatisticas-temp" class="table-responsive col-md-12">
-
-        <table class="esta_table">
-          <thead>
-            <tr>
-              <td colspan="6">Temperatura</td>
-            </tr>
-            <tr>
-              <td>Minímo</td>
-              <td>1°Quartil</td>
-              <td>Média</td>
-              <td>Mediana</td>
-              <td>3°Quartil</td>
-              <td>Maximo</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td id="temp_min_conteudo"></td>
-              <td id="temp_1q_conteudo"></td>
-              <td id="temp_media_conteudo"></td>
-              <td id="temp_mediana_conteudo"></td>
-              <td id="temp_3q_conteudo"></td>
-              <td id="temp_max_conteudo"></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <table class="esta_table">
-          <thead>
-            <tr>
-              <td colspan="6">Umidade</td>
-            </tr>
-            <tr>
-              <td>Minímo</td>
-              <td>1°Quartil</td>
-              <td>Média</td>
-              <td>Mediana</td>
-              <td>3°Quartil</td>
-              <td>Maximo</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td id="umid_min_conteudo"></td>
-              <td id="umid_1q_conteudo"></td>
-              <td id="umid_media_conteudo"></td>
-              <td id="umid_mediana_conteudo"></td>
-              <td id="umid_3q_conteudo"></td>
-              <td id="umid_max_conteudo"></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
     </div>
-    <!-- /.container-fluid -->
-
-    <!-- Sticky Footer -->
-    <footer class="sticky-footer">
-      <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-          <span>TechHumi © 2019</span>
-        </div>
-      </div>
-    </footer>
-
-  </div>
-  <!-- /.content-wrapper -->
-
-  </div>
-  <!-- /#wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Pronto para partir?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Selecione "Logout" abaixo se você estiver pronto para terminar sua sessão atual.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="#" onclick="logoff()">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="../theme/vendor/jquery/jquery.min.js"></script>
-  <script src="../theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="../theme/vendor/jquery/jquery.min.js"></script>
+    <script src="../theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <!-- <script src="../theme/vendor/jquery-easing/jquery.easing.min.js"></script> -->
+    <!-- Core plugin JavaScript-->
+    <!-- <script src="../theme/vendor/jquery-easing/jquery.easing.min.js"></script> -->
 
-  <!-- Custom scripts for all pages-->
-  <script src="../theme/js/sb-admin.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="../theme/js/sb-admin.js"></script>
 
-  <!-- SCRIPTS DO PROJETO -->
+    
+  <!-- Page level plugin JavaScript-->
+  <script src="../theme/vendor/datatables/jquery.dataTables.js"></script>
+  <script src="../theme/vendor/datatables/dataTables.bootstrap4.js"></script>
 
-  <!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
-  <script src="../theme/js/jquery.mask.min.js"></script>
+    <!-- SCRIPTS DO PROJETO -->
 
-  <!-- SCRIPT PARA AUTENTIFICAÇÃO -->
-  <script src="../theme/js/autentificacao.js"></script>
+    <!-- BIBLIOTECA PARA MASCARAS DOS CAMPOS -->
+    <script src="../theme/js/jquery.mask.min.js"></script>
 
-  <!-- SCRIPT PARA GERAL -->
-  <script src="../theme/js/geral.js"></script>
+    <!-- SCRIPT PARA AUTENTIFICAÇÃO -->
+    <script src="../theme/js/autentificacao.js"></script>
 
-  <!-- SCRIPT ESPECIFICO DA PÁGINA -->
-  <!-- <script src="../theme/js/index-dashboard.js"></script> -->
+    <!-- SCRIPT PARA GERAL -->
+    <script src="../theme/js/geral.js"></script>
 
-  <!-- script do suporte -->
-  <script type="text/javascript" src="../theme/js/suporte.js"></script>
+    <!-- SCRIPT ESPECIFICO DA PÁGINA -->
+    <script src="../theme/js/index-dashboard.js"></script>
+
+    <!-- script do suporte -->
+    <script type="text/javascript" src="../theme/js/suporte.js"></script>
 
 </body>
 

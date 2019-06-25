@@ -28,7 +28,7 @@
 
             <form id="form_login" method="post" onsubmit="return entrar()">
                 <label>Login</label>
-                <input type="text" name="login" placeholder="Login" required>
+                <input type="text" id='login' name="login" placeholder="Login" required>
 
                 <label>Senha</label>
                 <input type="password" name="senha" placeholder="Senha" required>
@@ -65,6 +65,8 @@
 <script>
 
     verificarAutenticacao();
+
+    login.focus();
 
     function verificarAutenticacao() {
         var usuario = sessionStorage.idFuncionario;

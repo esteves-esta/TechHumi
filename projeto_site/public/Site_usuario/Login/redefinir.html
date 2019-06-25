@@ -28,11 +28,11 @@
 
             <form id="form_login" method="post" onsubmit="return senhaesqueceu()">
                 <label>Email</label>
-                <input type="email" name="email" placeholder="Email cadastrado" required>
+                <input type="email" id="email" name="email" placeholder="Email cadastrado" required>
 
                 <div>
-                        <button type="button" class="botao" onclick="valida()">Redefinir Senha</button>
-                        <a class="botao" href="login.html">Fazer login</a>
+                    <button type="button" class="botao" onclick="valida()">Redefinir Senha</button>
+                    <a class="botao" href="login.html">Fazer login</a>
                 </div>
             </form>
 
@@ -56,37 +56,40 @@
 
 </html>
 <script>
+
+    email.focus();
+
     function valida() {
-      if (email.value == ''){
-        swal({
-            icon :"error",
-            title:`Por Favor, Insira Seu Email!`
-        });
-      }
-      
-      else{
-        senhaesqueceu()
-      } 
+        if (email.value == '') {
+            swal({
+                icon: "error",
+                title: `Por Favor, Insira Seu Email!`
+            });
+        }
+
+        else {
+            senhaesqueceu()
+        }
     }
 
-    function senhaesqueceu(){
+    function senhaesqueceu() {
         var formulario = new URLSearchParams(new FormData(redefinir));
         fetch("/email/enviar_email", {
             method: "POST",
             body: formulario
         }).then(function (response) {
-            
+
             if (response.ok) {
                 swal({
-            title:`Enviamos um Email de Redefinição de Senha para esse Endereço`
-        }); consultarEmail();
+                    title: `Enviamos um Email de Redefinição de Senha para esse Endereço`
+                }); 
+                
+                consultarEmail();
             } else {
-
-                console.log('Erro de login!');
                 swal({
-            icon :"error",
-            title:`Por Favor, Insira Seu Email!`
-        });
+                    icon: "error",
+                    title: `Por Favor, Insira Seu Email!`
+                });
 
             }
         });
@@ -94,29 +97,21 @@
         return false;
     }
 
-    function consultarEmail(){
+    function consultarEmail() {
         var formulario = new URLSearchParams(new FormData(redefinir));
         fetch("/consulta-perfil/consulta-email", {
             method: "POST",
             body: formulario
         }).then(function (response) {
-            
+
             if (response.ok) {
                 response.json().then(function (resposta) {
                     alterar_dados(resposta[0].idLogin);
-
-                    console.log(resposta[0].idLogin);
                 });
-                
-
             } else {
-
-                console.log('Erro de conexão!');
-                
-
+                    consultarEmail();
             }
         });
-
         return false;
     }
 
@@ -124,38 +119,34 @@
     function alterar_dados(codigo) {
 
         var info = {
-            senha : "1234",
-            confirmaSenha :"1234",
+            senha: "1234",
+            confirmaSenha: "1234",
             estrangeira: codigo
         }
 
-    var formulario = new URLSearchParams(info);
-    fetch("/alterar/alterar-senha", {
-      method: "POST",
-      body: formulario
-    }).then(function (response) {
+        var formulario = new URLSearchParams(info);
+        fetch("/alterar/alterar-senha", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
 
-      if (response.ok) {
+            if (response.ok) {
 
-        swal({
-          title: "Alterado com sucesso!",
-          text: "   ",
-          icon: "success"
+                swal({
+                    title: "Alterado com sucesso!",
+                    text: "   ",
+                    icon: "success"
+                });
+
+
+            } else {
+
+               alterar_dados();
+            }
         });
-        
 
-      } else {
-
-        swal({
-          title: "Erro ao alterar!",
-          text: "   ",
-          icon: "error"
-        });
-      }
-    });
-
-    return false;
-  }
+        return false;
+    }
 
 
 </script>

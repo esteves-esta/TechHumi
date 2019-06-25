@@ -18,3 +18,4 @@ function aguardar_consulta(texto) {
     closeOnClickOutside: false,
   });
 }
+
