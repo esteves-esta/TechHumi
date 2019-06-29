@@ -33,11 +33,6 @@ function consultar_dados() {
                 telefoneFuncionario.value = resposta.telefoneFuncionario;
 
                 toggleShow(form_Usuario, div_aguarde);
-
-                   
-            setTimeout(function () {
-                window.location.href = 'consultaUsuario.html'
-            }, 2000);
             });
         }
     }).catch(() =>{

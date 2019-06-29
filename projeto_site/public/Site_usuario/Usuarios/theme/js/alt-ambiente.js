@@ -37,10 +37,6 @@ function consultar_dados() {
                 campo_inicio.value = resposta[0].horaInicio.substring(11, 16);
                 campo_fim.value = resposta[0].horaFim.substring(11, 16);
                 toggleShow(form_Ambiente, div_aguarde);
-
-                setTimeout(function () {
-                    window.location.href = 'consultaAmbientes.html';
-                }, 2000);
             });
         } else {
             console.log('Erro de consulta!');
