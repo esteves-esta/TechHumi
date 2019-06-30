@@ -25,9 +25,9 @@ var ambientes = [];
 //-------------------------------------------------
 // só mexer se quiser alterar o tempo de atualização
 // ou se souber o que está fazendo!
-// function atualizarGraficoReal() {
-//     obterDadosGraficoReal();
-//     setTimeout(atualizarGraficoReal, 2000);
+// function atualizar() {
+//     obter_dados();
+//    // setTimeout(atualizar, 10000000);
 // }
 
 // PESQUISA OS AMBIENTES DA EMPRESA 
@@ -106,7 +106,7 @@ function obter_dados() {
 
                 for (r = 0; r < ambientes.length; r++) {
                     ambientes[r].temp = (Number(t) - Number(ambientes[r].simula)).toFixed(2);
-                    ambientes[r].umid = parseInt(Number(u) - Number(ambientes[r].simula*10));
+                    ambientes[r].umid = parseInt(Number(u) - Number(ambientes[r].simula * 10));
 
                     ambientes[r].status_t = analisar_dados(ambientes[r].temp, limites_t);
                     ambientes[r].status_u = analisar_dados(ambientes[r].umid, limites_u);
@@ -123,7 +123,7 @@ function obter_dados() {
 }
 
 // ---------------------------------------------------------------
-
+var datatable_ativado = false;
 // PEGA DADOS DO VETOR AMBIENTE 
 // OS COLOCA NA TABELA '#ambientes-dados'
 // CHAMA BIBLIOTECA dataTable
@@ -140,7 +140,7 @@ function carregar_pagina() {
         }
         else if (ambientes[r].status_t == 'bom' || ambientes[r].status_u == 'bom') {
             status = 'bom';
-        } 
+        }
         else {
             status = 'normal';
         }
@@ -155,39 +155,78 @@ function carregar_pagina() {
 
     ambientes_lista.innerHTML = conteudo;
 
-    // chama função da biblioteca dataTable
-    $("#ambientes-dados").dataTable({
-        "scrollY": false,
-        "paging": true,
-        "ordering": false,
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
-        }
-    });
+    if(datatable_ativado == false){
+
+        // chama função da biblioteca dataTable
+        $("#ambientes-dados").dataTable({
+            "scrollY": false,
+            "paging": true,
+            "ordering": false,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+            }
+        });
+        datatable_ativado = true;
+    }
 
     // retira gif de carregameto e mostra tabela
     toggleShow(lista, div_aguarde);
 
+    alertas();
+   
+   // atualizar();
+}
+
+
+function alertas() {
+   
     ambientes.forEach(element => {
         var texto = '';
         if (element.status_t != 'normal' || element.status_u != 'normal') {
-            console.log(element.status_t);
-            console.log(element.status_u);
+            var cores = ['red', 'yellow'];
+            var cor;
+
+
             if (element.status_t == 'critico') {
                 texto = 'Temperatura fora do padrão, ';
+                cor = cores[0];
             } else if (element.status_t == 'bom') {
                 texto = 'Temperatura pode ser melhorada,';
+                cor = cores[1];
             }
 
             if (element.status_u == 'critico') {
-                texto = 'Umidade fora do padrão.';
+                texto += 'Umidade fora do padrão.';
+                cor = cores[0];
             } else if (element.status_u == 'bom') {
-                texto = 'Umidade pode ser melhorada.';
+                texto += 'Umidade pode ser melhorada.'
+                cor = cores[1];;
             }
-            //notificacao(`${element.nome}`, texto);
+
+            console.log(element.nome + ' ' + texto);
+      
+            var notificar = new jBox('Notice', {
+              
+                animation: {
+                    open: 'slide:right',
+                    close: 'slide:right'
+                  },
+                width: 400,
+                color: cor,
+                title: `${element.nome} | ${element.local}`,
+                content: texto,
+                delayOnHover: !0,
+                delayClose: 4000,
+                showCountdown: !0,
+                offset: {
+                    y: 100
+                }
+            });
+
+            notificar.open();
+
         }
     });
-
 }
 
 // ---------------------------------------------------------------
@@ -212,19 +251,6 @@ function analisar_dados(x, limite) {
 
 }
 
-
-// ---------------------------------------------------------------
-
-
-function notificacao(local, descricao) {
-    swal({
-        title: `${local} fora dos padrões`,
-        text: descricao,
-        icon: "warning",
-        // buttons: false,
-        // timer: 5000,
-    });
-}
 
 // ---------------------------------------------------------------
 
