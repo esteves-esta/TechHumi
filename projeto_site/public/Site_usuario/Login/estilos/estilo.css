@@ -103,6 +103,7 @@ section {
     align-items: center;
 }
 
+
 .formulario {
     height: 70vh;
 }
@@ -114,6 +115,27 @@ section {
     letter-spacing: 1px;
 }
 
+@media only screen and (max-width: 950px)  { 
+    article{
+        flex-flow: column;
+        flex-wrap: wrap;
+    }
+
+    section {
+        width: 100%;
+    }
+
+    .formulario {
+        order:2;
+        height: 120vh;
+    }
+
+    .welcome {
+            height: 50vh;
+    }
+}
+
+
 h1 {
     font-size: 2.5em;
     padding-bottom: 10px;
@@ -122,6 +144,20 @@ h1 {
 h3 {
     font-size: 1.2em;
 }
+
+@media only screen and (max-width: 540px)  { 
+
+    h1 {
+        font-size: 1.5em;
+        padding-bottom: 10px;
+    }
+
+    h3 {
+        font-size: .8em;
+    }
+
+}
+
 
 .imagem{
     width: 300px;

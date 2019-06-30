@@ -1,75 +1,335 @@
-#formulario{
-	width: 60%
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Open sans', 'Segoe ui', sans-serif;
+    /* word-break: break-all; */
+    word-wrap: break-word;
+    line-height: 1.56em;
+    /* white-space: pre; */
 }
 
-#titulo1{
-    margin-bottom: 40px;
+span {
+    display:block;
 }
 
-#simulador{
-    background-color: #C7E1F0;
+h2, h3 {
+    color:#2887BD;
 }
 
-.logomain{
-    width: 400px;
+h2, h1 {
+    padding-bottom: 25px;
+    font-size: 2em;
+}
+@media only screen and (max-width:450px)  { 
+    h2, h1 {  
+        font-size: 1.5em;
+    }
 }
 
-.list-group li{
-	list-style: none;
+h3 {
+    font-size: 1.8em;
 }
 
-.responsivo-tech{
-	width: 20%
+h4 {
+    font-size: 1.3em;
+    margin: 15px 0px;
 }
 
-@media (max-width: 600px) {
-	.responsivo-tech{
-		width: 50%;
-	}
-
-	.logomain{
-		width: 55%
-	}
-}
-/* ---------------------
-	CSS DO FOOTER 
-*/
-
-.footer-basic-centered{
-	background-color: #C7E1F0;
-	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-	box-sizing: border-box;
-	width: 100%;
-	text-align: center;
-	font: normal 18px sans-serif;
-	padding: 45px;
-	margin-top: 80px;
+h4,
+p, 
+label {
+    color: #215682;
 }
 
-.footer-company-name{
-	color:  #227ABA;
-	font-size: 14px;
-	margin: 0;
+/* --------------------------------  */
+
+input,
+button,
+label,
+textarea {
+    display: block;
 }
 
-/* If you don't want the footer to be responsive, remove these media queries */
-
-@media (max-width: 600px) {
-
-	.footer-basic-centered{
-		padding: 35px;
-	}
-
-	.footer-basic-centered .footer-company-name{
-		font-size: 12px;
-	}
+label {
+    font-weight: 600
 }
 
-a.fixed{
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	width: 300px;
-	margin-right: -6%;
+input,
+button,
+textarea {
+    width:350px;
+    padding: 10px 5px;
+    margin-bottom: 15px;
+    border-radius: 2px
+}
 
+textarea {
+    width: 70%;
+}
+
+@media only screen and (max-width: 812px)  { 
+    textarea {
+        background-color: red;
+        width:350px;
+    }
+    
+}
+
+@media only screen and (max-width: 420px)  { 
+    input,
+    button,
+    textarea {
+        width:240px;
+    }
+}
+
+input,
+textarea {
+    border: 1px solid #9AC8E0;
+    margin-top: 15px;
+}
+
+button {
+    background-color: #1f2c42;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    border:none;
+    outline: none;
+}
+
+/* --------------------------------  */
+
+.azul {
+    background-color: #2887BD;
+}
+
+.centraliza-inicial {
+    display: flex;
+    justify-content:  space-between;
+    align-items: center;
+    padding: 35px 25px;
+}
+
+.centraliza-secundario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.row{
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex-flow: column;
+    flex-wrap: wrap;
+}
+
+section, 
+.header_item,
+nav {
+    width: 80%;
+}
+
+section {
+    margin: 50px 0px;
+}
+
+/* --------------------------------  */
+
+header {
+    background-image: url("../img/ex_sistema.png"), 
+    linear-gradient(190deg, #1f2c42 -20%, #227ABA 30%, #34A1C4 100%);
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    height: 600px;
+}
+
+.header_item div {
+    width: 50%;
+}
+
+@media only screen and (max-width: 1280px)  { 
+    header {
+        background-image: 
+    linear-gradient(190deg, #1f2c42 -20%, #227ABA 30%, #34A1C4 100%);
+    }
+
+    .header_item div {
+        width: 100%;
+    }
+    
+}
+
+header p{
+    color:white;
+    font-size: 1.2em;
+}
+
+h1 {
+    color: #fff;
+}
+
+.header_item {
+    height: 55%;
+}
+
+nav img {
+    width: 100px;
+}
+
+@media only screen and (max-width: 812px)  { 
+    nav img {
+        margin-bottom: 25px
+    }
+    
+    .nav_links li {
+        line-height: 3em;
+    }
+}
+/* --------------------------------  */
+
+.nav_links {
+    list-style: none;
+}
+
+.nav_links li {
+    display: inline;
+}
+
+.nav_links a {
+    color:#fff;
+    text-transform: uppercase;
+    padding: 5px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: all ease-in .5s;
+}
+
+#login_link{
+    border: 1.5px solid #fff;
+    border-radius: 1px;
+    padding: 5px;
+}
+
+.nav_links a:hover {
+    color: #9AC8E0;
+}
+
+/* --------------------------------  */
+
+.item{
+    width: 25%;
+    min-width: 180px;
+    transition: all ease-in-out .5s;
+    padding: 25px 25px 0px 25px;
+}
+
+.item:hover {
+    cursor: pointer;
+    background-color: #9AC8E0;
+    transition: all ease-in-out .5s;
+    flex-grow: 2;
+    padding: 25px;
+}
+
+.item:hover  p{
+    font-size: 0.9em;
+    display: block;
+}
+
+.item p {
+    /* width: 50%; */
+    display: none;
+}
+
+.solucao_item {
+    align-items: baseline;
+    height: 300px;
+}
+@media only screen and (max-width: 950px)  { 
+    .solucao_item {
+        height: auto;
+    }
+}
+
+/* --------------------------------  */
+
+
+#simulador h2,
+#simulador p {
+    color : #fff;
+}
+
+#simulador div {
+    width: 40%;
+}
+
+@media only screen and (max-width: 850px)  { 
+    #simulador div {
+        width: 100%;
+        margin-bottom: 25px;
+    }
+}
+
+#simulador label {
+    color: #fff;
+}
+
+#info svg {
+    width: 30px;
+    fill: #1f2c42;
+    align-self: baseline;
+}
+
+#grabMe {
+    display: none;
+}
+
+#grabMe p {
+    padding: 25px 0px;
+}
+
+#grabMe h4, 
+#grabMe a{
+    display: inline;
+}
+
+/* --------------------------------  */
+
+#pre_cadastro div {
+    justify-content: flex-start;
+    margin-right: 7%;
+}
+
+/* --------------------------------  */
+
+
+footer {
+    background-image:
+    linear-gradient(0deg, #1f2c42 -20%, #227ABA 100%, #34A1C4 100%);
+}
+
+footer p {
+    color: #fff;
+}
+
+footer img {
+    width: 15%;
+}
+
+@media only screen and (max-width: 500px)  { 
+    footer img {
+        width: 55%;
+        margin-bottom: 25px;
+    }
+
+    footer section {
+        justify-content: center; 
+    }
 }
