@@ -15,6 +15,6 @@ Entre na pasta pasta */projeto_site* e digite no terminal `npm run go`. Depois e
 
 ### Imagens do Projeto
 
-![Tela Principal](https://github.com/esteves-esta/Techumi/tree/master/imagens/techhumi-dashboard2.png "Dashboard")
+![Tela Principal](https://github.com/esteves-esta/TechHumi/blob/master/imagens_sistema/techhumi-dashboard2.png "Dashboard")
 
 
