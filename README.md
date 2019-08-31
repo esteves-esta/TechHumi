@@ -10,7 +10,7 @@ Este objetivo é atingido com a utilização da tecnologia IOT para o gerenciame
 
 ### Como rodar o projeto
 
-Entre na pasta pasta */projeto_site* e digite no terminal `npm run go`. Depois entre no navegador no link *localhost:3000*.
+Entre na pasta */projeto_site* e digite no terminal `npm run go`. Depois entre no navegador no link *localhost:3000*.
 
 
 ### Imagens do Projeto
